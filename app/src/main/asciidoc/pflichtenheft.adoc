@@ -1,3 +1,5 @@
+:hardbreaks:
+
 = Pflichtenheft
 
 == Projektname
@@ -59,7 +61,21 @@ Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem ein
 == Anforderungen
 
 === Muss-Kriterien
-Was das zu erstellende Programm auf alle Fälle leisten muss.
+
+Allgemeine Kriterien
+M010 - Jede berechtigte Person kann sich einloggen
+M020 - Jede eingeloggte Person kann sich ausloggen
+
+Chef
+M030 - 
+
+Mitarbeiter
+
+Privatkunde
+
+Stamkunde 
+
+
 
 === Kann-Kriterien
 Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
