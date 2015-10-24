@@ -42,7 +42,12 @@ Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darau
 [options="header"]
 |===
 |Name |Beschreibung |
-|…    |…            |
+|Chef | !!! |
+|Mitarbeiter| !!! |
+|Privatkunde| !!! |
+|Stamkunde |!!!|
+
+      |…            |
 |===
 
 === Anwendungsfallbeschreibungen
