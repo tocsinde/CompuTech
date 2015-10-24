@@ -9,7 +9,7 @@ __Status:__     *In Arbeit*
 __Stand:__      *Bearbeitungsdatum*
 
 == Zusammenfassung
-Eine kurze Beschreibung des Dokuments. Wenige Absätze.
+Dieses Pflichtenheft beinhaltet ausschließlich den fachlichen Teil, der von dem Team um die IT-Dienstleister CompuTech, entwickelt wurde.
 
 == Inhaltsverzeichnis
 
