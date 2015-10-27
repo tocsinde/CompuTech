@@ -44,10 +44,10 @@ Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darau
 [options="header"]
 |===
 |Name |Beschreibung |
-|Chef | !!! |
-|Mitarbeiter| !!! |
-|Privatkunde| !!! |
-|Stamkunde |!!!|
+|Chef | Geschäftsführer |
+|Mitarbeiter| Angestellter, der für Service verantwortlich ist |
+|Privatkunde| Privatperson, die gleichzeitig Verbraucher ist|
+|Geschäftskunde | Kunde, der eine Firma vertritt|
 
       |…            |
 |===
@@ -67,18 +67,27 @@ M010 - Jede berechtigte Person kann sich einloggen
 M020 - Jede eingeloggte Person kann sich ausloggen
 
 Chef
-M030 - 
+M030 - Kann manuel Lager verwalten
+M040 - Kann Accounts verwalten
+M050 - Hat Zugriff auf Buchhaltung und Bilanzen
+
 
 Mitarbeiter
+M060 - Service und Reperaturanfrage bearbeiten
+M070 - Preisvorschlag beim Einkauf
+M080 - Neue Produkt hinzufügen 
 
 Privatkunde
+M090 - Kann sich registrieren
+M100 - Kann gebrauchte Geräte verkaufen
+M110 - 
 
 Stamkunde 
 
 
 
 === Kann-Kriterien
-Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
+K010 -
 
 == GUI Prototyp
 
