@@ -80,14 +80,19 @@ M080 - Neue Produkt hinzufügen
 Privatkunde
 M090 - Kann sich registrieren
 M100 - Kann gebrauchte Geräte verkaufen
-M110 - 
+M110 - Kann Artikel in Warenkorb legen
+M120 - Kann Artike aus dem Warenkorb entfernen
+M130 - Kann Bestellung absenden
 
-Stamkunde 
-
-
+Geschäftskunde
+M140 - Kann Artikel in Warenkorb legen
+M150 - Kann Artike aus dem Warenkorn absenden
+M160 - Kann Bestellung absenden
 
 === Kann-Kriterien
-K010 -
+K010 - Bestätigungs E-mail Beianmeldung
+K020 - Suchfeld
+K030 - Geschäftskunde kann sein Passwort ändern
 
 == GUI Prototyp
 
