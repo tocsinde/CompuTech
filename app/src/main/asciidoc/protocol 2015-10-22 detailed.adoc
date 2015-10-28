@@ -1,0 +1,54 @@
+= Protokoll Gruppe 32
+__Treffen am 22.10.2015__
+
+__Schriftführer:__
+Stephan Fischer
+
+__Nächstes Treffen:__ 29.10.2015
+
+__Teilnehmer:__
+
+* Stephan Fischer
+* Anna Gromykina
+* Kevin Horst
+* Philipp Oehme
+
+
+== Bemerkungen
+
+Zu Beginn wurde von Markus nachgefragt, was mit Maximilan Porsche sei. Weder bei der Einführungsveranstaltung noch beim ersten Treffen war er anwesend. Kevin schrieb ihn an; Markus ebenfalls, eine Rückmeldung erfolgte nicht. Markus kündigte an, ihm die erste Verwarnung auszusprechen.
+
+Die erste Teameinteilung wurde durchgeführt: Kevin wurde zum Scrum Master ernannt und Stephan ist Schriftführer für die Protokolle.
+Gruppenintern wird Dienstag 6.DS als Termin für eventuelle Absprachen gesetzt.
+
+Markus gab uns vier Aufgaben, die für den nächsten Sprint angesetzt sind (siehe Issue-Liste).
+
+Die MagicDraw-Lizenzen werden in den kommenden Tagen versendet. 
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+|===
+|Issue |Aufgabe |Status
+|1     |Muss- und Kannkriterien aufstellen       |erledigt
+|===
+
+
+== Aktueller Stand
+
+Muss- und Kannkriterien wurden auf Basis der Aufgabenstellung ausgearbeitet, mit Markus besprochen und diskutiert. Momentan gibt es nur wenige Kannkriterien, was laut Markus normal sei. Nach einiger Entwicklungszeit sollen es mehr werden.
+
+Fürs Timemanagement gab Markus den Tipp, dass wir gemeinsam an einem Googledokument arbeiten sollen, sodass wir später alles zusammenstellen können.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|2     |Analyseklassendiagramm erstellen     |basierend auf CRC-Karten            |alle                |…
+|3     |Muss- und Kannkriterien ins Pflichtenheft einfügen     |selbsterklärend            |alle                |…
+|4     |GUI-Prototyp erstellen     |Prototypen der verschiedenen Unterseiten/Übersichten            |alle                |…
+|5     |Ersten Prototyp erstellen (einer pro Mitglied)     |Videoshop oder Gästebuch mit einem Feature ergänzen            |alle                |…
+|===
