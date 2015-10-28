@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+		<title th:text="#{orders.title}">Bestellungen</title>
+		<SCRIPT language="javascript">
+		function Calculate() {
+			var table = document.getElementbyId('Bezahlung');
+			var items = table.getElementsbyTagName('input');
+			var sum = 0;
+			for (var i=0; i<items.length;i++)
+				sum += parseInt(Items[i].value);
+			var output = document.getElementById('sum');
+			output.innerHTML = sum;
+		}
+		</SCRIPT>
+	</head>
+<body>
+	<div class="all">
+		<header>
+			<h1 th:text="#{orders.title}">Bestellungen</h1>
+		</header>
+		<nav th:include="navigation :: navigation" ></nav>
+		
+		<div class="content">
+			<table id='Bestellungen'>
+				<caption th:text="#{orders.completed}"></caption>
+				<thead>
+					<tr>
+						<th th:text="#{orders.date}">Datum</th>
+						<th th:text="#{orders.customer}">Kunde</th>
+						<th th:text="#{orders.payed}">Bezahlt</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr th:each="order : ${ordersCompleted} ">
+							<td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>
+							<td th:text="${order.userAccount.identifier}"></td>
+							<td th:text="${order.totalPrice}" id='Bezahlung'></td>
+						</tr>
+						<tr>
+						</tr>
+						<tr>
+							<td>Gesamteinnahmen</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
