@@ -1,0 +1,59 @@
+= Protokoll Gruppe 32
+__Treffen am 22.10.2015__
+
+__Schriftführer:__
+Stephan Fischer
+
+__Nächstes Treffen:__ 29.10.2015
+
+__Teilnehmer:__
+
+* Stephan Fischer
+* Anna Gromykina
+* Kevin Horst
+* Philipp Oehme
+
+
+== Bemerkungen
+
+* erneute Nachfrage nach Maximilian Porsche
+** hat bereits bei Einführungsveranstaltung und beim ersten Treffen gefehlt
+** weder Kevin noch Markus haben von ihm Rückmeldung bekommen
+** bekommt dementsprechend erste Verwarnung
+
+* erste Teamaufteilung
+** Kevin ist Scrum Master
+** Stephan ist Schriftführer
+
+* Dienstag 6.DS wird als Termin für weitere Besprechungen festgesetzt
+
+* erste Aufgaben gegeben, die als GitHub-Issues erstellt werden sollen
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+|===
+|Issue |Aufgabe |Status
+|1     |Muss- und Kannkriterien aufstellen       |erledigt
+|===
+
+
+== Aktueller Stand
+* Muss- und Kannkriterien wurden ausgearbeitet, mit Markus besprochen und diskutiert
+** weitere Kannkriterien kommen eventuell mit der Zeit
+* MagicDraw-Lizenzen werden verschickt
+
+* Hinweis fürs Timerecording: Google-Tabelle erstellen, jeder soll dann seine Zeiten eintragen
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|2     |Analyseklassendiagramm erstellen     |basierend auf CRC-Karten            |alle                |…
+|3     |Muss- und Kannkriterien ins Pflichtenheft einfügen     |selbsterklärend            |alle                |…
+|4     |GUI-Prototyp erstellen     |Prototypen der verschiedenen Unterseiten/Übersichten            |alle                |…
+|5     |Ersten Prototyp erstellen (einer pro Mitglied)     |Videoshop oder Gästebuch mit einem Feature ergänzen            |alle                |…
+|===
