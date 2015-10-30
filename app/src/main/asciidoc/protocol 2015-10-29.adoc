@@ -108,15 +108,3 @@ __Teilnehmer:__
 |10     |Sequenzdiagramm: Reparaturaufträge     |selbsterklärend            |alle                |todo
 |11     |Sequenzdiagramm: Verkauf von gebrauchten Produkten     |selbsterklärend            |alle                |todo
 |12     |Ersten Team-Prototyp erstellen     |kleiner Funktionsumfang, basierend auf Java-Kickstart-Code aus dem Repo            |alle                |todo
-
-
-
-|===
-
-|===
-|Issue |Titel |Beschreibung |Verantwortlicher |Status
-|2     |Analyseklassendiagramm erstellen     |basierend auf CRC-Karten            |alle                |…
-|3     |Muss- und Kannkriterien ins Pflichtenheft einfügen     |selbsterklärend            |alle                |…
-|4     |GUI-Prototyp erstellen     |Prototypen der verschiedenen Unterseiten/Übersichten            |alle                |…
-|5     |Ersten Prototyp erstellen (einer pro Mitglied)     |Videoshop oder Gästebuch mit einem Feature ergänzen            |alle                |…
-|===
