@@ -67,7 +67,7 @@ M010 - Jede berechtigte Person kann sich einloggen
 M020 - Jede eingeloggte Person kann sich ausloggen
 
 Chef
-M030 - Kann manuel Lager verwalten
+M030 - Kann manuell Lager verwalten
 M040 - Kann Accounts verwalten
 M050 - Hat Zugriff auf Buchhaltung und Bilanzen
 
@@ -75,7 +75,7 @@ M050 - Hat Zugriff auf Buchhaltung und Bilanzen
 Mitarbeiter
 M060 - Service und Reperaturanfrage bearbeiten
 M070 - Preisvorschlag beim Einkauf
-M080 - Neue Produkt hinzufügen 
+M080 - Neue Produkte hinzufügen
 
 Privatkunde
 M090 - Kann sich registrieren
@@ -86,11 +86,11 @@ M130 - Kann Bestellung absenden
 
 Geschäftskunde
 M140 - Kann Artikel in Warenkorb legen
-M150 - Kann Artike aus dem Warenkorn absenden
+M150 - Kann Artikel aus dem Warenkorb absenden
 M160 - Kann Bestellung absenden
 
 === Kann-Kriterien
-K010 - Bestätigungs E-mail Beianmeldung
+K010 - Bestätigungs-E-Mail bei Anmeldung
 K020 - Suchfeld
 K030 - Geschäftskunde kann sein Passwort ändern
 
