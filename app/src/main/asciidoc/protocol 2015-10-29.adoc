@@ -1,0 +1,122 @@
+= Protokoll Gruppe 32
+__Treffen am 29.10.2015__
+
+__Schriftführer:__
+Stephan Fischer
+
+__Nächstes Treffen:__ 05.11.2015
+
+__Teilnehmer:__
+
+* Stephan Fischer
+* Anna Gromykina
+* Kevin Horst
+* Philipp Oehme
+
+
+== Bemerkungen
+
+* MagicDraw-Lizenzen wurden erneut verschickt (vorherige Lizenz war scheinbar ungültig)
+* Muss- und Kannkriterien werden nochmal von Markus angepasst
+* Dienstag, 6.DS gibts einen SWT-Lernraum in der Fakultät (E040)
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+
+|===
+|Issue |Aufgabe |Status
+|2     |Analyseklassendiagramm erstellen     |erledigt; muss noch als MagicDraw-Datei erstellt werden
+|3     |Muss- und Kannkriterien ins Pflichtenheft einfügen     |erledigt
+|4     |GUI-Prototyp erstellen     |erledigt; muss noch eingescannt werden
+|5     |Ersten Prototyp erstellen (einer pro Mitglied)     |zum Teil erledigt; Anna hat nach Konsultation hochgeladen, Philipp muss noch hochladen
+|===
+
+
+== Aktueller Stand
+
+=== GUI-Prototyp
+
+* Unsicherheiten bei Supportseite: Wie werden Service- und Supportaufträge aufgelistet?
+* Festlegung: Chef/Geschäftsführer/Admin hat Zugriff auf sämtliche Daten/Bereiche, Mitarbeiter hingegen haben nur Zugriff auf die zu ihnen zugeordneten Kunden- und Auftragsdaten
+
+==== Warenkorb
+* Produkte soll man einzeln verwalten können (z.B. zum Löschen)
+
+==== Nachkauffunktion (Lager auffüllen)
+* hier muss noch geklärt werden, woher die Daten über die Anbieter kommen (da ja das _günstigste_ Angebot genutzt werden soll)
+
+==== Ankauf gebrauchter Waren
+* Wert soll nach Alter berechnet werden (ungefähre Preisspanne)
+* Mitarbeiter legt letztendlich einen Preis fest
+
+
+==== Buchhaltung
+* Übersicht über sämtliche Verkäufe
+** aber auch Auflistung der Einnahmen aus Service + Reparaturen
+* jeder Auftrag besitzt ID
+
+==== Personen
+* jeder Account bekommt ein Profil, das vom Benutzer selbst editiert werden soll
+
+
+==== Startseite
+* eher schlicht gehalten
+* bietet Übersicht über die vier Kategorien:
+** Notebooks
+** All-in-one-Geräte
+** Software
+** Zubehör
+
+==== Lager
+* Produkte in vier Kategorien unterteilt (siehe Startseite)
+
+==== Shop
+* Möglichkeit zum Einkauf soll sowohl auf Übersichtsseiten als auch auf Detailseite (also Seite für einzelnes Produkt) existieren (Kauf-Button)
+
+
+==== Auftragsübersicht
+* Übersicht für Mitarbeiter
+* Aufträge kann man manuell als "bearbeitet" oder "geschlossen" markieren (ähnlich GitHub-Issues)
+** zuvor war eine Art Deadline für Aufträge vorgesehen (Markus riet ab)
+
+=== Analyseklassen-Diagramm
+* von Markus etwas korrigiert
+* Warenkorb überarbeitet: besteht jetzt aus Posten
+** kann so besser an das Salespoint-Layout angepasst werden
+* Unterschied von Bestellung und Auftrag war noch unklar
+* Verkauf von Artikeln muss dargestellt werden
+* direkte Assoziationen nicht ganz korrekt
+** stattdessen lieber gestrichelte Linien einsetzen
+* mehr auf Vererbung setzen: Oberklasse User -> interne/externe User -> Admin/Mitarbeiter/Privatkunde/Geschäftskunde
+* muss noch als MagicDraw-Dokument erstellt werden
+
+
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+
+
+
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|8     |Kontextdiagramm erstellen     |selbsterklärend            |alle                |todo
+|9     |Top-Level-Diagramm erstellen     |selbsterklärend            |alle                |todo
+|10     |Sequenzdiagramm: Reparaturaufträge     |selbsterklärend            |alle                |todo
+|11     |Sequenzdiagramm: Verkauf von gebrauchten Produkten     |selbsterklärend            |alle                |todo
+|12     |Ersten Team-Prototyp erstellen     |kleiner Funktionsumfang, basierend auf Java-Kickstart-Code aus dem Repo            |alle                |todo
+
+
+
+|===
+
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|2     |Analyseklassendiagramm erstellen     |basierend auf CRC-Karten            |alle                |…
+|3     |Muss- und Kannkriterien ins Pflichtenheft einfügen     |selbsterklärend            |alle                |…
+|4     |GUI-Prototyp erstellen     |Prototypen der verschiedenen Unterseiten/Übersichten            |alle                |…
+|5     |Ersten Prototyp erstellen (einer pro Mitglied)     |Videoshop oder Gästebuch mit einem Feature ergänzen            |alle                |…
+|===
