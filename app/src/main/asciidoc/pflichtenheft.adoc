@@ -81,7 +81,7 @@ Privatkunde
 M090 - Kann sich registrieren
 M100 - Kann gebrauchte Geräte verkaufen
 M110 - Kann Artikel in Warenkorb legen
-M120 - Kann Artike aus dem Warenkorb entfernen
+M120 - Kann Artikel aus dem Warenkorb entfernen
 M130 - Kann Bestellung absenden
 
 Geschäftskunde
