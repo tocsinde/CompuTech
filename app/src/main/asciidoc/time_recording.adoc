@@ -14,13 +14,20 @@ Team meeting
 
 |Datum|Von|Bis|Dauer
 
-|13.10|18:00|18:10|0:10
+|13.10. (Einführungsveranstaltung)|18:00|18:10|0:10
 
-|15.10|14:50|15:20|0:30
+|15.10. (1. Konsultation)|14:50|15:20|0:30
 
-|22.10|14:50|15:20|0:30
+|22.10. (2. Konsultation)|14:50|15:20|0:30
 
-|27.10|16:50|19:00|2:10
+|27.10. (1. internes Treffen)|16:50|19:00|2:10
+
+|29.10. (3. Konsultation)|14:50|15:25|0:35
+
+|01.11. (2. internes Treffen)|12:00|14:00|2:00
+
+|03.11. (3. internes Treffen)|16:50|xx:xx|x:xx
+
 
 
 |=== 
