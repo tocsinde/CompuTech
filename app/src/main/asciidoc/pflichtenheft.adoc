@@ -1,14 +1,15 @@
 :hardbreaks:
+:imagesdir: images
 
 = Pflichtenheft
 
-== Projektname
+== CompuTech
 
-__Version:__    *1.0*
+__Version:__    *0.2*
 
 __Status:__     *In Arbeit*
 
-__Stand:__      *Bearbeitungsdatum*
+__Stand:__      *02.11.15*
 
 == Zusammenfassung
 Dieses Pflichtenheft beinhaltet ausschließlich den fachlichen Teil, der von dem Team um die IT-Dienstleister CompuTech, entwickelt wurde.
@@ -95,6 +96,64 @@ K020 - Suchfeld
 K030 - Geschäftskunde kann sein Passwort ändern
 
 == GUI Prototyp
+
+[caption="Startseite: "]
+[.left]
+image::gui-prototype/startseite.jpg[Startseite, 450, title=Beschreibung, link="gui-prototype/startseite.jpg"]
+
+[caption="Startseite: "]
+[.left]
+image::gui-prototype/startseite_navigationen.jpg[Startseite, 450, title=Beschreibung, link="gui-prototype/startseite_navigationen.jpg"]
+
+[caption="Ankaufstelle: "]
+[.left]
+image::gui-prototype/ankaufstelle.jpg[Ankaufstelle, 450, title=Beschreibung, link="gui-prototype/ankaufstelle.jpg"]
+
+[caption="Angebote: "]
+[.left]
+image::gui-prototype/angebote_uebersicht.jpg[Angebote, 450, title=Beschreibung, link="gui-prototype/angebote_uebersicht.jpg"]
+
+[caption="Angebote: "]
+[.left]
+image::gui-prototype/angebote_kategorieansicht.jpg[Angebote, 450, title=Beschreibung, link="gui-prototype/angebote_kategorieansicht.jpg"]
+
+[caption="Buchhaltung: "]
+[.left]
+image::gui-prototype/buchhaltung.jpg[Buchhaltung, 450, title=Beschreibung, link="gui-prototypebuchhaltung.jpg"]
+
+[caption="Kundenübersicht: "]
+[.left]
+image::gui-prototype/kundenuebersicht.jpg[Kundenübersicht, 450, title=Beschreibung, link="gui-prototype/kundenuebersicht.jpg"]
+
+[caption="Lager: "]
+[.left]
+image::gui-prototype/lager.jpg[Lager, 450, title=Beschreibung, link="gui-prototype/lager.jpg"]
+
+[caption="Mitarbeiterübersicht: "]
+[.left]
+image::gui-prototype/mitarbeiteruebersicht.jpg[Mitarbeiterübersicht, 450, title=Beschreibung, link="gui-prototype/mitarbeiteruebersicht.jpg"]
+
+[caption="Nachkaufformular: "]
+[.left]
+image::gui-prototype/nachkaufen.jpg[Nachkaufformular, 450, title=Beschreibung, link="gui-prototype/nachkaufen.jpg"]
+
+[caption="Nutzerprofil: "]
+[.left]
+image::gui-prototype/nutzerprofil.jpg[Nutzerprofil, 450, title=Beschreibung, link="gui-prototype/nutzerprofil.jpg"]
+
+[caption="Produktdetails: "]
+[.left]
+image::gui-prototype/produktdetails.jpg[Produktdetails, 450, title=Beschreibung, link="gui-prototype/produktdetails.jpg"]
+
+[caption="Registrierungsformular: "]
+[.left]
+image::gui-prototype/registrieren.jpg[Registrierungsformular, 450, title=Beschreibung, link="gui-prototype/registrieren.jpg"]
+
+[caption="Warenkorb: "]
+image::gui-prototype/warenkorb.jpg[Warenkorb, 450, title=Beschreibung, link="gui-prototype/warenkorb.jpg"]
+
+
+
 
 === Überblick: Dialoglandkarte
 Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird. Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
