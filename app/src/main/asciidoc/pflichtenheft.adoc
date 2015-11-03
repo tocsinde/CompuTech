@@ -9,7 +9,7 @@ __Version:__    *0.2*
 
 __Status:__     *In Arbeit*
 
-__Stand:__      *02.11.15*
+__Stand:__      *03.11.15*
 
 == Zusammenfassung
 Dieses Pflichtenheft beinhaltet ausschließlich den fachlichen Teil, der von dem Team um die IT-Dienstleister CompuTech, entwickelt wurde.
@@ -31,7 +31,8 @@ Einleitung für fachfremde Personen
 Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehören alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Überlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn nötig, erläutern Sie diese Grafik.
 
 === Top-level architecture
-Dokumentieren Sie ihre Top-Level-Architektur mit Hilfe eines Komponentendiagramm.
+[caption="Top-Level-Architektur: "]
+image::diagrams/TopLevelArchitecture.jpg[Startseite, 450, title=Beschreibung, link="images/diagrams/TopLevelArchitecture.jpg"]
 
 == Anwendungsfälle
 
