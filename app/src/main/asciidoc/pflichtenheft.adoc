@@ -30,8 +30,10 @@ Einleitung für fachfremde Personen
 === Kontextdiagramm
 Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehören alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Überlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn nötig, erläutern Sie diese Grafik.
 
+=== Analyseklassendiagramm
+image::diagrams/Analyseklassendiagramm.jpg[Startseite, 450, title=Beschreibung, link="images/diagrams/Analyseklassendiagramm.jpg"]
+
 === Top-level architecture
-[caption="Top-Level-Architektur: "]
 image::diagrams/TopLevelArchitecture.jpg[Startseite, 450, title=Beschreibung, link="images/diagrams/TopLevelArchitecture.jpg"]
 
 == Anwendungsfälle
