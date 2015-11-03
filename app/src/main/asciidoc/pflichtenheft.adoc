@@ -52,7 +52,7 @@ Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darau
 |Mitarbeiter| Angestellter, der für Service verantwortlich ist |
 |Privatkunde| Privatperson, die gleichzeitig Verbraucher ist|
 |Geschäftskunde | Kunde, der eine Firma vertritt|
-
+|Händler | Verkäufer der Hardware|
       |…            |
 |===
 
