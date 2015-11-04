@@ -9,7 +9,7 @@ __Version:__    *0.2*
 
 __Status:__     *In Arbeit*
 
-__Stand:__      *03.11.15*
+__Stand:__      *04.11.15*
 
 == Zusammenfassung
 Dieses Pflichtenheft beinhaltet ausschließlich den fachlichen Teil, der von dem Team um die IT-Dienstleister CompuTech, entwickelt wurde.
