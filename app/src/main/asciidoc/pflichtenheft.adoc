@@ -9,7 +9,7 @@ __Version:__    *0.2*
 
 __Status:__     *In Arbeit*
 
-__Stand:__      *04.11.15*
+__Stand:__      *05.11.15*
 
 == Zusammenfassung
 Dieses Pflichtenheft beinhaltet ausschließlich den fachlichen Teil, der von dem Team um die IT-Dienstleister CompuTech, entwickelt wurde.
@@ -31,12 +31,13 @@ Einleitung für fachfremde Personen
 Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehören alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Überlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn nötig, erläutern Sie diese Grafik.
 
 === Top-level architecture
-image::diagrams/TopLevelArchitecture.jpg[Startseite, 450, link="images/diagrams/TopLevelArchitecture.jpg"]
+image::diagrams/TopLevelArchitecture.jpg[Top-level architecture, 450, link="images/diagrams/TopLevelArchitecture.jpg"]
 
 == Anwendungsfälle
 
 === Überblick Anwendungsfalldiagramm
 Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
+
 === Akteure
 
 Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darauf zugreifen. Dokumentieren Sie die Akteure in einer Tabelle. Diese Tabelle gibt einen Überblick über die Akteure und beschreibt sie kurz. Die Tabelle hat also mindestens zwei Spalten (Akteur Name und Kommentar).
@@ -58,6 +59,14 @@ Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung m�
 Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
 Einfache Anwendungsfälle mit einem Absatz beschreiben.
 Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
+
+=== Sequenzdiagramm: Ankauf von Hardware
+
+image::diagrams/sequenzdiagramm%20einkauf.jpg[Sequenzdiagramm: Ankauf von Hardware, 450, link="images/diagrams/sequenzdiagramm%20einkauf.jpg"]
+
+=== Sequenzdiagramm: Reparaturauftrag
+
+image::diagrams/sequenzdiagramm%20reparatur.jpg[Sequenzdiagramm: Reparaturauftrag, 450, link="images/diagrams/sequenzdiagramm%20reparatur.jpg"]
 
 == Anforderungen
 
@@ -95,7 +104,7 @@ K010 - Bestätigungs-E-Mail bei Anmeldung
 K020 - Suchfeld
 K030 - Geschäftskunde kann sein Passwort ändern
 
-== GUI Prototyp
+== GUI-Prototyp
 
 [caption="Startseite: "]
 [.left]
@@ -170,7 +179,7 @@ Für jeden Dialog:
 
 === Überblick: Klassendiagramm
 
-image::diagrams/Analyseklassendiagramm.jpg[Startseite, 450, link="images/diagrams/Analyseklassendiagramm.jpg"]
+image::diagrams/Analyseklassendiagramm.jpg[Analyseklassendiagramm, 450, link="images/diagrams/Analyseklassendiagramm.jpg"]
 
 === Klassen und Enumerationen
 Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
