@@ -30,9 +30,6 @@ Einleitung für fachfremde Personen
 === Kontextdiagramm
 Das Kontextdiagramm zeigt das geplante Software-System in seiner Umgebung. Zur Umgebung gehören alle Nutzergruppen des Systems und Nachbarsysteme. Die Grafik kann auch informell gehalten sein. Überlegen Sie sich dann geeignete Symbole. Die Grafik kann beispielsweise mit Visio erstellt werden. Wenn nötig, erläutern Sie diese Grafik.
 
-=== Analyseklassendiagramm
-image::diagrams/Analyseklassendiagramm.jpg[Startseite, 450, link="images/diagrams/Analyseklassendiagramm.jpg"]
-
 === Top-level architecture
 image::diagrams/TopLevelArchitecture.jpg[Startseite, 450, link="images/diagrams/TopLevelArchitecture.jpg"]
 
@@ -172,7 +169,8 @@ Für jeden Dialog:
 == Datenmodell
 
 === Überblick: Klassendiagramm
-UML-Analyseklassendiagramm
+
+image::diagrams/Analyseklassendiagramm.jpg[Startseite, 450, link="images/diagrams/Analyseklassendiagramm.jpg"]
 
 === Klassen und Enumerationen
 Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
