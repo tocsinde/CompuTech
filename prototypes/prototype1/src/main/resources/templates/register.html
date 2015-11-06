@@ -1,0 +1,40 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
+		<title>Welcome</title>
+	</head>
+	<body>
+		<h1>Registrierungsformular</h1>
+
+		<form method="post" action="/registerNew" th:object="${registrationForm}">
+
+
+			<fieldset>
+				<legend th:text="#{register.title}">Benutzerkonto</legend>
+
+				<div th:if="${#fields.hasErrors('*')}">
+					<p>Einige Angaben sind nicht korrekt.</p>
+				</div>
+
+				<label th:text="#{register.name}" for="name">Name</label>
+				<input id="name" th:field="*{name}" th:errorclass="fieldError" type="text" name="name" />
+				<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Der Name darf nicht leer sein.</p>
+				<br />
+
+				<label th:text="#{register.password}" for="password">Passwort</label>
+				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="text" name="password" /><br />
+				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Das Passwort darf nicht leer sein.</p>
+
+				<br />
+				<label th:text="#{register.address}" for="address">Straße</label>
+				<input id="address" th:field="*{address}" th:errorclass="fieldError" type="text" name="address" />
+				<p th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Die Adresse darf nicht leer sein.</p>
+
+				<br />
+				<input type="submit" th:value="#{register.submit}" value="Registrieren" />
+			</fieldset>
+		</form>
+	</body>
+</html>
