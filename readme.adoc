@@ -6,3 +6,14 @@ __Teilnehmer:__
 * Anna Gromykina
 * Kevin Horst
 * Philipp Oehme
+
+__Shortcuts:__
+
+* link:app/src/main/asciidoc/pflichtenheft.adoc[Pflichtenheft]
+* link:https://github.com/st-tu-dresden-2015/swt15w32/issues[Issues]
+
+__Protokolle:__
+
+* link:app/src/main/asciidoc/protocol%202015-11-05.adoc[Protokoll - 2015-11-05]
+* link:app/src/main/asciidoc/protocol%202015-10-29.adoc[Protokoll - 2015-10-29]
+* link:app/src/main/asciidoc/protocol%202015-10-22.adoc[Protokoll - 2015-10-22]
