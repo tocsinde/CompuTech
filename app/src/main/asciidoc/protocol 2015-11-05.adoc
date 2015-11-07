@@ -1,0 +1,117 @@
+= Protokoll Gruppe 32
+__Treffen am 05.11.2015__
+
+__Schriftführer:__
+Stephan Fischer
+
+__Nächstes Treffen:__ 12.11.2015
+
+__Teilnehmer:__
+
+* Stephan Fischer
+* Anna Gromykina
+* Kevin Horst
+* Philipp Oehme
+
+
+== Bemerkungen
+
+* Analysephase abgeschlossen!
+* Empfehlung für Prototyp: ruhig Energie reinstecken und so viele Features einbauen wie möglich
+** zahlt sich für später aus
+* für Händlerdaten wird Markus wahrscheinlich eine Software schreiben, die uns Angebote fürs Lager geben wird
+* Muss- und Kannkriterien wurden von Markus überarbeitet und angepasst; werden uns noch zugeschickt
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+
+|===
+|Issue |Aufgabe |Status
+|8     |Kontextdiagramm erstellen     |erledigt, muss noch ins Pflichtenheft
+|9     |Top-Level-Diagramm erstellen     |muss noch ergänzt werden
+|10     |Sequenzdiagramm: Reparaturaufträge     |muss noch ergänzt werden
+|11     |Sequenzdiagramm: Verkauf von gebrauchten Produkten     |erledigt
+|12     |Ersten Team-Prototyp erstellen     |in Arbeit
+|===
+
+
+== Aktueller Stand
+
+=== Top-Level-Diagramm
+
+* Händler wurde als weiterer Akteur hinzugefügt
+* Händlerdaten werden wahrscheinlich von externer Software bezogen werden (siehe weiter oben)
+* Warenkorbverwaltung muss noch Beziehung zu Lager und Bestellung bekommen
+* Bestellung muss noch mit Buchhaltung verbunden werden
+
+=== Kontextdiagramm
+
+* fehlt noch im Pflichtenheft (schon komplett hochgeladen, nur noch nicht eingebunden gewesen)
+* musste nicht gesondert vorgestellt werden, da selbsterklärend
+
+=== Anwendungsfalldiagramme
+
+* Muss- und Kannkriterien werden noch ergänzt (verschiedene Übersichten und Filtermöglichkeiten)
+
+=== Sequenzdiagramme
+
+==== Einkauf von gebrauchten Waren
+
+* zu ergänzen: bei Absage (seitens Kunde) soll vom Mitarbeiter ein neuer Preisvorschlag erstellt werden
+** daraufhin kann Kunde dieses neue Angebot annehmen
+
+==== Reparatur
+
+* alles okay soweit
+
+=== Analyseklassendiagramm
+
+* wurde noch ergänzt
+* Person wurde zu Oberklasse für Kunden, Geschäftsführer und Mitarbeiter
+* Änderung (auf Anraten von Markus): Warenkorb kann mehrere Posten mit Artikeln haben
+** ein Posten = ein Artikel mit Mengenanzahl
+** Artikel wird als abstract gespeichert
+** nicht für jeden einzelnen Artikel im Posten eine ID nehmen
+* Kann-Feature: Bestellung und Auftrag könnten eine Oberklasse bekommen
+
+
+=== Feedback für Einzel-Prototypen
+
+==== Annas Prototyp
+
+* Artikel löschen ist möglich
+* funktioniert
+
+==== Philipps Prototyp
+
+* hat noch nicht ganz geklappt
+* Probleme mit Videoshop und git (Fehlermeldungen beim Pushen)
+* Gesamtpreis der Bestellung sollte zusammengerechnet werden
+
+
+==== Stephans Protoyp
+
+* Kommentare im Videoshop können zusätzlich Produktberwertung beinhalten
+* bei Ausgabe wird Zeitpunkt des Kommentares und Produktbewertung angezeigt
+* funktioniert
+
+==== Kevins Prototyp
+
+* funktioniert ebenfalls
+
+
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+
+
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|14     |Diagramme nochmals überarbeiten  |betrifft Analyseklassendiagramm, ein Sequenzdiagramm und das Top-Level-Diagramm  |alle   |todo
+|13     |.mdzip-Dateien hochladen     |MagicDraw-Quelldateien hochladen            |alle                |todo
+|12     |Ersten Team-Prototyp erstellen   |Funktionsumfang: Nutzerverwaltung, Produktverwaltung, gebrauchte Waren ankaufen + weitere Features (so viel wie möglich)    |alle   |todo
+|===
