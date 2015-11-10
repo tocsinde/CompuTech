@@ -27,5 +27,14 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Anna/.m2/repository/de/tudresden/inf/st/salespoint-framework/6.0.1.RELEASE/salespoint-framework-6.0.1.RELEASE.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="de.tudresden.inf.st"/>
+			<attribute name="maven.artifactId" value="salespoint-framework"/>
+			<attribute name="maven.version" value="6.0.1.RELEASE"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

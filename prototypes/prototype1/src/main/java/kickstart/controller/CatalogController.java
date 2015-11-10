@@ -67,12 +67,12 @@ class CatalogController {
 	// Befindet sich die angesurfte Url in der Form /foo/5 statt /foo?bar=5 so muss man @PathVariable benutzen
 	// Lektüre: http://spring.io/blog/2009/03/08/rest-in-spring-3-mvc/
 	@RequestMapping("/detail/{pid}")
-	public String detail(@PathVariable("pid")  , Model model) {
+	public String detail(@PathVariable("pid") Computer computer , Model model) {
 
-		Optional<InventoryItem> item = inventory.findByProductIdentifier(disc.getIdentifier());
+		Optional<InventoryItem> item = inventory.findByProductIdentifier(computer.getIdentifier());
 		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(Units.ZERO);
 
-		model.addAttribute("disc", disc);
+		model.addAttribute("computer", computer);
 		model.addAttribute("quantity", quantity);
 		model.addAttribute("orderable", quantity.isGreaterThan(Units.ZERO));
 
@@ -83,12 +83,12 @@ class CatalogController {
 	// Der Katalog bzw die Datenbank "weiß" nicht, dass die Disc mit einem Kommentar versehen wurde,
 	// deswegen wird die update-Methode aufgerufen
 	@RequestMapping(value = "/comment", method = RequestMethod.POST)
-	public String comment(@RequestParam("pid") Disc disc, @RequestParam("comment") String comment,
+	public String comment(@RequestParam("pid") Computer computer, @RequestParam("comment") String comment,
 			@RequestParam("rating") int rating) {
 
-		disc.addComment(new Comment(comment, rating, businessTime.getTime()));
-		videoCatalog.save(disc);
+		computer.addComment(new Comment(comment, rating, businessTime.getTime()));
+		videoCatalog.save(computer);
 
-		return "redirect:detail/" + disc.getIdentifier();
+		return "redirect:detail/" + computer.getIdentifier();
 	}
 }

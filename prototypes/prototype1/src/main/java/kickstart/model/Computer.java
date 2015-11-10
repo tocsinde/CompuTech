@@ -1,6 +1,7 @@
 package kickstart.model;
 
 import java.util.LinkedList;
+import org.salespointframework.quantity.Units;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.OneToMany;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
+import org.salespointframework.quantity.Units;
 
 @Entity
 public class Computer extends Product {

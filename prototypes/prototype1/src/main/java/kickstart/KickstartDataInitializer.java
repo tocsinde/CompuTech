@@ -1,13 +1,14 @@
 package kickstart;
 
-// ähm, wofür benötigen wir das (wenn überhaupt)?
 import java.util.Arrays;
+import static org.joda.money.CurrencyUnit.*;
 
 import kickstart.model.Computer;
 import kickstart.model.Computer.ComputerType;
 import kickstart.model.ComputerCatalog;
 import kickstart.model.Customer;
 import kickstart.model.CustomerRepository;
+import org.salespointframework.quantity.Units;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
@@ -82,8 +83,8 @@ private void initializeUsers(UserAccountManager userAccountManager, CustomerRepo
 		admin  = userAccountManager.create("admin", "123", new Role("ROLE_BOSS"));
 		userAccountManager.save(admin);
 		
-		
-		employee  = userAccountManager.create("employee1", "123", new Role("ROLE_EMPLOYEE"));
+
+		UserAccount employee  = userAccountManager.create("employee1", "123", new Role("ROLE_EMPLOYEE"));
 		userAccountManager.save(employee);
 	
 		
@@ -102,12 +103,12 @@ private void initializeUsers(UserAccountManager userAccountManager, CustomerRepo
 		Customer c2 = new Customer(ua2, "Straße 2", "Gretel", "Nachname", "gretel@web.de", "0800-7891011");
 		
 		
-		final Role customerRole = new Role("ROLE_PCUSTOMER"); 
+		final Role customerRole2 = new Role("ROLE_PCUSTOMER"); 
 		
 		// hier wird erstmal allgemein ein Account auf Salespoint-Basis erstellt
-		UserAccount ua3 = userAccountManager.create("haensel", "123", customerRole);
+		UserAccount ua3 = userAccountManager.create("haensel", "123", customerRole2);
 		userAccountManager.save(ua1);
-		UserAccount ua4 = userAccountManager.create("gretel", "123", customerRole);
+		UserAccount ua4 = userAccountManager.create("gretel", "123", customerRole2);
 		userAccountManager.save(ua2);
 		
 		

@@ -21,11 +21,13 @@ public class SaleOrder extends Order {
    
    
    
-   public Money getTotalPrice() {
+ /*  
+    public Money getTotalPrice() {
 	   Money money = super.getTotalPrice();
 	   if (isSale)
 		   money.multipliedBy(BossController.sale, RoundingMode.UNNECESSARY);
 	   return money;
    }
+   */
 }
 	
