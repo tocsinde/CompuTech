@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+		<title th:text="${title}">Katalog</title>
+	</head>
+<body>
+	<div class="all">
+		<header>
+			<h1 th:text="${title}">Katalog</h1>
+		</header>
+		<nav th:include="navigation :: navigation">
+
+		</nav>
+		
+		<div class="content">
+			<div class="catalog" th:remove="all-but-first">
+
+				<a th:each="comp : ${catalog}" th:href="@{'/detail/' + ${disc.identifier}}" href="detail.html">
+					<div class="comp">  
+						<h4 th:text="${comp.name}">Samsung</h4>
+						<img th:src="@{'/resources/img/cover/' + ${comp.image} + '.jpg'}" class="thumbnail" src="../resources/img/cover/sam1.jpg" alt="" />
+						<p th:text="${comp.price}" class="price">199.99 €</p>
+					</div>
+				</a>			
+			</div>
+		</div>
+	</div>
+</body>
+</html>

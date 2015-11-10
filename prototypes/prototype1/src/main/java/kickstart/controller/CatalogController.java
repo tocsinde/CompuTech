@@ -60,12 +60,11 @@ class CatalogController {
 		model.addAttribute("catalog", videoCatalog.findByType(ComputerType.NOTEBOOK));
 		model.addAttribute("title", messageSourceAccessor.getMessage("catalog.bluray.title"));
 
-		return "notebookCatalog";
+		return "computerCatalog";
 	}
 
-	// (｡◕‿◕｡)
-	// Befindet sich die angesurfte Url in der Form /foo/5 statt /foo?bar=5 so muss man @PathVariable benutzen
-	// Lektüre: http://spring.io/blog/2009/03/08/rest-in-spring-3-mvc/
+//
+/*
 	@RequestMapping("/detail/{pid}")
 	public String detail(@PathVariable("pid") Computer computer , Model model) {
 
@@ -79,9 +78,7 @@ class CatalogController {
 		return "detail";
 	}
 
-	// (｡◕‿◕｡)
-	// Der Katalog bzw die Datenbank "weiß" nicht, dass die Disc mit einem Kommentar versehen wurde,
-	// deswegen wird die update-Methode aufgerufen
+	
 	@RequestMapping(value = "/comment", method = RequestMethod.POST)
 	public String comment(@RequestParam("pid") Computer computer, @RequestParam("comment") String comment,
 			@RequestParam("rating") int rating) {
@@ -91,4 +88,5 @@ class CatalogController {
 
 		return "redirect:detail/" + computer.getIdentifier();
 	}
+	*/
 }
