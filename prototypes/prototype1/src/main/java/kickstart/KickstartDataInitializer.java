@@ -27,8 +27,8 @@ import org.salespointframework.useraccount.UserAccountManager;
 		
 		
 		// hier müssten noch Mitarbeiter rein
-		// zu klären: welche ROLE wird denen zugeordnet?
-		// Recherche-Aufgabe: Wie werden Mitarbeiter in Salespoint festgelegt?
+		// zu klären: welche ROLE wird denen zugeordnet? Kevin: bitte ROLE_EMPLOYEE verwenden
+		// Recherche-Aufgabe: Wie werden Mitarbeiter in Salespoint festgelegt? Kevin: würde ich auch mit dem User machen
 		// sind ja Mittelding zwischen Kunden und Admin
 		
 		
@@ -36,11 +36,11 @@ import org.salespointframework.useraccount.UserAccountManager;
 		userAccountManager.save(admin);
 		
 		// Achja: hier muss noch zwischen Privat- und Geschäftskunden unterschieden werden
-		// extra ROLE namens ROLE_NORMALCUSTOMER?
-		// extra ROLE namens ROLE_ENTERPRISECUSTOMER?
+		// extra ROLE namens ROLE_NORMALCUSTOMER? // ROLE_PCUSTOMER
+		// extra ROLE namens ROLE_ENTERPRISECUSTOMER? ROLE_BCUSTOMER (buissiness)
 		
 		
-		final Role customerRole = new Role("ROLE_CUSTOMER");
+		final Role customerRole = new Role("ROLE_PCUSTOMER"); 
 		
 		// hier wird erstmal allgemein ein Account auf Salespoint-Basis erstellt
 		UserAccount ua1 = userAccountManager.create("haensel", "123", customerRole);
