@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+		<title th:text="${title}">Shop</title>
+	</head>
+<body>
+	<div class="all">
+		<header>
+			<h1 th:text="${title}">Shop</h1>
+		</header>
+		<nav th:include="navigation :: navigation">
+
+		</nav>
+		
+		<div class="content">
+			
+			
+			
+				<a href="laptop.html">
+					<div class="lap">  
+						<h4>Laptop</h4>
+						<img class="thumbnail" src="../resources/img/cover/lap.jpg" alt="" />
+						<p class="price">9.99 €</p>
+					</div>
+				</a>
+				<a href="allinone.html">
+					<div class="all">  
+						<h4>All-in-one Systeme</h4>
+						<img class="thumbnail" src="../resources/img/cover/all.jpg" alt="" />
+						<p class="price">9.99 €</p>
+					</div>
+				</a>
+				<a href="zubehoer.html">
+					<div class="zube">  
+						<h4>Zubehör</h4>
+						<img class="thumbnail" src="../resources/img/cover/zube.jpg" alt="" />
+						<p class="price">9.99 €</p>
+					</div>
+				</a>
+				<a href="software.html">
+					<div class="soft">  
+						<h4>Software</h4>
+						<img class="thumbnail" src="../resources/img/cover/lac.jpg" alt="" />
+						<p class="price">9.99 €</p>
+					</div>
+				</a>
+			
+				</a>
+			</div>
+	</div>
+</body>
+</html>
