@@ -1,14 +1,14 @@
 package kickstart;
 
 import java.util.Arrays;
-import static org.joda.money.CurrencyUnit.*;
+import static org.salespointframework.core.Currencies.*;
 
 import kickstart.model.Computer;
 import kickstart.model.Computer.ComputerType;
 import kickstart.model.ComputerCatalog;
 import kickstart.model.Customer;
 import kickstart.model.CustomerRepository;
-import org.salespointframework.quantity.Units;
+import org.salespointframework.quantity.Quantity;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
@@ -56,16 +56,16 @@ public class KickstartDataInitializer implements DataInitializer {
 			return;
 		}
 
-		computerCatalog.save(new Computer("Samsung", "sam1", Money.of(EUR, 199.99), "a1", ComputerType.NOTEBOOK));
-		computerCatalog.save(new Computer("Samsung", "sam2", Money.of(EUR, 299.99), "a2", ComputerType.NOTEBOOK));
+		computerCatalog.save(new Computer("Samsung", "sam1", Money.of(199.99, EURO), "a1", ComputerType.NOTEBOOK));
+		computerCatalog.save(new Computer("Samsung", "sam2", Money.of(299.99, EURO), "a2", ComputerType.NOTEBOOK));
 		
-		computerCatalog.save(new Computer("Acer", "ace1", Money.of(EUR, 299.99), "b1", ComputerType.COMPUTER));
-		computerCatalog.save(new Computer("Acer", "ace2", Money.of(EUR, 299.99), "b2", ComputerType.COMPUTER));
+		computerCatalog.save(new Computer("Acer", "ace1", Money.of(299.99, EURO), "b1", ComputerType.COMPUTER));
+		computerCatalog.save(new Computer("Acer", "ace2", Money.of(299.99, EURO), "b2", ComputerType.COMPUTER));
 	
 		//  soll 10 Stück jeweils verfügbar sein
 		
-				for (Computer comp : ComputerCatalog.findAll()) {
-					InventoryItem inventoryItem = new InventoryItem(comp, Units.TEN);
+				for (Computer comp : computerCatalog.findAll()) {
+					InventoryItem inventoryItem = new InventoryItem(comp, Quantity.of(10));
 					inventory.save(inventoryItem);
 				}
 	}
