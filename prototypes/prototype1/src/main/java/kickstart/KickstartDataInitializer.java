@@ -1,20 +1,74 @@
 package kickstart;
 
 // ähm, wofür benötigen wir das (wenn überhaupt)?
-import static org.salespointframework.core.Currencies.*;
+import java.util.Arrays;
 
+import kickstart.model.Computer;
+import kickstart.model.Computer.ComputerType;
+import kickstart.model.ComputerCatalog;
 import kickstart.model.Customer;
 import kickstart.model.CustomerRepository;
 
-import java.util.Arrays;
-
+import org.javamoney.moneta.Money;
+import org.salespointframework.core.DataInitializer;
+import org.salespointframework.inventory.Inventory;
+import org.salespointframework.inventory.InventoryItem;
+import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
+
+@Component
+public class KickstartDataInitializer implements DataInitializer {
+
+	private final Inventory<InventoryItem> inventory;
+	private final ComputerCatalog computerCatalog;
+	private final UserAccountManager userAccountManager;
+	private final CustomerRepository customerRepository;
+
+	@Autowired
+	public KickstartDataInitializer(CustomerRepository customerRepository, Inventory<InventoryItem> inventory,
+			UserAccountManager userAccountManager, ComputerCatalog computerCatalog) {
+
+		Assert.notNull(customerRepository, "CustomerRepository must not be null!");
+		Assert.notNull(inventory, "Inventory must not be null!");
+		Assert.notNull(userAccountManager, "UserAccountManager must not be null!");
+		Assert.notNull(computerCatalog, "ComputerCatalog must not be null!");
+
+		this.customerRepository = customerRepository;
+		this.inventory = inventory;
+		this.userAccountManager = userAccountManager;
+		this.computerCatalog = computerCatalog;
+	}
 	@Override
 	public void initialize() {
 		initializeUsers(userAccountManager, customerRepository);
+		initializeCatalog(computerCatalog, inventory);
 	}
+	
+	private void initializeCatalog(ComputerCatalog computerCatalog, Inventory<InventoryItem> inventory) {
+
+		if (computerCatalog.findAll().iterator().hasNext()) {
+			return;
+		}
+
+		computerCatalog.save(new Computer("Samsung", "sam1", Money.of(EUR, 199.99), "a1", ComputerType.NOTEBOOK));
+		computerCatalog.save(new Computer("Samsung", "sam2", Money.of(EUR, 299.99), "a2", ComputerType.NOTEBOOK));
+		
+		computerCatalog.save(new Computer("Acer", "ace1", Money.of(EUR, 299.99), "b1", ComputerType.COMPUTER));
+		computerCatalog.save(new Computer("Acer", "ace2", Money.of(EUR, 299.99), "b2", ComputerType.COMPUTER));
+	
+		//  soll 10 Stück jeweils verfügbar sein
+		
+				for (Computer comp : ComputerCatalog.findAll()) {
+					InventoryItem inventoryItem = new InventoryItem(comp, Units.TEN);
+					inventory.save(inventoryItem);
+				}
+	}
+		
 	
 	private void initializeUsers(UserAccountManager userAccountManager, CustomerRepository customerRepository) {
 		
@@ -57,3 +111,4 @@ import org.salespointframework.useraccount.UserAccountManager;
 		
 		customerRepository.save(Arrays.asList(c1, c2));
 	}
+}

@@ -12,7 +12,9 @@ import org.salespointframework.useraccount.UserAccount;
  */
 public class Customer {
 
-    private @Id @GeneratedValue long id;
+    @Id
+    @GeneratedValue
+    private long id;
 	@OneToOne private UserAccount salespointAccount;
 	
     private String address;
@@ -21,6 +23,14 @@ public class Customer {
 
     private String mail;
     private String phone;
+    
+    @OneToOne
+	private UserAccount userAccount;
+
+	@Deprecated
+	protected Customer() {
+	}
+
 	
 	// Username und Passwort müssen hier nicht rein, da Salespoint schon direkt speichern kann
 	// ID muss auch nicht rein (zumindest ist es so im Videoshop)
