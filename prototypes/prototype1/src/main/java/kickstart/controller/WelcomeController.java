@@ -23,6 +23,6 @@ public class WelcomeController {
 
 	@RequestMapping("/")
 	public String index() {
-		return "register";
+		return "welcome";
 	}
 }
