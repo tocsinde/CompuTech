@@ -1,5 +1,6 @@
 package kickstart.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Customer {
     private String mail;
     private String phone;
 
-    @OneToOne private UserAccount userAccount;
+    @OneToOne(cascade=CascadeType.ALL) private UserAccount userAccount;
 
     @SuppressWarnings("unused")
     private Customer() {}
