@@ -13,9 +13,7 @@ import org.salespointframework.useraccount.UserAccount;
 @Entity
 public class Customer {
 
-    @Id
-    @GeneratedValue
-    private long id;
+    private @Id @GeneratedValue long id;
 	@OneToOne private UserAccount salespointAccount;
 	
     private String address;
@@ -24,11 +22,8 @@ public class Customer {
 
     private String mail;
     private String phone;
-    
-    @OneToOne
-	private UserAccount userAccount;
 
-	@Deprecated
+    @SuppressWarnings("unused")
 	protected Customer() {
 	}
 
