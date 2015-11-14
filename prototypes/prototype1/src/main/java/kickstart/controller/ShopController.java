@@ -39,11 +39,6 @@ package kickstart.controller;
 			return "index";
 		}
 
-		// (｡◕‿◕｡)
-		// Über @Valid können wir die Eingaben automagisch prüfen lassen, ob es Fehler gab steht im BindingResult,
-		// dies muss direkt nach dem @Valid Parameter folgen.
-		// Siehe außerdem videoshop.model.validation.RegistrationForm
-		// Lektüre: http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/validation.html
 		@RequestMapping("/registerNew")
 		public String registerNew(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm,
 				BindingResult result) {
@@ -52,13 +47,12 @@ package kickstart.controller;
 				return "register";
 			}
 
-			// (｡◕‿◕｡)
-			// Falles alles in Ordnung ist legen wir einen UserAccount und einen passenden Customer an und speichern beides.
-			UserAccount userAccount = userAccountManager.create(registrationForm.getName(), registrationForm.getPassword(),
-					new Role("ROLE_CUSTOMER"));
+			// todo:	festlegen, welche Art von Kunde gerade registriert wird (Privat- oder Geschäftskunde)
+			// 			mögliche Lösung: Button auf Registrierungsformular, der festlegt, welche Art von Kunde vorliegt
+			UserAccount userAccount = userAccountManager.create(registrationForm.getNickname(), registrationForm.getPassword(), Role.of("ROLE_PCUSTOMER"));
 			userAccountManager.save(userAccount);
 
-			Customer customer = new Customer(userAccount, "Adresse", "Vorname", "Nachname", "Mail", "000");
+			Customer customer = new Customer(userAccount, registrationForm.getAddress(), registrationForm.getFirstname(), registrationForm.getLastname(), registrationForm.getMail(), registrationForm.getPhone());
 			customerRepository.save(customer);
 
 			return "redirect:/";

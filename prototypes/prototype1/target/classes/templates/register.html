@@ -18,21 +18,41 @@
 					<p>Einige Angaben sind nicht korrekt.</p>
 				</div>
 
-				<label th:text="#{register.name}" for="name">Name</label>
-				<input id="name" th:field="*{name}" th:errorclass="fieldError" type="text" name="name" />
-				<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Der Name darf nicht leer sein.</p>
+				<label th:text="#{register.nickname}" for="nickname">Nickname</label>
+				<input id="nickname" th:field="*{nickname}" th:errorclass="fieldError" type="text" name="nickname" />
+				<p th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">Der Nickname darf nicht leer sein.</p>
+				<br />
+
+				<label th:text="#{register.firstname}" for="firstname">Vorname</label>
+				<input id="firstname" th:field="*{firstname}" th:errorclass="fieldError" type="text" name="firstname" />
+				<p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Der Vorname darf nicht leer sein.</p>
+				<br />
+
+				<label th:text="#{register.lastname}" for="lastname">Nachname</label>
+				<input id="lastname" th:field="*{lastname}" th:errorclass="fieldError" type="text" name="lastname" />
+				<p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Der Nachname darf nicht leer sein.</p>
 				<br />
 
 				<label th:text="#{register.password}" for="password">Passwort</label>
-				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="text" name="password" /><br />
+				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" /><br />
 				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Das Passwort darf nicht leer sein.</p>
-
 				<br />
-				<label th:text="#{register.address}" for="address">Straße</label>
+
+				<label th:text="#{register.address}" for="address">Adresse</label>
 				<input id="address" th:field="*{address}" th:errorclass="fieldError" type="text" name="address" />
 				<p th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Die Adresse darf nicht leer sein.</p>
-
 				<br />
+
+				<label th:text="#{register.mail}" for="mail">E-Mail</label>
+				<input id="mail" th:field="*{mail}" th:errorclass="fieldError" type="text" name="mail" />
+				<p th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Die E-Mail-Adresse darf nicht leer sein.</p>
+				<br />
+
+				<label th:text="#{register.phone}" for="phone">Telefon</label>
+				<input id="phone" th:field="*{phone}" th:errorclass="fieldError" type="text" name="phone" />
+				<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Die Telefonnummer darf nicht leer sein.</p>
+				<br />
+
 				<input type="submit" th:value="#{register.submit}" value="Registrieren" />
 			</fieldset>
 		</form>
