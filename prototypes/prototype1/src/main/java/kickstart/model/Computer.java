@@ -32,11 +32,8 @@ public class Computer extends Product {
 		// "interagiert"
 		@OneToMany(cascade = CascadeType.ALL) private List<Comment> comments = new LinkedList<Comment>();
 
-		// (｡◕‿◕｡)
-		// Ein paremterloser public oder protected Konstruktor ist zwingend notwendig für JPA,
-		// damit dieser nicht genutzt wird, markieren wir in mit @Deprecated
-		@Deprecated
-		protected Computer() {}
+		@SuppressWarnings("unused")
+		private Computer() {}
 
 		public Computer(String name, String image, Money price, String model, ComputerType type) {
 			//super(name, price, Units.METRIC);
@@ -53,7 +50,6 @@ public class Computer extends Product {
 		public void addComment(Comment comment) {
 			comments.add(comment);
 		}
-
 		
 		public Iterable<Comment> getComments() {
 			return comments;

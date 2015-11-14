@@ -59,12 +59,12 @@ public class KickstartDataInitializer implements DataInitializer {
 
 		computerCatalog.save(new Computer("Samsung", "sam1", Money.of(199.99, EURO), "a1", ComputerType.NOTEBOOK));
 		computerCatalog.save(new Computer("Samsung", "sam2", Money.of(299.99, EURO), "a2", ComputerType.NOTEBOOK));
-		
+
 		computerCatalog.save(new Computer("Acer", "ace1", Money.of(299.99, EURO), "b1", ComputerType.COMPUTER));
 		computerCatalog.save(new Computer("Acer", "ace2", Money.of(299.99, EURO), "b2", ComputerType.COMPUTER));
-	
+
 		//  soll jeweils 10 Mal verfügbar sein
-		
+
 				for (Computer comp : computerCatalog.findAll()) {
 					InventoryItem inventoryItem = new InventoryItem(comp, Quantity.of(10));
 					inventory.save(inventoryItem);
@@ -74,11 +74,11 @@ public class KickstartDataInitializer implements DataInitializer {
 	
 private void initializeUsers(UserAccountManager userAccountManager, CustomerRepository customerRepository) {
 		
-		if (userAccountManager.findByUsername("admin").isPresent()) {
+		if (userAccountManager.findByUsername("boss").isPresent()) {
 			return;
 		}
 		
-		UserAccount admin  = userAccountManager.create("admin", "123", Role.of("ROLE_BOSS"));
+		UserAccount admin  = userAccountManager.create("boss", "123", Role.of("ROLE_BOSS"));
 		userAccountManager.save(admin);
 		
 

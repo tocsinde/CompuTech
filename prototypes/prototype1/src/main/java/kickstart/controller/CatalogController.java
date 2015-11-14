@@ -26,7 +26,9 @@ import kickstart.model.ComputerCatalog;
 @Controller
 class CatalogController {
 
-	private final ComputerCatalog videoCatalog;
+	private static final Quantity NONE = Quantity.of(0);
+
+	private final ComputerCatalog computerCatalog;
 	private final Inventory<InventoryItem> inventory;
 	private final BusinessTime businessTime;
 
@@ -36,10 +38,10 @@ class CatalogController {
 	private final MessageSourceAccessor messageSourceAccessor;
 
 	@Autowired
-	public CatalogController(ComputerCatalog videoCatalog, Inventory<InventoryItem> inventory, BusinessTime businessTime,
+	public CatalogController(ComputerCatalog computerCatalog, Inventory<InventoryItem> inventory, BusinessTime businessTime,
 			MessageSource messageSource) {
 
-		this.videoCatalog = videoCatalog;
+		this.computerCatalog = computerCatalog;
 		this.inventory = inventory;
 		this.businessTime = businessTime;
 		this.messageSourceAccessor = new MessageSourceAccessor(messageSource);
@@ -48,7 +50,7 @@ class CatalogController {
 	@RequestMapping("/computerCatalog")
 	public String computerCatalog(ModelMap modelMap) {
 
-		modelMap.addAttribute("catalog", videoCatalog.findByType(ComputerType.COMPUTER));
+		modelMap.addAttribute("catalog", computerCatalog.findByType(ComputerType.COMPUTER));
 		modelMap.addAttribute("title", messageSourceAccessor.getMessage("catalog.COMPUTER.title"));
 
 		return "computerCatalog";
@@ -57,13 +59,13 @@ class CatalogController {
 	@RequestMapping("/notebookCatalog")
 	public String notebookCatalog(Model model) {
 
-		model.addAttribute("catalog", videoCatalog.findByType(ComputerType.NOTEBOOK));
+		model.addAttribute("catalog", computerCatalog.findByType(ComputerType.NOTEBOOK));
 		model.addAttribute("title", messageSourceAccessor.getMessage("catalog.bluray.title"));
 
 		return "computerCatalog";
 	}
 
-//
+
 /*
 	@RequestMapping("/detail/{pid}")
 	public String detail(@PathVariable("pid") Computer computer , Model model) {

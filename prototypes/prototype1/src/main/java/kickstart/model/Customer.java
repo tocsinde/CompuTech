@@ -14,7 +14,6 @@ import org.salespointframework.useraccount.UserAccount;
 public class Customer {
 
     private @Id @GeneratedValue long id;
-	@OneToOne private UserAccount salespointAccount;
 	
     private String address;
     private String firstname;
@@ -23,16 +22,17 @@ public class Customer {
     private String mail;
     private String phone;
 
+    @OneToOne private UserAccount userAccount;
+
     @SuppressWarnings("unused")
-	protected Customer() {
-	}
+    private Customer() {}
 
 	
 	// Username und Passwort müssen hier nicht rein, da Salespoint schon direkt speichern kann
 	// ID muss auch nicht rein (zumindest ist es so im Videoshop)
 
-    public Customer(UserAccount salespointAccount, String address, String firstname, String lastname, String mail, String phone) {
-		this.salespointAccount = salespointAccount;
+    public Customer(UserAccount userAccount, String address, String firstname, String lastname, String mail, String phone) {
+		this.userAccount = userAccount;
         this.address = address;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -85,6 +85,6 @@ public class Customer {
     }
 	
 	public UserAccount getUserAccount() {
-		return salespointAccount;
+		return userAccount;
 	}
 }
