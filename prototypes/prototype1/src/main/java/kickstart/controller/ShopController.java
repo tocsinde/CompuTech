@@ -16,7 +16,7 @@ package kickstart.controller;
 
 	import kickstart.model.Customer;
 	import kickstart.model.CustomerRepository;
-	//import kickstart.model.validation.RegistrationForm;
+	import kickstart.model.validation.RegistrationForm;
 
 	@Controller
 	class ShopController {
@@ -39,7 +39,7 @@ package kickstart.controller;
 			return "index";
 		}
 
-/*		// (｡◕‿◕｡)
+		// (｡◕‿◕｡)
 		// Über @Valid können wir die Eingaben automagisch prüfen lassen, ob es Fehler gab steht im BindingResult,
 		// dies muss direkt nach dem @Valid Parameter folgen.
 		// Siehe außerdem videoshop.model.validation.RegistrationForm
@@ -58,7 +58,7 @@ package kickstart.controller;
 					new Role("ROLE_CUSTOMER"));
 			userAccountManager.save(userAccount);
 
-			Customer customer = new Customer(userAccount, registrationForm.getAddress());
+			Customer customer = new Customer(userAccount, "Adresse", "Vorname", "Nachname", "Mail", "000");
 			customerRepository.save(customer);
 
 			return "redirect:/";
@@ -68,7 +68,7 @@ package kickstart.controller;
 		public String register(ModelMap modelMap) {
 			modelMap.addAttribute("registrationForm", new RegistrationForm());
 			return "register";
-		} */
+		}
 		
 }
 
