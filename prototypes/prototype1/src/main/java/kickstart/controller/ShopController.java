@@ -1,4 +1,4 @@
-/*package kickstart.controller;
+package kickstart.controller;
 
 
 	import javax.validation.Valid;
@@ -16,7 +16,7 @@
 
 	import kickstart.model.Customer;
 	import kickstart.model.CustomerRepository;
-	import kickstart.model.validation.RegistrationForm;
+	//import kickstart.model.validation.RegistrationForm;
 
 	@Controller
 	class ShopController {
@@ -68,9 +68,7 @@
 		public String register(ModelMap modelMap) {
 			modelMap.addAttribute("registrationForm", new RegistrationForm());
 			return "register";
-		} 
+		} */
 		
 }
-*/
-
 

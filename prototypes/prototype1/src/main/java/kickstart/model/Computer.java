@@ -1,7 +1,7 @@
 package kickstart.model;
 
 import java.util.LinkedList;
-import org.salespointframework.quantity.Units;
+//import org.salespointframework.quantity.Units;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
-import org.salespointframework.quantity.Units;
+//import org.salespointframework.quantity.Units;
 import org.salespointframework.quantity.Quantity;
 
 @Entity
@@ -39,7 +39,8 @@ public class Computer extends Product {
 		protected Computer() {}
 
 		public Computer(String name, String image, Money price, String model, ComputerType type) {
-			super(name, price, Units.METRIC);
+			//super(name, price, Units.METRIC);
+			super(name, price);
 			this.image = image;
 			this.model = model;
 			this.type = type;

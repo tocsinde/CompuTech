@@ -21,10 +21,7 @@ public class Comment {
 
 		private String text;
 		private int rating;
-
-		// (｡◕‿◕｡)
-		// 1. Es gibt eine extra Annotation für Dates
-		@Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime") private LocalDateTime date;
+		private LocalDateTime date;
 
 		@Deprecated
 		protected Comment() {}

@@ -10,6 +10,7 @@ import org.salespointframework.useraccount.UserAccount;
 /**
  * Created by Stephan on 03.11.2015.
  */
+@Entity
 public class Customer {
 
     @Id
