@@ -39,7 +39,7 @@ class CatalogController {
 
 	@Autowired
 	public CatalogController(ComputerCatalog computerCatalog, Inventory<InventoryItem> inventory, BusinessTime businessTime,
-			MessageSource messageSource) {
+							 MessageSource messageSource) {
 
 		this.computerCatalog = computerCatalog;
 		this.inventory = inventory;
@@ -56,39 +56,35 @@ class CatalogController {
 		return "computerCatalog";
 	}
 
-	@RequestMapping("/notebookCatalog")
+	@RequestMapping("/laptop")
 	public String notebookCatalog(Model model) {
 
 		model.addAttribute("catalog", computerCatalog.findByType(ComputerType.NOTEBOOK));
-		model.addAttribute("title", messageSourceAccessor.getMessage("catalog.bluray.title"));
 
-		return "computerCatalog";
+
+		return "laptop";
 	}
 
 
-/*
+	@RequestMapping("/shop")
+	public String shopoverview() {
+		return "shopoverview";
+	}
+
+
 	@RequestMapping("/detail/{pid}")
-	public String detail(@PathVariable("pid") Computer computer , Model model) {
+	public String detail(@PathVariable("pid") Computer computer, Model model) {
 
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(computer.getIdentifier());
-		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(Units.ZERO);
+		//Quantity quantity = item.map(InventoryItem::getQuantity).orElse(Units.ZERO);
 
 		model.addAttribute("computer", computer);
-		model.addAttribute("quantity", quantity);
-		model.addAttribute("orderable", quantity.isGreaterThan(Units.ZERO));
+		//model.addAttribute("quantity", quantity);
+		//model.addAttribute("orderable", quantity.isGreaterThan(Units.ZERO));
 
 		return "detail";
 	}
-
-	
-	@RequestMapping(value = "/comment", method = RequestMethod.POST)
-	public String comment(@RequestParam("pid") Computer computer, @RequestParam("comment") String comment,
-			@RequestParam("rating") int rating) {
-
-		computer.addComment(new Comment(comment, rating, businessTime.getTime()));
-		videoCatalog.save(computer);
-
-		return "redirect:detail/" + computer.getIdentifier();
-	}
-	*/
 }
+
+
+

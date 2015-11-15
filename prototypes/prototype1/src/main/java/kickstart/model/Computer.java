@@ -17,8 +17,11 @@ import org.salespointframework.quantity.Quantity;
 public class Computer extends Product {
 	
 
-		public static enum ComputerType {
-			NOTEBOOK, COMPUTER;
+		public  enum ComputerType {
+			NOTEBOOK, COMPUTER, SOFTWARE, ZUBE;
+
+
+
 		}
 
 

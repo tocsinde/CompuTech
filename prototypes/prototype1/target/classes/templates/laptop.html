@@ -12,8 +12,21 @@
 			<h1 th:text="#{home.title}">Laptop</h1>
 		</header>
 		<nav th:include="navigation :: navigation"></nav>
-		
-		
+
+		<div class="content">
+			<div class="catalog">
+
+				<a th:each="Computer : ${catalog}" th:href="@{'/detail/' + ${Computer.identifier}}" href="detail.html">
+					<div class="disc">
+						<h4 th:text="${Computer.name}">Last Action Hero</h4>
+						<img th:src="@{'/resources/img/cover/' + ${Computer.image} + '.jpg'}" class="thumbnail" src="../resources/img/cover/lac.jpg" alt="" />
+						<p th:text="${Computer.price}" class="price">9.99 €</p>
+
+					</div>
+				</a>
+
+			</div>
+		</div>
 		</div>
 
 </body>

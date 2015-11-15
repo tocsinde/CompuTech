@@ -16,6 +16,7 @@
 		<table>
 			<thead>
 			<tr>
+				<th th:text="#{customers.id}">ID</th>
 				<th th:text="#{customers.lastname}">Nachname</th>
 				<th th:text="#{customers.firstname}">Vorname</th>
 				<th th:text="#{customers.nickname}">Login</th>
@@ -26,6 +27,7 @@
 			</thead>
 			<tbody th:remove="all-but-first">
 			<tr th:each=" customer : ${customerList}">
+				<td th:text="${customer.id}">ID</td>
 				<td th:text="${customer.lastname}">Nachname</td>
 				<td th:text="${customer.firstname}">Vorname</td>
 				<td th:text="${customer.userAccount.identifier}">Login</td>
@@ -38,7 +40,8 @@
 					</form>
 				</td>
 				<td>
-					<form method="post" action="customers/delete">
+					<form th:method="post" th:action="@{/customers/delete/} + ${customer.id}" th:attr="data-customer-id=${customer.id}">
+
 						<input type="submit" th:value="#{customer.delete}" value="löschen" />
 					</form>
 				</td>
