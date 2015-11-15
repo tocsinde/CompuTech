@@ -35,9 +35,11 @@
 				<td th:text="${customer.mail}">E-Mail-Adresse</td>
 				<td th:text="${customer.phone}">Telefonnummer</td>
 				<td>
-					<form method="post" action="customers/edit">
+					<!-- <form th:method="post" th:action="@{/customers/edit/} + ${customer.id}" th:attr="data-customer-id=${customer.id}">
 						<input type="submit" th:value="#{customer.edit}" value="editieren" />
-					</form>
+					</form> -->
+					<a th:href="@{/customers/edit/} + ${customer.id}" href="customers_edit.html">bearbeiten</a>
+
 				</td>
 				<td>
 					<form th:method="post" th:action="@{/customers/delete/} + ${customer.id}" th:attr="data-customer-id=${customer.id}">
