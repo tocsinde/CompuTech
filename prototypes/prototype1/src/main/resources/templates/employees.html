@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+		<title th:text="#{employees.title}">Mitarbeiterliste</title>
+	</head>
+<body>
+	<div class="all">
+		<header>
+			<h1 th:text="#{employees.title}">Mitarbeiterliste</h1>
+		</header>
+		<nav th:include="navigation :: navigation" ></nav>
+
+		<table>
+			<thead>
+			<tr>
+				<th th:text="#{employee.id}">Login</th>
+				<th th:text="#{employee.role}">Rolle</th>
+			</tr>
+			</thead>
+			<tbody th:remove="all-but-first">
+			<!-- todo: nur Mitarbeiter anzeigen -->
+			<!-- employeeList.?[roles = 'ROLE_EMPLOYEE'] -->
+			<!-- könnte auch klappen: http://stackoverflow.com/questions/13494078/how-to-do-if-else-in-thymeleaf -->
+			<tr th:each=" employee : ${employeeList}">
+				<td th:text="${employee.identifier}">Login</td>
+				<td th:text="${employee.roles}">Rolle</td>
+				<td>
+					<form th:method="post" th:action="@{/employees/edit/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
+						<input type="submit" th:value="#{employee.edit}" value="editieren" />
+					</form>
+				</td>
+				<td>
+					<form th:method="post" th:action="@{/employees/disable/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
+
+						<input type="submit" th:value="#{employee.disable}" value="löschen" />
+					</form>
+				</td>
+			</tr>
+
+			</tbody>
+		</table>
+
+
+	</div>
+</body>
+</html>

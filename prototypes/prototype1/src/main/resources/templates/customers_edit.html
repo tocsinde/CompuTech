@@ -25,18 +25,18 @@
 					<p>Einige Angaben sind nicht korrekt.</p>
 				</div>
 
-				<label th:text="#{customer.nickname}" for="nickname">Nickname</label>
+				<!--<label th:text="#{customer.nickname}" for="nickname">Nickname</label>
 				<input id="nickname" th:field="*{nickname}" th:errorclass="fieldError" type="text" name="nickname" value="${customer.nickname}" />
 				<p th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">Der Nickname darf nicht leer sein.</p>
-				<br />
+				<br />-->
 
 				<label th:text="#{customer.firstname}" for="firstname">Vorname</label>
-				<input id="firstname" th:field="*{firstname}" th:errorclass="fieldError" type="text" name="firstname" />
+				<input id="firstname" th:field="*{firstname}" th:errorclass="fieldError" type="text" name="firstname" value="${customer.firstname}" />
 				<p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Der Vorname darf nicht leer sein.</p>
 				<br />
 
 				<label th:text="#{customer.lastname}" for="lastname">Nachname</label>
-				<input id="lastname" th:field="*{lastname}" th:errorclass="fieldError" type="text" name="lastname" />
+				<input id="lastname" th:field="*{lastname}" th:errorclass="fieldError" type="text" name="lastname" value="${customer.lastname}" />
 				<p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Der Nachname darf nicht leer sein.</p>
 				<br />
 
@@ -46,17 +46,17 @@
 				<br />
 
 				<label th:text="#{customer.address}" for="address">Adresse</label>
-				<input id="address" th:field="*{address}" th:errorclass="fieldError" type="text" name="address" />
+				<input id="address" th:field="*{address}" th:errorclass="fieldError" type="text" name="address" value="${customer.address}" />
 				<p th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Die Adresse darf nicht leer sein.</p>
 				<br />
 
 				<label th:text="#{customer.mail}" for="mail">E-Mail</label>
-				<input id="mail" th:field="*{mail}" th:errorclass="fieldError" type="text" name="mail" />
+				<input id="mail" th:field="*{mail}" th:errorclass="fieldError" type="text" name="mail" value="${customer.mail}" />
 				<p th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Die E-Mail-Adresse darf nicht leer sein.</p>
 				<br />
 
 				<label th:text="#{customer.phone}" for="phone">Telefon</label>
-				<input id="phone" th:field="*{phone}" th:errorclass="fieldError" type="text" name="phone" />
+				<input id="phone" th:field="*{phone}" th:errorclass="fieldError" type="text" name="phone" value="${customer.phone}" />
 				<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Die Telefonnummer darf nicht leer sein.</p>
 				<br />
 
