@@ -44,6 +44,7 @@ public class KickstartDataInitializer implements DataInitializer {
 		this.userAccountManager = userAccountManager;
 		this.computerCatalog = computerCatalog;
 	}
+
 	@Override
 	public void initialize() {
 		initializeUsers(userAccountManager, customerRepository);
@@ -58,12 +59,12 @@ public class KickstartDataInitializer implements DataInitializer {
 
 		computerCatalog.save(new Computer("Samsung", "sam1", Money.of(199.99, EURO), "a1", ComputerType.NOTEBOOK));
 		computerCatalog.save(new Computer("Samsung", "sam2", Money.of(299.99, EURO), "a2", ComputerType.NOTEBOOK));
-		
+
 		computerCatalog.save(new Computer("Acer", "ace1", Money.of(299.99, EURO), "b1", ComputerType.COMPUTER));
 		computerCatalog.save(new Computer("Acer", "ace2", Money.of(299.99, EURO), "b2", ComputerType.COMPUTER));
-	
-		//  soll 10 Stück jeweils verfügbar sein
-		
+
+		//  soll jeweils 10 Mal verfügbar sein
+
 				for (Computer comp : computerCatalog.findAll()) {
 					InventoryItem inventoryItem = new InventoryItem(comp, Quantity.of(10));
 					inventory.save(inventoryItem);
@@ -73,28 +74,25 @@ public class KickstartDataInitializer implements DataInitializer {
 	
 private void initializeUsers(UserAccountManager userAccountManager, CustomerRepository customerRepository) {
 		
-		if (userAccountManager.findByUsername("admin").isPresent()) {
+		if (userAccountManager.findByUsername("boss").isPresent()) {
 			return;
 		}
-
-		UserAccount admin = userAccountManager.create("admin", "123", new Role("ROLE_BOSS"));
-		userAccountManager.save(admin);
 		
-		admin  = userAccountManager.create("admin", "123", new Role("ROLE_BOSS"));
+		UserAccount admin  = userAccountManager.create("boss", "123", Role.of("ROLE_BOSS"));
 		userAccountManager.save(admin);
 		
 
-		UserAccount employee  = userAccountManager.create("employee1", "123", new Role("ROLE_EMPLOYEE"));
+		UserAccount employee  = userAccountManager.create("employee1", "123", Role.of("ROLE_EMPLOYEE"));
 		userAccountManager.save(employee);
 	
 		
 		
-		final Role customerRole = new Role("ROLE_BCUSTOMER"); 
+		final Role customerRole = Role.of("ROLE_BCUSTOMER");
 		
 		// hier wird erstmal allgemein ein Account auf Salespoint-Basis erstellt
-		UserAccount ua1 = userAccountManager.create("haensel", "123", customerRole);
+		UserAccount ua1 = userAccountManager.create("business_haensel", "123", customerRole);
 		userAccountManager.save(ua1);
-		UserAccount ua2 = userAccountManager.create("gretel", "123", customerRole);
+		UserAccount ua2 = userAccountManager.create("business_gretel", "123", customerRole);
 		userAccountManager.save(ua2);
 		
 		
@@ -103,12 +101,12 @@ private void initializeUsers(UserAccountManager userAccountManager, CustomerRepo
 		Customer c2 = new Customer(ua2, "Straße 2", "Gretel", "Nachname", "gretel@web.de", "0800-7891011");
 		
 		
-		final Role customerRole2 = new Role("ROLE_PCUSTOMER"); 
+		final Role customerRole2 = Role.of("ROLE_PCUSTOMER");
 		
 		// hier wird erstmal allgemein ein Account auf Salespoint-Basis erstellt
-		UserAccount ua3 = userAccountManager.create("haensel", "123", customerRole2);
+		UserAccount ua3 = userAccountManager.create("private_haensel", "123", customerRole2);
 		userAccountManager.save(ua1);
-		UserAccount ua4 = userAccountManager.create("gretel", "123", customerRole2);
+		UserAccount ua4 = userAccountManager.create("private_gretel", "123", customerRole2);
 		userAccountManager.save(ua2);
 		
 		

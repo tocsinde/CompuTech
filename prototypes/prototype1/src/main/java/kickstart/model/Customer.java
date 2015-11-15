@@ -1,5 +1,6 @@
 package kickstart.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,33 +11,29 @@ import org.salespointframework.useraccount.UserAccount;
 /**
  * Created by Stephan on 03.11.2015.
  */
+@Entity
 public class Customer {
 
-    @Id
-    @GeneratedValue
-    private long id;
-	@OneToOne private UserAccount salespointAccount;
-	
+    private @Id @GeneratedValue long id;
+
     private String address;
     private String firstname;
     private String lastname;
 
     private String mail;
     private String phone;
-    
-    @OneToOne
-	private UserAccount userAccount;
 
-	@Deprecated
-	protected Customer() {
-	}
+    @OneToOne(cascade=CascadeType.ALL) private UserAccount userAccount;
 
-	
+    @SuppressWarnings("unused")
+    private Customer() {}
+
+
 	// Username und Passwort müssen hier nicht rein, da Salespoint schon direkt speichern kann
 	// ID muss auch nicht rein (zumindest ist es so im Videoshop)
 
-    public Customer(UserAccount salespointAccount, String address, String firstname, String lastname, String mail, String phone) {
-		this.salespointAccount = salespointAccount;
+    public Customer(UserAccount userAccount, String address, String firstname, String lastname, String mail, String phone) {
+		this.userAccount = userAccount;
         this.address = address;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -52,6 +49,7 @@ public class Customer {
         return address;
     }
 
+    // Achtung: Darf nicht getFirstName heißen (case-sensitive!)
     public String getFirstname() {
         return firstname;
     }
@@ -87,8 +85,8 @@ public class Customer {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-	
+
 	public UserAccount getUserAccount() {
-		return salespointAccount;
+		return userAccount;
 	}
 }

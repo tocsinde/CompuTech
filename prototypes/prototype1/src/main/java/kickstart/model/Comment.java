@@ -1,5 +1,6 @@
 package kickstart.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -7,12 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
+//import org.hibernate.annotations.Type;
 
 
 @Entity
 @Table(name = "COMMENTS")
-public class Comment {
+public class Comment implements Serializable {
 
 		// (｡◕‿◕｡)
 		// Falls man die Id nicht selber setzen will, kann die mit @GeneratedValue vom JPA-Provider generiert und gesetzt
@@ -21,13 +22,10 @@ public class Comment {
 
 		private String text;
 		private int rating;
+		private LocalDateTime date;
 
-		// (｡◕‿◕｡)
-		// 1. Es gibt eine extra Annotation für Dates
-		@Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentLocalDateTime") private LocalDateTime date;
-
-		@Deprecated
-		protected Comment() {}
+		@SuppressWarnings("unused")
+		private Comment() {}
 
 		public Comment(String text, int rating, LocalDateTime dateTime) {
 			this.text = text;
