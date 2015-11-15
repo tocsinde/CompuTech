@@ -49,11 +49,12 @@ public class Customer {
         return address;
     }
 
-    public String getFirstName() {
+    // Achtung: Darf nicht getFirstName heißen (case-sensitive!)
+    public String getFirstname() {
         return firstname;
     }
 
-    public String getLastName() {
+    public String getLastname() {
         return lastname;
     }
 
@@ -69,11 +70,11 @@ public class Customer {
         this.address = address;
     }
 
-    public void setFirstName(String firstname) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
-    public void setLastName(String lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
