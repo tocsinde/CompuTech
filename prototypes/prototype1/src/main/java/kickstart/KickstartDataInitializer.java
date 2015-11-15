@@ -90,9 +90,9 @@ private void initializeUsers(UserAccountManager userAccountManager, CustomerRepo
 		final Role customerRole = Role.of("ROLE_BCUSTOMER");
 		
 		// hier wird erstmal allgemein ein Account auf Salespoint-Basis erstellt
-		UserAccount ua1 = userAccountManager.create("business_haensel", "123", customerRole);
+		UserAccount ua1 = userAccountManager.create("Bhaensel", "123", customerRole);
 		userAccountManager.save(ua1);
-		UserAccount ua2 = userAccountManager.create("business_gretel", "123", customerRole);
+		UserAccount ua2 = userAccountManager.create("Bgretel", "123", customerRole);
 		userAccountManager.save(ua2);
 		
 		
@@ -104,10 +104,10 @@ private void initializeUsers(UserAccountManager userAccountManager, CustomerRepo
 		final Role customerRole2 = Role.of("ROLE_PCUSTOMER");
 		
 		// hier wird erstmal allgemein ein Account auf Salespoint-Basis erstellt
-		UserAccount ua3 = userAccountManager.create("private_haensel", "123", customerRole2);
-		userAccountManager.save(ua1);
-		UserAccount ua4 = userAccountManager.create("private_gretel", "123", customerRole2);
-		userAccountManager.save(ua2);
+		UserAccount ua3 = userAccountManager.create("Phaensel", "123", customerRole2);
+		userAccountManager.save(ua3);
+		UserAccount ua4 = userAccountManager.create("Pgretel", "123", customerRole2);
+		userAccountManager.save(ua4);
 		
 		
 		// hier werden zusätzliche Daten für die PRIVATKunden ergänzt

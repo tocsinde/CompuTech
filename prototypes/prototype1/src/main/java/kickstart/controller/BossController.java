@@ -40,17 +40,12 @@ class BossController {
 	public String customers(ModelMap modelMap) {
 
 		modelMap.addAttribute("customerList", customerRepository.findAll());
-
 		return "customers";
 	}
 
-	//@RequestMapping(value = "/customers/edit", method = RequestMethod.POST)
-
-	@RequestMapping(value = "/customers/delete", method = RequestMethod.POST)
-	public String delete() {
-
-		// kunden löschen
-
-		return "gelöscht";
+	@RequestMapping(value = "/customers/delete/{id}", method = RequestMethod.POST)
+	public String removeCustomer(@PathVariable Long id) {
+		customerRepository.delete(id);
+		return "redirect:/customers";
 	}
 }
