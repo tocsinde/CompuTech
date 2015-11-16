@@ -82,17 +82,16 @@ class BossController {
 		}
 
 
-		// zum Teil UserAccount-Managament
-		// zum Teil CustomerRepository-Management
-		// Passwort ändern ist in eigener Funktion vom UserAccount bereits deklariert
+		customer_found.setFirstname(customerEditForm.getFirstname());
+		customer_found.setLastname(customerEditForm.getLastname());
+		customer_found.setMail(customerEditForm.getMail());
+		customer_found.setPhone(customerEditForm.getPhone());
+		customer_found.setAddress(customerEditForm.getAddress());
 
+		customerRepository.save(customer_found);
 
-		// save-Methode wird auch zum Aktualisieren von Daten eingesetzt
-		// bestehender Customer wird überschrieben
-		
-		// funktioniert noch nicht ganz
-		//customerRepository.save(customer_found.getUserAccount(), customerEditForm.getAddress(), customerEditForm.getFirstname(), customerEditForm.getLastname(), customerEditForm.getMail(), customerEditForm.getPhone());
-
+		// nur ändern, wenn Feld ausgefüllt wurde!
+		//userAccountManager.changePassword();
 
 		return "customers_edit";
 	}
