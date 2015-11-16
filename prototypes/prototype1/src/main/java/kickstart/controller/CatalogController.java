@@ -66,6 +66,7 @@ class CatalogController {
 	}
 
 
+
 	@RequestMapping("/shop")
 	public String shopoverview() {
 		return "shopoverview";
@@ -76,10 +77,10 @@ class CatalogController {
 	public String detail(@PathVariable("pid") Computer computer, Model model) {
 
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(computer.getIdentifier());
-		//Quantity quantity = item.map(InventoryItem::getQuantity).orElse(Units.ZERO);
+		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
 
 		model.addAttribute("computer", computer);
-		//model.addAttribute("quantity", quantity);
+		model.addAttribute("quantity", quantity);
 		//model.addAttribute("orderable", quantity.isGreaterThan(Units.ZERO));
 
 		return "detail";
