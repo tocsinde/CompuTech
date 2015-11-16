@@ -16,17 +16,18 @@
 		<table>
 			<thead>
 			<tr>
+
 				<th th:text="#{employee.id}">Login</th>
 				<th th:text="#{employee.role}">Rolle</th>
 			</tr>
 			</thead>
-			<tbody th:remove="all-but-first">
-			<!-- todo: nur Mitarbeiter anzeigen -->
-			<!-- employeeList.?[roles = 'ROLE_EMPLOYEE'] -->
-			<!-- könnte auch klappen: http://stackoverflow.com/questions/13494078/how-to-do-if-else-in-thymeleaf -->
-			<tr th:each=" employee : ${employeeList}">
+			<tbody th:remove="all-but-first" th:each="employee : ${employeeList}">
+
+			<tr th:each="role : ${employee.roles}" th:if="${#strings.equals(role,'ROLE_EMPLOYEE')}" >
+
 				<td th:text="${employee.identifier}">Login</td>
-				<td th:text="${employee.roles}">Rolle</td>
+				<td th:text="${role}">Rolle</td>
+
 				<td>
 					<form th:method="post" th:action="@{/employees/edit/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
 						<input type="submit" th:value="#{employee.edit}" value="editieren" />
@@ -34,8 +35,7 @@
 				</td>
 				<td>
 					<form th:method="post" th:action="@{/employees/disable/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
-
-						<input type="submit" th:value="#{employee.disable}" value="löschen" />
+						<input type="submit" th:value="#{employee.disable}" value="deaktivieren" />
 					</form>
 				</td>
 			</tr>
