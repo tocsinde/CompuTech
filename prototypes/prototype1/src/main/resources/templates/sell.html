@@ -43,7 +43,7 @@
 					</fieldset>
 				</form>
 			</div>
-			<div class="salespoint" sec:authorize="hasRole('ROLE_BOSS', 'ROLE_EMPLOYEE')">
+			<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')">
 				<div class="content">
 					<table>
 						<caption th:text="#{sells.completed}"></caption>
