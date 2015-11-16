@@ -17,12 +17,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import kickstart.model.CustomerRepository;
 import org.salespointframework.useraccount.UserAccountManager;
 
-import kickstart.model.validation.RegistrationForm;
+import kickstart.model.validation.customerEditForm;
 
 import javax.management.relation.RoleStatus;
 import javax.validation.Valid;
@@ -62,7 +63,8 @@ class BossController {
 	}
 
 	@RequestMapping(value = "/customers/edit/{id}")
-	public String editCustomer(@PathVariable("id") Long id, Model model) {
+	public String editCustomer(@PathVariable("id") Long id, Model model, ModelMap modelMap) {
+		modelMap.addAttribute("customerEditForm", new customerEditForm());
 		Customer customer_found = customerRepository.findOne(id);
 
 		model.addAttribute("customer", customer_found);
@@ -71,22 +73,28 @@ class BossController {
 	}
 
 	@RequestMapping(value = "/customers/edit/{id}", method = RequestMethod.POST)
-	public String saveCustomer(@PathVariable("id") Long id, @ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm) {
+	public String saveCustomer(@PathVariable("id") Long id, Model model, @ModelAttribute("customerEditForm") @Valid customerEditForm customerEditForm, BindingResult result) {
 		Customer customer_found = customerRepository.findOne(id);
+		model.addAttribute("customer", customer_found);
+
+		if (result.hasErrors()) {
+			return "customers_edit";
+		}
 
 
-		// THIS IS USER-ACCOUNT-STUFF, hard to realize
-		// change password has extra function
-		// TODO: change username
-
-		//userAccountManager.changePassword(customer_found, "NEWPASSWORD");
-
-		//UserAccount userAccount = userAccountManager.create(customer_found, registrationForm.getPassword(), Role.of("ROLE_PCUSTOMER"));
+		// zum Teil UserAccount-Managament
+		// zum Teil CustomerRepository-Management
+		// Passwort ändern ist in eigener Funktion vom UserAccount bereits deklariert
 
 
+		// save-Methode wird auch zum Aktualisieren von Daten eingesetzt
+		// bestehender Customer wird überschrieben
+		
+		// funktioniert noch nicht ganz
+		//customerRepository.save(customer_found.getUserAccount(), customerEditForm.getAddress(), customerEditForm.getFirstname(), customerEditForm.getLastname(), customerEditForm.getMail(), customerEditForm.getPhone());
 
 
-		return "redirect:/customers";
+		return "customers_edit";
 	}
 
 	@RequestMapping("/employees")
