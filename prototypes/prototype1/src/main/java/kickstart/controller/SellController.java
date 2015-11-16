@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@PreAuthorize("hasRole('ROLE_PCOSTUMER')")
+@PreAuthorize("hasRole('ROLE_PCUSTOMER')")
 @SessionAttributes("sell")
 public class SellController {
 	
