@@ -1,23 +1,22 @@
 package kickstart.model;
 
-import java.util.LinkedList;
-//import org.salespointframework.quantity.Units;
-import java.util.List;
+import org.javamoney.moneta.Money;
+import org.salespointframework.catalog.Product;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import java.util.LinkedList;
+import java.util.List;
 
-import org.javamoney.moneta.Money;
-import org.salespointframework.catalog.Product;
 //import org.salespointframework.quantity.Units;
-import org.salespointframework.quantity.Quantity;
+//import org.salespointframework.quantity.Units;
 
 @Entity
-public class Computer extends Product {
+public class Article extends Product {
 	
 
-		public  enum ComputerType {
+		public  enum ArticleType {
 			NOTEBOOK, COMPUTER, SOFTWARE, ZUBE;
 
 
@@ -27,7 +26,7 @@ public class Computer extends Product {
 
 		private String model;
 		private String image;
-		private ComputerType type;
+		private ArticleType type;
 
 	
 		//@OneToMany für JPA
@@ -36,9 +35,9 @@ public class Computer extends Product {
 		@OneToMany(cascade = CascadeType.ALL) private List<Comment> comments = new LinkedList<Comment>();
 
 		@SuppressWarnings("unused")
-		private Computer() {}
+		private Article() {}
 
-		public Computer(String name, String image, Money price, String model, ComputerType type) {
+		public Article(String name, String image, Money price, String model, ArticleType type) {
 			//super(name, price, Units.METRIC);
 			super(name, price);
 			this.image = image;
@@ -62,7 +61,7 @@ public class Computer extends Product {
 			return image;
 		}
 
-		public ComputerType getType() {
+		public ArticleType getType() {
 			return type;
 		}
 	}

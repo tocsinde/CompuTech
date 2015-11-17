@@ -1,25 +1,24 @@
 package kickstart;
 
-import java.util.Arrays;
-import static org.salespointframework.core.Currencies.*;
-
-import kickstart.model.Computer;
-import kickstart.model.Computer.ComputerType;
+import kickstart.model.Article;
 import kickstart.model.ComputerCatalog;
 import kickstart.model.Customer;
 import kickstart.model.CustomerRepository;
-import org.salespointframework.quantity.Quantity;
-
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
+import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+
+import java.util.Arrays;
+
+import static org.salespointframework.core.Currencies.EURO;
 
 
 @Component
@@ -57,15 +56,15 @@ public class KickstartDataInitializer implements DataInitializer {
 			return;
 		}
 
-		computerCatalog.save(new Computer("Samsung", "sam1", Money.of(199.99, EURO), "a1", ComputerType.NOTEBOOK));
-		computerCatalog.save(new Computer("Samsung", "sam2", Money.of(299.99, EURO), "a2", ComputerType.NOTEBOOK));
+		computerCatalog.save(new Article("Samsung", "sam1", Money.of(199.99, EURO), "a1", Article.ArticleType.NOTEBOOK));
+		computerCatalog.save(new Article("Samsung", "sam2", Money.of(299.99, EURO), "a2", Article.ArticleType.NOTEBOOK));
 
-		computerCatalog.save(new Computer("Acer", "ace1", Money.of(299.99, EURO), "b1", ComputerType.COMPUTER));
-		computerCatalog.save(new Computer("Acer", "ace2", Money.of(299.99, EURO), "b2", ComputerType.COMPUTER));
+		computerCatalog.save(new Article("Acer", "ace1", Money.of(299.99, EURO), "b1", Article.ArticleType.COMPUTER));
+		computerCatalog.save(new Article("Acer", "ace2", Money.of(299.99, EURO), "b2", Article.ArticleType.COMPUTER));
 
 		//  soll jeweils 10 Mal verfügbar sein
 
-				for (Computer comp : computerCatalog.findAll()) {
+				for (Article comp : computerCatalog.findAll()) {
 					InventoryItem inventoryItem = new InventoryItem(comp, Quantity.of(10));
 					inventory.save(inventoryItem);
 				}

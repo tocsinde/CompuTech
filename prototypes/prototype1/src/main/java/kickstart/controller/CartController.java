@@ -1,25 +1,21 @@
 
 
 package kickstart.controller;
-        import kickstart.model.Computer;
-        import java.util.Optional;
+        import kickstart.model.Article;
+import org.salespointframework.order.Cart;
+import org.salespointframework.order.Order;
+import org.salespointframework.order.OrderManager;
+import org.salespointframework.payment.Cash;
+import org.salespointframework.quantity.Quantity;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
 
-        import org.salespointframework.catalog.Product;
-        import org.salespointframework.core.AbstractEntity;
-        import org.salespointframework.inventory.InventoryItem;
-        import org.salespointframework.order.Cart;
-        import org.salespointframework.order.Order;
-        import org.salespointframework.order.OrderManager;
-        import org.salespointframework.payment.Cash;
-        import org.salespointframework.quantity.Quantity;
-        import org.salespointframework.useraccount.UserAccount;
-        import org.salespointframework.useraccount.web.LoggedIn;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.security.access.prepost.PreAuthorize;
-        import org.springframework.stereotype.Controller;
-        import org.springframework.ui.Model;
-        import org.springframework.util.Assert;
-        import org.springframework.web.bind.annotation.*;
+import java.util.Optional;
 
 
 @Controller
@@ -45,16 +41,16 @@ class CartController {
 
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
-    public String addDisc(@RequestParam("pid") Computer computer, @RequestParam("number") int number, @ModelAttribute Cart cart) {
+    public String addDisc(@RequestParam("pid") Article article, @RequestParam("number") int number, @ModelAttribute Cart cart) {
 
         int amount = number <= 0 || number > 5 ? 1 : number;
 
 
-        cart.addOrUpdateItem(computer, Quantity.of(amount));
+        cart.addOrUpdateItem(article, Quantity.of(amount));
 
 
 
-        switch (computer.getType()) {
+        switch (article.getType()) {
             case NOTEBOOK:
                 return "redirect:laptop";
             case COMPUTER:
