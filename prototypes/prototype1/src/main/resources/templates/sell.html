@@ -22,24 +22,20 @@
 						<label for="Computertype">Artikelart</label><br />
 						
 						<select id="Computertype" name="Computertype" th:each="Computertype : ${catalog}">
-							<option> </option>
-							<option th:text="${Computertype.name}">NOTEBOOK</option>
-							<option th:text="${Computertype.name}">NOTEBOOK</option>
+							<option> Artikeltyp auswählen</option>
 							<option th:text="${Computertype.name}">NOTEBOOK</option>
 						</select><br />
 						
 						<label for="Computer">Artikel</label><br />
 						
 						<select id="Computer" name="Computer" th:each="Computer : ${catalog}">
-							<option> </option>
-							<option th:text="${Computer.name}">Acer</option>
-							<option th:text="${Computer.name}">Acer</option>
+							<option> Artikel auswählen</option>
 							<option th:text="${Computer.name}">Acer</option>
 						</select><br />
 						
 						<label for="Description">Beschreibung</label><br />
 						<textarea name="Description" cols="40" rows="5"></textarea><br /><br />
-						<input type="submit" value="Senden" />
+						<input type="submit" th:value="#{cart.sendrequest}" value="Senden" />
 					</fieldset>
 				</form>
 			</div>
