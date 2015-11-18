@@ -9,20 +9,20 @@
 <body>
 	<div class="all">
 		<header>
-			<h1 th:text="#{customers.title}">Kundenliste</h1>
+			<h1>Kundenliste</h1>
 		</header>
 		<nav th:include="navigation :: navigation" ></nav>
 
 		<table>
 			<thead>
 			<tr>
-				<th th:text="#{customers.id}">ID</th>
-				<th th:text="#{customers.lastname}">Nachname</th>
-				<th th:text="#{customers.firstname}">Vorname</th>
-				<th th:text="#{customers.nickname}">Login</th>
-				<th th:text="#{customers.address}">Adresse</th>
-				<th th:text="#{customers.mail}">E-Mail-Adresse</th>
-				<th th:text="#{customers.phone}">Telefonnummer</th>
+				<th>ID</th>
+				<th>Nachname</th>
+				<th>Vorname</th>
+				<th>Login</th>
+				<th>Adresse</th>
+				<th>E-Mail-Adresse</th>
+				<th>Telefonnummer</th>
 			</tr>
 			</thead>
 			<tbody th:remove="all-but-first">
@@ -44,7 +44,7 @@
 				<td>
 					<form th:method="post" th:action="@{/customers/delete/} + ${customer.id}" th:attr="data-customer-id=${customer.id}">
 
-						<input type="submit" th:value="#{customer.delete}" value="löschen" />
+						<input type="submit" value="löschen" />
 					</form>
 				</td>
 			</tr>

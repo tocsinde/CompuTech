@@ -90,8 +90,9 @@ class BossController {
 
 		customerRepository.save(customer_found);
 
-		// nur ändern, wenn Feld ausgefüllt wurde!
-		//userAccountManager.changePassword();
+		if(customerEditForm.getPassword() != "") {
+			userAccountManager.changePassword(customer_found.getUserAccount(), customerEditForm.getPassword());
+		}
 
 		return "customers_edit";
 	}
@@ -99,13 +100,20 @@ class BossController {
 	@RequestMapping("/employees")
 	public String employees(ModelMap modelMap) {
 
-		modelMap.addAttribute("employeeList", userAccountManager.findAll());
+		modelMap.addAttribute("employeeList_enabled", userAccountManager.findEnabled());
+		modelMap.addAttribute("employeeList_disabled", userAccountManager.findDisabled());
 		return "employees";
 	}
 
 	@RequestMapping(value = "/employees/disable/{userAccountIdentifier}", method = RequestMethod.POST)
 	public String disableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier) {
 		userAccountManager.disable(userAccountIdentifier);
+		return "redirect:/employees";
+	}
+
+	@RequestMapping(value = "/employees/enable/{userAccountIdentifier}", method = RequestMethod.POST)
+	public String enableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier) {
+		userAccountManager.enable(userAccountIdentifier);
 		return "redirect:/employees";
 	}
 }

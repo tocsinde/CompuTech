@@ -13,34 +13,64 @@
 		</header>
 		<nav th:include="navigation :: navigation" ></nav>
 
+
+		<h2>Freigeschaltete Mitarbeiter</h2>
 		<table>
 			<thead>
 			<tr>
 
-				<th th:text="#{employee.id}">Login</th>
-				<th th:text="#{employee.role}">Rolle</th>
+				<th>Login</th>
 			</tr>
 			</thead>
-			<tbody th:remove="all-but-first" th:each="employee : ${employeeList}">
+			<tbody th:remove="all-but-first" th:each="employee : ${employeeList_enabled}">
 
 			<tr th:each="role : ${employee.roles}" th:if="${#strings.equals(role,'ROLE_EMPLOYEE')}" >
 
 				<td th:text="${employee.identifier}">Login</td>
-				<td th:text="${role}">Rolle</td>
 
 				<td>
-					<form th:method="post" th:action="@{/employees/edit/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
-						<input type="submit" th:value="#{employee.edit}" value="editieren" />
-					</form>
+
+					<a th:href="@{/employees/edit/} + ${employee.identifier}" href="employees_edit.html">bearbeiten</a>
 				</td>
 				<td>
 					<form th:method="post" th:action="@{/employees/disable/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
-						<input type="submit" th:value="#{employee.disable}" value="deaktivieren" />
+						<input type="submit" value="deaktivieren" />
 					</form>
 				</td>
 			</tr>
 
 			</tbody>
+
+
+		</table>
+
+		<h2>Deaktivierte Mitarbeiter</h2>
+		<table>
+			<thead>
+			<tr>
+
+				<th>Login</th>
+			</tr>
+			</thead>
+			<tbody th:remove="all-but-first" th:each="employee : ${employeeList_disabled}">
+
+			<tr th:each="role : ${employee.roles}" th:if="${#strings.equals(role,'ROLE_EMPLOYEE')}" >
+
+				<td th:text="${employee.identifier}">Login</td>
+
+				<td>
+					<a th:href="@{/employees/edit/} + ${employee.identifier}" href="employees_edit.html">bearbeiten</a>
+				</td>
+				<td>
+					<form th:method="post" th:action="@{/employees/enable/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
+						<input type="submit" value="aktivieren" />
+					</form>
+				</td>
+			</tr>
+
+			</tbody>
+
+
 		</table>
 
 
