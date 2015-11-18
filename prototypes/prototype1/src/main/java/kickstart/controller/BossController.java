@@ -24,6 +24,7 @@ import kickstart.model.CustomerRepository;
 import org.salespointframework.useraccount.UserAccountManager;
 
 import kickstart.model.validation.customerEditForm;
+import kickstart.model.validation.employeeEditForm;
 
 import javax.management.relation.RoleStatus;
 import javax.validation.Valid;
@@ -94,7 +95,7 @@ class BossController {
 			userAccountManager.changePassword(customer_found.getUserAccount(), customerEditForm.getPassword());
 		}
 
-		return "customers_edit";
+		return "redirect:/customers_edit";
 	}
 
 	@RequestMapping("/employees")
@@ -114,6 +115,25 @@ class BossController {
 	@RequestMapping(value = "/employees/enable/{userAccountIdentifier}", method = RequestMethod.POST)
 	public String enableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier) {
 		userAccountManager.enable(userAccountIdentifier);
+		return "redirect:/employees";
+	}
+
+	@RequestMapping(value = "/employees/edit/{userAccountIdentifier}")
+	public String editEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier, Model model, ModelMap modelMap) {
+		modelMap.addAttribute("employeeEditForm", new employeeEditForm());
+		model.addAttribute("employee", userAccountIdentifier);
+
+		return "employees_edit";
+	}
+
+	@RequestMapping(value = "/employees/edit/{userAccountIdentifier}", method = RequestMethod.POST)
+	public String saveEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier, Model model, @ModelAttribute("employeeEditForm") @Valid employeeEditForm employeeEditForm, BindingResult result) {
+
+		if(employeeEditForm.getPassword() != "") {
+			// todo
+			//userAccountManager.changePassword();
+		}
+
 		return "redirect:/employees";
 	}
 }

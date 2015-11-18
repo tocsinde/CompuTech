@@ -4,12 +4,12 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
-		<title th:text="#{employees.title}">Mitarbeiterliste</title>
+		<title>Mitarbeiterliste</title>
 	</head>
 <body>
 	<div class="all">
 		<header>
-			<h1 th:text="#{employees.title}">Mitarbeiterliste</h1>
+			<h1>Mitarbeiterliste</h1>
 		</header>
 		<nav th:include="navigation :: navigation" ></nav>
 
@@ -18,7 +18,6 @@
 		<table>
 			<thead>
 			<tr>
-
 				<th>Login</th>
 			</tr>
 			</thead>
@@ -29,7 +28,6 @@
 				<td th:text="${employee.identifier}">Login</td>
 
 				<td>
-
 					<a th:href="@{/employees/edit/} + ${employee.identifier}" href="employees_edit.html">bearbeiten</a>
 				</td>
 				<td>
@@ -48,7 +46,6 @@
 		<table>
 			<thead>
 			<tr>
-
 				<th>Login</th>
 			</tr>
 			</thead>
@@ -69,7 +66,6 @@
 			</tr>
 
 			</tbody>
-
 
 		</table>
 
