@@ -9,7 +9,7 @@ __Version:__    *0.2*
 
 __Status:__     *In Arbeit*
 
-__Stand:__      *05.11.15*
+__Stand:__      *19.11.15*
 
 == Zusammenfassung
 Dieses Pflichtenheft beinhaltet ausschließlich den fachlichen Teil, der von dem Team um die IT-Dienstleister CompuTech, entwickelt wurde.
@@ -85,7 +85,7 @@ M050 - Hat Zugriff auf Buchhaltung und Bilanzen
 
 
 Mitarbeiter
-M060 - Service und Reperaturanfrage bearbeiten
+M060 - Service- und Reperaturanfragen bearbeiten
 M070 - Preisvorschlag beim Einkauf
 M080 - Neue Produkte hinzufügen
 
@@ -182,6 +182,10 @@ Für jeden Dialog:
 === Überblick: Klassendiagramm
 
 image::diagrams/Analyseklassendiagramm.jpg[Analyseklassendiagramm, 450, link="images/diagrams/Analyseklassendiagramm.jpg"]
+
+=== Überblick: Entwurfsklassendiagramm
+image::diagrams/Entwurfsklassendiagramm.jpg[Entwurfsklassendiagramm, 450, link="images/diagrams/Entwurfsklassendiagramm.jpg"]
+
 
 === Klassen und Enumerationen
 Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
