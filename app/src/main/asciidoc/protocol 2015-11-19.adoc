@@ -1,0 +1,115 @@
+= Protokoll Gruppe 32
+__Treffen am 19.11.2015__
+
+
+__Schriftführer:__
+Stephan Fischer
+
+__Nächstes Treffen:__ 26.11.2015
+
+__Teilnehmer:__
+
+* Stephan Fischer
+* Anna Gromykina
+* Kevin Horst
+* Philipp Oehme
+
+
+== Bemerkungen
+
+* letzter Termin wegen Markus' Bachelorarbeit ausgefallen
+* Entwicklung größtenteils im Team nun mit IntelliJ anstatt Eclipse
+
+* ab heute Beginn der Implementierungsphase
+** Ergebnisse sollten jetzt dementsprechend etwas schicker als noch beim Prototyp aussehen
+** Programm soll direkt in den app-Ordner angelegt werden
+* ab jetzt sollen während der Konsultation Issues festgelegt werden, die bis zur nächsten Woche abgearbeitet werden sollen
+** Umfang der Issues/Aufgaben soll angepasst werden
+
+* Termine nächste Woche Donnerstag (zusätzlich zur normalen Teamkonsultation):
+** Crosstesting (wir testen Software von Markus' anderem Team und umgekehrt)
+** Zwischenpräsentation (ca. 20 Minuten Vorstellung des aktuellen Stands; in Vorbereitung auf Schlusspräsentation)
+
+* überarbeitete Muss- und Kannkriterien von Markus werden noch zugeschickt
+
+* Tipp von Markus: für IntelliJ soll es Dev-Tools geben, mithilfe derer man den Server sofort nach Quellcodeänderung auf aktuellem Stand hat (vermeidet ständiges manuelles Neuausführen)
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+
+|===
+|Issue |Aufgabe |Status
+|14     |Diagramme nochmals überarbeiten    |erledigt
+|13     |.mdzip-Dateien hochladen  |erledigt
+|12     |Ersten Team-Prototyp erstellen     |größtenteils fertig, kleinere Bugs existieren
+|===
+
+
+== Aktueller Stand
+
+=== Entwurfsklassendiagramm
+
+* beim Privatkunden könnte das Feld für die Attribute (?) noch hinein (auch wenn es noch keine gibt)
+* bei der Bestellung könnten noch Faccaden rein
+* Verbesserungsvorschlag: Oberklasse Firma für Geschäftskunden
+** wiederverwendbar und man kann Dopplungen vermeiden (so gibt es z.B. nur die eine Firma "Siemens" und nicht "Siemens AG" und "Siemens Tochterfirma xy")
+
+* soll im Laufe der Zeit noch ergänzt werden (liegt in der Natur der Sache)
+** soll auch möglichst zeitnah auf aktuellem Stand der Software sein
+
+* es soll auch ein Tool geben, das Art Schnittstelle zwischen MagicDraw und Java darstellt (soll Arbeit erleichtern, aber auch etwas kompliziert einzurichten sein)
+* bei Testfällen ruhig schwierige Tests durchführen, um effektiver Fehler zu erkennen (letztendlich hilfreicher als nur simple Tests durchzuführen)
+
+
+=== Prototyp
+
+==== Einkauf von Waren
+* funktioniert komplett
+* Gesamtpreis der Bestellung wird im Warenkorb zusammengerechnet
+* kleinerer Bug beim ersten Artikel (Mengenanzahl wurde nicht korrekt übernommen; zweiter Versuch hat geklappt
+** zu große Warenanzahl?
+* muss noch mit Lager und Bilanzerstellung verbunden werden
+* Preisangabe in erster Artkelübersicht (noch vor der Detailansicht) war noch statisch im Template vermerkt (kleiner Bug)
+
+==== Auftragsverwaltung
+* noch work-in-progress
+
+==== Mitarbeiter- und Kundenverwaltung
+* funktioniert
+* Mitarbeiter können aktiviert und deaktiviert werden
+* Kunden können bearbeitet und gelöscht werden
+* kleiner Bug: Redirect nach Kundenbearbeitung führte zur falschen Seite (404-Fehlermeldung)
+
+
+==== Registrierung
+* funktioniert ebenfalls
+* momentan werden nur Privatkundenaccounts erstellt
+* Grunddaten wie Benutzername, Passwort und Rolle werden als Spring-Useraccount angelegt
+* zusätzliche Daten (Name, Anschrift, Telefonnummer, E-Mail-Adresse) werden in unserem eigenen Customer-Model gespeichert
+
+==== Etc.
+
+* Anna hatte noch zwei Fragen bezüglich der Reperatur- und Supportanfragen
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+
+
+[option="headers"]
+
+
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|16    |M010 - Jede berechtigte Person kann sich einloggen   |selbsterklärend |Stephan   |todo
+|17     |M020 - Jede eingeloggte Person kann sich ausloggen   |selbsterklärend |Stephan   |todo
+|18     |M040 - Kann Accounts verwalten   |Hinzufügen, Löschen und Ändern von Kunden und Mitarbeitern |Stephan   |todo
+|19     |M140 - Kann Artikel in Warenkorb legen   |selbsterklärend |Verantwortlicher   |todo
+|20     |M150 - Kann Artikel aus dem Warenkorb absenden   |selbsterklärend |Verantwortlicher   |todo
+|21     |M160 - Kann Bestellung absenden   |selbsterklärend |Verantwortlicher   |todo
+|22     |Zwischenpräsentation   |ca. 20 Minuten Präsentation über aktuellen Stand, 26.11.15 |Kevin  |todo
+|23     |Crosstesting   |Software vom anderen Team testen |alle   |todo
+|24     |Testfälle erstellen  |selbsterklärend |alle   |todo
+|===
