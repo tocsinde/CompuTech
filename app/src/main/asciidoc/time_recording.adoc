@@ -36,6 +36,10 @@ Team meeting
 
 |15.11. (6. internes Treffen)|9:30|12:30|3:00
 
+|17.11. (7. internes Treffen)|16:50|18:00|1:10
+
+|19.11. (4. Konsultation)|14:55|15:30|0:35
+
 
 |=== 
 
@@ -63,7 +67,7 @@ Anna Gromykina
 
 |=== 
 
-Kevin Hornst
+Kevin Horst
 |=== 
 
 |Datum|Von|Bis|Dauer

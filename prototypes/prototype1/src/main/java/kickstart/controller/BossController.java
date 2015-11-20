@@ -95,7 +95,7 @@ class BossController {
 			userAccountManager.changePassword(customer_found.getUserAccount(), customerEditForm.getPassword());
 		}
 
-		return "redirect:/customers_edit";
+		return "redirect:/customers";
 	}
 
 	@RequestMapping("/employees")
