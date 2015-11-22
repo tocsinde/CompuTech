@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/../resources/css/style.css" />
+		<title th:text="#{customers.title}">Kunde editieren</title>
+	</head>
+<body>
+	<div class="all">
+		<header>
+			<h1>Kunde editieren</h1>
+		</header>
+		<nav th:include="navigation :: navigation" ></nav>
+
+		<form th:method="post" th:action="@{/customers/edit/} + ${customer.id}" th:attr="data-customer-id=${customer.id}" th:object="${customerEditForm}">
+
+			<fieldset>
+				<legend><span th:text="${customer.firstname}"></span> <span th:text="${customer.lastname}"></span>  editieren</legend>
+
+				<div th:if="${#fields.hasErrors('*')}">
+					<p>Einige Angaben sind nicht korrekt.</p>
+				</div>
+
+				<!--<label th:text="#{customer.nickname}" for="nickname">Nickname</label>
+				<input id="nickname" th:field="*{nickname}" th:errorclass="fieldError" type="text" name="nickname" value="${customer.nickname}" />
+				<p th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">Der Nickname darf nicht leer sein.</p>
+				<br />-->
+
+				<label for="firstname">Vorname</label>
+				<input id="firstname" th:errorclass="fieldError" type="text" name="firstname" th:value="${customer.firstname}" />
+				<p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Der Vorname darf nicht leer sein.</p>
+				<br />
+
+				<label for="lastname">Nachname</label>
+				<input id="lastname" th:errorclass="fieldError" type="text" name="lastname" th:value="${customer.lastname}" />
+				<p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Der Nachname darf nicht leer sein.</p>
+				<br />
+
+				<label for="password">Passwort <small>(Wird nur geändert, wenn dieses Feld ausgefüllt wird.)</small></label>
+				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" /><br />
+				<br />
+
+				<label for="address">Adresse</label>
+				<input id="address" th:errorclass="fieldError" type="text" name="address" th:value="${customer.address}" />
+				<p th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Die Adresse darf nicht leer sein.</p>
+				<br />
+
+				<label for="mail">E-Mail</label>
+				<input id="mail" th:errorclass="fieldError" type="text" name="mail" th:value="${customer.mail}" />
+				<p th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}">Die E-Mail-Adresse darf nicht leer sein.</p>
+				<br />
+
+				<label for="phone">Telefon</label>
+				<input id="phone" th:errorclass="fieldError" type="text" name="phone" th:value="${customer.phone}" />
+				<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Die Telefonnummer darf nicht leer sein.</p>
+				<br />
+
+				<input type="submit" value="Kunde editieren" />
+			</fieldset>
+
+		</form>
+
+	</div>
+</body>
+</html>

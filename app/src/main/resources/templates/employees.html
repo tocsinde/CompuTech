@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+		<title>Mitarbeiterliste</title>
+	</head>
+<body>
+	<div class="all">
+		<header>
+			<h1>Mitarbeiterliste</h1>
+		</header>
+		<nav th:include="navigation :: navigation" ></nav>
+
+
+		<h2>Freigeschaltete Mitarbeiter</h2>
+		<table>
+			<thead>
+			<tr>
+				<th>Login</th>
+			</tr>
+			</thead>
+			<tbody th:remove="all-but-first" th:each="employee : ${employeeList_enabled}">
+
+			<tr th:each="role : ${employee.roles}" th:if="${#strings.equals(role,'ROLE_EMPLOYEE')}" >
+
+				<td th:text="${employee.identifier}">Login</td>
+
+				<td>
+					<a th:href="@{/employees/edit/} + ${employee.identifier}" href="employees_edit.html">bearbeiten</a>
+				</td>
+				<td>
+					<form th:method="post" th:action="@{/employees/disable/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
+						<input type="submit" value="deaktivieren" />
+					</form>
+				</td>
+			</tr>
+
+			</tbody>
+
+
+		</table>
+
+		<h2>Deaktivierte Mitarbeiter</h2>
+		<table>
+			<thead>
+			<tr>
+				<th>Login</th>
+			</tr>
+			</thead>
+			<tbody th:remove="all-but-first" th:each="employee : ${employeeList_disabled}">
+
+			<tr th:each="role : ${employee.roles}" th:if="${#strings.equals(role,'ROLE_EMPLOYEE')}" >
+
+				<td th:text="${employee.identifier}">Login</td>
+
+				<td>
+					<a th:href="@{/employees/edit/} + ${employee.identifier}" href="employees_edit.html">bearbeiten</a>
+				</td>
+				<td>
+					<form th:method="post" th:action="@{/employees/enable/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
+						<input type="submit" value="aktivieren" />
+					</form>
+				</td>
+			</tr>
+
+			</tbody>
+
+		</table>
+
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+		<title th:text="${title}">Shop</title>
+	</head>
+<body>
+	<div class="all">
+		<header>
+			<h1 th:text="${title}">Shop</h1>
+		</header>
+		<nav th:include="navigation :: navigation">
+
+		</nav>
+		
+		<div class="content">
+
+
+
+
+					<div >
+						<h4>Laptop</h4>
+						<a th:href="@{/laptop}" href="laptop.html"><img src="../resources/img/cover/lap.jpg" alt="Bild" /></a>
+						<p class="price">9.99 €</p>
+					</div>
+
+			
+
+			</div>
+	</div>
+</body>
+</html>
