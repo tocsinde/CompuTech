@@ -6,7 +6,7 @@
 	<artifactId>lab-kickstart</artifactId>
 	<version>1.1.0.BUILD-SNAPSHOT</version>
 
-	<name>Software Engineering Lab - Kickstart</name>
+	<name>IT Dienstleister - Gruppe 32</name>
 
 	<parent>
 		<groupId>de.tudresden.inf.st.lab</groupId>
