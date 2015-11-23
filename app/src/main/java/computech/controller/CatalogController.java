@@ -73,6 +73,30 @@ class CatalogController {
 
 		return "laptop";
 	}
+	@RequestMapping("/allinone")
+	public String computerCatalog(Model model) {
+
+		model.addAttribute("catalog", computerCatalog.findByType(ArticleType.COMPUTER));
+
+
+		return "allinone";
+	}
+	@RequestMapping("/software")
+	public String softwareCatalog(Model model) {
+
+		model.addAttribute("catalog", computerCatalog.findByType(ArticleType.SOFTWARE));
+
+
+		return "software";
+	}
+	@RequestMapping("/zubehoer")
+	public String zubeCatalog(Model model) {
+
+		model.addAttribute("catalog", computerCatalog.findByType(ArticleType.ZUBE));
+
+
+		return "zubehoer";
+	}
 
 
 

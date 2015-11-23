@@ -68,16 +68,22 @@ public class KickstartDataInitializer implements DataInitializer {
 			return;
 		}
 
-		computerCatalog.save(new Article("Samsung", "sam1", Money.of(199.99, EURO), "a1", Article.ArticleType.NOTEBOOK));
-		computerCatalog.save(new Article("Samsung", "sam2", Money.of(299.99, EURO), "a2", Article.ArticleType.NOTEBOOK));
+		computerCatalog.save(new Article("Samsung1", "sam1", Money.of(199.99, EURO), "a1", Article.ArticleType.NOTEBOOK));
+		computerCatalog.save(new Article("Samsung2", "sam2", Money.of(299.99, EURO), "a2", Article.ArticleType.NOTEBOOK));
 
-		computerCatalog.save(new Article("Acer", "ace1", Money.of(299.99, EURO), "b1", Article.ArticleType.COMPUTER));
-		computerCatalog.save(new Article("Acer", "ace2", Money.of(299.99, EURO), "b2", Article.ArticleType.COMPUTER));
+		computerCatalog.save(new Article("Acer1", "ace1", Money.of(999.99, EURO), "b1", Article.ArticleType.COMPUTER));
+		computerCatalog.save(new Article("Acer2", "ace2", Money.of(799.99, EURO), "b2", Article.ArticleType.COMPUTER));
+
+		computerCatalog.save(new Article("Kaspersky Lab 2016", "kasp", Money.of(49.99, EURO), "c1", Article.ArticleType.SOFTWARE));
+		computerCatalog.save(new Article("Avira Antivir pro", "avi", Money.of(29.99, EURO), "c2", Article.ArticleType.SOFTWARE));
+
+		computerCatalog.save(new Article("USB 3.0-Kabel", "us3", Money.of(9.99, EURO), "d1", Article.ArticleType.ZUBE));
+		computerCatalog.save(new Article("USB 2.0-Kabel", "us2", Money.of(4.99, EURO), "d2", Article.ArticleType.ZUBE));
 
 		//  soll jeweils 10 Mal verfügbar sein
 
 				for (Article comp : computerCatalog.findAll()) {
-					InventoryItem inventoryItem = new InventoryItem(comp, Quantity.of(10));
+					InventoryItem inventoryItem = new InventoryItem(comp, Quantity.of(10)); //Wie füge ich dem Inventory den Preis hinzu? wichtig wegen Bilanz und Lager.Wert der Waren soll im Lager ersichtlich sein.Kevin
 					inventory.save(inventoryItem);
 				}
 	}

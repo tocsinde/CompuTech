@@ -148,4 +148,11 @@ class BossController {
 
 		return "redirect:/employees";
 	}
+	@RequestMapping("/stock")
+	public String stock(ModelMap modelMap) {
+
+		modelMap.addAttribute("stock", inventory.findAll());
+
+		return "stock";
+	}
 }
