@@ -54,7 +54,7 @@ class CartController {
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
     public String addDisc(@RequestParam("pid") Article article, @RequestParam("number") int number, @ModelAttribute Cart cart) {
 
-        int amount = number <= 0 || number > 5 ? 1 : number;
+        int amount = number <= 0 ? 1 : number;
 
 
         cart.addOrUpdateItem(article, Quantity.of(amount));
