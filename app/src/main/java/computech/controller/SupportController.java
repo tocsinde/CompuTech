@@ -5,6 +5,7 @@ import computech.model.ComputerCatalog;
 import computech.model.Customer;
 import computech.model.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Created by Anna on 15.11.2015.
  *  */
 
+
+@PreAuthorize("hasAnyRole('ROLE_PCUSTOMER', 'ROLE_EMPLOYEE','ROLE_BOSS')")
 @Controller
 public class SupportController {
+
     private final CustomerRepository customerRepository;
     private final ComputerCatalog computerCatalog;
     @Autowired
@@ -67,7 +71,7 @@ public class SupportController {
     }
 
 
-    @RequestMapping(value = "result", method = RequestMethod.POST)
+    @RequestMapping(value = "/result", method = RequestMethod.POST)
     public String specification(ModelMap modelMap,
                                 @RequestParam("computer") Article article,
                                 @RequestParam("customer") Customer customer,

@@ -7,14 +7,37 @@
 		<title th:text="#{home.title}">Computech</title>
 	</head>
 <body>
-	<div class="all">
-		<header>
-			<h1 th:text="#{home.title}">Support</h1>
-		</header>
-		<nav th:include="navigation :: navigation"></nav>
-		
-		
-		</div>
+<h1>Supportformular</h1>
 
+<form method="get" action="/support" th:object="${supportForm}">
+
+	<table>
+
+
+		<tr>
+			<td>Art of article</td>
+			<td>
+				<select name="type">
+					<option th:each=" type : ${types}" th:text="${type.toString()}"></option>
+				</select>
+			</td>\
+			<td>Article</td>
+			<td>
+				<select name="article">
+					<option th:each=" article: ${articles}" th:text="${article.model}"></option>
+				</select>
+			</td>
+			<tr>
+				<td>Description</td>
+				<td><input type="text" name="description" /></td>
+			</tr>
+		</tr>
+		<tr>
+			<td><button type="submit"> Abschicken</button></td>
+		</tr>
+	</table>
+
+
+</form>
 </body>
 </html>
