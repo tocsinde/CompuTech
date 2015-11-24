@@ -114,7 +114,7 @@ class CatalogController {
 
 		model.addAttribute("article", article);
 		model.addAttribute("quantity", quantity);
-		//model.addAttribute("orderable", quantity.isGreaterThan(Units.ZERO));
+		model.addAttribute("orderable", quantity.isGreaterThan(NONE));
 
 		return "detail";
 	}

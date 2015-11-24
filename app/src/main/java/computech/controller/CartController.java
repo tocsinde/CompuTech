@@ -13,6 +13,8 @@
 package computech.controller;
 
 import computech.model.Article;
+import org.salespointframework.inventory.Inventory;
+import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.order.Cart;
 import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
@@ -35,13 +37,14 @@ import java.util.Optional;
 class CartController {
 
     private final OrderManager<Order> orderManager;
-
-
+    private final Inventory<InventoryItem> inventory;
+    private static final Quantity NONE = Quantity.of(0);
     @Autowired
-    public CartController(OrderManager<Order> orderManager) {
+    public CartController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory) {
 
         Assert.notNull(orderManager, "OrderManager must not be null!");
         this.orderManager = orderManager;
+        this.inventory = inventory;
     }
 
 
@@ -54,7 +57,11 @@ class CartController {
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
     public String addDisc(@RequestParam("pid") Article article, @RequestParam("number") int number, @ModelAttribute Cart cart) {
 
-        int amount = number <= 0 ? 1 : number;
+        int amount = number;
+        if (number <= 0){
+            amount = 1;
+        }
+
 
 
         cart.addOrUpdateItem(article, Quantity.of(amount));
@@ -65,8 +72,12 @@ class CartController {
             case NOTEBOOK:
                 return "redirect:laptop";
             case COMPUTER:
-            default:
                 return "redirect:allinone";
+            case SOFTWARE:
+                return "redirect:software";
+            case ZUBE:
+            default:
+                return "redirect:zubehoer";
         }
     }
 
@@ -74,7 +85,11 @@ class CartController {
     public String basket() {
         return "cart";
     }
-
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String delete(@ModelAttribute Cart cart, @RequestParam ("identification") String id){
+        cart.removeItem(id);
+        return "redirect:/cart";
+    }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
     public String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
