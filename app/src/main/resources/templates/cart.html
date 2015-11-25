@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
-		<title th:text="#{cart.title}">Warenkorb</title>
-	</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Warenkorb - CompuTech</title>
+</head>
 <body>
-	<div class="all">
-		<header>
-			<h1> Warenkorb</h1>
-		</header>
-		<nav th:include="navigation :: navigation"></nav>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Warenkorb</h1>
 
 		<div class="content">
 			<div th:unless="${cart.empty}">
 				<table>
-					<caption >Warenkorb</caption>
 					<thead>
 					<tr>
 						<th>Artikelname</th>
@@ -48,8 +47,7 @@
 				</div>
 			</div>
 
-			<p th:if="${cart.empty}" th:text="#{cart.empty}">Leer</p>
+			<p th:if="${cart.empty}">Der Warenkorb enthält keine Produkte.</p>
 		</div>
-	</div>
 </body>
 </html>

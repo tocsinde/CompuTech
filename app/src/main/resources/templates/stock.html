@@ -4,18 +4,17 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
-	<title th:text="#{stock.title}">Bestand</title>
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Bestand - CompuTech</title>
 </head>
 <body>
-	<div class="all">
-		<header>
-			<h1 th:text="#{stock.title}">Bestand</h1>
-		</header>
-		<nav th:include="navigation :: navigation" ></nav>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Bestand</h1>
 		
 		<div class="content">
 			<table>
-				<caption th:text="#{stock.title}">Bestand</caption>
 				<thead>
 				<tr>
 					<th> Artikelname</th>
@@ -32,6 +31,5 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
 </body>
 </html>

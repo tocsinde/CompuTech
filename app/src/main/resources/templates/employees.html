@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
-		<title>Mitarbeiterliste</title>
-	</head>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Mitarbeiterliste - CompuTech</title>
+</head>
 <body>
-	<div class="all">
-		<header>
-			<h1>Mitarbeiterliste</h1>
-		</header>
-		<nav th:include="navigation :: navigation" ></nav>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Mitarbeiterliste</h1>
 
 
 		<h2>Freigeschaltete Mitarbeiter</h2>
@@ -28,7 +28,7 @@
 				<td th:text="${employee.identifier}">Login</td>
 
 				<td>
-					<a th:href="@{/employees/edit/} + ${employee.identifier}" href="employees_edit.html">bearbeiten</a>
+					<a th:href="@{/employees/edit/} + ${employee.identifier}" href="employees_edit.html" class="button">bearbeiten</a>
 				</td>
 				<td>
 					<form th:method="post" th:action="@{/employees/disable/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
@@ -56,7 +56,7 @@
 				<td th:text="${employee.identifier}">Login</td>
 
 				<td>
-					<a th:href="@{/employees/edit/} + ${employee.identifier}" href="employees_edit.html">bearbeiten</a>
+					<a th:href="@{/employees/edit/} + ${employee.identifier}" href="employees_edit.html" class="button">bearbeiten</a>
 				</td>
 				<td>
 					<form th:method="post" th:action="@{/employees/enable/} + ${employee.identifier}" th:attr="data-userAccountIdentifier=${employee.identifier}">
@@ -68,8 +68,5 @@
 			</tbody>
 
 		</table>
-
-
-	</div>
 </body>
 </html>

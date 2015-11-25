@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
-		<title th:text="${article.name}">Last Action Hero</title>
-	</head>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Detailansicht - CompuTech</title>
+</head>
 <body>
-	<div class="all">
-		<header>
-			<h1 th:text="${article.name}">Last Action Hero</h1>
-		</header>
-		<nav th:include="navigation :: navigation" ></nav>
-		
-		
-		<div class="content">
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Artikel</h1>
 
 		
 			<div class="detailDescription">
@@ -30,8 +27,5 @@
 				</form>
 			</div>
 
-
-		</div>
-	</div>
 </body>
 </html>

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/../resources/css/style.css" />
-		<title th:text="#{customers.title}">Kunde editieren</title>
-	</head>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Kunde editieren - CompuTech</title>
+</head>
 <body>
-	<div class="all">
-		<header>
-			<h1>Kunde editieren</h1>
-		</header>
-		<nav th:include="navigation :: navigation" ></nav>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Kunde editieren</h1>
 
 		<form th:method="post" th:action="@{/customers/edit/} + ${customer.id}" th:attr="data-customer-id=${customer.id}" th:object="${customerEditForm}">
 
@@ -21,11 +21,6 @@
 				<div th:if="${#fields.hasErrors('*')}">
 					<p>Einige Angaben sind nicht korrekt.</p>
 				</div>
-
-				<!--<label th:text="#{customer.nickname}" for="nickname">Nickname</label>
-				<input id="nickname" th:field="*{nickname}" th:errorclass="fieldError" type="text" name="nickname" value="${customer.nickname}" />
-				<p th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">Der Nickname darf nicht leer sein.</p>
-				<br />-->
 
 				<label for="firstname">Vorname</label>
 				<input id="firstname" th:errorclass="fieldError" type="text" name="firstname" th:value="${customer.firstname}" />
@@ -60,7 +55,5 @@
 			</fieldset>
 
 		</form>
-
-	</div>
 </body>
 </html>

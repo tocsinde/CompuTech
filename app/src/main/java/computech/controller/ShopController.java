@@ -51,6 +51,9 @@ package computech.controller;
 			return "index";
 		}
 
+		@RequestMapping("/comp")
+		public String aboutus() {return "compu";}
+
 		@RequestMapping("/registerNew")
 		public String registerNew(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm,
 				BindingResult result) {

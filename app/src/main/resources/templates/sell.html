@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
-		<title th:text="#{home.title}">Ankaufstelle</title>
-	</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Ankaufstelle - CompuTech</title>
+</head>
 <body>
-	<div class="all">
-		<header>
-			<h1 th:text="#{home.title}">Ankaufstelle</h1>
-		</header>
-		<nav th:include="navigation :: navigation"></nav>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Ankaufstelle</h1>
 		
 		
 		<div class="sell">
@@ -64,7 +64,6 @@
 			</table>
 		</div>
 		</div>
-	</div>
 	</div>
 </body>
 </html>
