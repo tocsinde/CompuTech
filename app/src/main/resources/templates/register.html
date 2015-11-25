@@ -43,10 +43,10 @@
 				<p th:if="${#fields.hasErrors('password')}">Das Passwort darf nicht leer sein.</p>
 				<br />
 
-				<label for="password">Passwort (erneut)</label>
+				<!-- <label for="password">Passwort (erneut)</label>
 				<input id="password2" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" /><br />
 				<p th:if="${#fields.hasErrors('password')}">Die Passwortwiederholung darf nicht leer sein.</p>
-				<br />
+				<br /> -->
 
 				<label for="address">Adresse</label>
 				<input id="address" th:field="*{address}" th:errorclass="fieldError" type="text" name="address" />
