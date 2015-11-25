@@ -7,8 +7,9 @@
 		<title th:text="#{home.title}">Computech</title>
 	</head>
 <body>
-<h1>Supportformular</h1>
 
+<h1>Supportformular</h1>
+<nav th:include="navigation :: navigation"></nav>
 <form method="get" action="/support" th:object="${supportForm}">
 
 	<table>
