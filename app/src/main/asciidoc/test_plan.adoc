@@ -41,5 +41,7 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 [options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|…  |…              |…              |…       |…
+|1  |Gutfall              |10 Artikel im Lager              |versuche, mehr als 10 Artikel in Warenkorb zu packen       |nur 10 Artikel werden in Warenkorb gepackt
+|2  |Gutfall              |Benutzerkonto existiert       |Login mit falschen Daten      |Fehlermeldung "falsche Logindaten"
+|3  |Gutfall              |Benutzerkonto existiert      |Registrierung mit schon bestehendem Nickname    |Fehlermeldung "Benutzerkonto existiert bereits"
 |===
