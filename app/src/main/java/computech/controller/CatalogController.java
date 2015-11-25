@@ -36,7 +36,6 @@ import java.util.Optional;
 class CatalogController {
 
 	private static final Quantity NONE = Quantity.of(0);
-
 	private final ComputerCatalog computerCatalog;
 	private final Inventory<InventoryItem> inventory;
 	private final BusinessTime businessTime;

@@ -25,9 +25,11 @@ import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 
@@ -55,12 +57,20 @@ class CartController {
 
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
-    public String addDisc(@RequestParam("pid") Article article, @RequestParam("number") int number, @ModelAttribute Cart cart) {
+    public String addDisc(@RequestParam("pid") Article article, @RequestParam("number") int number, @ModelAttribute Cart cart, Model model) {
 
-        int amount = number;
+        Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
+        Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
+        BigDecimal amount1 = quantity.getAmount();  // Herrje, wer das schöner schreiben will, kann das gerne machen
+        int i = amount1.intValue();                 // Endlich funktioniert die Validierung, besser als beim
+        int amount = number;                        // Videoshop :P Kevin
         if (number <= 0){
             amount = 1;
         }
+        if (number >= i){
+            amount = i;
+        }
+
 
 
 
