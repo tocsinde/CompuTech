@@ -13,5 +13,26 @@
 
 <h1>Login</h1>
 
+<form name="f" action="/login" method="POST">
+
+	<fieldset>
+
+		<div th:if="${(param.error != null)}">
+			<p class="error">Ungültige Zugangsdaten.</p><br/><br/>
+		</div>
+
+		<label for="username">Benutzername</label>
+		<input type="text" id="username" name="username" value="" />
+		<br/>
+
+		<label for="password">Passwort</label>
+		<input type="password" id="password" name="password" value="" />
+		<br/>
+
+
+		<input name="submit" type="submit" value="Login" />
+	</fieldset>
+</form>
+
 </body>
 </html>
