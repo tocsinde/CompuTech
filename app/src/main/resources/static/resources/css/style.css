@@ -115,3 +115,31 @@ table tbody {
 table tbody tr {
 	border-bottom:1px solid #ccc
 }
+
+
+fieldset legend {
+	background:#ccc;
+	padding:10px;
+	font-weight:bold;
+}
+
+fieldset {
+	padding:30px 40px 30px 40px;
+	background:#f2f2f2;
+	border:0px;
+	text-align:center
+}
+
+fieldset label {
+	float:left;
+	clear:both;
+	margin-bottom:10px;
+	width:25%;
+	margin-right:20px;
+	text-align:right;
+}
+
+fieldset input {
+	width:45%;
+	margin-bottom:10px;
+}
