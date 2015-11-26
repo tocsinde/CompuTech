@@ -9,9 +9,8 @@
 	<nav th:fragment="navigation">
 
 		<ul>
-			<li sec:authorize="!hasAnyRole('ROLE_BOSS','ROLE_PCUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_BCUSTOMER')"><a th:href="@{/register}" href="register.html">Registrierung</a></li>
 			<li sec:authorize="!hasAnyRole('ROLE_BOSS','ROLE_PCUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_BCUSTOMER')"><a th:href="@{/comp}" href="compu.html">Über uns</a></li>
-			<li sec:authorize="!hasAnyRole('ROLE_BOSS','ROLE_PCUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_BCUSTOMER')"><a th:href="@{/welcome}" href="welcome.html">Start</a></li>
+			<li sec:authorize="!hasAnyRole('ROLE_BOSS','ROLE_PCUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_BCUSTOMER')"><a th:href="@{/}" href="/">Start</a></li>
 			<li sec:authorize="hasRole('ROLE_BOSS')"><a th:href="@{/orders}" href="orders.html">Bestellungen</a></li>
 			<li sec:authorize="hasRole('ROLE_BOSS')"><a th:href="@{/assingments}" href="assingments.html">Aufträge</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_BOSS','ROLE_EMPLOYEE')"><a th:href="@{/stock}" href="stock.html">Lager</a></li>
@@ -24,14 +23,6 @@
 
 			<li><a th:href="@{/shop}" href="shopoverview.html">Shop</a></li>
 			<li><a th:href="@{/cart}" href="cart.html">Warenkorb</a></li>
-
-			<li sec:authorize="!isAuthenticated()" class="loginlogout"><a th:href="@{/login}">Login</a></li>
-
-			<li sec:authorize="isAuthenticated()" class="loginlogout">
-				<form th:action="@{/logout}" method="post">
-					<input type="submit" value="Logout" />
-				</form>
-			</li>
 
 		</ul>
 	</nav>

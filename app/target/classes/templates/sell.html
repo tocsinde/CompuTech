@@ -1,48 +1,45 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
-		<title th:text="#{home.title}">Ankaufstelle</title>
-	</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Ankaufstelle - CompuTech</title>
+</head>
 <body>
-	<div class="all">
-		<header>
-			<h1 th:text="#{home.title}">Ankaufstelle</h1>
-		</header>
-		<nav th:include="navigation :: navigation"></nav>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Ankaufstelle</h1>
 		
 		
 		<div class="sell">
 			<div class="salespoint" sec:authorize="hasRole('ROLE_PCUSTOMER')">
-				<form method="post" action="checkout">
-					<fieldset>
-						<legend>Antrag ausfüllen</legend>
-						<label for="Computertype">Artikelart</label><br />
+				<form method="post" action="/sellout" th:object="${sellForm}">
+						<caption>Antrag ausfüllen</caption><br /><br />
+						<label for="Articletype">Artikelart</label><br />
 						
-						<select id="Computertype" name="Computertype" th:each="Computertype : ${catalog}">
+						<select id="Articletype" name="Articletype">
 							<option> Artikeltyp auswählen</option>
-							<option th:text="${Computertype.name}">NOTEBOOK</option>
-						</select><br />
+							<option th:each=" type : ${types}" th:text="${type.toString()}"> </option>
+						</select><br /><br />
 						
-						<label for="Computer">Artikel</label><br />
+						<label for="Article">Artikel</label><br />
 						
-						<select id="Computer" name="Computer" th:each="Computer : ${catalog}">
+						<select id="Article" name="Article">
 							<option> Artikel auswählen</option>
-							<option th:text="${Computer.name}">Acer</option>
-						</select><br />
+							<option th:each="Article: ${Articletype}" th:value="${Article.name}">Acer</option>
+						</select><br /><br />
 						
-						<label for="Description">Beschreibung</label><br />
-						<textarea name="Description" cols="40" rows="5"></textarea><br /><br />
-						<input type="submit" th:value="#{cart.sendrequest}" value="Senden" />
-					</fieldset>
+						<label for="description">Beschreibung</label><br />
+						<textarea name="description" cols="40" rows="5"></textarea><br />
+						<input type="submit" value="Senden" />
 				</form>
 			</div>
 			<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')">
 				<div class="content">
 					<table>
-						<caption th:text="#{sells.completed}"></caption>
 					<thead>
 						<tr>
 							<th>Datum</th>
@@ -64,7 +61,6 @@
 			</table>
 		</div>
 		</div>
-	</div>
 	</div>
 </body>
 </html>

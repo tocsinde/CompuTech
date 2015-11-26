@@ -1,46 +1,43 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
-		<title th:text="${title}">Shop</title>
-	</head>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Shop - CompuTech</title>
+</head>
 <body>
-	<div class="all">
-		<header>
-			<h1 th:text="${title}">Shop</h1>
-		</header>
-		<nav th:include="navigation :: navigation">
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
 
-		</nav>
+<h1>Shop</h1>
 		
 		<div class="content">
 
 
 
 
-					<div >
+					<div>
 						<h4>Laptop</h4>
 						<a th:href="@{/laptop}" href="laptop.html"><img src="../resources/img/lap.jpg" alt="Laptop" /></a>
 
 					</div>
-					<div >
-						<h4>All-in-one Systeme</h4>
+					<div>
+						<h4>All-in-one-Systeme</h4>
 						<a th:href="@{/allinone}" href="allinone.html"><img src="../resources/img/all.jpg" alt="Computer" /></a>
 
 					</div>
-					<div >
+					<div>
 						<h4>Software</h4>
 						<a th:href="@{/software}" href="laptop.html"><img src="../resources/img/soft.jpg" alt="Computer" /></a>
 
 					</div>
-					<div >
+					<div>
 						<h4>Zubehör</h4>
 						<a th:href="@{/zubehoer}" href="laptop.html"><img src="../resources/img/zube.jpg" alt="Computer" /></a>
 
 					</div>
 			</div>
-	</div>
 </body>
 </html>

@@ -4,17 +4,14 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
-		<title th:text="${title}">Katalog</title>
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+		<title>Katalog - CompuTech</title>
 	</head>
 <body>
-	<div class="all">
-		<header>
-			<h1 th:text="${title}">Katalog</h1>
-		</header>
-		<nav th:include="navigation :: navigation">
+		<header th:include="header :: header"></header>
+		<nav th:include="navigation :: navigation"></nav>
 
-		</nav>
-		
+		<h1>Artikel</h1>
 		<div class="content">
 			<div class="catalog" th:remove="all-but-first">
 
@@ -27,6 +24,5 @@
 				</a>			
 			</div>
 		</div>
-	</div>
 </body>
 </html>

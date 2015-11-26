@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
-		<title th:text="#{home.title}">Computech</title>
-	</head>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Support - CompuTech</title>
+</head>
 <body>
-
-<h1>Supportformular</h1>
+<header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
+
+<h1>Support</h1>
+
 <form method="get" action="/support" th:object="${supportForm}">
 
 	<table>
@@ -28,10 +31,10 @@
 					<option th:each=" article: ${articles}" th:text="${article.model}"></option>
 				</select>
 			</td>
-			<tr>
-				<td>Description</td>
-				<td><input type="text" name="description" /></td>
-			</tr>
+		<tr>
+			<td>Description</td>
+			<td><input type="text" name="description" /></td>
+		</tr>
 		</tr>
 		<tr>
 			<td><button type="submit"> Abschicken</button></td>

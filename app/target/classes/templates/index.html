@@ -1,21 +1,22 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}" />
-		<title>CompuTech - Startseite</title>
-	</head>
-	<body>
-		
-		<div class="all">
-		<header>
-			<h1 th:text="#{home.title}">Startseite</h1>
-		</header>
-		<nav th:include="navigation :: navigation"></nav>
-		
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Katalog - CompuTech</title>
+</head>
+<body>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Startseite</h1>
 		<!-- hier kommt z.B. eine Übersicht über aktuelle Angebote rein -->
 		<!-- Gutes Beispiel dafür wäre Dell. -->
-		
-		</div>
+
+Willkommen bei CompuTech.<br/>
+Unser reichhaltiges Angebot ist reichhaltig gefüllt. Schauen Sie sich im <a href="/shop">Shop</a> um.
+
 	</body>
 </html>
