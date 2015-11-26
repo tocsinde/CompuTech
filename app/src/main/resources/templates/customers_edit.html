@@ -32,7 +32,7 @@
 				<p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Der Nachname darf nicht leer sein.</p>
 				<br />
 
-				<label for="password">Passwort <small>(Wird nur geändert, wenn dieses Feld ausgefüllt wird.)</small></label>
+				<label for="password">Passwort<br/><small>(Wird nur geändert, wenn dieses Feld ausgefüllt wird.)</small></label>
 				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" /><br />
 				<br />
 
