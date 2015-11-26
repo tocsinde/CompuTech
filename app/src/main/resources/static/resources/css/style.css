@@ -1,6 +1,6 @@
 html, body {
 	font-family: "Raleway", sans-serif;
-  width: 90%;
+  width: 85%;
   margin:auto;
   margin-top:20px;
   font-size:1.1em;
@@ -92,6 +92,26 @@ a.button {
 }
 
 .fieldError {
-    background:#de8787;
-    border:0px;
+  background:#de8787;
+  border:0px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table th {
+  background:#ccc;
+}
+
+table td, table th {
+	padding: 10px;
+}
+
+table tbody {
+	background: #f2f2f2
+}
+
+table tbody tr {
+	border-bottom:1px solid #ccc
 }
