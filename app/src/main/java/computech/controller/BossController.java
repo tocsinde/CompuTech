@@ -155,4 +155,21 @@ class BossController {
 
 		return "stock";
 	}
+
+	@RequestMapping("/orders")
+	public String orders(ModelMap modelMap) {
+
+	modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
+
+	return "orders";
+	}
+	
+	@RequestMapping("/sell")
+	public String sell(ModelMap modelMap) {
+
+	modelMap.addAttribute("sellCompleted",orderManager.findBy(OrderStatus.COMPLETED));
+
+	return "sell";
+	}
+	
 }

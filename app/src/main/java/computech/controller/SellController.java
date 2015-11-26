@@ -13,6 +13,9 @@
 package computech.controller;
 
 import computech.model.Article;
+import computech.model.ComputerCatalog;
+import computech.model.Customer;
+import computech.model.CustomerRepository;
 import computech.model.Article.ArticleType;
 
 import java.util.Optional;
@@ -29,8 +32,10 @@ import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,15 +45,56 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @PreAuthorize("hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BOSS', 'ROLE_EMPLOYEE')")
 @SessionAttributes("sell")
 public class SellController {
-
+	
+	private final ComputerCatalog computerCatalog;
 	private final OrderManager<Order> sellManager;
+	private final CustomerRepository customerRepository;
+	
 
 	@Autowired
-	public SellController(OrderManager<Order> sellManager) {
+	public SellController( ComputerCatalog computerCatalog, OrderManager<Order> sellManager, CustomerRepository customerRepository) {
 
 		Assert.notNull(sellManager, "sellManager must not be null!");
+		Assert.notNull(computerCatalog, "sellManager must not be null!");
+		
 		this.sellManager = sellManager;
+		this.computerCatalog = computerCatalog;
+		this.customerRepository = customerRepository;
 	}
+	
+	@RequestMapping(value = "/sellout")
+    public String showSellFormular(ModelMap modelMap){
+
+            modelMap.addAttribute("types", Article.ArticleType.values());
+
+        for (Article.ArticleType type : Article.ArticleType.values()) {
+            modelMap.addAttribute(type.toString(), computerCatalog.findByType(type));
+        }
+
+
+      //  modelMap.addAttribute("catalog", computerCatalog.findByType());
+      //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
+
+
+
+
+        return "Sell";
+	}
+	
+	 @RequestMapping(value = "/sellout/{Articletype}")
+
+	    public String showSupportFormular(@PathVariable("Articletype") Article.ArticleType articleType, ModelMap modelMap){
+
+	        modelMap.addAttribute("types", Article.ArticleType.values());
+
+
+	            modelMap.addAttribute("articles", computerCatalog.findByType(articleType));
+
+	        //  modelMap.addAttribute("catalog", computerCatalog.findByType());
+	        //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
+
+	        return "sell";
+	    }
 
 	@ModelAttribute("sell")
 	public Cart initializeSell() {
@@ -62,11 +108,13 @@ public class SellController {
 		sell.addOrUpdateItem(article, Quantity.of(amount));
 
 		switch (article.getType()) {
+			case NOTEBOOK:
+				return "redirect:notebookCatalog";
 			case COMPUTER:
 				return "redirect:computerCatalog";
-			case NOTEBOOK:
+			case SOFTWARE:
 			default:
-				return "redirect:notebookCatalog";
+				return "redirect:zubeCatalog";
 		}
 	}
 
@@ -75,7 +123,7 @@ public class SellController {
 		return "sell";
 	}
 	
-/*	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
+	@RequestMapping(value = "/sellout", method = RequestMethod.POST)
 	public String sendrequest(@ModelAttribute Cart sell, @LoggedIn Optional<UserAccount> userAccount) {
 
 		return userAccount.map(account -> {
@@ -92,5 +140,5 @@ public class SellController {
 			return "redirect:/";
 		}).orElse("redirect:/sell");
 	}
-	*/
+	
 }

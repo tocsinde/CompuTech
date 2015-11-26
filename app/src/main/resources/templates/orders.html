@@ -13,5 +13,23 @@
 
 <h1>Bestellungen</h1>
 
+<div class="content">
+			<table>
+				<thead>
+					<tr>
+						<th>Datum</th>
+						<th>Kunde</th>
+						<th>Bezahlt</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr th:each="order : ${ordersCompleted} ">
+							<td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>
+							<td th:text="${order.userAccount.identifier}"></td>
+							<td th:text="${order.totalPrice}"></td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
 </body>
 </html>
