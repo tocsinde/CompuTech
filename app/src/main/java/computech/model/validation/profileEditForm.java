@@ -13,12 +13,8 @@
 package computech.model.validation;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Transient;
 
-public class RegistrationForm {
-
-	@NotEmpty(message = "{RegistrationForm.nickname.NotEmpty}")
-	private String nickname;
+public class profileEditForm {
 
 	@NotEmpty(message = "{RegistrationForm.firstname.NotEmpty}")
 	private String firstname;
@@ -26,11 +22,7 @@ public class RegistrationForm {
 	@NotEmpty(message = "{RegistrationForm.lastname.NotEmpty}")
 	private String lastname;
 
-	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
 	private String password;
-
-	@Transient
-	private String password2;
 
 	@NotEmpty(message = "{RegistrationForm.address.NotEmpty}")
 	private String address;
@@ -40,15 +32,6 @@ public class RegistrationForm {
 
 	@NotEmpty(message = "{RegistrationForm.phone.NotEmpty}")
 	private String phone;
-
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
 
 	public String getFirstname() {
 		return firstname;
@@ -72,10 +55,6 @@ public class RegistrationForm {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getPassword2() {
-		return password2;
 	}
 
 	public String getAddress() {
