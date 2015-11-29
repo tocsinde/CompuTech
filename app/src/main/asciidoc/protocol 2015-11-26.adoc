@@ -1,0 +1,80 @@
+= Protokoll Gruppe 32
+__Treffen am 26.11.2015__
+
+
+__Schriftführer:__
+Stephan Fischer
+
+__Nächstes Treffen:__ 03.12.2015
+
+__Teilnehmer:__
+
+* Stephan Fischer
+* Anna Gromykina
+* Kevin Horst
+* Philipp Oehme
+
+* und Gruppe 34
+
+
+== Bemerkungen
+
+* heutiges Treffen aufgrund der Zwischenpräsentation zusammen mit Gruppe 34
+* unsere Zwischenpräsentation wird von Kevin gehalten
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+
+|===
+|Issue |Aufgabe |Status
+|16    |M010 - Jede berechtigte Person kann sich einloggen   |erledigt
+|17     |M020 - Jede eingeloggte Person kann sich ausloggen   |erledigt
+|18     |M040 - Kann Accounts verwalten   |größtenteils erledigt, todo: Boss muss Konten direkt anlegen können
+|19     |M140 - Kann Artikel in Warenkorb legen   |erledigt
+|20     |M150 - Kann Artikel aus dem Warenkorb absenden   |erledigt
+|21     |M160 - Kann Bestellung absenden   |erledigt
+|22     |Zwischenpräsentation   |erledigt
+|23     |Crosstesting   |offen
+|24     |Testfälle erstellen  |erledigt, könnte noch ergänzt werden
+|===
+
+
+== Aktueller Stand
+
+=== Zwischenpräsentation
+
+* Kevin schilderte aktuellen Stand unseres Projektes, stellte Probleme dar, präsentierte die Software an sich und gab einen Ausblick auf kommende Features
+
+=== Feedback zu unserer Zwischenpräsentation
+
+* Kevin war etwas schnell und laut Markus fehlte die Vorbereitung etwas, ansonsten einwandfrei
+* allgemeine Hinweise (galt auch für andere Gruppe):
+** mehr als nur das fertige Produkt vorstellen (auch die Modelle mit einbeziehen)
+** erläutern, wie die Zusammenarbeit abläuft:
+*** Werden Issues auf GitHub regelmäßig genutzt?
+*** Wie oft finden Treffen statt?
+*** Worüber wird kommuniziert?
+*** Wie werden die Aufgaben verteilt?
+*** Welche IDE wird genutzt?
+
+
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+
+
+[option="headers"]
+
+
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|27   |Boss: Neue Kunden/Mitarbeiter hinzufügen  |selbsterklärend     |Stephan    |todo
+|29   |Kunden sollen ihre Daten selbst ändern können    |selbsterklärend; Passwort soll nur noch von Kunden und nicht mehr von Boss geändert werden können (Thema Datenschutz etc.)    |Stephan    |todo
+|30   |jUnit-Tests vorbereiten      |ggf. nochmal einlesen      |Kevin & Stephan    |todo
+|28   |Weiterleitung nach Registrierung     |Direkt-Login nach Registrierung (kein zwingendes Feature) |Stephan   |todo
+|31   |Supportstelle  |an Supportstelle weiterarbeiten    |Anna   |todo
+|32   |Ankaufstelle   |an Ankaufstelle weiterarbeiten   |Philipp    |todo
+|===
