@@ -1,19 +1,145 @@
-/* CSS RESET */
-
-* {
-	margin: 0;
-	padding: 0;
+html, body {
+	font-family: "Raleway", sans-serif;
+  width: 85%;
+  margin:auto;
+  margin-top:20px;
+  font-size:1.1em;
 }
 
-body {
-	margin: 0 auto;
-	width: 940px;
-	font: 13px/22px Helvetica, Arial, sans-serif;
-	background: #f0f0f0;
+header {
+  background: #f2f2f2;
+  padding-left:30px;
+  padding-top:20px;
+
 }
 
-h1 {
-	font-size: 3em;
-	line-height: 3.2em;
-	text-align:center;
+header, nav {
+  clear:both;
+  overflow: auto;
+}
+
+header ul {
+  float:right;
+}
+
+header ul li {
+  float:left;
+  margin-right:20px;
+  list-style-type: none;
+}
+
+nav ul {
+  background:#666;
+  overflow: auto;
+  color:#fff;
+  padding-left:25px;
+
+}
+
+nav ul li {
+  float:left;
+  list-style-type: none;
+  margin-right:20px;
+}
+
+nav ul li a, header ul li a {
+  display:block;
+  color:#fff;
+  padding-top:7px;
+  padding-bottom: 7px;
+  padding-left:10px;
+  padding-right:10px;
+  text-decoration: none;
+}
+
+header ul li a {
+  background: #d45500;
+}
+
+nav ul li a:hover {
+  background:#000;
+}
+
+.button, input[type="submit"] {
+  background: #d45500;
+  color:#fff;
+  padding:5px 15px 5px 15px;
+  cursor:pointer;
+}
+
+input[type="submit"] {
+  font-family:"Raleway", sans-serif;
+  border:0px;
+  font-size:1em;
+}
+
+.button:hover, input[type="submit"]:hover, header ul li a:hover {
+  background:#000
+}
+
+a.button {
+  text-decoration:none;
+}
+
+.button.inactive {
+  background:#de8787;
+  cursor:default
+}
+
+.error {
+  display:inline-block;
+  border-bottom:3px solid #de8787;
+}
+
+.fieldError {
+  background:#de8787;
+  border:0px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table th {
+  background:#ccc;
+}
+
+table td, table th {
+	padding: 10px;
+}
+
+table tbody {
+	background: #f2f2f2
+}
+
+table tbody tr {
+	border-bottom:1px solid #ccc
+}
+
+
+fieldset legend {
+	background:#ccc;
+	padding:10px;
+	font-weight:bold;
+}
+
+fieldset {
+	padding:30px 40px 30px 40px;
+	background:#f2f2f2;
+	border:0px;
+	text-align:center
+}
+
+fieldset label {
+	float:left;
+	clear:both;
+	margin-bottom:10px;
+	width:25%;
+	margin-right:20px;
+	text-align:right;
+}
+
+fieldset input {
+	width:45%;
+	margin-bottom:10px;
 }
