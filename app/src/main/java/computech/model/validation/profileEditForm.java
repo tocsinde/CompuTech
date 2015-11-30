@@ -16,22 +16,22 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class profileEditForm {
 
-	@NotEmpty(message = "{RegistrationForm.firstname.NotEmpty}")
+	@NotEmpty(message = "Der Vorname darf nicht leer sein.")
 	private String firstname;
 
-	@NotEmpty(message = "{RegistrationForm.lastname.NotEmpty}")
+	@NotEmpty(message = "Der Nachname darf nicht leer sein.")
 	private String lastname;
 
-	private String password;
-
-	@NotEmpty(message = "{RegistrationForm.address.NotEmpty}")
+	@NotEmpty(message = "Die Adresse darf nicht leer sein.")
 	private String address;
 
-	@NotEmpty(message = "{RegistrationForm.mail.NotEmpty}")
+	@NotEmpty(message = "Die E-Mail-Adresse darf nicht leer sein.")
 	private String mail;
 
-	@NotEmpty(message = "{RegistrationForm.phone.NotEmpty}")
+	@NotEmpty(message = "Die Telefonnummer darf nicht leer sein.")
 	private String phone;
+
+	private String password;
 
 	public String getFirstname() {
 		return firstname;
@@ -76,7 +76,6 @@ public class profileEditForm {
 	public String getPhone() {
 		return phone;
 	}
-
 
 	public void setPhone(String phone) {
 		this.phone = phone;

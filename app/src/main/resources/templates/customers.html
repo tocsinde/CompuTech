@@ -17,9 +17,9 @@
 			<thead>
 			<tr>
 				<th>ID</th>
+				<th>Login</th>
 				<th>Nachname</th>
 				<th>Vorname</th>
-				<th>Login</th>
 				<th>Adresse</th>
 				<th>E-Mail-Adresse</th>
 				<th>Telefonnummer</th>
@@ -30,9 +30,9 @@
 			<tbody th:remove="all-but-first">
 			<tr th:each=" customer : ${customerList}">
 				<td th:text="${customer.id}">ID</td>
+				<td th:text="${customer.userAccount.identifier}">Login</td>
 				<td th:text="${customer.lastname}">Nachname</td>
 				<td th:text="${customer.firstname}">Vorname</td>
-				<td th:text="${customer.userAccount.identifier}">Login</td>
 				<td th:text="${customer.address}">Adresse</td>
 				<td th:text="${customer.mail}">E-Mail-Adresse</td>
 				<td th:text="${customer.phone}">Telefonnummer</td>

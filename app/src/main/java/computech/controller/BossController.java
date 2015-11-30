@@ -25,7 +25,9 @@ import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountIdentifier;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -103,9 +105,9 @@ class BossController {
 
 		customerRepository.save(customer_found);
 
-		if(customerEditForm.getPassword() != "") {
+		/* if(customerEditForm.getPassword() != "") {
 			userAccountManager.changePassword(customer_found.getUserAccount(), customerEditForm.getPassword());
-		}
+		} */
 
 		return "redirect:/customers";
 	}
@@ -138,12 +140,12 @@ class BossController {
 		return "employees_edit";
 	}
 
-	@RequestMapping(value = "/employees/edit/{userAccountIdentifier}", method = RequestMethod.POST)
-	public String saveEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier, Model model, @ModelAttribute("employeeEditForm") @Valid employeeEditForm employeeEditForm, BindingResult result) {
+	@RequestMapping(value = "/employees/edit/{useraccount}", method = RequestMethod.POST)
+	public String saveEmployee(@PathVariable UserAccount useraccount, Model model, @ModelAttribute("employeeEditForm") @Valid employeeEditForm employeeEditForm, BindingResult result) {
 
 		if(employeeEditForm.getPassword() != "") {
-			// todo
-			//userAccountManager.changePassword();
+			//UserAccount user_found = (User) userAccountManager.get(userAccountIdentifier);
+			userAccountManager.changePassword(useraccount, employeeEditForm.getPassword());
 		}
 
 		return "redirect:/employees";

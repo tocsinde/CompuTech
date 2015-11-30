@@ -13,9 +13,8 @@
 
 <h1>Mitarbeiterliste</h1>
 
-
 		<h2>Freigeschaltete Mitarbeiter</h2>
-		<table>
+		<table th:unless="${employeeList_enabled.empty}">
 			<thead>
 			<tr>
 				<th>Login</th>
@@ -23,6 +22,7 @@
 				<th></th>
 			</tr>
 			</thead>
+
 			<tbody th:remove="all-but-first" th:each="employee : ${employeeList_enabled}">
 
 			<tr th:each="role : ${employee.roles}" th:if="${#strings.equals(role,'ROLE_EMPLOYEE')}" >
@@ -45,7 +45,7 @@
 		</table>
 
 		<h2>Deaktivierte Mitarbeiter</h2>
-		<table>
+		<table th:unless="${employeeList_disabled.empty}">
 			<thead>
 			<tr>
 				<th>Login</th>

@@ -19,47 +19,42 @@
 			<fieldset>
 
 				<div th:if="${#fields.hasErrors('*')}">
-					<p>Einige Angaben sind nicht korrekt.</p>
+					<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
+					<ul>
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Fehler</li>
+					</ul>
 				</div>
 
 				<label for="nickname">Nickname</label>
-				<input id="nickname" th:field="*{nickname}" th:errorclass="fieldError" type="text" name="nickname" required="required" />
-				<p th:if="${#fields.hasErrors('nickname')}">Der Nickname darf nicht leer sein.</p>
-				<br />
+				<input id="nickname" th:field="*{nickname}" th:errorclass="fieldError" type="text" name="nickname" />
+				<br/>
 
 				<label for="firstname">Vorname</label>
-				<input id="firstname" th:field="*{firstname}" th:errorclass="fieldError" type="text" name="firstname" required="required" />
-				<p th:if="${#fields.hasErrors('firstname')}">Der Vorname darf nicht leer sein.</p>
+				<input id="firstname" th:field="*{firstname}" th:errorclass="fieldError" type="text" name="firstname" />
 				<br />
 
 				<label for="lastname">Nachname</label>
-				<input id="lastname" th:field="*{lastname}" th:errorclass="fieldError" type="text" name="lastname" required="required" />
-				<p th:if="${#fields.hasErrors('lastname')}">Der Nachname darf nicht leer sein.</p>
+				<input id="lastname" th:field="*{lastname}" th:errorclass="fieldError" type="text" name="lastname" />
 				<br />
 
 				<label for="password">Passwort</label>
-				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" required="required" onchange="form.password2.pattern = this.value;" /><br />
-				<p th:if="${#fields.hasErrors('password')}">Das Passwort darf nicht leer sein.</p>
+				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" />
 				<br />
 
-				<label for="password">Passwort (erneut)</label>
-				<input id="password2" th:field="*{password2}" th:errorclass="fieldError" type="password" name="password2" required="required" /><br />
-				<p th:if="${#fields.hasErrors('password2')}">Die Passwortwiederholung darf nicht leer sein.</p>
+				<label for="password2">Passwort (erneut)</label>
+				<input id="password2" th:field="*{password2}" th:errorclass="fieldError" type="password" name="password2" />
 				<br />
 
 				<label for="address">Adresse</label>
-				<input id="address" th:field="*{address}" th:errorclass="fieldError" type="text" name="address" required="required" />
-				<p th:if="${#fields.hasErrors('address')}">Die Adresse darf nicht leer sein.</p>
+				<input id="address" th:field="*{address}" th:errorclass="fieldError" type="text" name="address" />
 				<br />
 
 				<label for="mail">E-Mail</label>
-				<input id="mail" th:field="*{mail}" th:errorclass="fieldError" type="text" name="mail" required="required" />
-				<p th:if="${#fields.hasErrors('mail')}">Die E-Mail-Adresse darf nicht leer sein.</p>
+				<input id="mail" th:field="*{mail}" th:errorclass="fieldError" type="text" name="mail" />
 				<br />
 
 				<label for="phone">Telefon</label>
-				<input id="phone" th:field="*{phone}" th:errorclass="fieldError" type="text" name="phone" required="required" />
-				<p th:if="${#fields.hasErrors('phone')}">Die Telefonnummer darf nicht leer sein.</p>
+				<input id="phone" th:field="*{phone}" th:errorclass="fieldError" type="text" name="phone" />
 				<br />
 
 				<input type="submit" value="Registrieren" />

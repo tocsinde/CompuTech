@@ -15,22 +15,31 @@ package computech.controller;
 
 	import javax.validation.Valid;
 
+	import computech.model.validation.profileEditForm;
 	import org.salespointframework.useraccount.Role;
 	import org.salespointframework.useraccount.UserAccount;
 	import org.salespointframework.useraccount.UserAccountManager;
+	import org.salespointframework.useraccount.web.LoggedIn;
 	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.security.access.prepost.PreAuthorize;
 	import org.springframework.stereotype.Controller;
+	import org.springframework.ui.Model;
 	import org.springframework.ui.ModelMap;
 	import org.springframework.util.Assert;
 	import org.springframework.validation.BindingResult;
 	import org.springframework.web.bind.annotation.ModelAttribute;
+	import org.springframework.web.bind.annotation.PathVariable;
 	import org.springframework.web.bind.annotation.RequestMapping;
 
 	import computech.model.Customer;
 	import computech.model.CustomerRepository;
 	import computech.model.validation.RegistrationForm;
+	import computech.model.validation.profileEditForm;
+	import org.springframework.web.bind.annotation.RequestMethod;
 
-	@Controller
+	import java.util.Optional;
+
+@Controller
 	class ShopController {
 
 		private final UserAccountManager userAccountManager;
@@ -50,6 +59,9 @@ package computech.controller;
 		public String index() {
 			return "index";
 		}
+
+		@RequestMapping("/login")
+		public String login() {return "login";}
 
 		@RequestMapping("/comp")
 		public String aboutus() {return "compu";}
@@ -78,6 +90,44 @@ package computech.controller;
 			modelMap.addAttribute("registrationForm", new RegistrationForm());
 			return "register";
 		}
-		
+
+		@PreAuthorize("hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BCUSTOMER')")
+		@RequestMapping("/profile")
+		public String editProfile(Model model, ModelMap modelMap, @LoggedIn Optional<UserAccount> userAccount) {
+			modelMap.addAttribute("profileEditForm", new profileEditForm());
+
+			Customer customer = customerRepository.findByUserAccount(userAccount.get());
+
+			model.addAttribute("customer", customer);
+			return "profile";
+		}
+
+		@PreAuthorize("hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BCUSTOMER')")
+		@RequestMapping(value = "/profile", method = RequestMethod.POST)
+		public String saveProfile(Model model, @ModelAttribute("profileEditForm") @Valid profileEditForm profileEditForm, BindingResult result, @LoggedIn Optional<UserAccount> userAccount) {
+			Customer customer = customerRepository.findByUserAccount(userAccount.get());
+			model.addAttribute("customer", customer);
+
+			if (result.hasErrors()) {
+				return "profile";
+			}
+
+
+			customer.setFirstname(profileEditForm.getFirstname());
+			customer.setLastname(profileEditForm.getLastname());
+			customer.setMail(profileEditForm.getMail());
+			customer.setPhone(profileEditForm.getPhone());
+			customer.setAddress(profileEditForm.getAddress());
+
+			customerRepository.save(customer);
+
+			if(profileEditForm.getPassword() != "") {
+				userAccountManager.changePassword(customer.getUserAccount(), profileEditForm.getPassword());
+			}
+
+			return "profile";
+		}
+
+
 }
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Profil ändern - CompuTech</title>
+</head>
+<body>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Profil ändern</h1>
+
+<form th:method="post" th:action="@{/profile}" th:attr="data-profile-id=${customer.id}" th:object="${profileEditForm}">
+
+	<fieldset>
+
+		<div th:if="${#fields.hasErrors('*')}">
+			<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
+			<ul>
+				<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Fehler</li>
+			</ul>
+		</div>
+
+		<label for="password">Passwort<br/><small>(Wird nur geändert, wenn dieses Feld ausgefüllt wird.)</small></label>
+		<input id="password" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" /><br />
+		<br />
+
+		<label for="firstname">Vorname</label>
+		<input id="firstname" th:errorclass="fieldError" type="text" name="firstname" th:value="${customer.firstname}" />
+		<br />
+
+		<label for="lastname">Nachname</label>
+		<input id="lastname" th:errorclass="fieldError" type="text" name="lastname" th:value="${customer.lastname}" />
+		<br />
+
+		<label for="address">Adresse</label>
+		<input id="address" th:errorclass="fieldError" type="text" name="address" th:value="${customer.address}" />
+		<br />
+
+		<label for="mail">E-Mail</label>
+		<input id="mail" th:errorclass="fieldError" type="text" name="mail" th:value="${customer.mail}" />
+		<br />
+
+		<label for="phone">Telefon</label>
+		<input id="phone" th:errorclass="fieldError" type="text" name="phone" th:value="${customer.phone}" />
+		<br />
+
+		<input type="submit" value="Daten editieren" />
+	</fieldset>
+</form>
+
+</body>
+</html>
