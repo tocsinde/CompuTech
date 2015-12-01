@@ -32,7 +32,6 @@ import org.springframework.web.bind.annotation.*;
 import computech.model.CustomerRepository;
 import org.salespointframework.useraccount.UserAccountManager;
 
-import computech.model.validation.addCustomerForm;
 import computech.model.validation.customerEditForm;
 import computech.model.validation.employeeEditForm;
 import javax.validation.Valid;
@@ -60,7 +59,6 @@ class BossController {
 
 	@RequestMapping("/customers")
 	public String customers(ModelMap modelMap) {
-		modelMap.addAttribute("AddCustomerForm", new addCustomerForm());
 		modelMap.addAttribute("customerList", customerRepository.findAll());
 
 		return "customers";
