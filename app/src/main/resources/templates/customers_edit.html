@@ -24,6 +24,25 @@
 					</ul>
 				</div>
 
+				<!-- <select>
+
+					<th:block th:each="role : ${customer.userAccount.roles}">
+						<th:block th:if="${#strings.equals(role,'ROLE_BCUSTOMER')}">
+							<option selected="selected">Geschäftskunde</option>
+							<option>Privatkunde</option>
+						</th:block>
+
+						<th:block th:if="${#strings.equals(role,'ROLE_PCUSTOMER')}">
+							<option>Geschäftskunde</option>
+							<option selected="selected">Privatkunde</option>
+						</th:block>
+
+
+					</th:block>
+
+
+				</select> -->
+
 				<label for="firstname">Vorname</label>
 				<input id="firstname" th:errorclass="fieldError" type="text" name="firstname" th:value="${customer.firstname}" />
 				<br />

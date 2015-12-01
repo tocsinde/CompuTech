@@ -18,16 +18,11 @@ import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 
-import java.util.Optional;
-
-import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountIdentifier;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -37,10 +32,9 @@ import org.springframework.web.bind.annotation.*;
 import computech.model.CustomerRepository;
 import org.salespointframework.useraccount.UserAccountManager;
 
+import computech.model.validation.addCustomerForm;
 import computech.model.validation.customerEditForm;
 import computech.model.validation.employeeEditForm;
-
-import javax.management.relation.RoleStatus;
 import javax.validation.Valid;
 
 import computech.model.Customer;
@@ -66,8 +60,9 @@ class BossController {
 
 	@RequestMapping("/customers")
 	public String customers(ModelMap modelMap) {
-
+		modelMap.addAttribute("AddCustomerForm", new addCustomerForm());
 		modelMap.addAttribute("customerList", customerRepository.findAll());
+
 		return "customers";
 	}
 
@@ -96,7 +91,6 @@ class BossController {
 			return "customers_edit";
 		}
 
-
 		customer_found.setFirstname(customerEditForm.getFirstname());
 		customer_found.setLastname(customerEditForm.getLastname());
 		customer_found.setMail(customerEditForm.getMail());
@@ -114,10 +108,14 @@ class BossController {
 
 	@RequestMapping("/employees")
 	public String employees(ModelMap modelMap) {
-
 		modelMap.addAttribute("employeeList_enabled", userAccountManager.findEnabled());
 		modelMap.addAttribute("employeeList_disabled", userAccountManager.findDisabled());
 		return "employees";
+	}
+
+	@RequestMapping("registeremployee")
+	public String registerEmployee() {
+		return "registerEmployee";
 	}
 
 	@RequestMapping(value = "/employees/disable/{userAccountIdentifier}", method = RequestMethod.POST)
@@ -144,12 +142,12 @@ class BossController {
 	public String saveEmployee(@PathVariable UserAccount useraccount, Model model, @ModelAttribute("employeeEditForm") @Valid employeeEditForm employeeEditForm, BindingResult result) {
 
 		if(employeeEditForm.getPassword() != "") {
-			//UserAccount user_found = (User) userAccountManager.get(userAccountIdentifier);
 			userAccountManager.changePassword(useraccount, employeeEditForm.getPassword());
 		}
 
 		return "redirect:/employees";
 	}
+
 	@RequestMapping("/stock")
 	public String stock(ModelMap modelMap) {
 
@@ -161,17 +159,17 @@ class BossController {
 	@RequestMapping("/orders")
 	public String orders(ModelMap modelMap) {
 
-	modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
+		modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
 
-	return "orders";
+		return "orders";
 	}
 	
 	@RequestMapping("/sell")
 	public String sell(ModelMap modelMap) {
 
-	modelMap.addAttribute("sellCompleted",orderManager.findBy(OrderStatus.COMPLETED));
+		modelMap.addAttribute("sellCompleted",orderManager.findBy(OrderStatus.COMPLETED));
 
-	return "sell";
+		return "sell";
 	}
 	
 }

@@ -47,6 +47,12 @@ public class RegistrationForm {
 	@NotEmpty(message = "Die Telefonnummer darf nicht leer sein.")
 	private String phone;
 
+	private String role;
+
+	public String getRole() { return role; }
+
+	public void setRole(String role) { this.role = role; }
+
 	public String getNickname() {
 		return nickname;
 	}

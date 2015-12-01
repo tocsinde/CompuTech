@@ -67,16 +67,16 @@ package computech.controller;
 		public String aboutus() {return "compu";}
 
 		@RequestMapping("/registerNew")
-		public String registerNew(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm,
-				BindingResult result) {
+		public String registerNew(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm, BindingResult result) {
 
 			if (result.hasErrors()) {
 				return "register";
 			}
 
-			// todo:	festlegen, welche Art von Kunde gerade registriert wird (Privat- oder Geschäftskunde)
-			// 			mögliche Lösung: Button auf Registrierungsformular, der festlegt, welche Art von Kunde vorliegt
-			UserAccount userAccount = userAccountManager.create(registrationForm.getNickname(), registrationForm.getPassword(), Role.of("ROLE_PCUSTOMER"));
+			// über das Registrierungsformular können
+			// Ausnahme: als Chef kann man im modifizierten Formular die Rolle aussuchen
+
+			UserAccount userAccount = userAccountManager.create(registrationForm.getNickname(), registrationForm.getPassword(), Role.of(registrationForm.getRole()));
 			userAccountManager.save(userAccount);
 
 			Customer customer = new Customer(userAccount, registrationForm.getAddress(), registrationForm.getFirstname(), registrationForm.getLastname(), registrationForm.getMail(), registrationForm.getPhone());
@@ -111,7 +111,6 @@ package computech.controller;
 			if (result.hasErrors()) {
 				return "profile";
 			}
-
 
 			customer.setFirstname(profileEditForm.getFirstname());
 			customer.setLastname(profileEditForm.getLastname());
