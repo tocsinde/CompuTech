@@ -30,16 +30,14 @@
 							<td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>
 							<td th:text="${order.totalPrice}"></td>
 							<td> <ul>
-									<li th:each="item: ${order.getOrderLines()}">
-										<ul th:text="${item.ProductName}">
-										</ul>
+									<li th:each="item: ${order.getOrderLines()}" th:inline="text">
+										[[${item.ProductName}]]
 									</li>
 								</ul>
 							</td>
 							<td> <ul>
-									<li th:each="item: ${order.getOrderLines()}">
-										<ul th:text="${item.Quantity}">
-										</ul>
+									<li th:each="item: ${order.getOrderLines()}" th:inline="text">
+										[[${item.Quantity}]]
 									</li>
 								</ul>
 							</td>
