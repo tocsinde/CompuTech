@@ -12,11 +12,13 @@
 
 package computech.controller;
 
+
 import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
+
 
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountIdentifier;
@@ -36,7 +38,10 @@ import computech.model.validation.customerEditForm;
 import computech.model.validation.employeeEditForm;
 import javax.validation.Valid;
 
+
 import computech.model.Customer;
+
+
 
 @Controller
 @PreAuthorize("hasRole('ROLE_BOSS')")
@@ -46,6 +51,7 @@ class BossController {
 	private final Inventory<InventoryItem> inventory;
 	private final CustomerRepository customerRepository;
 	private final UserAccountManager userAccountManager;
+
 
 	@Autowired
 	public BossController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory,
@@ -161,7 +167,14 @@ class BossController {
 
 		return "orders";
 	}
-	
+	@RequestMapping("/balance")
+	public String balance(ModelMap modelMap) {
+
+		modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
+		modelMap.addAttribute("stock", inventory.findAll());
+
+		return "balance";
+	}
 	@RequestMapping("/sell")
 	public String sell(ModelMap modelMap) {
 

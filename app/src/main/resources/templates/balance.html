@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Katalog - CompuTech</title>
+</head>
+<body>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Bilanz</h1>
+
+<div class="content">
+	<h4>Verkaufseinnahmen</h4>
+			<table>
+				<thead>
+					<tr>
+						<th>Datum</th>
+						<th>Gesamtwert</th>
+						<th>Artikel</th>
+						<th>Anzahl</th>
+
+					</tr>
+				</thead>
+				<tbody>
+						<tr th:each="order : ${ordersCompleted} ">
+							<td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>
+							<td th:text="${order.totalPrice}"></td>
+							<td> <ul>
+									<li th:each="item: ${order.getOrderLines()}">
+										<ul th:text="${item.ProductName}">
+										</ul>
+									</li>
+								</ul>
+							</td>
+							<td> <ul>
+									<li th:each="item: ${order.getOrderLines()}">
+										<ul th:text="${item.Quantity}">
+										</ul>
+									</li>
+								</ul>
+							</td>
+						</tr>
+				</tbody>
+			</table>
+	<p></p>
+	<h4>Ausgaben für Artikel</h4>
+		<table>
+
+			<thead>
+			<tr>
+				<th>Artikel</th>
+				<th>Einkaufsausgaben(noch falsch)</th>
+
+
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="article : ${stock} ">
+				<td th:text="${article.product.name}"></td>
+				<td th:text ="${article.product.price}">
+				</td>
+
+			</tr>
+			</tbody>
+		</table>
+	<p></p>
+	<h4>Auftragseinnahmen</h4>
+	<table>
+
+		<thead>
+		<tr>
+			<th>Auftragsart</th>
+			<th>Einnahmen</th>
+
+		</tr>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+		</div>
+</body>
+</html>
