@@ -13,30 +13,45 @@
 package computech.model.validation;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.data.annotation.Transient;
+
+import javax.validation.constraints.AssertTrue;
 
 public class RegistrationForm {
 
-	@NotEmpty(message = "{RegistrationForm.nickname.NotEmpty}")
+	@NotEmpty(message = "Der Nickname darf nicht leer sein.")
 	private String nickname;
 
-	@NotEmpty(message = "{RegistrationForm.firstname.NotEmpty}")
+	@NotEmpty(message = "Der Vorname darf nicht leer sein.")
 	private String firstname;
 
-	@NotEmpty(message = "{RegistrationForm.lastname.NotEmpty}")
+	@NotEmpty(message = "Der Nachname darf nicht leer sein.")
 	private String lastname;
 
-	@NotEmpty(message = "{RegistrationForm.password.NotEmpty}")
+	@NotEmpty(message = "Das Passwort darf nicht leer sein.")
 	private String password;
 
-	@NotEmpty(message = "{RegistrationForm.address.NotEmpty}")
+	@Transient
+	@NotEmpty(message = "Die Passwortwiederholung darf nicht leer sein.")
+	private String password2;
+
+	@AssertTrue(message ="Die Passwörter müssen übereinstimmen.")
+	private boolean isValid() {return this.password.equals(this.password2);}
+
+	@NotEmpty(message = "Die Adresse darf nicht leer sein.")
 	private String address;
 
-	@NotEmpty(message = "{RegistrationForm.mail.NotEmpty}")
+	@NotEmpty(message = "Die E-Mail-Adresse darf nicht leer sein.")
 	private String mail;
 
-	@NotEmpty(message = "{RegistrationForm.phone.NotEmpty}")
+	@NotEmpty(message = "Die Telefonnummer darf nicht leer sein.")
 	private String phone;
 
+	private String role;
+
+	public String getRole() { return role; }
+
+	public void setRole(String role) { this.role = role; }
 
 	public String getNickname() {
 		return nickname;
@@ -70,6 +85,14 @@ public class RegistrationForm {
 		this.password = password;
 	}
 
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
+	}
+
 	public String getAddress() {
 		return address;
 	}
@@ -89,7 +112,6 @@ public class RegistrationForm {
 	public String getPhone() {
 		return phone;
 	}
-
 
 	public void setPhone(String phone) {
 		this.phone = phone;

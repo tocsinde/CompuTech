@@ -5,65 +5,67 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
-	<title>Registrieren - CompuTech</title>
+	<title sec:authorize="hasRole('ROLE_BOSS')">Geschäftskunde hinzufügen - CompuTech</title>
+	<title sec:authorize="!hasRole('ROLE_BOSS')">Registrieren - CompuTech</title>
 </head>
 <body>
 <header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
 
-<h1>Registrieren</h1>
+<h1 sec:authorize="hasRole('ROLE_BOSS')">Geschäftskunde hinzufügen</h1>
+<h1 sec:authorize="!hasRole('ROLE_BOSS')">Registrieren</h1>
 
-		<form method="post" action="/registerNew" th:object="${registrationForm}">
-
+	<form method="post" action="/registerNew" th:object="${registrationForm}">
 
 			<fieldset>
-				<legend>Benutzerkonto</legend>
 
 				<div th:if="${#fields.hasErrors('*')}">
-					<p>Einige Angaben sind nicht korrekt.</p>
+					<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
+					<ul>
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Fehler</li>
+					</ul>
 				</div>
+
+
+				<input sec:authorize="!hasRole('ROLE_BOSS')" type="hidden" id="role" name="role" value="ROLE_PCUSTOMER" />
+				<input sec:authorize="hasRole('ROLE_BOSS')" type="hidden" id="role" name="role" value="ROLE_BCUSTOMER" />
 
 				<label for="nickname">Nickname</label>
 				<input id="nickname" th:field="*{nickname}" th:errorclass="fieldError" type="text" name="nickname" />
-				<p th:if="${#fields.hasErrors('nickname')}">Der Nickname darf nicht leer sein.</p>
-				<br />
+				<br/>
 
 				<label for="firstname">Vorname</label>
 				<input id="firstname" th:field="*{firstname}" th:errorclass="fieldError" type="text" name="firstname" />
-				<p th:if="${#fields.hasErrors('firstname')}">Der Vorname darf nicht leer sein.</p>
 				<br />
 
 				<label for="lastname">Nachname</label>
 				<input id="lastname" th:field="*{lastname}" th:errorclass="fieldError" type="text" name="lastname" />
-				<p th:if="${#fields.hasErrors('lastname')}">Der Nachname darf nicht leer sein.</p>
 				<br />
 
 				<label for="password">Passwort</label>
-				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" /><br />
-				<p th:if="${#fields.hasErrors('password')}">Das Passwort darf nicht leer sein.</p>
+				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" />
 				<br />
 
-				<!-- <label for="password">Passwort (erneut)</label>
-				<input id="password2" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" /><br />
-				<p th:if="${#fields.hasErrors('password')}">Die Passwortwiederholung darf nicht leer sein.</p>
-				<br /> -->
+				<label for="password2">Passwort (erneut)</label>
+				<input id="password2" th:field="*{password2}" th:errorclass="fieldError" type="password" name="password2" />
+				<br />
 
 				<label for="address">Adresse</label>
 				<input id="address" th:field="*{address}" th:errorclass="fieldError" type="text" name="address" />
-				<p th:if="${#fields.hasErrors('address')}">Die Adresse darf nicht leer sein.</p>
 				<br />
 
 				<label for="mail">E-Mail</label>
 				<input id="mail" th:field="*{mail}" th:errorclass="fieldError" type="text" name="mail" />
-				<p th:if="${#fields.hasErrors('mail')}">Die E-Mail-Adresse darf nicht leer sein.</p>
 				<br />
 
 				<label for="phone">Telefon</label>
 				<input id="phone" th:field="*{phone}" th:errorclass="fieldError" type="text" name="phone" />
-				<p th:if="${#fields.hasErrors('phone')}">Die Telefonnummer darf nicht leer sein.</p>
 				<br />
 
-				<input type="submit" value="Registrieren" />
+
+
+				<input type="submit" value="Geschäftskunde hinzufügen" sec:authorize="hasRole('ROLE_BOSS')" />
+				<input type="submit" value="Registrieren" sec:authorize="!hasRole('ROLE_BOSS')" />
 			</fieldset>
 		</form>
 	</body>

@@ -12,8 +12,6 @@
 
 package computech.model.validation;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class employeeEditForm {
 
 	private String password;

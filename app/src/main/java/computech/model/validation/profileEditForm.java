@@ -14,7 +14,7 @@ package computech.model.validation;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class customerEditForm {
+public class profileEditForm {
 
 	@NotEmpty(message = "Der Vorname darf nicht leer sein.")
 	private String firstname;
@@ -31,6 +31,8 @@ public class customerEditForm {
 	@NotEmpty(message = "Die Telefonnummer darf nicht leer sein.")
 	private String phone;
 
+	private String password;
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -45,6 +47,14 @@ public class customerEditForm {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getAddress() {

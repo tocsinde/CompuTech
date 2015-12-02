@@ -11,15 +11,20 @@
 <header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
 
-<h1>Kundenliste</h1>
+<h1>Kunden</h1>
+
+<a href="/register" class="button">Geschäftskunde hinzufügen</a>
+
+<h2>Kundenliste</h2>
 
 		<table>
 			<thead>
 			<tr>
 				<th>ID</th>
+				<th>Login</th>
+				<th>Rolle</th>
 				<th>Nachname</th>
 				<th>Vorname</th>
-				<th>Login</th>
 				<th>Adresse</th>
 				<th>E-Mail-Adresse</th>
 				<th>Telefonnummer</th>
@@ -30,9 +35,17 @@
 			<tbody th:remove="all-but-first">
 			<tr th:each=" customer : ${customerList}">
 				<td th:text="${customer.id}">ID</td>
+				<td th:text="${customer.userAccount.identifier}">Login</td>
+
+				<td>
+					<th:block th:each="role : ${customer.userAccount.roles}">
+						<th:block th:if="${#strings.equals(role,'ROLE_BCUSTOMER')}">Geschäftskunde</th:block>
+						<th:block th:if="${#strings.equals(role,'ROLE_PCUSTOMER')}">Privatkunde</th:block>
+					</th:block>
+				</td>
+
 				<td th:text="${customer.lastname}">Nachname</td>
 				<td th:text="${customer.firstname}">Vorname</td>
-				<td th:text="${customer.userAccount.identifier}">Login</td>
 				<td th:text="${customer.address}">Adresse</td>
 				<td th:text="${customer.mail}">E-Mail-Adresse</td>
 				<td th:text="${customer.phone}">Telefonnummer</td>

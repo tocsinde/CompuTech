@@ -16,13 +16,14 @@
 		<form th:method="post" th:action="@{/employees/edit/} + ${employee.identifier}" th:attr="data-employee-id=${employee.identifier}" th:object="${employeeEditForm}">
 
 			<fieldset>
-				<legend><span th:text="${employee.identifier}"></span> editieren</legend>
-
 				<div th:if="${#fields.hasErrors('*')}">
-					<p>Einige Angaben sind nicht korrekt.</p>
+					<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
+					<ul>
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Fehler</li>
+					</ul>
 				</div>
 
-				<label for="password">Passwort <small>(Wird nur geändert, wenn dieses Feld ausgefüllt wird.)</small></label>
+				<label for="password">Passwort<br/><small>(Wird nur geändert, wenn dieses Feld ausgefüllt wird.)</small></label>
 				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" /><br />
 				<br />
 

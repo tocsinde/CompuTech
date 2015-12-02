@@ -12,9 +12,12 @@
 
 package computech.model;
 
+import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     void delete(Long id);
+
+    Customer findByUserAccount(UserAccount userAccount);
 }

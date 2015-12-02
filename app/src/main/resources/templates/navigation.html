@@ -9,8 +9,8 @@
 	<nav th:fragment="navigation">
 
 		<ul>
-			<li sec:authorize="!hasAnyRole('ROLE_BOSS','ROLE_PCUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_BCUSTOMER')"><a th:href="@{/comp}" href="compu.html">Über uns</a></li>
 			<li sec:authorize="!hasAnyRole('ROLE_BOSS','ROLE_PCUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_BCUSTOMER')"><a th:href="@{/}" href="/">Start</a></li>
+			<li sec:authorize="!hasAnyRole('ROLE_BOSS','ROLE_PCUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_BCUSTOMER')"><a th:href="@{/comp}" href="compu.html">Über uns</a></li>
 			<li sec:authorize="hasRole('ROLE_BOSS')"><a th:href="@{/orders}" href="orders.html">Bestellungen</a></li>
 			<li sec:authorize="hasRole('ROLE_BOSS')"><a th:href="@{/assingments}" href="assingments.html">Aufträge</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_BOSS','ROLE_EMPLOYEE')"><a th:href="@{/stock}" href="stock.html">Lager</a></li>
@@ -18,7 +18,7 @@
 			<li sec:authorize="hasRole('ROLE_BOSS')"><a th:href="@{/employees}" href="employees.html">Mitarbeiter</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')"><a th:href="@{/customers}" href="customers.html">Kundenliste</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BOSS', 'ROLE_EMPLOYEE')"><a th:href="@{/sell}" href="sell.html">Ankaufstelle</a></li>
-			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BCUSTOMER')"><a th:href="@{/profil}" href="profil.html">Profil</a></li>
+			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BCUSTOMER')"><a th:href="@{/profile}" href="profile.html">Profil</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BOSS')"><a th:href="@{/support}" href="support.html">Support</a></li>
 
 			<li><a th:href="@{/shop}" href="shopoverview.html">Shop</a></li>
