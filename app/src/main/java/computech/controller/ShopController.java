@@ -34,7 +34,6 @@ package computech.controller;
 	import computech.model.Customer;
 	import computech.model.CustomerRepository;
 	import computech.model.validation.RegistrationForm;
-	import computech.model.validation.profileEditForm;
 	import org.springframework.web.bind.annotation.RequestMethod;
 
 	import java.util.Optional;

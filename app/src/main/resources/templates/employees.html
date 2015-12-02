@@ -5,13 +5,15 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
-	<title>Mitarbeiterliste - CompuTech</title>
+	<title>Mitarbeiter - CompuTech</title>
 </head>
 <body>
 <header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
 
-<h1>Mitarbeiterliste</h1>
+<h1>Mitarbeiter</h1>
+
+<a href="/registeremployee" class="button">Mitarbeiter hinzufügen</a>
 
 		<h2>Freigeschaltete Mitarbeiter</h2>
 		<table th:unless="${employeeList_enabled.empty}">

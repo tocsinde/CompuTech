@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Mitarbeiter hinzufügen - CompuTech</title>
+</head>
+<body>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Mitarbeiter hinzufügen</h1>
+
+		<form th:method="post" th:action="@{/registeremployee/}" th:object="${registerEmployeeForm}">
+
+			<fieldset>
+				<div th:if="${#fields.hasErrors('*')}">
+					<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
+					<ul>
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Fehler</li>
+					</ul>
+				</div>
+
+				<label for="password">Benutzername</label>
+				<input id="nickname" th:field="*{nickname}" th:errorclass="fieldError" type="text" name="nickname" /><br />
+				<br />
+
+				<label for="password">Passwort</label>
+				<input id="password" th:field="*{password}" th:errorclass="fieldError" type="password" name="password" /><br />
+				<br />
+
+				<input type="submit" value="Mitarbeiter hinzufügen" />
+			</fieldset>
+
+		</form>
+</body>
+</html>
