@@ -12,32 +12,28 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <h1>Shop</h1>
-		
+
 		<div class="content">
 
+			<a th:href="@{/laptop}" href="laptop.html">
+						<img src="../resources/img/lap.jpg" alt="Laptops" />
+						<h3>Laptops</h3>
+			</a>
 
+			<a th:href="@{/allinone}" href="allinone.html">
+						<img src="../resources/img/all.jpg" alt="All-in-one-Systeme" />
+						<h3>All-in-one-Systeme</h3>
+			</a>
 
+			<a th:href="@{/software}" href="software.html">
+						<img src="../resources/img/all.jpg" alt="Software" />
+						<h3>Software</h3>
+			</a>
 
-					<div>
-						<h4>Laptop</h4>
-						<a th:href="@{/laptop}" href="laptop.html"><img src="../resources/img/lap.jpg" alt="Laptop" /></a>
-
-					</div>
-					<div>
-						<h4>All-in-one-Systeme</h4>
-						<a th:href="@{/allinone}" href="allinone.html"><img src="../resources/img/all.jpg" alt="Computer" /></a>
-
-					</div>
-					<div>
-						<h4>Software</h4>
-						<a th:href="@{/software}" href="laptop.html"><img src="../resources/img/soft.jpg" alt="Computer" /></a>
-
-					</div>
-					<div>
-						<h4>Zubehör</h4>
-						<a th:href="@{/zubehoer}" href="laptop.html"><img src="../resources/img/zube.jpg" alt="Computer" /></a>
-
-					</div>
+			<a th:href="@{zubehoer}" href="zubehoer.html">
+						<img src="../resources/img/zube.jpg" alt="Zubehör" />
+						<h3>Zubehör</h3>
+			</a>
 			</div>
 </body>
 </html>
