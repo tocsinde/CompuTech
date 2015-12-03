@@ -41,7 +41,13 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 [options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|1  |Gutfall              |10 Artikel im Lager              |versuche, mehr als 10 Artikel in Warenkorb zu packen       |nur 10 Artikel werden in Warenkorb gepackt
-|2  |Gutfall              |Benutzerkonto existiert       |Login mit falschen Daten      |Fehlermeldung "falsche Logindaten"
-|3  |Gutfall              |Benutzerkonto existiert      |Registrierung mit schon bestehendem Nickname    |Fehlermeldung "Benutzerkonto existiert bereits"
+|U-1  |Mehr Artikel in Warenkorb als vorhanden            |x Artikel im Lager              | Artikelanzahl > x     |Artikelanzahl in Warenkorb =x
+|U-2  |Login mit falschen Daten             |Benutzerkonto existiert       |falsches Passwort,Nutzername     |Fehlermeldung "falsche Logindaten"
+|U-3  |Registrierungsvalidierung(1)            |Benutzerkonto mit diesem Nutzernamen schon vorhanden     |Nutzername |Fehlermeldung "Benutzerkonto existiert bereits"
+|U-4  |Registrierungsvalidierung(2)            |keine    |passwort1, passwort2 |Fehlermeldung "Die Passwörter müssen übereinstimmen." oder Weiterleitung zum erstellten Benutzerkonto
+|I-1  |Benutzer registriert          |keine   | gewünschter Name,passwort,Nutzerdaten    |Weiterleitung zum erstellten Benutzerkonto oder Fehlermeldung
+|I-2  |Kunde loggt sich ein        |Privatkunde oder Geschäftskunde vorhanden | Nutzername,passwort   |Weiterleitung zum Benutzerkonto oder Fehlermeldung
+|I-3  |deaktivierter Mitarbeiter versucht sich einzuloggen | Mitarbeiter von Boss deaktiviert           | Nutzername,passwort   |Fehlermeldung
+
+
 |===
