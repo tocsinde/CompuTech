@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Ankaufstelle - CompuTech</title>
+</head>
+<body>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Ankaufstelle - Anfragen</h1>
+
+
+		<div class="sellorders">
+			<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')">
+				<div class="content">
+					<table>
+					<thead>
+						<tr>
+							<th>Datum</th>
+							<th>Kunde</th>
+							<th>Artikeltyp</th>
+							<th>Artikel</th>
+							<th>Beschreibung</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="sell : ${sells} ">
+							<td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>
+							<td th:text="${sell.userAccount.identifier}"></td>
+							<td th:text="${sell.computertype}"></td>
+							<td th:text="${sell.computer}"></td>
+							<td th:text="${sell.description}"></td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

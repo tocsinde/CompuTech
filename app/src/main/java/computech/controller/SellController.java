@@ -16,7 +16,6 @@ import computech.model.Article;
 import computech.model.ComputerCatalog;
 import computech.model.Customer;
 import computech.model.CustomerRepository;
-import computech.model.Article.ArticleType;
 
 import java.util.Optional;
 
@@ -62,10 +61,10 @@ public class SellController {
 		this.customerRepository = customerRepository;
 	}
 	
-	@RequestMapping(value = "/sellout")
+	@RequestMapping(value = "/sell")
     public String showSellFormular(ModelMap modelMap){
 
-            modelMap.addAttribute("types", Article.ArticleType.values());
+            modelMap.addAttribute("articletypes", Article.ArticleType.values());
 
         for (Article.ArticleType type : Article.ArticleType.values()) {
             modelMap.addAttribute(type.toString(), computerCatalog.findByType(type));
@@ -78,30 +77,15 @@ public class SellController {
 
 
 
-        return "Sell";
+        return "sell";
 	}
-	
-	 @RequestMapping(value = "/sellout/{Articletype}")
-
-	    public String showSupportFormular(@PathVariable("Articletype") Article.ArticleType articleType, ModelMap modelMap){
-
-	        modelMap.addAttribute("types", Article.ArticleType.values());
-
-
-	            modelMap.addAttribute("articles", computerCatalog.findByType(articleType));
-
-	        //  modelMap.addAttribute("catalog", computerCatalog.findByType());
-	        //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
-
-	        return "sell";
-	    }
-
+	 
 	@ModelAttribute("sell")
 	public Cart initializeSell() {
-		return new Cart();
+		return new Cart(); 
 	}
 	@RequestMapping(value = "/sell", method = RequestMethod.POST)
-	public String addSellArticel(@RequestParam("Computer") Article article, int number, @ModelAttribute Cart sell) {
+	public String addSellArticel(@RequestParam("Article") Article article, int number, @ModelAttribute Cart sell) {
 
 		int amount = 1;
 
@@ -113,14 +97,15 @@ public class SellController {
 			case COMPUTER:
 				return "redirect:computerCatalog";
 			case SOFTWARE:
+				return "redirect:softwareCatalog";
 			default:
 				return "redirect:zubeCatalog";
 		}
-	}
+	} 
 
-	@RequestMapping(value = "/sell", method = RequestMethod.GET)
+	@RequestMapping(value = "/sellorders", method = RequestMethod.GET)
 	public String sellorder() {
-		return "sell";
+		return "sellorders";
 	}
 	
 	@RequestMapping(value = "/sellout", method = RequestMethod.POST)
@@ -139,6 +124,6 @@ public class SellController {
 
 			return "redirect:/";
 		}).orElse("redirect:/sell");
-	}
+	} 
 	
 }

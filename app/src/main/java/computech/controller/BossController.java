@@ -12,21 +12,22 @@
 
 package computech.controller;
 
-
-import computech.model.validation.registerEmployeeForm;
 import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 
+import java.util.Optional;
 
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountIdentifier;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -38,21 +39,20 @@ import org.salespointframework.useraccount.UserAccountManager;
 
 import computech.model.validation.customerEditForm;
 import computech.model.validation.employeeEditForm;
-import javax.validation.Valid;
 
+import javax.management.relation.RoleStatus;
+import javax.validation.Valid;
 
 import computech.model.Customer;
 
-
-
 @Controller
+@PreAuthorize("hasRole('ROLE_BOSS')")
 class BossController {
 
 	private final OrderManager<Order> orderManager;
 	private final Inventory<InventoryItem> inventory;
 	private final CustomerRepository customerRepository;
 	private final UserAccountManager userAccountManager;
-
 
 	@Autowired
 	public BossController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory,
@@ -64,22 +64,19 @@ class BossController {
 		this.userAccountManager = userAccountManager;
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/customers")
 	public String customers(ModelMap modelMap) {
-		modelMap.addAttribute("customerList", customerRepository.findAll());
 
+		modelMap.addAttribute("customerList", customerRepository.findAll());
 		return "customers";
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/delete/{id}", method = RequestMethod.POST)
 	public String removeCustomer(@PathVariable Long id) {
 		customerRepository.delete(id);
 		return "redirect:/customers";
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/edit/{id}")
 	public String editCustomer(@PathVariable("id") Long id, Model model, ModelMap modelMap) {
 		modelMap.addAttribute("customerEditForm", new customerEditForm());
@@ -90,7 +87,6 @@ class BossController {
 		return "customers_edit";
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/edit/{id}", method = RequestMethod.POST)
 	public String saveCustomer(@PathVariable("id") Long id, Model model, @ModelAttribute("customerEditForm") @Valid customerEditForm customerEditForm, BindingResult result) {
 		Customer customer_found = customerRepository.findOne(id);
@@ -99,6 +95,7 @@ class BossController {
 		if (result.hasErrors()) {
 			return "customers_edit";
 		}
+
 
 		customer_found.setFirstname(customerEditForm.getFirstname());
 		customer_found.setLastname(customerEditForm.getLastname());
@@ -115,49 +112,26 @@ class BossController {
 		return "redirect:/customers";
 	}
 
-	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/employees")
 	public String employees(ModelMap modelMap) {
+
 		modelMap.addAttribute("employeeList_enabled", userAccountManager.findEnabled());
 		modelMap.addAttribute("employeeList_disabled", userAccountManager.findDisabled());
 		return "employees";
 	}
 
-	@PreAuthorize("hasRole('ROLE_BOSS')")
-	@RequestMapping("/registeremployee")
-	public String registerEmployee(ModelMap modelMap) {
-		modelMap.addAttribute("registerEmployeeForm", new registerEmployeeForm());
-		return "registerEmployee";
-	}
-
-	@PreAuthorize("hasRole('ROLE_BOSS')")
-	@RequestMapping(value="/registeremployee", method = RequestMethod.POST)
-	public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid registerEmployeeForm registerEmployeeForm, BindingResult result) {
-		if (result.hasErrors()) {
-			return "registerEmployee";
-		}
-
-		UserAccount employee = userAccountManager.create(registerEmployeeForm.getNickname(), registerEmployeeForm.getPassword(), Role.of("ROLE_EMPLOYEE"));
-		userAccountManager.save(employee);
-
-		return "redirect:/employees";
-	}
-
-	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/disable/{userAccountIdentifier}", method = RequestMethod.POST)
 	public String disableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier) {
 		userAccountManager.disable(userAccountIdentifier);
 		return "redirect:/employees";
 	}
 
-	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/enable/{userAccountIdentifier}", method = RequestMethod.POST)
 	public String enableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier) {
 		userAccountManager.enable(userAccountIdentifier);
 		return "redirect:/employees";
 	}
 
-	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/edit/{userAccountIdentifier}")
 	public String editEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier, Model model, ModelMap modelMap) {
 		modelMap.addAttribute("employeeEditForm", new employeeEditForm());
@@ -166,18 +140,16 @@ class BossController {
 		return "employees_edit";
 	}
 
-	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/edit/{useraccount}", method = RequestMethod.POST)
 	public String saveEmployee(@PathVariable UserAccount useraccount, Model model, @ModelAttribute("employeeEditForm") @Valid employeeEditForm employeeEditForm, BindingResult result) {
 
 		if(employeeEditForm.getPassword() != "") {
+			//UserAccount user_found = (User) userAccountManager.get(userAccountIdentifier);
 			userAccountManager.changePassword(useraccount, employeeEditForm.getPassword());
 		}
 
 		return "redirect:/employees";
 	}
-
-	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/stock")
 	public String stock(ModelMap modelMap) {
 
@@ -186,32 +158,20 @@ class BossController {
 		return "stock";
 	}
 
-	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/orders")
 	public String orders(ModelMap modelMap) {
 
-		modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
+	modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
 
-		return "orders";
+	return "orders";
 	}
-
-	@PreAuthorize("hasRole('ROLE_BOSS')")
-	@RequestMapping("/balance")
-	public String balance(ModelMap modelMap) {
-
-		modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
-		modelMap.addAttribute("stock", inventory.findAll());
-
-		return "balance";
-	}
-
-	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
-	@RequestMapping("/sell")
+	
+	@RequestMapping("/sellorders")
 	public String sell(ModelMap modelMap) {
 
-		modelMap.addAttribute("sellCompleted",orderManager.findBy(OrderStatus.COMPLETED));
+	modelMap.addAttribute("sellCompleted",orderManager.findBy(OrderStatus.COMPLETED));
 
-		return "sell";
-	}
+	return "sellorders";
+	} 
 	
 }

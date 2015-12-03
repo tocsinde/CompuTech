@@ -16,20 +16,20 @@
 		
 		<div class="sell">
 			<div class="salespoint" sec:authorize="hasRole('ROLE_PCUSTOMER')">
-				<form method="post" action="/sellout" th:object="${sellForm}">
-						<caption>Antrag ausfüllen</caption><br /><br />
+				<form method="post" action="/sell" th:object="${sellForm}">
+					<br />
 						<label for="Articletype">Artikelart</label><br />
 						
-						<select id="Articletype" name="Articletype">
-							<option> Artikeltyp auswählen</option>
-							<option th:each=" type : ${types}" th:text="${type.toString()}"> </option>
+						<select id="articletype" name="articletype">
+							
+							<option th:each=" articletype : ${articletypes}" th:text="${articletype.toString()}"></option>
 						</select><br /><br />
 						
 						<label for="Article">Artikel</label><br />
 						
 						<select id="Article" name="Article">
-							<option> Artikel auswählen</option>
-							<option th:each="Article: ${Articletype}" th:value="${Article.name}">Acer</option>
+							
+							<option th:each="article: ${article}" th:text="${article.articletype}"></option>
 						</select><br /><br />
 						
 						<label for="description">Beschreibung</label><br />
@@ -37,30 +37,6 @@
 						<input type="submit" value="Senden" />
 				</form>
 			</div>
-			<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')">
-				<div class="content">
-					<table>
-					<thead>
-						<tr>
-							<th>Datum</th>
-							<th>Kunde</th>
-							<th>Artikeltyp</th>
-							<th>Artikel</th>
-							<th>Beschreibung</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="sell : ${sells} ">
-							<td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>
-							<td th:text="${sell.userAccount.identifier}"></td>
-							<td th:text="${sell.computertype}"></td>
-							<td th:text="${sell.computer}"></td>
-							<td th:text="${sell.description}"></td>
-						</tr>
-				</tbody>
-			</table>
-		</div>
-		</div>
 	</div>
 </body>
 </html>

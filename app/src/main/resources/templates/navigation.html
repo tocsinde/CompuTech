@@ -17,7 +17,8 @@
 			<li sec:authorize="hasRole('ROLE_BOSS')"><a th:href="@{/balance}" href="balance.html">Bilanz</a></li>
 			<li sec:authorize="hasRole('ROLE_BOSS')"><a th:href="@{/employees}" href="employees.html">Mitarbeiter</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')"><a th:href="@{/customers}" href="customers.html">Kundenliste</a></li>
-			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BOSS', 'ROLE_EMPLOYEE')"><a th:href="@{/sell}" href="sell.html">Ankaufstelle</a></li>
+			<li sec:authorize="hasRole('ROLE_PCUSTOMER')"><a th:href="@{/sell}" href="sell.html">Ankaufstelle</a></li>
+			<li sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')"><a th:href="@{/sellorders}" href="sellorders.html">Ankaufstelle</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BCUSTOMER')"><a th:href="@{/profile}" href="profile.html">Profil</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BOSS')"><a th:href="@{/support}" href="support.html">Support</a></li>
 
