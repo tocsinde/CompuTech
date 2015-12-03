@@ -41,26 +41,20 @@ Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
 [options="headers"]
 |===
 |ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
-|U-1  |Mehr Artikel in Warenkorb als vorhanden            |x Artikel im Lager              | Artikelanzahl > x     |Artikelanzahl in Warenkorb =x
-|U-2  |Login mit falschen Daten             |Benutzerkonto existiert       |falsches Passwort,Nutzername     |Fehlermeldung "falsche Logindaten"
-|U-3  |Registrierungsvalidierung(1)            |Benutzerkonto mit diesem Nutzernamen schon vorhanden     |Nutzername |Fehlermeldung "Benutzerkonto existiert bereits"
-|U-4  |Registrierungsvalidierung(2)            |keine    |passwort1, passwort2 |Fehlermeldung "Die Passwörter müssen übereinstimmen." oder Weiterleitung zum erstellten Benutzerkonto
-|I-1  |Benutzer registriert          |keine   | gewünschter Name,passwort,Nutzerdaten    |Weiterleitung zum erstellten Benutzerkonto oder Fehlermeldung
-|I-2  |Kunde loggt sich ein        |Privatkunde oder Geschäftskunde vorhanden | Nutzername,passwort   |Weiterleitung zum Benutzerkonto oder Fehlermeldung
-|I-3  |deaktivierter Mitarbeiter versucht sich einzuloggen | Mitarbeiter von Boss deaktiviert           | Nutzername,passwort   |Fehlermeldung
+|U-1  |Mehr Artikel in Warenkorb als vorhanden |x Artikel im Lager | Artikelanzahl > x |Artikelanzahl in Warenkorb =x
+|U-2  |Login mit falschen Daten |Benutzerkonto existiert       |falsches Passwort,Nutzername  |Fehlermeldung "falsche Logindaten"
+|U-3  |Registrierungsvalidierung(1) |Benutzerkonto mit diesem Nutzernamen schon vorhanden |Nutzername |Fehlermeldung "Benutzerkonto existiert bereits"
+|U-4  |Registrierungsvalidierung(2)|keine    |passwort1, passwort2 |Fehlermeldung "Die Passwörter müssen übereinstimmen." oder Weiterleitung zum erstellten Benutzerkonto
+|I-1  |Benutzer registriert |keine   | gewünschter Name, passwort, Nutzerdaten  |Weiterleitung zum erstellten Benutzerkonto oder Fehlermeldung
+|I-2  |Kunde loggt sich ein |Privatkunde oder Geschäftskunde vorhanden | Nutzername,passwort |Weiterleitung zum Benutzerkonto oder Fehlermeldung
+|I-3  |deaktivierter Mitarbeiter versucht sich einzuloggen | Mitarbeiter von Boss deaktiviert | Nutzername,passwort   |Fehlermeldung
 |I-4  |gelöschter Kunde versucht sich einzuloggen | Boss hat Kunde gelöscht | Nutzername,passwort   |Fehlermeldung
 |I-5  |Geschäftskunde hinzufügen| Boss vorhanden| Nutzername,passwort, Nutzerdaten  |Fehlermeldung oder Bestätigung
 |I-6  |Privatkunde bearbeitet Profil| Privatkonto vorhanden| Nutzername,passwort,aktualisierte Nutzerdaten  |Fehlermeldung oder Bestätigung
-|I-7  |Privatkunde schickt Ankaufanfrage| Privatkonto vorhanden, Boss vorhanden, Mitarbeiter vorhanden, Artikel vorhanden| Nutzername(Privatkunde),Boss_id, Mitarbeiter_id, Artikelname,Artikelart,Beschreibung |Fehlermeldung oder Bestätigung
-|I-8  |Privatkunde schickt Supportanfrage| Privatkonto vorhanden, Boss vorhanden, Mitarbeiter vorhanden, Artikel vorhanden| Nutzername(Privatkunde),Boss_id, Mitarbeiter_id, Artikelname,Artikelart,Beschreibung |Fehlermeldung oder Bestätigung
-|I-9  |Mitarbeiter oder Boss bestätigt Supportanfrage| Supportanfrage vorhanden,Privatkonto vorhanden, Boss vorhanden, Mitarbeiter vorhanden| Aufragsnummer, Nutzername(Privatkunde),Boss_id, Mitarbeiter_id, Preis |Fehlermeldung oder Bestätigung
-|I-10  |Mitarbeiter oder Boss schlagen Preis vor (Supportanfrage)| Supportanfrage vorhanden,Privatkonto vorhanden, Boss vorhanden, Mitarbeiter vorhanden| Aufragsnummer, Nutzername(Privatkunde),Boss_id, Mitarbeiter_id, Preis |Fehlermeldung oder Bestätigung
-|I-11  |Mitarbeiter oder Boss schlagen Preis vor (Ankaufanfrage)| Ankaufanfrage vorhanden,Privatkonto vorhanden, Boss vorhanden, Mitarbeiter vorhanden, Artikel vorhanden| Aufragsnummer, Nutzername(Privatkunde),Boss_id, Mitarbeiter_id,Artikelname,Artikelart,Beschreibung,Anzahl, Preis,  |Fehlermeldung oder Bestätigung
-|I-12  |Mitarbeiter oder Boss bestätigt Ankaufanfrage| Ankaufanfrage vorhanden,Privatkonto vorhanden, Boss vorhanden, Mitarbeiter vorhanden| Aufragsnummer, Nutzername(Privatkunde),Boss_id, Mitarbeiter_id, Artikelname,Artikelart,Beschreibung, Anzahl,Preis |Fehlermeldung oder Bestätigung
-
-
-
-
-
-
+|I-7  |Privatkunde schickt Ankaufanfrage| Privatkonto, Boss , Mitarbeiter, Artikel vorhanden| Nutzername(Privatkunde),Boss_id, Mitarbeiter_id, Artikelname,Artikelart,Beschreibung |Fehlermeldung oder Bestätigung
+|I-8  |Privatkunde schickt Supportanfrage| Privatkonto , Boss, Mitarbeiter, Artikel vorhanden| Nutzername(Privatkunde),Boss_id, Mitarbeiter_id, Artikelname,Artikelart,Beschreibung |Fehlermeldung oder Bestätigung
+|I-9  |Mitarbeiter oder Boss bestätigt Supportanfrage| Supportanfrage, Privatkonto, Boss, Mitarbeiter vorhanden| Aufragsnummer, Nutzername(Privatkunde),Boss_id, Mitarbeiter_id, Preis |Fehlermeldung oder Bestätigung
+|I-10  |Mitarbeiter oder Boss schlagen Preis vor (Supportanfrage)| Supportanfrage, Privatkonto, Boss, Mitarbeiter vorhanden| Aufragsnummer, Nutzername(Privatkunde),Boss_id, Mitarbeiter_id, Preis |Fehlermeldung oder Bestätigung
+|I-11  |Mitarbeiter oder Boss schlagen Preis vor (Ankaufanfrage)| Ankaufanfrage,Privatkonto, Boss, Mitarbeiter, Artikel vorhanden| Aufragsnummer, Nutzername(Privatkunde),Boss_id, Mitarbeiter_id,Artikelname,Artikelart,Beschreibung,Anzahl, Preis,  |Fehlermeldung oder Bestätigung
+|I-12  |Mitarbeiter oder Boss bestätigt Ankaufanfrage| Ankaufanfrage, Privatkonto, Boss, Mitarbeiter vorhanden| Aufragsnummer, Nutzername(Privatkunde),Boss_id, Mitarbeiter_id, Artikelname,Artikelart,Beschreibung, Anzahl,Preis |Fehlermeldung oder Bestätigung
 |===
