@@ -190,6 +190,16 @@ public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid re
 
 		return "stock";
 	}
+	@PreAuthorize("hasRole('ROLE_BOSS')")
+	@RequestMapping("/balance")
+	public String balance(ModelMap modelMap) {
+
+		modelMap.addAttribute("stock", inventory.findAll());
+		modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
+
+		return "balance";
+	}
+
 
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/orders")
