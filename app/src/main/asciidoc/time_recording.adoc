@@ -10,7 +10,7 @@ Die verwendete Zeit beinhaltet auch das Lesen von Dokumentationen, Besprechungen
 
 
 Team meeting
-|=== 
+|===
 
 |Datum|Von|Bis|Dauer
 
@@ -44,53 +44,57 @@ Team meeting
 
 |26.11. (5. Konsultation)|15:00|15:30|0:30
 
+|01.12. (9. internes Treffen)|16:40|18:30|1:50 (110 Minuten)
 
-|=== 
+|03.12. (6. Konsultation)|14:50|15:35|0:45
+
+
+|===
 
 Stephan Fischer
-|=== 
+|===
 
 |Datum|Von|Bis|Dauer
 
-| | | 
+| | |
 
 
 
 
-|=== 
+|===
 
 Anna Gromykina
-|=== 
+|===
 
 |Datum|Von|Bis|Dauer
 
-| | | 
+| | |
 
 
 
 
-|=== 
+|===
 
 Kevin Horst
-|=== 
+|===
 
 |Datum|Von|Bis|Dauer
 
-| | | 
+| | |
 
 
 
 
-|=== 
+|===
 
 Philipp Oehme
-|=== 
+|===
 
 |Datum|Von|Bis|Dauer
 
-| | | 
+| | |
 
 
 
 
-|=== 
+|===
