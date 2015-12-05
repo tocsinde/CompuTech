@@ -61,9 +61,9 @@ __Teilnehmer:__
 
 |===
 |Issue |Titel |Beschreibung |Verantwortlicher |Status
-34    |M080 - Mitarbeiter kann neue Produkte hinzufügen   |selbsterklärend      |Stephan    |todo
-33    |M030 - Chef kann manuell Lager verwalten     |Produkte löschen, Mengen ändern etc.   |Stephan    |todo
-32    |M070 - Mitarbeiter: Preisvorschlag beim Einkauf    |selbsterklärend    |Philipp   |todo
-31    |M060 - Mitarbeiter kann Service- und Reparaturanfragen bearbeiten    |selbsterklärend    |Anna   |todo
-30    |jUnit-Tests vorbereiten    |selbsterklärend    |Kevin      |wird fortgesetzt
+|34    |M080 - Mitarbeiter kann neue Produkte hinzufügen   |selbsterklärend      |Stephan    |todo
+|33    |M030 - Chef kann manuell Lager verwalten     |Produkte löschen, Mengen ändern etc.   |Stephan    |todo
+|32    |M070 - Mitarbeiter: Preisvorschlag beim Einkauf    |selbsterklärend    |Philipp   |todo
+|31    |M060 - Mitarbeiter kann Service- und Reparaturanfragen bearbeiten    |selbsterklärend    |Anna   |todo
+|30    |jUnit-Tests vorbereiten    |selbsterklärend    |Kevin      |wird fortgesetzt
 |===
