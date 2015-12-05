@@ -16,6 +16,7 @@ __Shortcuts:__
 
 __Protokolle:__
 
+* link:app/src/main/asciidoc/protocol%202015-12-03.adoc[Protokoll - 2015-12-03]
 * link:app/src/main/asciidoc/protocol%202015-11-26.adoc[Protokoll - 2015-11-26]
 * link:app/src/main/asciidoc/protocol%202015-11-19.adoc[Protokoll - 2015-11-19]
 * link:app/src/main/asciidoc/protocol%202015-11-05.adoc[Protokoll - 2015-11-05]

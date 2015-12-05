@@ -1,0 +1,69 @@
+= Protokoll Gruppe 32
+__Treffen am 03.12.2015__
+
+
+__Schriftführer:__
+Stephan Fischer
+
+__Nächstes Treffen:__ 10.12.2015
+
+__Teilnehmer:__
+
+* Stephan Fischer
+* Anna Gromykina
+* Kevin Horst
+* Philipp Oehme
+
+== Bemerkungen
+
+* fürs Crosstesting muss Markus noch eine neue Gruppe finden, da Gruppe 34 ausgeschieden ist
+** findet wahrscheinlich nächste Woche statt
+* Markus' Empfehlung: Entwicklertools von Chrome (aufrufbar via ALT + J)
+** macht z.B. POST-Requests von Formularen sichtbar
+* weitere Empfehlung: Test-Driven-Development (also Testfiles schreiben) beschleunigt die Entwicklung
+* SonarCube funktioniert noch nicht, sodass (noch) keine automatisierte Bewertung unseres Codes möglich ist
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+
+|===
+|Issue |Aufgabe |Status
+|27   |Boss: Neue Kunden/Mitarbeiter hinzufügen  |erledigt
+|29   |Kunden sollen ihre Daten selbst ändern können    |erledigt
+|30   |jUnit-Tests vorbereiten      |Kevin hat angefangen; Fortschritt noch nicht gepusht
+|28   |Weiterleitung nach Registrierung     |todo, als noch nicht so wichtig betrachtet
+|31   |Supportstelle  |todo
+|32   |Ankaufstelle   |todo; noch einige Bugs
+|===
+
+== Aktueller Stand
+
+* Testfalltabelle durchgegangen, von Markus abgenickt
+* jUnit-Tests müssen noch angelegt werden
+** laut Markus ist der erste Test der schwierigste, danach wird es leichter
+* Bilanzseite war zum Stand der Präsentation verbuggt
+** wurde noch während der Präsentation von Kevin und Stephan gefixt
+* bei den Computern fehlt noch die Möglichkeit, einzelne Komponenten anzupassen
+** dabei muss sichergestellt werden, dass nach dem Konfigurieren am Ende wieder nur ein Produkt entsteht
+* gemeinsam mit Markus Fehler im Ankaufsformular gesucht
+** dabei entstandener Code landete in extra Branch ("sell_post_paramas")
+
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+
+
+[option="headers"]
+
+
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+34    |M080 - Mitarbeiter kann neue Produkte hinzufügen   |selbsterklärend      |Stephan    |todo
+33    |M030 - Chef kann manuell Lager verwalten     |Produkte löschen, Mengen ändern etc.   |Stephan    |todo
+32    |M070 - Mitarbeiter: Preisvorschlag beim Einkauf    |selbsterklärend    |Philipp   |todo
+31    |M060 - Mitarbeiter kann Service- und Reparaturanfragen bearbeiten    |selbsterklärend    |Anna   |todo
+30    |jUnit-Tests vorbereiten    |selbsterklärend    |Kevin      |wird fortgesetzt
+|===
