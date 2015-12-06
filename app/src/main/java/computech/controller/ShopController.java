@@ -65,6 +65,12 @@ package computech.controller;
 		@RequestMapping("/comp")
 		public String aboutus() {return "compu";}
 
+
+		// diese Methode wird sowohl für Geschäfts- als auch für Privatkunden verwendet
+		// standardmäßig können sich Privatkunden hiermit selbst registrieren
+		// der Boss kann hiermit Geschäftskunden anlegen
+
+
 		@RequestMapping("/registerNew")
 		public String registerNew(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm, BindingResult result) {
 
@@ -72,8 +78,6 @@ package computech.controller;
 				return "register";
 			}
 
-			// über das Registrierungsformular können
-			// Ausnahme: als Chef kann man im modifizierten Formular die Rolle aussuchen
 
 			UserAccount userAccount = userAccountManager.create(registrationForm.getNickname(), registrationForm.getPassword(), Role.of(registrationForm.getRole()));
 			userAccountManager.save(userAccount);
@@ -81,7 +85,11 @@ package computech.controller;
 			Customer customer = new Customer(userAccount, registrationForm.getAddress(), registrationForm.getFirstname(), registrationForm.getLastname(), registrationForm.getMail(), registrationForm.getPhone());
 			customerRepository.save(customer);
 
-			return "redirect:/";
+			if(registrationForm.getRole().equals("ROLE_PCUSTOMER")) {
+				return "redirect:/";
+			} else {
+				return "redirect:/customers";
+			}
 		}
 
 		@RequestMapping("/register")
