@@ -12,14 +12,18 @@
 
 package computech.controller;
 
+import computech.model.Article;
 import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
+import org.salespointframework.quantity.Metric;
+import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.Role;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountIdentifier;
@@ -48,11 +52,12 @@ import computech.model.Customer;
 
 @Controller
 class BossController {
-
+	private static final Quantity NONE = Quantity.of(0);
 	private final OrderManager<Order> orderManager;
 	private final Inventory<InventoryItem> inventory;
 	private final CustomerRepository customerRepository;
 	private final UserAccountManager userAccountManager;
+
 
 	@Autowired
 	public BossController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory,
@@ -181,7 +186,7 @@ public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid re
 	return "redirect:/employees";
 }
 
-
+	// Anfang Stockcontrolling
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/stock")
 	public String stock(ModelMap modelMap) {
@@ -190,6 +195,63 @@ public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid re
 
 		return "stock";
 	}
+	@RequestMapping("/sdetail/{sid}")
+	public String sdetail(@PathVariable("sid") Article article, ModelMap modelMap) {
+
+		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
+		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
+
+		modelMap.addAttribute("article", article);
+		modelMap.addAttribute("quantity", quantity);
+
+
+
+		return "sdetail";
+	}
+	@RequestMapping(value = "/addstock", method = RequestMethod.POST)
+	public String addstock(@RequestParam("sid") Article article, @RequestParam("number1") int number, ModelMap modelMap) {
+		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
+		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
+		BigDecimal amount1 = quantity.getAmount();
+		int q = amount1.intValue();
+		int amount = number;
+		if (amount > q){
+			amount =q;
+		}
+		Quantity quantity2 = Quantity.of(amount);
+
+
+
+		InventoryItem i = item.get();
+		i.increaseQuantity(quantity2);
+
+		modelMap.addAttribute("stock", inventory.findAll());
+		return "stock";
+	}
+
+	@RequestMapping(value = "/substock", method = RequestMethod.POST)
+	public String substock(@RequestParam("sid") Article article, @RequestParam("number2") int number, ModelMap modelMap) {
+		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
+		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
+		BigDecimal amount1 = quantity.getAmount();
+		int q = amount1.intValue();
+		int amount = number;
+		if (amount > q){
+			amount =q;
+		}
+		Quantity quantity2 = Quantity.of(amount);
+
+
+
+		InventoryItem i = item.get();
+		i.decreaseQuantity(quantity2);
+		
+		modelMap.addAttribute("stock", inventory.findAll());
+		return "stock";
+	}
+
+
+	//Ende Stockcontrolling
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/balance")
 	public String balance(ModelMap modelMap) {

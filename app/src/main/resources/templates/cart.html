@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
@@ -44,8 +44,7 @@
 					<form method="post" action="checkout">
 						<input type="submit" name="Kaufen" value="Kaufen" />
 					</form>
-
-				</div>
+			</div>
 			</div>
 
 			<p th:if="${cart.empty}">Der Warenkorb enthält keine Produkte.</p>

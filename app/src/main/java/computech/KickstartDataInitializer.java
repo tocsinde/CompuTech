@@ -83,7 +83,7 @@ public class KickstartDataInitializer implements DataInitializer {
 		//  soll jeweils 10 Mal verfügbar sein
 
 		for (Article comp : computerCatalog.findAll()) {
-			InventoryItem inventoryItem = new InventoryItem(comp, Quantity.of(10)); //Wie füge ich dem Inventory den Preis hinzu? wichtig wegen Bilanz und Lager.Wert der Waren soll im Lager ersichtlich sein.Kevin
+			InventoryItem inventoryItem = new InventoryItem(comp, Quantity.of(10));
 			inventory.save(inventoryItem);
 		}
 	}

@@ -25,7 +25,10 @@
 				<tr th:each=" item : ${stock}">
 					<td th:text="${item.product.name}">product name</td>
 					<td th:text="${item.quantity}">product quantity</td>
+					<td>
+						<a th:href="@{'/sdetail/' + ${item.product.identifier}}" href="sdetail.html" class="button"> bearbeiten</a>
 
+					</td>
 				</tr>
 
 				</tbody>
