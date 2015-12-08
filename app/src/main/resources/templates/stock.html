@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
@@ -26,7 +26,7 @@
 					<td th:text="${item.product.name}">product name</td>
 					<td th:text="${item.quantity}">product quantity</td>
 					<td>
-						<a th:href="@{'/sdetail/' + ${item.product.identifier}}" href="sdetail.html" class="button"> bearbeiten</a>
+						<a th:href="@{'/sdetail/' + ${item.product.identifier}}" href="sdetail.html" class="button" sec:authorize="hasRole('ROLE_BOSS')"> bearbeiten</a>
 
 					</td>
 				</tr>

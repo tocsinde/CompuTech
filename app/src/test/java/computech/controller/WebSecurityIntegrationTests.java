@@ -16,7 +16,7 @@
 package computech.controller;
 
 import static org.hamcrest.CoreMatchers.*;
- // import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 // fearfully looking for this import,Maven you get me
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -25,16 +25,11 @@ import org.junit.Test;
 
 import computech.AbstractWebIntegrationTests;
 
-/**
- * Integration tests for security setup.
- * 
- * @author Oliver Gierke
- */
+
 public class WebSecurityIntegrationTests extends AbstractWebIntegrationTests {
 
-	/**
-	 * @see #19
-	 */
+
+
 	@Test
 	public void redirectsToLoginPageForSecuredResource() throws Exception {
 
@@ -43,15 +38,13 @@ public class WebSecurityIntegrationTests extends AbstractWebIntegrationTests {
 				andExpect(header().string("Location", endsWith("/login")));
 	}
 
-	/**
-	 * @see #35
-	 */
+
 	@Test
 	public void returnsModelAndViewForSecuredUriAfterAuthentication() throws Exception {
 
-		/* mvc.perform(get("/orders").with(user("boss").roles("BOSS"))).//
+		mvc.perform(get("/orders").with(user("boss").roles("BOSS"))).//
 				andExpect(status().isOk()).//
 				andExpect(view().name("orders")).//
-				andExpect(model().attributeExists("ordersCompleted"));*/
+				andExpect(model().attributeExists("ordersCompleted"));
 	}
 }

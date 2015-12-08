@@ -30,6 +30,12 @@
 					<input id="number2" type="number" name="number2" step="1" /><br />
 					<input	type="submit" value="Bestätigen" />
 				</form>
+				<p></p>
+				<form method="post" action="/stockdelete" >
+					<input type="hidden" name="sid" value="0" th:value="${article.identifier}" />
+					<label for="number2">Möchten sie den Artikel aus dem Sortiment nehmen?</label>
+					<input	type="submit" value="Bestätigen" />
+				</form>
 			</div>
 
 </body>

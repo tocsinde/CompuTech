@@ -13,6 +13,8 @@
 package computech.controller;
 
 import computech.model.Article;
+import org.javamoney.moneta.Money;
+import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.order.Order;
@@ -22,6 +24,7 @@ import org.salespointframework.order.OrderStatus;
 import java.math.BigDecimal;
 import java.util.Optional;
 
+import org.salespointframework.order.ProductPaymentEntry;
 import org.salespointframework.quantity.Metric;
 import org.salespointframework.quantity.Quantity;
 import org.salespointframework.useraccount.Role;
@@ -212,19 +215,15 @@ public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid re
 	public String addstock(@RequestParam("sid") Article article, @RequestParam("number1") int number, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
-		BigDecimal amount1 = quantity.getAmount();
-		int q = amount1.intValue();
-		int amount = number;
-		if (amount > q){
-			amount =q;
-		}
-		Quantity quantity2 = Quantity.of(amount);
+
+
+		Quantity quantity2 = Quantity.of(number);
 
 
 
 		InventoryItem i = item.get();
 		i.increaseQuantity(quantity2);
-
+		inventory.save(i);
 		modelMap.addAttribute("stock", inventory.findAll());
 		return "stock";
 	}
@@ -245,17 +244,33 @@ public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid re
 
 		InventoryItem i = item.get();
 		i.decreaseQuantity(quantity2);
-		
+		inventory.save(i);
 		modelMap.addAttribute("stock", inventory.findAll());
 		return "stock";
 	}
+	@RequestMapping(value = "/stockdelete", method = RequestMethod.POST)
+	public String stockdelete(@RequestParam("sid") Article article, ModelMap modelMap) {
+		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
+		InventoryItem i = item.get();
+		inventory.delete(i);
 
+		return "stock";
+	}
 
 	//Ende Stockcontrolling
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/balance")
 	public String balance(ModelMap modelMap) {
-
+		for (InventoryItem i :inventory.findAll()){
+			Quantity q = i.getQuantity();
+			Product p = i.getProduct();
+			Money m = p.getPrice();
+			BigDecimal bigd = q.getAmount();
+			m.multiply(bigd);
+			m.multiply(0.6);
+			p.setPrice(m);
+			//Hmm..noch ohne funktion
+		}
 		modelMap.addAttribute("stock", inventory.findAll());
 		modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
 
