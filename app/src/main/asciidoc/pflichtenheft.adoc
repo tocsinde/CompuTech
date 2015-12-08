@@ -9,7 +9,7 @@ __Version:__    *0.2*
 
 __Status:__     *In Arbeit*
 
-__Stand:__      *19.11.15*
+__Stand:__      *08.12.15*
 
 == Zusammenfassung
 Dieses Pflichtenheft beinhaltet ausschließlich den fachlichen Teil, der von dem Team um die IT-Dienstleister CompuTech, entwickelt wurde.
@@ -95,6 +95,7 @@ M100 - Kann gebrauchte Geräte verkaufen
 M110 - Kann Artikel in Warenkorb legen
 M120 - Kann Artikel aus dem Warenkorb entfernen
 M130 - Kann Bestellung absenden
+M140 - Kann Computer zusammenstellen (auf Basis von bestehenden Geräten, sodass am Ende modifiziertes Produkt entsteht)
 
 Geschäftskunde
 M140 - Kann Artikel in Warenkorb legen
