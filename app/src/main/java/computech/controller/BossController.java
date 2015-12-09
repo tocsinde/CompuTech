@@ -55,6 +55,7 @@ import javax.management.relation.RoleStatus;
 import javax.validation.Valid;
 
 import computech.model.Customer;
+import computech.model.SellRepository;
 
 @Controller
 class BossController {
@@ -63,16 +64,18 @@ class BossController {
 	private final Inventory<InventoryItem> inventory;
 	private final CustomerRepository customerRepository;
 	private final UserAccountManager userAccountManager;
+	private final SellRepository sellRepository;
 
 
 	@Autowired
 	public BossController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory,
-						  CustomerRepository customerRepository, UserAccountManager userAccountManager) {
+						  CustomerRepository customerRepository, UserAccountManager userAccountManager, SellRepository sellRepository) {
 
 		this.orderManager = orderManager;
 		this.inventory = inventory;
 		this.customerRepository = customerRepository;
 		this.userAccountManager = userAccountManager;
+		this.sellRepository = sellRepository;
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
@@ -294,7 +297,7 @@ class BossController {
 	@RequestMapping("/sellorders")
 	public String sell(ModelMap modelMap) {
 
-		modelMap.addAttribute("sellCompleted",orderManager.findBy(OrderStatus.COMPLETED));
+		modelMap.addAttribute("sellCompleted", sellRepository.findAll());
 
 		return "sellorders";
 	}

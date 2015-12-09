@@ -100,7 +100,7 @@ public class SellController {
     } */
 	
 	@RequestMapping(value = "/sell", method = RequestMethod.POST)
-	private String addtoResell(@ModelAttribute("SellForm") @Valid SellForm SellForm, ModelMap modelmap, Model model, BindingResult result,  @LoggedIn Optional<UserAccount> userAccount) {
+	private String addtoResell(@ModelAttribute("SellForm") @Valid SellForm sellForm, ModelMap modelmap, Model model, BindingResult result,  @LoggedIn Optional<UserAccount> userAccount) {
 		Customer customer = customerRepository.findByUserAccount(userAccount.get());
 		if (result.hasErrors()) {
 			return "sell";
@@ -110,7 +110,7 @@ public class SellController {
 		//Article article = SellForm.getArticle();
 		//String description = SellForm.getDescription();
 		
-		SellOrder sellorder = new SellOrder(customer, SellForm.getArticleType(), SellForm.getArticle(), SellForm.getDescription());
+		SellOrder sellorder = new SellOrder(customer, sellForm.getArticleType(), sellForm.getArticle(), sellForm.getDescription());
 		sellRepository.save(sellorder);
 		//modelmap.addAttribute("article", article);
 		//modelmap.addAttribute("description", description);
