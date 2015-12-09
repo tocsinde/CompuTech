@@ -13,6 +13,8 @@
 package computech;
 
 import computech.model.*;
+import computech.model.Article.ArticleType;
+
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.inventory.Inventory;
@@ -38,22 +40,25 @@ public class KickstartDataInitializer implements DataInitializer {
 	private final UserAccountManager userAccountManager;
 	private final CustomerRepository customerRepository;
 	private final RepairRepository repairRepository;
+	private final SellRepository sellRepository;
 
 	@Autowired
 	public KickstartDataInitializer(CustomerRepository customerRepository, Inventory<InventoryItem> inventory,
-									UserAccountManager userAccountManager, ComputerCatalog computerCatalog, RepairRepository repairRepository) {
+			UserAccountManager userAccountManager, ComputerCatalog computerCatalog, RepairRepository repairRepository, SellRepository sellRepository) {
 
 		Assert.notNull(customerRepository, "CustomerRepository must not be null!");
 		Assert.notNull(inventory, "Inventory must not be null!");
 		Assert.notNull(userAccountManager, "UserAccountManager must not be null!");
 		Assert.notNull(computerCatalog, "ComputerCatalog must not be null!");
 		Assert.notNull(repairRepository, "ComputerCatalog must not be null!");
+		Assert.notNull(sellRepository, "sellRepository must not be null!");
 
 		this.customerRepository = customerRepository;
 		this.inventory = inventory;
 		this.userAccountManager = userAccountManager;
 		this.computerCatalog = computerCatalog;
 		this.repairRepository = repairRepository;
+		this.sellRepository = sellRepository;
 	}
 
 	@Override
@@ -149,6 +154,25 @@ public class KickstartDataInitializer implements DataInitializer {
 				repairRepository.save(rep);
 			}
 			computerCatalog.findAll();
+
+		}
+	}
+	
+	private void initializeSell(SellRepository sellRepository) {
+
+
+		if (sellRepository.findAll().iterator().hasNext()) {
+			return;
+		}
+		Iterable<Customer> allCustomers = customerRepository.findAll();
+		Iterable<Article> allArticles = computerCatalog.findAll();
+		//Iterable<Model> allModels = modelCatalog.findAll();
+		if (allCustomers.iterator().hasNext()) {
+			if (allArticles.iterator().hasNext()) {
+				SellOrder sellorder = new SellOrder(allCustomers.iterator().next(), ArticleType.NOTEBOOK, allArticles.iterator().next(), "guter Zustand");
+				sellRepository.save(sellorder);
+			}
+			sellRepository.findAll();
 
 		}
 	}

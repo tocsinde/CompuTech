@@ -12,26 +12,32 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <h1>Ankaufstelle</h1>
-		
-		
+
+
 		<div class="sell">
 			<div class="salespoint" sec:authorize="hasRole('ROLE_PCUSTOMER')">
-				<form method="post" action="/sell" th:object="${sellForm}">
+				<form method="post" th:action="@{/sell/}" action="/sell" th:object="${sellForm}">
+					<div th:if="${#fields.hasErrors('*')}">
+						<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
+						<ul>
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Fehler</li>
+						</ul>
+					</div>
 					<br />
-						<label for="Articletype">Artikelart</label><br />
-						
+						<label for="articletype">Artikelart</label><br />
+
 						<select id="articletype" name="articletype">
-							
+
 							<option th:each=" articletype : ${articletypes}" th:text="${articletype.toString()}"></option>
 						</select><br /><br />
-						
-						<label for="Article">Artikel</label><br />
-						
-						<select id="Article" name="Article">
-							
-							<option th:each="article: ${article}" th:text="${article.articletype}"></option>
+
+						<label for="article">Artikel</label><br />
+
+						<select id="article" name="article">
+
+							<option th:each="article: ${articles}" th:text="${article.model}"></option>
 						</select><br /><br />
-						
+
 						<label for="description">Beschreibung</label><br />
 						<textarea name="description" cols="40" rows="5"></textarea><br />
 						<input type="submit" value="Senden" />
