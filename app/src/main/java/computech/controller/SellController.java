@@ -20,6 +20,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import computech.model.validation.registerEmployeeForm;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.core.AbstractEntity;
 import org.salespointframework.inventory.Inventory;
@@ -69,6 +70,7 @@ public class SellController {
 	@RequestMapping(value = "/sell")
     public String showSellFormular(ModelMap modelMap){
 
+		modelMap.addAttribute("sellForm", new SellForm());
             modelMap.addAttribute("articletypes", Article.ArticleType.values());
 
         for (Article.ArticleType type : Article.ArticleType.values()) {
