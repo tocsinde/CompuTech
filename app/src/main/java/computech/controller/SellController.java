@@ -20,7 +20,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import computech.model.validation.registerEmployeeForm;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.core.AbstractEntity;
 import org.salespointframework.inventory.Inventory;
