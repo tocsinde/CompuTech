@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Artikel hinzufügen - CompuTech</title>
+</head>
+<body>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Artikel hinzufügen</h1>
+
+		<form th:method="post" th:action="@{/addarticle/}" th:object="${addArticleForm}">
+
+			<fieldset>
+				<div th:if="${#fields.hasErrors('*')}">
+					<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
+					<ul>
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Fehler</li>
+					</ul>
+				</div>
+
+				<label for="name">Artikelname</label>
+				<input id="name" th:field="*{name}" th:errorclass="fieldError" type="text" name="name" /><br />
+				<br />
+
+				<label for="type">Artikelart</label>
+				<select id="type" th:field="*{type}" th:errorclass="fieldError" type="text" name="type">
+						<option th:each=" type : ${types}" th:value="${type.toString()}" th:inline="text">
+								<th:block th:if="${#strings.equals(type.toString(),'ZUBE')}">Zubehör</th:block>
+								<th:block th:if="${#strings.equals(type.toString(),'SOFTWARE')}">Software</th:block>
+								<th:block th:if="${#strings.equals(type.toString(),'COMPUTER')}">All-in-one-System</th:block>
+								<th:block th:if="${#strings.equals(type.toString(),'NOTEBOOK')}">Notebook</th:block>
+						</option>
+				</select><br/>
+				<br />
+
+				<label for="model">Modell</label>
+				<input id="model" th:field="*{model}" th:errorclass="fieldError" type="text" name="model" /><br />
+				<br />
+
+				<label for="price">Preis</label>
+				<input id="price" th:field="*{price}" th:errorclass="fieldError" type="text" name="price" /><br />
+				<br />
+
+				<label for="quantity">Anzahl</label>
+				<input id="quantity" type="number" name="quantity" min="1" max="1000"  step="1" value="1" /><br />
+				<br />
+
+				<input type="submit" value="Artikel hinzufügen" />
+			</fieldset>
+
+		</form>
+</body>
+</html>

@@ -47,6 +47,9 @@ import org.salespointframework.useraccount.UserAccountManager;
 import computech.model.validation.customerEditForm;
 import computech.model.validation.employeeEditForm;
 import computech.model.validation.registerEmployeeForm;
+import computech.model.validation.addArticleForm;
+
+import static org.salespointframework.core.Currencies.EURO;
 
 import javax.management.relation.RoleStatus;
 import javax.validation.Valid;
@@ -64,7 +67,7 @@ class BossController {
 
 	@Autowired
 	public BossController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory,
-			CustomerRepository customerRepository, UserAccountManager userAccountManager) {
+						  CustomerRepository customerRepository, UserAccountManager userAccountManager) {
 
 		this.orderManager = orderManager;
 		this.inventory = inventory;
@@ -80,14 +83,14 @@ class BossController {
 		return "customers";
 	}
 
-  @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/delete/{id}", method = RequestMethod.POST)
 	public String removeCustomer(@PathVariable Long id) {
 		customerRepository.delete(id);
 		return "redirect:/customers";
 	}
 
-  @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/edit/{id}")
 	public String editCustomer(@PathVariable("id") Long id, Model model, ModelMap modelMap) {
 		modelMap.addAttribute("customerEditForm", new customerEditForm());
@@ -98,7 +101,7 @@ class BossController {
 		return "customers_edit";
 	}
 
-  @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/edit/{id}", method = RequestMethod.POST)
 	public String saveCustomer(@PathVariable("id") Long id, Model model, @ModelAttribute("customerEditForm") @Valid customerEditForm customerEditForm, BindingResult result) {
 		Customer customer_found = customerRepository.findOne(id);
@@ -124,7 +127,7 @@ class BossController {
 		return "redirect:/customers";
 	}
 
-  @PreAuthorize("hasRole('ROLE_BOSS')")
+	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/employees")
 	public String employees(ModelMap modelMap) {
 
@@ -170,24 +173,24 @@ class BossController {
 
 
 	@PreAuthorize("hasRole('ROLE_BOSS')")
-@RequestMapping("/registeremployee")
-public String registerEmployee(ModelMap modelMap) {
-	modelMap.addAttribute("registerEmployeeForm", new registerEmployeeForm());
-	return "registerEmployee";
-}
-
-@PreAuthorize("hasRole('ROLE_BOSS')")
-@RequestMapping(value="/registeremployee", method = RequestMethod.POST)
-public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid registerEmployeeForm registerEmployeeForm, BindingResult result) {
-	if (result.hasErrors()) {
+	@RequestMapping("/registeremployee")
+	public String registerEmployee(ModelMap modelMap) {
+		modelMap.addAttribute("registerEmployeeForm", new registerEmployeeForm());
 		return "registerEmployee";
 	}
 
-	UserAccount employee = userAccountManager.create(registerEmployeeForm.getNickname(), registerEmployeeForm.getPassword(), Role.of("ROLE_EMPLOYEE"));
-	userAccountManager.save(employee);
+	@PreAuthorize("hasRole('ROLE_BOSS')")
+	@RequestMapping(value="/registeremployee", method = RequestMethod.POST)
+	public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid registerEmployeeForm registerEmployeeForm, BindingResult result) {
+		if (result.hasErrors()) {
+			return "registerEmployee";
+		}
 
-	return "redirect:/employees";
-}
+		UserAccount employee = userAccountManager.create(registerEmployeeForm.getNickname(), registerEmployeeForm.getPassword(), Role.of("ROLE_EMPLOYEE"));
+		userAccountManager.save(employee);
+
+		return "redirect:/employees";
+	}
 
 	// Anfang Stockcontrolling
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
@@ -282,18 +285,44 @@ public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid re
 	@RequestMapping("/orders")
 	public String orders(ModelMap modelMap) {
 
-	modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
+		modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
 
-	return "orders";
+		return "orders";
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/sellorders")
 	public String sell(ModelMap modelMap) {
 
-	modelMap.addAttribute("sellCompleted",orderManager.findBy(OrderStatus.COMPLETED));
+		modelMap.addAttribute("sellCompleted",orderManager.findBy(OrderStatus.COMPLETED));
 
-	return "sellorders";
+		return "sellorders";
 	}
+
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
+	@RequestMapping("/addarticle")
+	public String addArticle(ModelMap modelMap) {
+		modelMap.addAttribute("types", Article.ArticleType.values());
+		modelMap.addAttribute("addArticleForm", new addArticleForm());
+		return "addArticle";
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
+	@RequestMapping(value ="/addarticle", method = RequestMethod.POST)
+	public String addArticleToCatalog(ModelMap modelMap, @ModelAttribute("addArticleForm") @Valid addArticleForm addArticleForm, BindingResult result) {
+		modelMap.addAttribute("types", Article.ArticleType.values());
+
+		if (result.hasErrors()) {
+
+			return "addArticle";
+		}
+
+		Article newarticle = new Article(addArticleForm.getName(), addArticleForm.getModel(), Money.of(addArticleForm.getPrice(), EURO), addArticleForm.getModel(), Article.ArticleType.valueOf(addArticleForm.getType()));
+		InventoryItem newitem = new InventoryItem(newarticle, Quantity.of(addArticleForm.getQuantity()));
+		inventory.save(newitem);
+
+		return "redirect:/stock";
+	}
+
 
 }
