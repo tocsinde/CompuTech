@@ -38,6 +38,7 @@ public class VideoCatalogIntegrationTests extends AbstractIntegrationTests {
 	public void findsAllComputer() {
 
 		Iterable<Article> result = catalog.findByType(ArticleType.COMPUTER);
+
 		assertThat(result, is(iterableWithSize(2)));
 	}
 
@@ -47,8 +48,8 @@ public class VideoCatalogIntegrationTests extends AbstractIntegrationTests {
 		Iterable<Article> result = catalog.findByType(ArticleType.COMPUTER);
 		assertThat(result, is(iterableWithSize(2)));
 
-		Article disc = new Article("TestDisc", "Image", Money.of(BigDecimal.TEN, Currencies.EURO), "Roman", ArticleType.COMPUTER);
-		catalog.save(disc);
+		Article comp = new Article("TestPC", "Image", Money.of(BigDecimal.TEN, Currencies.EURO), "d2", ArticleType.COMPUTER);
+		catalog.save(comp);
 
 		result = catalog.findByType(ArticleType.COMPUTER);
 		assertThat(result, is(iterableWithSize(3)));
@@ -62,6 +63,6 @@ public class VideoCatalogIntegrationTests extends AbstractIntegrationTests {
 			assertThat(iterable, is(iterableWithSize(0)));
 		}
 
-		assertThat(result, hasItem(disc));
+		assertThat(result, hasItem(comp));
 	}
 }

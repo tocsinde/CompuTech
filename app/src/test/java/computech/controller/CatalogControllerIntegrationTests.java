@@ -27,39 +27,73 @@ import org.springframework.ui.Model;
 
 import computech.AbstractWebIntegrationTests;
 
-/**
- * @author Oliver Gierke
- */
+
+
 public class CatalogControllerIntegrationTests extends AbstractWebIntegrationTests {
 
 	@Autowired CatalogController controller;
 
-	/**
-	 * Sample integration test using fake HTTP requests to the system and using the expectations API to define
-	 * constraints.
-	 */
+
 	@Test
-	public void sampleMvcIntegrationTest() throws Exception {
+	public void notebookCatalogcatalogTest() throws Exception {
 
-		mvc.perform(get("/laptop")). //
-				andExpect(status().isOk()).//
-				andExpect(model().attribute("catalog", is(not(emptyIterable()))));
+		mvc.perform(get("/laptop"))
+				.andExpect(model().attribute("catalog", is(not(emptyIterable()))));
+
 	}
+	@Test
+	public void AllinoneCatalogcatalogTest() throws Exception {
 
+		mvc.perform(get("/allinone"))
+				.andExpect(view().name("allinone"))
+				.andExpect(model().attribute("catalog", is(not(emptyIterable()))));
+
+	}
+	@Test
+	public void zubehoerCatalogcatalogTest() throws Exception {
+
+		mvc.perform(get("/zubehoer"))
+				.andExpect(model().attribute("catalog", is(not(emptyIterable()))));
+
+	}
 	/**
 	 * Integration test for an individual controller.
 	 */
 	@Test
 	@SuppressWarnings("unchecked")
-	public void sampleControllerIntegrationTest() {
+	public void laptopControllerIntegrationTest() {
 
 		Model model = new ExtendedModelMap();
-
 		String returnedView = controller.notebookCatalog(model);
-
 		assertThat(returnedView, is("laptop"));
-
 		Iterable<Object> object = (Iterable<Object>) model.asMap().get("catalog");
 		assertThat(object, is(iterableWithSize(2)));
 	}
+	@Test
+	@SuppressWarnings("unchecked")
+	public void zubehoerControllerIntegrationTest() {
+		Model model = new ExtendedModelMap();
+		String returnedView = controller.zubeCatalog(model);
+		assertThat(returnedView, is("zubehoer"));
+		Iterable<Object> object = (Iterable<Object>) model.asMap().get("catalog");
+		assertThat(object, is(iterableWithSize(2)));
+
+	}
+	@Test
+	public void softwareCatalogcatalogTest() throws Exception {
+
+		mvc.perform(get("/software"))
+				.andExpect(model().attribute("catalog", is(not(emptyIterable()))));
+	}
+	@Test
+	@SuppressWarnings("unchecked")
+	public void softwareControllerIntegrationTest() {
+
+		Model model = new ExtendedModelMap();
+		String returnedView = controller.softwareCatalog(model);
+		assertThat(returnedView, is("software"));
+		Iterable<Object> object = (Iterable<Object>) model.asMap().get("catalog");
+		assertThat(object, is(iterableWithSize(2)));
+	}
+
 }
