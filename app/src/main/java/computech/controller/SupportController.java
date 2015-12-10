@@ -1,18 +1,20 @@
 package computech.controller;
 
-import computech.model.Article;
-import computech.model.ComputerCatalog;
-import computech.model.Customer;
-import computech.model.CustomerRepository;
+import computech.model.*;
+import computech.model.validation.ReparationForm;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * Created by Anna on 15.11.2015.
@@ -25,14 +27,17 @@ public class SupportController {
 
     private final CustomerRepository customerRepository;
     private final ComputerCatalog computerCatalog;
+    private final RepairRepository repairRepository;
     @Autowired
-    public SupportController(CustomerRepository customerRepository, ComputerCatalog computerCatalog){
+    public SupportController(CustomerRepository customerRepository, ComputerCatalog computerCatalog, RepairRepository repairRepository){
 
         Assert.notNull(customerRepository, "CustomerRepository must not be null!");
         Assert.notNull(computerCatalog, "ComputerCatalog must not be null!");
+        Assert.notNull(repairRepository, "RepairRepository must not be null!");
 
         this.customerRepository = customerRepository;
         this.computerCatalog = computerCatalog;
+        this.repairRepository = repairRepository;
 
     }
 
@@ -51,7 +56,7 @@ public class SupportController {
 
 
 
-
+        System.out.println(1);
         return "support";
 }
 
@@ -60,25 +65,60 @@ public class SupportController {
     public String showSupportFormular(@PathVariable("type") Article.ArticleType articleType, ModelMap modelMap){
 
         modelMap.addAttribute("types", Article.ArticleType.values());
+        modelMap.addAttribute("selectedType", articleType);
 
 
             modelMap.addAttribute("articles", computerCatalog.findByType(articleType));
 
         //  modelMap.addAttribute("catalog", computerCatalog.findByType());
         //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
+        System.out.println(12);
+
+
 
         return "support";
     }
 
 
-    @RequestMapping(value = "/result", method = RequestMethod.POST)
-    public String specification(ModelMap modelMap,
-                                @RequestParam("computer") Article article,
-                                @RequestParam("customer") Customer customer,
+    @RequestMapping(value = "/support", method = RequestMethod.POST)
+    public String specification(ModelMap modelMap, @ModelAttribute("ReparationForm") @Valid ReparationForm reparationForm, BindingResult result, @LoggedIn Optional<UserAccount> userAccount,
+                                @RequestParam("article") Article article,
                                 @RequestParam("description") String description){
+        System.out.print(4);
+        //if(result.hasErrors()){
+        //    return "support";
+        //}
+        System.out.println(3);
         modelMap.addAttribute("article", article);
+        modelMap.addAttribute("description", description);
+        Customer customer = customerRepository.findByUserAccount(userAccount.get());
+        modelMap.addAttribute("customer",customer);
+        Reparation rep = new Reparation(customer, article, description);
+
+        repairRepository.save(rep);
+        System.out.println(123);
+
+
+        return "redirect:/support_confirmation";
+    }
+
+    @RequestMapping(value = "/support_confirmation")
+    public String confirmation(@RequestParam ("customer") Customer customer,
+                               @LoggedIn Optional<UserAccount> userAccount,
+                               ModelMap modelMap) {
+
+        /*Reparation rep = null;
+        Iterator<Reparation> iterator = repairRepository.findAll().iterator();
+        while (iterator.hasNext()) {
+            rep = iterator.next();
+        }
+
+        customer = rep.getCustomer();*/
+
+        customer = customerRepository.findByUserAccount(userAccount.get());
         modelMap.addAttribute("customer", customer);
 
-        return "result";
+        return "support_confirmation";
     }
+
 }
