@@ -13,7 +13,7 @@
 
 <h1>Support</h1>
 
-<form method="get" action="/support" th:object="${supportForm}">
+<form method="post" action="/support" th:object="${ReparationForm}">
 
 	<table>
 
@@ -21,8 +21,8 @@
 		<tr>
 			<td>Art of article</td>
 			<td>
-				<select name="type">
-					<option th:each=" type : ${types}" th:text="${type.toString()}"></option>
+				<select name="type" onchange="window.location = '../support/' + this.value;">
+					<option th:each=" type : ${types}" th:text="${type.toString()}" th:selected="${selectedType == type}"></option>
 				</select>
 			</td>\
 			<td>Article</td>
@@ -36,9 +36,10 @@
 			<td><input type="text" name="description" /></td>
 		</tr>
 		</tr>
-		<tr>
-			<td><button type="submit"> Abschicken</button></td>
-		</tr>
+		 <tr>
+				<td><button type="submit"> Abschicken</button></td>
+		 </tr>
+
 	</table>
 
 
