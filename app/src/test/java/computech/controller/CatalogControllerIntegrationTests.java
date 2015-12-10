@@ -20,18 +20,21 @@ import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import computech.model.Article;
 import org.junit.Test;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
-import computech.AbstractWebIntegrationTests;
 
 
 
-public class CatalogControllerIntegrationTests extends AbstractWebIntegrationTests {
+
+public class CatalogControllerIntegrationTests extends WebIntegrationcontextCatalogcontrollertest {
 
 	@Autowired CatalogController controller;
+
 
 
 	@Test
@@ -86,6 +89,12 @@ public class CatalogControllerIntegrationTests extends AbstractWebIntegrationTes
 				.andExpect(model().attribute("catalog", is(not(emptyIterable()))));
 	}
 	@Test
+	public void shopoverviewTest() throws Exception {
+
+		mvc.perform(get("/shop"))
+				.andExpect(view().name("shopoverview"));
+	}
+	@Test
 	@SuppressWarnings("unchecked")
 	public void softwareControllerIntegrationTest() {
 
@@ -93,7 +102,17 @@ public class CatalogControllerIntegrationTests extends AbstractWebIntegrationTes
 		String returnedView = controller.softwareCatalog(model);
 		assertThat(returnedView, is("software"));
 		Iterable<Object> object = (Iterable<Object>) model.asMap().get("catalog");
+
 		assertThat(object, is(iterableWithSize(2)));
+	}
+	@Test
+	public void detailIntegraitiontest() throws Exception{
+		Model model = new ExtendedModelMap();
+		ProductIdentifier id = invetoryItemmock.getProduct().getId(); // mit mockito
+		Article article = (Article) model.asMap().get("article"); //ohne Mockito
+
+		mvc.perform(get("/detail{pid", id));
+
 	}
 
 }

@@ -55,14 +55,6 @@ class CatalogController {
 		this.messageSourceAccessor = new MessageSourceAccessor(messageSource);
 	}
 
-	@RequestMapping("/articleCatalog")
-	public String computerCatalog(ModelMap modelMap) {
-
-		modelMap.addAttribute("catalog", computerCatalog.findByType(ArticleType.COMPUTER));
-		modelMap.addAttribute("title", messageSourceAccessor.getMessage("catalog.COMPUTER.title"));
-
-		return "computerCatalog";
-	}
 
 	@RequestMapping("/laptop")
 	public String notebookCatalog(Model model) {
