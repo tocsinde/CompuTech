@@ -1,0 +1,77 @@
+= Protokoll Gruppe 32
+__Treffen am 10.12.2015__
+
+
+__Schriftführer:__
+Stephan Fischer
+
+__Nächstes Treffen:__ 14.12.2015
+
+__Teilnehmer:__
+
+* Stephan Fischer
+* Anna Gromykina
+* Kevin Horst
+* Philipp Oehme
+
+== Bemerkungen
+
+* Kevin hat gefragt, ob er ein Tool zur Vereinfachung des Testhandlings verwenden kann
+** http://www.moskito.org/moskito-control.html[MoSKito] synchronisiert Controller mit Testdateien dynamisch
+** kannte Markus noch nicht, ist aber vollkommen in Ordnung, das zu nutzen
+* besprochen, wann nächstes Treffen stattfinden kann, da der Donnerstag als Termin nicht gerade beliebt ist
+** beschlossen: Montag, 14.12.2015, 14:50 im APB
+* fürs Crosstesting fehlt immer noch eine andere Gruppe
+* grobe Richtlinie: bis Weihnachten fertig werden
+** später kommt dann noch ein besonderes Wunschfeature, welches noch implementiert werden muss
+
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+
+|===
+|Issue |Aufgabe |Status
+|34    |M080 - Mitarbeiter kann neue Produkte hinzufügen  |größtenteils erledigt, Bilderupload fehlt noch
+|33    |M030 - Chef kann manuell Lager verwalten     |erledigt
+|32    |M070 - Mitarbeiter: Preisvorschlag beim Einkauf    |todo
+|31    |M060 - Mitarbeiter kann Service- und Reparaturanfragen bearbeiten    |todo
+|30    |jUnit-Tests vorbereiten    |weiter vorangeschritten; todo
+|===
+
+== Aktueller Stand
+
+* bei Kevin und Stephan passt alles soweit
+** beim Hinzufügen von Artikeln fehlt noch der Bilderupload
+* Support und Ankauf fast fertig
+** Besonderheit bei den Formularen: beim Auswählen eines Artikeltyps (Notebook, Software etc.) wird Seite mit JavaScript neu geladen und Artikelliste je nach Typ dynamisch gefüllt
+** Anna hat vergessen, zu pushen, sodass ihr aktueller Fortschritt nicht präsentierbar ist
+* Möglichkeit, bei Computern Komponenten anpassen zu können, fehlt noch
+** Lösungsvorschlag von Markus: Model für Part und Model für Component erstellen + Subkategorien + Referenzen setzen
+** z.B: Part -> Mainboard -> konkretes Mainboard
+** in der GUI dann mit Select-Feldern umgesetzt
+** tolles Zusatzfeature wäre, zusätzlich noch auf Kompatibilität zwischen z.B. Mainboard und CPU (anhand des Sockel) zu überprüfen (kein Zwang)
+* beim Erstellen eines Geschäftskunden soll ein Mitarbeiter verknüpft werden können
+** dieser Mitarbeiter kann dann für ihm zugeordnete Kunden einkaufen
+
+* Bugfixing mit Philipp
+** an Verkaufsformular gearbeitet
+** wichtiger Tipp: Spring und Salespoint sind CamelCase-empflindlich
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+
+
+[option="headers"]
+
+
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|32    |M070 - Mitarbeiter: Preisvorschlag beim Einkauf    |selbsterklärend    |Philipp   |todo
+|31    |M060 - Mitarbeiter kann Service- und Reparaturanfragen bearbeiten    |selbsterklärend    |Anna   |todo
+|30    |jUnit-Tests vorbereiten    |selbsterklärend    |Kevin      |wird fortgesetzt
+|36   |Mitarbeiter können für Geschäftskunden Artikel bestellen |selbsterklärend    |Stephan     |todo
+|35   |Computer sollen komponentenweise anpassbar sein    |selbsterklärend      |Kevin      |todo
+|===
