@@ -103,8 +103,7 @@ public class SupportController {
     }
 
     @RequestMapping(value = "/support_confirmation")
-    public String confirmation(@RequestParam ("customer") Customer customer,
-                               @LoggedIn Optional<UserAccount> userAccount,
+    public String confirmation(@LoggedIn Optional<UserAccount> userAccount,
                                ModelMap modelMap) {
 
         /*Reparation rep = null;
@@ -115,7 +114,7 @@ public class SupportController {
 
         customer = rep.getCustomer();*/
 
-        customer = customerRepository.findByUserAccount(userAccount.get());
+        Customer customer = customerRepository.findByUserAccount(userAccount.get());
         modelMap.addAttribute("customer", customer);
 
         return "support_confirmation";
