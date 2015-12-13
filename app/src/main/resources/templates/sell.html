@@ -26,20 +26,20 @@
 					<br />
 						<label for="articletype">Artikelart</label><br />
 
-						<select id="articletype" name="articletype">
-
-							<option th:each=" articletype : ${articletypes}" th:text="${articletype.toString()}"></option>
+						<select id="articletype" name="articletype" th:field="*{articleType}" onchange="window.location = '../sell/' + this.value;">
+							
+							<option th:each=" articleType : ${articletypes}" th:text="${articleType.toString()}" th:value="${articleType}" th:selected="${selectedType == articleType}"></option>
 						</select><br /><br />
 
 						<label for="article">Artikel</label><br />
 
-						<select id="article" name="article">
-
-							<option th:each="article: ${articles}" th:text="${article.model}"></option>
+						<select id="article" name="article" th:field="*{article}">
+							
+							<option th:each="article: ${articles}" th:text="${article.model}" th:value="${article]"></option>
 						</select><br /><br />
 
 						<label for="description">Beschreibung</label><br />
-						<textarea id="description" name="description" cols="40" rows="5"></textarea><br />
+						<textarea id="description" name="description" cols="40" rows="5" th:field="*{description}" th:value="${description}"></textarea><br />
 						<input type="submit" value="Senden" />
 				</form>
 			</div>

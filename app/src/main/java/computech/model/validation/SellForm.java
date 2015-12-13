@@ -7,7 +7,7 @@ import computech.model.*;
 public class SellForm {
 
 	@NotEmpty(message = "Sie müssen einen Artikeltyp auswählen.")
-	private ArticleType articletype;
+	private ArticleType articleType;
 
 	@NotEmpty(message = "Sie müssen einen Artikel auswählen.")
 	private Article article;
@@ -16,11 +16,11 @@ public class SellForm {
 	private String description;
 	
 	public ArticleType getArticleType() {
-		return articletype;
+		return articleType;
 	}
 
 	public void setArticleType(ArticleType articletype) {
-		this.articletype = articletype;
+		this.articleType = articletype;
 	}
 
 	public Article getArticle() {

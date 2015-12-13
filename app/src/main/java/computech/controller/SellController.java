@@ -84,11 +84,16 @@ public class SellController {
         return "sell";
 	}
 	
-	/*@RequestMapping(value = "/sell/{articletype}")
+	@RequestMapping(value = "/sell/{articletype}")
 
-    public String showSupportFormular(@PathVariable("articletype") Article.ArticleType articletype, ModelMap modelMap){
+    public String showSupportFormular(@PathVariable("articletype") @Valid Article.ArticleType articletype, BindingResult result,ModelMap modelMap){
 
-        modelMap.addAttribute("articletype", Article.ArticleType.values());
+		if (result.hasErrors()) {
+			return "sell";
+		}
+		
+        modelMap.addAttribute("articletypes", Article.ArticleType.values());
+        modelMap.addAttribute("selectedType", articletype);
 
 
             modelMap.addAttribute("articles", computerCatalog.findByType(articletype));
@@ -97,7 +102,7 @@ public class SellController {
         //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
 
         return "sell";
-    } */
+    }
 	
 	@RequestMapping(value = "/sell", method = RequestMethod.POST)
 	private String addtoResell(@ModelAttribute("SellForm") @Valid SellForm sellForm, ModelMap modelmap, Model model, BindingResult result,  @LoggedIn Optional<UserAccount> userAccount) {
