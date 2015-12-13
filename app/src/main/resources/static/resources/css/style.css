@@ -139,7 +139,7 @@ fieldset label {
 	text-align:right;
 }
 
-fieldset input {
+fieldset input, fieldset select {
 	width:45%;
 	margin-bottom:10px;
 }
@@ -153,6 +153,7 @@ fieldset input {
 	padding:1%;
 	margin-bottom:1%;
 	text-decoration: none;
+	color:#000;
 }
 
 .linkbox img {
@@ -170,4 +171,11 @@ fieldset input {
 
 .linkbox:hover h3 {
 	background:#de8787;
+}
+
+.linkbox p.price {
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
+    padding-top:3px;
+    padding-bottom:5px;
 }
