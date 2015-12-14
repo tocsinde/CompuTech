@@ -118,8 +118,8 @@ public class KickstartDataInitializer implements DataInitializer {
 
 
 		// hier werden zusätzliche Daten für die GESCHÄFTSKunden ergänzt
-		Customer c1 = new Customer(ua1, "Straße 1", "Hänsel", "Nachname", "h@ensel.de", "0800-1234567");
-		Customer c2 = new Customer(ua2, "Straße 2", "Gretel", "Nachname", "gretel@web.de", "0800-7891011");
+		Customer c1 = new Customer(ua1, "Straße 1", "Hänsel", "Nachname", "h@ensel.de", "0800-1234567", null);
+		Customer c2 = new Customer(ua2, "Straße 2", "Gretel", "Nachname", "gretel@web.de", "0800-7891011", null);
 
 
 		final Role customerRole2 = Role.of("ROLE_PCUSTOMER");
@@ -132,8 +132,8 @@ public class KickstartDataInitializer implements DataInitializer {
 
 
 		// hier werden zusätzliche Daten für die PRIVATKunden ergänzt
-		Customer c3 = new Customer(ua3, "Straße 1", "Hänsel", "Nachname", "h@ensel.de", "0800-1234567");
-		Customer c4 = new Customer(ua4, "Straße 2", "Gretel", "Nachname", "gretel@web.de", "0800-7891011");
+		Customer c3 = new Customer(ua3, "Straße 1", "Hänsel", "Nachname", "h@ensel.de", "0800-1234567",null);
+		Customer c4 = new Customer(ua4, "Straße 2", "Gretel", "Nachname", "gretel@web.de", "0800-7891011",null);
 
 
 		// alle Kunden (Geschäfts- und Privatkunden) speichern

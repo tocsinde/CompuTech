@@ -82,7 +82,7 @@ package computech.controller;
 			UserAccount userAccount = userAccountManager.create(registrationForm.getNickname(), registrationForm.getPassword(), Role.of(registrationForm.getRole()));
 			userAccountManager.save(userAccount);
 
-			Customer customer = new Customer(userAccount, registrationForm.getAddress(), registrationForm.getFirstname(), registrationForm.getLastname(), registrationForm.getMail(), registrationForm.getPhone());
+			Customer customer = new Customer(userAccount, registrationForm.getAddress(), registrationForm.getFirstname(), registrationForm.getLastname(), registrationForm.getMail(), registrationForm.getPhone(), null);
 			customerRepository.save(customer);
 
 			if(registrationForm.getRole().equals("ROLE_PCUSTOMER")) {

@@ -32,19 +32,24 @@ public class Customer {
     private String mail;
     private String phone;
 
+    @OneToOne private UserAccount connectedEmployee;
+
     @OneToOne(cascade=CascadeType.ALL) private UserAccount userAccount;
 
     @SuppressWarnings("unused")
     private Customer() {}
 
-    public Customer(UserAccount userAccount, String address, String firstname, String lastname, String mail, String phone) {
+    public Customer(UserAccount userAccount, String address, String firstname, String lastname, String mail, String phone, UserAccount connectedEmployee) {
 		this.userAccount = userAccount;
         this.address = address;
         this.firstname = firstname;
         this.lastname = lastname;
         this.mail = mail;
         this.phone = phone;
+        this.connectedEmployee = connectedEmployee;
     }
+
+
 
     public long getId() {
         return id;
@@ -93,4 +98,6 @@ public class Customer {
 	public UserAccount getUserAccount() {
 		return userAccount;
 	}
+
+    public UserAccount getConnectedEmployee() { return connectedEmployee; }
 }
