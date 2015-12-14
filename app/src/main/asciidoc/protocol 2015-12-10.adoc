@@ -5,7 +5,7 @@ __Treffen am 10.12.2015__
 __Schriftführer:__
 Stephan Fischer
 
-__Nächstes Treffen:__ 14.12.2015
+__Nächstes Treffen:__ 14.12.2015 (Update vom 14.12.2015: Stimmt nicht; wird Freitag, 18.12.2015)
 
 __Teilnehmer:__
 
@@ -20,7 +20,7 @@ __Teilnehmer:__
 ** http://www.moskito.org/moskito-control.html[MoSKito] synchronisiert Controller mit Testdateien dynamisch
 ** kannte Markus noch nicht, ist aber vollkommen in Ordnung, das zu nutzen
 * besprochen, wann nächstes Treffen stattfinden kann, da der Donnerstag als Termin nicht gerade beliebt ist
-** beschlossen: Montag, 14.12.2015, 14:50 im APB
+** beschlossen: Montag, 14.12.2015, 14:50 im APB (Update vom 14.12.2015: Korrigiert! 18.12.2015, 11 Uhr.)
 * fürs Crosstesting fehlt immer noch eine andere Gruppe
 * grobe Richtlinie: bis Weihnachten fertig werden
 ** später kommt dann noch ein besonderes Wunschfeature, welches noch implementiert werden muss
