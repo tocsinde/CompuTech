@@ -15,7 +15,7 @@
 		<div class="content">
 			<div class="catalog">
 
-		<a class="linkbox" th:each="Computer : ${catalog}" th:href="@{'/detail/' + ${Computer.identifier}}" href="detail.html">
+		<a class="linkbox" th:each="Computer : ${catalog}" th:href="@{'/compudetail/' + ${Computer.identifier}}" href="compudetail.html">
 
 			<img th:src="@{'/resources/img/cover/' + ${Computer.image} + '.jpg'}" class="thumbnail" src="../resources/img/cover/lac.jpg" alt="" />
 			<h3 th:text="${Computer.name}">Product Name</h3>

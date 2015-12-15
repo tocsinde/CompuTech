@@ -36,20 +36,24 @@ import static org.salespointframework.core.Currencies.EURO;
 public class KickstartDataInitializer implements DataInitializer {
 
 	private final Inventory<InventoryItem> inventory;
+	private final Inventory<InventoryItem> partsinventory;
 	private final ComputerCatalog computerCatalog;
+	private final PartsCatalog partsCatalog;
 	private final UserAccountManager userAccountManager;
 	private final CustomerRepository customerRepository;
 	private final RepairRepository repairRepository;
 	private final SellRepository sellRepository;
 
 	@Autowired
-	public KickstartDataInitializer(CustomerRepository customerRepository, Inventory<InventoryItem> inventory,
+	public KickstartDataInitializer(CustomerRepository customerRepository, Inventory<InventoryItem> inventory, Inventory<InventoryItem> partsinventory,PartsCatalog partsCatalog,
 			UserAccountManager userAccountManager, ComputerCatalog computerCatalog, RepairRepository repairRepository, SellRepository sellRepository) {
 
 		Assert.notNull(customerRepository, "CustomerRepository must not be null!");
 		Assert.notNull(inventory, "Inventory must not be null!");
+		Assert.notNull(partsinventory, "Inventory must not be null!");
 		Assert.notNull(userAccountManager, "UserAccountManager must not be null!");
 		Assert.notNull(computerCatalog, "ComputerCatalog must not be null!");
+		Assert.notNull(partsCatalog, "ComputerCatalog must not be null!");
 		Assert.notNull(repairRepository, "ComputerCatalog must not be null!");
 		Assert.notNull(sellRepository, "sellRepository must not be null!");
 
@@ -59,10 +63,13 @@ public class KickstartDataInitializer implements DataInitializer {
 		this.computerCatalog = computerCatalog;
 		this.repairRepository = repairRepository;
 		this.sellRepository = sellRepository;
+		this.partsinventory = partsinventory;
+		this.partsCatalog = partsCatalog;
 	}
 
 	@Override
 	public void initialize() {
+		initializePartsCatalog(partsCatalog, partsinventory);
 		initializeUsers(userAccountManager, customerRepository);
 		initializeCatalog(computerCatalog, inventory);
 	}
@@ -90,6 +97,35 @@ public class KickstartDataInitializer implements DataInitializer {
 		for (Article comp : computerCatalog.findAll()) {
 			InventoryItem inventoryItem = new InventoryItem(comp, Quantity.of(10));
 			inventory.save(inventoryItem);
+		}
+	}
+	private void initializePartsCatalog(PartsCatalog PartsCatalog, Inventory<InventoryItem> partsinventory) {
+
+		if (partsCatalog.findAll().iterator().hasNext()) {
+			return;
+		}
+
+		partsCatalog.save(new Part("Intel® Core™ i3-5020U @2,5Ghz, Dualcore", "I35", Money.of(279.99, EURO), "I3", Part.PartType.PROCESSOR));
+		partsCatalog.save(new Part("Intel® Core™ i5-4670K @3,8Ghz, Quadcore", "I54", Money.of(229.99, EURO), "I5", Part.PartType.PROCESSOR));
+		partsCatalog.save(new Part("Intel® Core™ i7-4770 @3,4Ghz, Quadcore", "I74", Money.of(319.99, EURO), "I7", Part.PartType.PROCESSOR));
+
+		partsCatalog.save(new Part("NVIDIA GeForce GTX 980 Ti", "NV1", Money.of(749.99, EURO), "NV1", Part.PartType.GRAPHC));
+		partsCatalog.save(new Part("NVIDIA GeForce GTX 950", "NV2", Money.of(159.90, EURO), "NV2", Part.PartType.GRAPHC));
+		partsCatalog.save(new Part("NVIDIA GeForce GTX 760", "NV3", Money.of(166.99, EURO), "NV3", Part.PartType.GRAPHC));
+
+		partsCatalog.save(new Part("Seagate ST2000VN000 2 TB", "Sea", Money.of(79.99, EURO), "Sea", Part.PartType.HARDD));
+		partsCatalog.save(new Part("HGST H3IKNAS40003272SE 4 TB", "HG", Money.of(149.99, EURO), "HG", Part.PartType.HARDD));
+		partsCatalog.save(new Part("Samsung 850 EVO Series SSD - 250GB", "sam", Money.of(79.99, EURO), "I7", Part.PartType.HARDD));
+
+		partsCatalog.save(new Part("DIMM 16 GB DDR4-3000 Kit(4x)", "ram1", Money.of(127.99, EURO), "ram1", Part.PartType.RAM));
+		partsCatalog.save(new Part("DIMM 16 GB DDR4-3000 Kit(2x)", "ram2", Money.of(119.99, EURO), "ram2", Part.PartType.RAM));
+		partsCatalog.save(new Part("DIMM 8 GB DDR3-1600 Kit(2x)", "ram3", Money.of(43.99, EURO), "ram3", Part.PartType.RAM));
+
+
+
+		for (Part part : partsCatalog.findAll()){
+			InventoryItem partitem = new InventoryItem(part,Quantity.of(10));
+			partsinventory.save(partitem);
 		}
 	}
 
