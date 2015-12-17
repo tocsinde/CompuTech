@@ -80,6 +80,8 @@ public class SellController {
 
         modelMap.addAttribute("articles", computerCatalog.findByType(articleType));
 
+        System.out.println(customerRepository.count());
+        System.out.println("Get Method");
         //  modelMap.addAttribute("catalog", computerCatalog.findByType());
         //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
 
@@ -89,15 +91,15 @@ public class SellController {
 	@RequestMapping(value = "/sell", method = RequestMethod.POST)
 	private String addtoResell(@ModelAttribute("sellForm") @Valid SellForm sellForm, BindingResult result,  @LoggedIn Optional<UserAccount> userAccount, ModelMap modelmap) {
 		
-		//System.out.println(customerRepository.count());
-		Customer customer = customerRepository.findByUserAccount(userAccount.get());
+		System.out.println(customerRepository.count());
+		/*Customer customer = customerRepository.findByUserAccount(userAccount.get());
 		
 		if (result.hasErrors()) {
 			return "sell";
 		}
 	
 		SellOrder sellorder = new SellOrder(customer, sellForm.getArticleType(), sellForm.getArticle(), sellForm.getDescription());
-		sellRepository.save(sellorder); 
+		sellRepository.save(sellorder); */
 		
 			return "redirect:/";
 	}
