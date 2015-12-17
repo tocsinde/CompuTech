@@ -54,8 +54,8 @@ public class SellController {
 		modelMap.addAttribute("sellForm", new SellForm());
             modelMap.addAttribute("articletypes", Article.ArticleType.values());
 
-        for (Article.ArticleType type : Article.ArticleType.values()) {
-            modelMap.addAttribute(type.toString(), computerCatalog.findByType(type));
+        for (Article.ArticleType articleType : Article.ArticleType.values()) {
+            modelMap.addAttribute(articleType.toString(), computerCatalog.findByType(articleType));
         }
         
         //    modelMap.addAttribute("articletypes", Article.ArticleType.values());
@@ -66,8 +66,8 @@ public class SellController {
         return "sell";
 	}
 	
-	@RequestMapping(value = "/sell/{articletype}")
-    public String showSellFormular(@PathVariable("articletype") Article.ArticleType articletype,ModelMap modelMap){
+	@RequestMapping(value = "/sell/{articleType}")
+    public String showSellFormular(@PathVariable("articleType") Article.ArticleType articleType,ModelMap modelMap){
 
 	/*	if (result.hasErrors()) {
 			return "sell";
@@ -75,10 +75,10 @@ public class SellController {
 		
 		modelMap.addAttribute("sellForm", new SellForm());
         modelMap.addAttribute("articletypes", Article.ArticleType.values());
-        modelMap.addAttribute("selectedType", articletype);
+        modelMap.addAttribute("selectedType", articleType);
 
 
-        modelMap.addAttribute("articles", computerCatalog.findByType(articletype));
+        modelMap.addAttribute("articles", computerCatalog.findByType(articleType));
 
         //  modelMap.addAttribute("catalog", computerCatalog.findByType());
         //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
@@ -87,9 +87,8 @@ public class SellController {
     }
 		
 	@RequestMapping(value = "/sell", method = RequestMethod.POST)
-	private String addtoResell(@Valid SellForm sellForm, BindingResult result,  @LoggedIn Optional<UserAccount> userAccount) {
+	private String addtoResell(@ModelAttribute("sellForm") @Valid SellForm sellForm, BindingResult result,  @LoggedIn Optional<UserAccount> userAccount, ModelMap modelmap) {
 		
-		//System.out.println(sellForm.getDescription());
 		//System.out.println(customerRepository.count());
 		Customer customer = customerRepository.findByUserAccount(userAccount.get());
 		
@@ -98,7 +97,7 @@ public class SellController {
 		}
 	
 		SellOrder sellorder = new SellOrder(customer, sellForm.getArticleType(), sellForm.getArticle(), sellForm.getDescription());
-		sellRepository.save(sellorder);
+		sellRepository.save(sellorder); 
 		
 			return "redirect:/";
 	}
