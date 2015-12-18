@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+	<title>Support - CompuTech</title>
+</head>
+<body>
+<header th:include="header :: header"></header>
+<nav th:include="navigation :: navigation"></nav>
+
+<h1>Support - List of the Reparations</h1>
+
+
+	<table>
+
+		<tr th:each="reparation: ${reparations}">
+			<td>Reparation <div th:text="${reparation.description}"></div></td>
+		</tr>
+
+		<tr th:each="reparation: ${reparations}">
+			<td th:text="${reparation.customer}">Iwan Wasiljewitsch</td>
+			<td th:text="${reparation.article}">Samsung</td>
+			<td th:text="${reparation.description}">very good</td>
+			<td><form method="post" action="/price">
+				<input type="text" name="price"/>
+			</form></td>
+		</tr>
+	</table>
+
+</body>
+</html>

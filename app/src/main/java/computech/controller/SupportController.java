@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Iterator;
 import java.util.Optional;
 
 /**
@@ -21,7 +20,7 @@ import java.util.Optional;
  *  */
 
 
-@PreAuthorize("hasAnyRole('ROLE_PCUSTOMER', 'ROLE_EMPLOYEE','ROLE_BOSS')")
+@PreAuthorize("hasAnyRole('ROLE_PCUSTOMER','ROLE_BOSS')")
 @Controller
 public class SupportController {
 

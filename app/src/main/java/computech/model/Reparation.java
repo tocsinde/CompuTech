@@ -1,9 +1,6 @@
 package computech.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by Anna on 15.11.2015.
@@ -12,15 +9,20 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Reparation {
 
-    private @Id
+    @Id
     @GeneratedValue
-    Long id;
+    private Long id;
 
+
+
+    @OneToOne
 
     private Article article;
     private String description;
 
     @ManyToOne private Customer customer;
+
+    private Reparation() {}
 
     public Reparation(Customer customer, Article article, String description){
         this.customer = customer;
@@ -34,4 +36,15 @@ public class Reparation {
 
 
  //   public long getId() {return this.getIdentifier().;}
+ public Article getArticle() {
+     return article;
+ }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
 }

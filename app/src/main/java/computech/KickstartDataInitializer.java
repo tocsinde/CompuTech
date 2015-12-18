@@ -14,10 +14,7 @@ package computech;
 
 import computech.model.*;
 import computech.model.Article.ArticleType;
-import computech.model.Computer;
-
 import org.javamoney.moneta.Money;
-import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
@@ -80,6 +77,7 @@ public class KickstartDataInitializer implements DataInitializer {
 		initializeUsers(userAccountManager, customerRepository);
 		initializeCatalog(computerCatalog, inventory);
 		initializeallinoneCatalog(allinoneCatalog, inventory);
+		initializeReparation(repairRepository);
 	}
 
 	private void initializeCatalog(ComputerCatalog computerCatalog, Inventory<InventoryItem> inventory) {
