@@ -28,16 +28,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import computech.AbstractIntegrationTests;
 import computech.model.Article.ArticleType;
+import computech.model.Computer.Computertype;
 
 
 public class VideoCatalogIntegrationTests extends AbstractIntegrationTests {
 
-	@Autowired ComputerCatalog catalog;
+	@Autowired AllinoneCatalog catalog;
+	@Autowired ComputerCatalog catalog2;
 
 	@Test
 	public void findsAllComputer() {
 
-		Iterable<Article> result = catalog.findByType(ArticleType.COMPUTER);
+		Iterable<Computer> result = catalog.findByType(Computer.Computertype.COMPUTER);
 
 		assertThat(result, is(iterableWithSize(2)));
 	}
@@ -45,19 +47,19 @@ public class VideoCatalogIntegrationTests extends AbstractIntegrationTests {
 	@Test
 	public void lazyLoadExceptionTest() {
 
-		Iterable<Article> result = catalog.findByType(ArticleType.COMPUTER);
+		Iterable<Article> result = catalog2.findByType(ArticleType.NOTEBOOK);
 		assertThat(result, is(iterableWithSize(2)));
 
-		Article comp = new Article("TestPC", "Image", Money.of(BigDecimal.TEN, Currencies.EURO), "d2", ArticleType.COMPUTER);
-		catalog.save(comp);
+		Article comp = new Article("TestPC", "Image", Money.of(BigDecimal.TEN, Currencies.EURO), "d2", ArticleType.NOTEBOOK);
+		catalog2.save(comp);
 
-		result = catalog.findByType(ArticleType.COMPUTER);
+		result = catalog2.findByType(ArticleType.NOTEBOOK);
 		assertThat(result, is(iterableWithSize(3)));
 
 		Iterator<Article> it = result.iterator();
 		while (it.hasNext()) {
 			Article d = it.next();
-			assertThat(d.getType(), is(ArticleType.COMPUTER));
+			assertThat(d.getType(), is(ArticleType.NOTEBOOK));
 
 			Iterable<String> iterable = d.getCategories();
 			assertThat(iterable, is(iterableWithSize(0)));

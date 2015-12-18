@@ -28,7 +28,7 @@ public class Article extends Product {
 	
 
 		public  enum ArticleType {
-			NOTEBOOK, COMPUTER, SOFTWARE, ZUBE;
+			NOTEBOOK, SOFTWARE, ZUBE;
 		}
 
 

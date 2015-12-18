@@ -36,7 +36,7 @@ public class Part extends Product {
 		private String image;
 		private PartType type;
 
-		@OneToMany(cascade = CascadeType.ALL) private List<Comment> comments = new LinkedList<Comment>();
+
 
 		@SuppressWarnings("unused")
 		private Part() {}
@@ -53,13 +53,6 @@ public class Part extends Product {
 			return model;
 		}
 
-		public void addComment(Comment comment) {
-			comments.add(comment);
-		}
-		
-		public Iterable<Comment> getComments() {
-			return comments;
-		}
 
 		public String getImage() {
 			return image;

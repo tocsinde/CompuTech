@@ -12,7 +12,8 @@
 
 package computech.controller;
 
-import computech.model.Article;
+import computech.model.*;
+import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.order.Cart;
@@ -40,13 +41,18 @@ class CartController {
 
     private final OrderManager<Order> orderManager;
     private final Inventory<InventoryItem> inventory;
+    private final PartsCatalog partsCatalog;
+
+
     private static final Quantity NONE = Quantity.of(0);
     @Autowired
-    public CartController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory) {
+    public CartController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory,PartsCatalog partsCatalog) {
 
         Assert.notNull(orderManager, "OrderManager must not be null!");
         this.orderManager = orderManager;
         this.inventory = inventory;
+        this.partsCatalog= partsCatalog;
+
     }
 
 
@@ -57,9 +63,10 @@ class CartController {
 
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
-    public String addDisc(@RequestParam("pid") Article article, @RequestParam("number") int number, @ModelAttribute Cart cart, Model model) {
+    public String addarticle(@RequestParam("pid") Article article, @RequestParam("number") int number, @ModelAttribute Cart cart, Model model) {
 
         Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
+
         Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
         BigDecimal amount1 = quantity.getAmount();  // Herrje, wer das schöner schreiben will, kann das gerne machen
         int i = amount1.intValue();                 // Endlich funktioniert die Validierung, besser als beim
@@ -71,18 +78,12 @@ class CartController {
             amount = i;
         }
 
-
-
-
         cart.addOrUpdateItem(article, Quantity.of(amount));
-
-
 
         switch (article.getType()) {
             case NOTEBOOK:
                 return "redirect:laptop";
-            case COMPUTER:
-                return "redirect:allinone";
+
             case SOFTWARE:
                 return "redirect:software";
             case ZUBE:
@@ -90,6 +91,33 @@ class CartController {
                 return "redirect:zubehoer";
         }
     }
+    @RequestMapping(value = "/cart2", method = RequestMethod.POST)
+    public String addcomp(@RequestParam("pid") Computer article,
+                          //@RequestParam("pro") Part pro, @RequestParam("gra") Part gra,
+                          //@RequestParam("hdd") Part hdd, @RequestParam("ram") Part ram,
+                          @RequestParam("number") int number, @ModelAttribute Cart cart, Model model) {
+
+        Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
+
+        Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
+        BigDecimal amount1 = quantity.getAmount();
+        int i = amount1.intValue();
+        int amount = number;
+        if (number <= 0){
+            amount = 1;
+        }
+        if (number >= i){
+            amount = i;
+        }
+
+
+        cart.addOrUpdateItem(article, Quantity.of(amount));
+
+
+
+                return "redirect:allinone";
+        }
+
 
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public String basket() {

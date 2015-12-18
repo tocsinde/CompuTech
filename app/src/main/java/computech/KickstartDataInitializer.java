@@ -14,8 +14,10 @@ package computech;
 
 import computech.model.*;
 import computech.model.Article.ArticleType;
+import computech.model.Computer;
 
 import org.javamoney.moneta.Money;
+import org.salespointframework.catalog.ProductIdentifier;
 import org.salespointframework.core.DataInitializer;
 import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
@@ -38,27 +40,32 @@ public class KickstartDataInitializer implements DataInitializer {
 	private final Inventory<InventoryItem> inventory;
 	private final Inventory<InventoryItem> partsinventory;
 	private final ComputerCatalog computerCatalog;
+	private final AllinoneCatalog allinoneCatalog;
 	private final PartsCatalog partsCatalog;
 	private final UserAccountManager userAccountManager;
 	private final CustomerRepository customerRepository;
 	private final RepairRepository repairRepository;
 	private final SellRepository sellRepository;
 
+
 	@Autowired
 	public KickstartDataInitializer(CustomerRepository customerRepository, Inventory<InventoryItem> inventory, Inventory<InventoryItem> partsinventory,PartsCatalog partsCatalog,
-			UserAccountManager userAccountManager, ComputerCatalog computerCatalog, RepairRepository repairRepository, SellRepository sellRepository) {
+			UserAccountManager userAccountManager, ComputerCatalog computerCatalog, RepairRepository repairRepository,AllinoneCatalog allinoneCatalog, SellRepository sellRepository) {
 
 		Assert.notNull(customerRepository, "CustomerRepository must not be null!");
 		Assert.notNull(inventory, "Inventory must not be null!");
 		Assert.notNull(partsinventory, "Inventory must not be null!");
 		Assert.notNull(userAccountManager, "UserAccountManager must not be null!");
 		Assert.notNull(computerCatalog, "ComputerCatalog must not be null!");
+		Assert.notNull(allinoneCatalog, "ComputerCatalog must not be null!");
 		Assert.notNull(partsCatalog, "ComputerCatalog must not be null!");
 		Assert.notNull(repairRepository, "ComputerCatalog must not be null!");
 		Assert.notNull(sellRepository, "sellRepository must not be null!");
 
+
 		this.customerRepository = customerRepository;
 		this.inventory = inventory;
+		this.allinoneCatalog= allinoneCatalog;
 		this.userAccountManager = userAccountManager;
 		this.computerCatalog = computerCatalog;
 		this.repairRepository = repairRepository;
@@ -72,6 +79,7 @@ public class KickstartDataInitializer implements DataInitializer {
 		initializePartsCatalog(partsCatalog, partsinventory);
 		initializeUsers(userAccountManager, customerRepository);
 		initializeCatalog(computerCatalog, inventory);
+		initializeallinoneCatalog(allinoneCatalog, inventory);
 	}
 
 	private void initializeCatalog(ComputerCatalog computerCatalog, Inventory<InventoryItem> inventory) {
@@ -82,9 +90,6 @@ public class KickstartDataInitializer implements DataInitializer {
 
 		computerCatalog.save(new Article("Samsung1", "sam1", Money.of(199.99, EURO), "a1", Article.ArticleType.NOTEBOOK));
 		computerCatalog.save(new Article("Samsung2", "sam2", Money.of(299.99, EURO), "a2", Article.ArticleType.NOTEBOOK));
-
-		computerCatalog.save(new Article("Acer1", "ace1", Money.of(999.99, EURO), "b1", Article.ArticleType.COMPUTER));
-		computerCatalog.save(new Article("Acer2", "ace2", Money.of(799.99, EURO), "b2", Article.ArticleType.COMPUTER));
 
 		computerCatalog.save(new Article("Kaspersky Lab 2016", "kasp", Money.of(49.99, EURO), "c1", Article.ArticleType.SOFTWARE));
 		computerCatalog.save(new Article("Avira Antivir pro", "avi", Money.of(29.99, EURO), "c2", Article.ArticleType.SOFTWARE));
@@ -99,7 +104,9 @@ public class KickstartDataInitializer implements DataInitializer {
 			inventory.save(inventoryItem);
 		}
 	}
-	private void initializePartsCatalog(PartsCatalog PartsCatalog, Inventory<InventoryItem> partsinventory) {
+
+
+	private void initializePartsCatalog(PartsCatalog partsCatalog, Inventory<InventoryItem> partsinventory) {
 
 		if (partsCatalog.findAll().iterator().hasNext()) {
 			return;
@@ -126,6 +133,22 @@ public class KickstartDataInitializer implements DataInitializer {
 		for (Part part : partsCatalog.findAll()){
 			InventoryItem partitem = new InventoryItem(part,Quantity.of(10));
 			partsinventory.save(partitem);
+		}
+	}
+	private void initializeallinoneCatalog(AllinoneCatalog allinoneCatalog, Inventory<InventoryItem> inventory) {
+
+		if (allinoneCatalog.findAll().iterator().hasNext()) {
+			return;
+		}
+
+
+		allinoneCatalog.save(new Computer("Acer1", "ace1", Money.of(299.99, EURO), "b1", Computer.Computertype.COMPUTER));
+
+		allinoneCatalog.save(new Computer("Acer2", "ace2", Money.of(199.99, EURO), "b2", Computer.Computertype.COMPUTER));
+
+		for (Computer all : allinoneCatalog.findAll()) {
+			InventoryItem inventoryItem = new InventoryItem(all, Quantity.of(10));
+			inventory.save(inventoryItem);
 		}
 	}
 
@@ -193,6 +216,7 @@ public class KickstartDataInitializer implements DataInitializer {
 
 		}
 	}
+
 	
 	private void initializeSell(SellRepository sellRepository) {
 
