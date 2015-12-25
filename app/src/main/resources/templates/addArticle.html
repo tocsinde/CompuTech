@@ -28,7 +28,7 @@
 				<br />
 
 				<label for="type">Artikelart</label>
-				<select id="type" th:field="*{type}" th:errorclass="fieldError" type="text" name="type">
+				<select id="type" th:field="*{type}" th:errorclass="fieldError" name="type">
 						<option th:each=" type : ${types}" th:value="${type.toString()}" th:inline="text">
 								<th:block th:if="${#strings.equals(type.toString(),'ZUBE')}">Zubehör</th:block>
 								<th:block th:if="${#strings.equals(type.toString(),'SOFTWARE')}">Software</th:block>

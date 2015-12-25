@@ -30,6 +30,15 @@
 				<input sec:authorize="!hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')" type="hidden" id="role" name="role" value="ROLE_PCUSTOMER" />
 				<input sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')" type="hidden" id="role" name="role" value="ROLE_BCUSTOMER" />
 
+				<th:block sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')">
+					<label for="connectedEmployee">Zugeordneter Mitarbeiter</label>
+					<select th:field="*{connectedEmployee}" id="connectedEmployee" name="connectedEmployee">
+						<th:block th:each="employee : ${employeeList_enabled}">
+							<option th:each="role : ${employee.roles}" th:if="${#strings.equals(role,'ROLE_EMPLOYEE')}" th:text="${employee.identifier}" th:value="${employee.identifier}"></option>
+						</th:block>
+					</select>
+				</th:block>
+
 				<label for="nickname">Nickname</label>
 				<input id="nickname" th:field="*{nickname}" th:errorclass="fieldError" type="text" name="nickname" />
 				<br/>

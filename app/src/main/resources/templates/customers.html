@@ -39,7 +39,9 @@
 
 				<td>
 					<th:block th:each="role : ${customer.userAccount.roles}">
-						<th:block th:if="${#strings.equals(role,'ROLE_BCUSTOMER')}">Geschäftskunde</th:block>
+						<th:block th:if="${#strings.equals(role,'ROLE_BCUSTOMER')}">Geschäftskunde
+						(verwaltet von <span th:text="${customer.connectedEmployee.identifier}"></span>)
+						</th:block>
 						<th:block th:if="${#strings.equals(role,'ROLE_PCUSTOMER')}">Privatkunde</th:block>
 					</th:block>
 				</td>

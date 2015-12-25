@@ -100,4 +100,6 @@ public class Customer {
 	}
 
     public UserAccount getConnectedEmployee() { return connectedEmployee; }
+
+    public void setConnectedEmployee(UserAccount connectedEmployee) {this.connectedEmployee = connectedEmployee;}
 }

@@ -78,6 +78,11 @@ class BossController {
 		this.sellRepository = sellRepository;
 	}
 
+	/**
+	 *
+	 * @param modelMap
+	 * @return
+     */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/customers")
 	public String customers(ModelMap modelMap) {
@@ -86,6 +91,12 @@ class BossController {
 		return "customers";
 	}
 
+
+	/**
+	 *
+	 * @param id
+	 * @return
+     */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/delete/{id}", method = RequestMethod.POST)
 	public String removeCustomer(@PathVariable Long id) {
@@ -93,6 +104,14 @@ class BossController {
 		return "redirect:/customers";
 	}
 
+
+	/**
+	 *
+	 * @param id
+	 * @param model
+	 * @param modelMap
+     * @return
+     */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/edit/{id}")
 	public String editCustomer(@PathVariable("id") Long id, Model model, ModelMap modelMap) {
@@ -100,15 +119,30 @@ class BossController {
 		Customer customer_found = customerRepository.findOne(id);
 
 		model.addAttribute("customer", customer_found);
+		modelMap.addAttribute("employeeList_enabled", userAccountManager.findEnabled());
+
+		if(customer_found.getConnectedEmployee() != null) {
+			model.addAttribute("currentEmployee", customer_found.getConnectedEmployee().getUsername());
+		}
 
 		return "customers_edit";
 	}
 
+	/**
+	 *
+	 * @param id
+	 * @param model
+	 * @param customerEditForm
+	 * @param result
+	 * @param modelMap
+     * @return
+     */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/edit/{id}", method = RequestMethod.POST)
-	public String saveCustomer(@PathVariable("id") Long id, Model model, @ModelAttribute("customerEditForm") @Valid customerEditForm customerEditForm, BindingResult result) {
+	public String saveCustomer(@PathVariable("id") Long id, Model model, @ModelAttribute("customerEditForm") @Valid customerEditForm customerEditForm, BindingResult result, ModelMap modelMap) {
 		Customer customer_found = customerRepository.findOne(id);
 		model.addAttribute("customer", customer_found);
+		modelMap.addAttribute("employeeList_enabled", userAccountManager.findEnabled());
 
 		if (result.hasErrors()) {
 			return "customers_edit";
@@ -121,6 +155,13 @@ class BossController {
 		customer_found.setPhone(customerEditForm.getPhone());
 		customer_found.setAddress(customerEditForm.getAddress());
 
+		// Mitarbeiter-Änderung bei Geschäftskunden
+		if (!customerEditForm.getConnectedEmployee().isEmpty()) {
+
+			UserAccount employee = userAccountManager.findByUsername(customerEditForm.getConnectedEmployee()).get();
+			customer_found.setConnectedEmployee(employee);
+		}
+
 		customerRepository.save(customer_found);
 
 		/* if(customerEditForm.getPassword() != "") {
@@ -130,6 +171,11 @@ class BossController {
 		return "redirect:/customers";
 	}
 
+	/**
+	 *
+	 * @param modelMap
+	 * @return
+     */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/employees")
 	public String employees(ModelMap modelMap) {
@@ -139,6 +185,11 @@ class BossController {
 		return "employees";
 	}
 
+	/**
+	 *
+	 * @param userAccountIdentifier
+	 * @return
+     */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/disable/{userAccountIdentifier}", method = RequestMethod.POST)
 	public String disableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier) {
@@ -146,6 +197,11 @@ class BossController {
 		return "redirect:/employees";
 	}
 
+	/**
+	 *
+	 * @param userAccountIdentifier
+	 * @return
+     */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/enable/{userAccountIdentifier}", method = RequestMethod.POST)
 	public String enableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier) {
@@ -153,6 +209,13 @@ class BossController {
 		return "redirect:/employees";
 	}
 
+	/**
+	 *
+	 * @param userAccountIdentifier
+	 * @param model
+	 * @param modelMap
+     * @return
+     */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/edit/{userAccountIdentifier}")
 	public String editEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier, Model model, ModelMap modelMap) {
@@ -162,6 +225,14 @@ class BossController {
 		return "employees_edit";
 	}
 
+	/**
+	 *
+	 * @param useraccount
+	 * @param model
+	 * @param employeeEditForm
+	 * @param result
+     * @return
+     */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/edit/{useraccount}", method = RequestMethod.POST)
 	public String saveEmployee(@PathVariable UserAccount useraccount, Model model, @ModelAttribute("employeeEditForm") @Valid employeeEditForm employeeEditForm, BindingResult result) {
@@ -174,7 +245,11 @@ class BossController {
 		return "redirect:/employees";
 	}
 
-
+	/**
+	 *
+	 * @param modelMap
+	 * @return
+     */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/registeremployee")
 	public String registerEmployee(ModelMap modelMap) {
@@ -182,6 +257,12 @@ class BossController {
 		return "registerEmployee";
 	}
 
+	/**
+	 *
+	 * @param registerEmployeeForm
+	 * @param result
+     * @return
+     */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value="/registeremployee", method = RequestMethod.POST)
 	public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid registerEmployeeForm registerEmployeeForm, BindingResult result) {
@@ -196,6 +277,12 @@ class BossController {
 	}
 
 	// Anfang Stockcontrolling
+
+	/**
+	 *
+	 * @param modelMap
+	 * @return
+     */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/stock")
 	public String stock(ModelMap modelMap) {
@@ -204,6 +291,13 @@ class BossController {
 
 		return "stock";
 	}
+
+	/**
+	 *
+	 * @param article
+	 * @param modelMap
+     * @return
+     */
 	@RequestMapping("/sdetail/{sid}")
 	public String sdetail(@PathVariable("sid") Article article, ModelMap modelMap) {
 
@@ -217,6 +311,14 @@ class BossController {
 
 		return "sdetail";
 	}
+
+	/**
+	 *
+	 * @param article
+	 * @param number
+	 * @param modelMap
+     * @return
+     */
 	@RequestMapping(value = "/addstock", method = RequestMethod.POST)
 	public String addstock(@RequestParam("sid") Article article, @RequestParam("number1") int number, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
@@ -234,6 +336,14 @@ class BossController {
 		return "stock";
 	}
 
+
+	/**
+	 *
+	 * @param article
+	 * @param number
+	 * @param modelMap
+     * @return
+     */
 	@RequestMapping(value = "/substock", method = RequestMethod.POST)
 	public String substock(@RequestParam("sid") Article article, @RequestParam("number2") int number, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
@@ -254,6 +364,13 @@ class BossController {
 		modelMap.addAttribute("stock", inventory.findAll());
 		return "stock";
 	}
+
+	/**
+	 *
+	 * @param article
+	 * @param modelMap
+     * @return
+     */
 	@RequestMapping(value = "/stockdelete", method = RequestMethod.POST)
 	public String stockdelete(@RequestParam("sid") Article article, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
@@ -264,6 +381,12 @@ class BossController {
 	}
 
 	//Ende Stockcontrolling
+
+	/**
+	 *
+	 * @param modelMap
+	 * @return
+     */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/balance")
 	public String balance(ModelMap modelMap) {
@@ -284,6 +407,11 @@ class BossController {
 	}
 
 
+	/**
+	 *
+	 * @param modelMap
+	 * @return
+     */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/orders")
 	public String orders(ModelMap modelMap) {
@@ -293,6 +421,12 @@ class BossController {
 		return "orders";
 	}
 
+
+	/**
+	 *
+	 * @param modelMap
+	 * @return
+     */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/sellorders")
 	public String sell(ModelMap modelMap) {
@@ -302,6 +436,11 @@ class BossController {
 		return "sellorders";
 	}
 
+	/**
+	 *
+	 * @param modelMap
+	 * @return
+     */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/addarticle")
 	public String addArticle(ModelMap modelMap) {
@@ -310,6 +449,13 @@ class BossController {
 		return "addArticle";
 	}
 
+	/**
+	 *
+	 * @param modelMap
+	 * @param addArticleForm
+	 * @param result
+     * @return
+     */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value ="/addarticle", method = RequestMethod.POST)
 	public String addArticleToCatalog(ModelMap modelMap, @ModelAttribute("addArticleForm") @Valid addArticleForm addArticleForm, BindingResult result) {

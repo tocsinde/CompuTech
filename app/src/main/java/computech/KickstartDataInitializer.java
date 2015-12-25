@@ -161,8 +161,11 @@ public class KickstartDataInitializer implements DataInitializer {
 		userAccountManager.save(admin);
 
 
-		UserAccount employee = userAccountManager.create("employee1", "123", Role.of("ROLE_EMPLOYEE"));
-		userAccountManager.save(employee);
+		UserAccount employee1 = userAccountManager.create("employee1", "123", Role.of("ROLE_EMPLOYEE"));
+		userAccountManager.save(employee1);
+
+		UserAccount employee2 = userAccountManager.create("employee2", "123", Role.of("ROLE_EMPLOYEE"));
+		userAccountManager.save(employee2);
 
 
 		final Role customerRole = Role.of("ROLE_BCUSTOMER");
@@ -175,8 +178,8 @@ public class KickstartDataInitializer implements DataInitializer {
 
 
 		// hier werden zusätzliche Daten für die GESCHÄFTSKunden ergänzt
-		Customer c1 = new Customer(ua1, "Straße 1", "Hänsel", "Nachname", "h@ensel.de", "0800-1234567", null);
-		Customer c2 = new Customer(ua2, "Straße 2", "Gretel", "Nachname", "gretel@web.de", "0800-7891011", null);
+		Customer c1 = new Customer(ua1, "Straße 1", "Hänsel", "Nachname", "h@ensel.de", "0800-1234567", employee1);
+		Customer c2 = new Customer(ua2, "Straße 2", "Gretel", "Nachname", "gretel@web.de", "0800-7891011", employee2);
 
 
 		final Role customerRole2 = Role.of("ROLE_PCUSTOMER");

@@ -31,6 +31,8 @@ public class customerEditForm {
 	@NotEmpty(message = "Die Telefonnummer darf nicht leer sein.")
 	private String phone;
 
+	private String connectedEmployee;
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -70,4 +72,8 @@ public class customerEditForm {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public void setConnectedEmployee(String connectedEmployee) { this.connectedEmployee = connectedEmployee; }
+
+	public String getConnectedEmployee() { return connectedEmployee; }
 }

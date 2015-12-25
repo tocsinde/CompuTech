@@ -18,6 +18,7 @@ package computech.controller;
 	import computech.model.validation.profileEditForm;
 	import org.salespointframework.useraccount.Role;
 	import org.salespointframework.useraccount.UserAccount;
+	import org.salespointframework.useraccount.UserAccountIdentifier;
 	import org.salespointframework.useraccount.UserAccountManager;
 	import org.salespointframework.useraccount.web.LoggedIn;
 	import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,9 @@ package computech.controller;
 
 
 		@RequestMapping("/registerNew")
-		public String registerNew(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm, BindingResult result) {
+		public String registerNew(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm, BindingResult result, ModelMap modelMap) {
+
+			modelMap.addAttribute("employeeList_enabled", userAccountManager.findEnabled());
 
 			if (result.hasErrors()) {
 				return "register";
@@ -82,8 +85,16 @@ package computech.controller;
 			UserAccount userAccount = userAccountManager.create(registrationForm.getNickname(), registrationForm.getPassword(), Role.of(registrationForm.getRole()));
 			userAccountManager.save(userAccount);
 
-			Customer customer = new Customer(userAccount, registrationForm.getAddress(), registrationForm.getFirstname(), registrationForm.getLastname(), registrationForm.getMail(), registrationForm.getPhone(), null);
-			customerRepository.save(customer);
+			if(registrationForm.getRole().equals("ROLE_PCUSTOMER")) {
+				// normale Registrierung für Privatkunden
+				Customer customer = new Customer(userAccount, registrationForm.getAddress(), registrationForm.getFirstname(), registrationForm.getLastname(), registrationForm.getMail(), registrationForm.getPhone(), null);
+				customerRepository.save(customer);
+			} else {
+				// Registrierung eines Geschäftskunden
+				UserAccount employee = userAccountManager.findByUsername(registrationForm.getConnectedEmployee()).get();
+				Customer customer = new Customer(userAccount, registrationForm.getAddress(), registrationForm.getFirstname(), registrationForm.getLastname(), registrationForm.getMail(), registrationForm.getPhone(), employee);
+				customerRepository.save(customer);
+			}
 
 			if(registrationForm.getRole().equals("ROLE_PCUSTOMER")) {
 				return "redirect:/";
@@ -94,6 +105,7 @@ package computech.controller;
 
 		@RequestMapping("/register")
 		public String register(ModelMap modelMap) {
+			modelMap.addAttribute("employeeList_enabled", userAccountManager.findEnabled());
 			modelMap.addAttribute("registrationForm", new RegistrationForm());
 			return "register";
 		}

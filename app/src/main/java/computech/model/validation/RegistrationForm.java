@@ -13,6 +13,8 @@
 package computech.model.validation;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.salespointframework.useraccount.UserAccount;
+import org.salespointframework.useraccount.UserAccountIdentifier;
 import org.springframework.data.annotation.Transient;
 
 import javax.validation.constraints.AssertTrue;
@@ -48,6 +50,8 @@ public class RegistrationForm {
 	private String phone;
 
 	private String role;
+
+	private String connectedEmployee;
 
 	public String getRole() { return role; }
 
@@ -116,4 +120,8 @@ public class RegistrationForm {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public void setConnectedEmployee(String connectedEmployee) { this.connectedEmployee = connectedEmployee; }
+
+	public String getConnectedEmployee() { return connectedEmployee; }
 }
