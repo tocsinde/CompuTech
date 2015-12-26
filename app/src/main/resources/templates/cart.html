@@ -44,7 +44,21 @@
 					<form method="post" action="checkout">
 						<input type="submit" name="Kaufen" value="Kaufen" />
 					</form>
-			</div>
+				</div>
+
+				<div class="salespoint" sec:authorize="hasRole('ROLE_EMPLOYEE')">
+					<form method="post" action="checkout_employee">
+						<h2>Für Geschäftskunden kaufen</h2>
+
+						<label for="bcustomer">Geschäftskunde auswählen: </label>
+						<select id="bcustomer" name="bcustomer">
+							<th:block th:each="customer : ${customer_list}">
+								<option th:if="${#strings.equals(customer.connectedEmployee,employee)}" th:value="${customer.userAccount.identifier}" th:inline="text">#[[${customer.id}]]: [[${customer.firstname}]] [[${customer.lastname}]]</option>
+							</th:block>
+						</select>
+						<input type="submit" name="Kaufen" value="Kaufen" />
+					</form>
+				</div>
 			</div>
 
 			<p th:if="${cart.empty}">Der Warenkorb enthält keine Produkte.</p>

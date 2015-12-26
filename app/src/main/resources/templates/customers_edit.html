@@ -30,7 +30,6 @@
 						<label for="connectedEmployee">Zugeordneter Mitarbeiter</label>
 						<select th:field="*{connectedEmployee}" id="connectedEmployee" name="connectedEmployee">
 							<th:block th:each="employee : ${employeeList_enabled}">
-								<!--  th:selected="${connectedEmployee == employee.identifier}" -->
 								<option th:each="role : ${employee.roles}" th:if="${#strings.equals(role,'ROLE_EMPLOYEE')}" th:selected="${#strings.equals(currentEmployee,employee.identifier)}" th:text="${employee.identifier}" th:value="${employee.identifier}"></option>
 							</th:block>
 						</select>
