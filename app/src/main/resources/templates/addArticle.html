@@ -13,7 +13,7 @@
 
 <h1>Artikel hinzufügen</h1>
 
-		<form th:method="post" th:action="@{/addarticle/}" th:object="${addArticleForm}">
+		<form th:method="post" th:action="@{/addarticle/}" th:object="${addArticleForm}" enctype="multipart/form-data">
 
 			<fieldset>
 				<div th:if="${#fields.hasErrors('*')}">
@@ -26,6 +26,9 @@
 				<label for="name">Artikelname</label>
 				<input id="name" th:field="*{name}" th:errorclass="fieldError" type="text" name="name" /><br />
 				<br />
+
+				<label for="file">Artikelbild</label>
+				<input id="file" type="file" name="file" /><br/><br/>
 
 				<label for="type">Artikelart</label>
 				<select id="type" th:field="*{type}" th:errorclass="fieldError" name="type">
@@ -54,5 +57,13 @@
 			</fieldset>
 
 		</form>
+<!--
+<h2>BILD-UPLOAD</h2>
+
+<form method="POST" enctype="multipart/form-data"
+	  action="/upload">
+	File to upload: <input type="file" name="file" /><br /> Name: <input
+		type="text" name="name" /><br /> <br /> <input type="submit" value="Upload" /> Press here to upload the file!
+</form> -->
 </body>
 </html>

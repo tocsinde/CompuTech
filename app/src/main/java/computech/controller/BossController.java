@@ -21,6 +21,9 @@ import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -56,6 +59,7 @@ import javax.validation.Valid;
 
 import computech.model.Customer;
 import computech.model.SellRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 class BossController {
@@ -458,20 +462,27 @@ class BossController {
      */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value ="/addarticle", method = RequestMethod.POST)
-	public String addArticleToCatalog(ModelMap modelMap, @ModelAttribute("addArticleForm") @Valid addArticleForm addArticleForm, BindingResult result) {
+	public String addArticleToCatalog(ModelMap modelMap, @ModelAttribute("addArticleForm") @Valid addArticleForm addArticleForm, BindingResult result, @RequestParam("file") MultipartFile file) {
 		modelMap.addAttribute("types", Article.ArticleType.values());
 
 		if (result.hasErrors()) {
-
 			return "addArticle";
 		}
 
-		Article newarticle = new Article(addArticleForm.getName(), addArticleForm.getModel(), Money.of(addArticleForm.getPrice(), EURO), addArticleForm.getModel(), Article.ArticleType.valueOf(addArticleForm.getType()));
+		try {
+			byte[] bytes = file.getBytes();
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/resources/img/cover/" + file.getOriginalFilename())));
+			stream.write(bytes);
+			stream.close();
+		} catch (Exception e) {
+			System.out.println("Upload failed:  => " + e.getMessage());
+		}
+
+		Article newarticle = new Article(addArticleForm.getName(), file.getOriginalFilename(), Money.of(addArticleForm.getPrice(), EURO), addArticleForm.getModel(), Article.ArticleType.valueOf(addArticleForm.getType()));
 		InventoryItem newitem = new InventoryItem(newarticle, Quantity.of(addArticleForm.getQuantity()));
 		inventory.save(newitem);
 
 		return "redirect:/stock";
 	}
-
 
 }

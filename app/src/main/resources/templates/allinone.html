@@ -17,7 +17,7 @@
 
 		<a class="linkbox" th:each="Computer : ${catalog}" th:href="@{'/compudetail/' + ${Computer.identifier}}" href="compudetail.html">
 
-			<img th:src="@{'/resources/img/cover/' + ${Computer.image} + '.jpg'}" class="thumbnail" src="../resources/img/cover/lac.jpg" alt="" />
+			<img th:src="@{'/resources/img/cover/' + ${Computer.image}}" class="thumbnail" src="../resources/img/cover/lac.jpg" alt="" />
 			<h3 th:text="${Computer.name}">Product Name</h3>
 			<p th:text="${Computer.model}">Model</p>
 			<p th:text="${Computer.price}" class="price">9.99 €</p>

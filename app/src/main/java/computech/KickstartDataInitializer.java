@@ -86,14 +86,14 @@ public class KickstartDataInitializer implements DataInitializer {
 			return;
 		}
 
-		computerCatalog.save(new Article("Samsung1", "sam1", Money.of(199.99, EURO), "a1", Article.ArticleType.NOTEBOOK));
-		computerCatalog.save(new Article("Samsung2", "sam2", Money.of(299.99, EURO), "a2", Article.ArticleType.NOTEBOOK));
+		computerCatalog.save(new Article("Samsung1", "sam1.jpg", Money.of(199.99, EURO), "a1", Article.ArticleType.NOTEBOOK));
+		computerCatalog.save(new Article("Samsung2", "sam2.jpg", Money.of(299.99, EURO), "a2", Article.ArticleType.NOTEBOOK));
 
-		computerCatalog.save(new Article("Kaspersky Lab 2016", "kasp", Money.of(49.99, EURO), "c1", Article.ArticleType.SOFTWARE));
-		computerCatalog.save(new Article("Avira Antivir pro", "avi", Money.of(29.99, EURO), "c2", Article.ArticleType.SOFTWARE));
+		computerCatalog.save(new Article("Kaspersky Lab 2016", "kasp.jpg", Money.of(49.99, EURO), "c1", Article.ArticleType.SOFTWARE));
+		computerCatalog.save(new Article("Avira Antivir pro", "avi.jpg", Money.of(29.99, EURO), "c2", Article.ArticleType.SOFTWARE));
 
-		computerCatalog.save(new Article("USB 3.0-Kabel", "us3", Money.of(9.99, EURO), "d1", Article.ArticleType.ZUBE));
-		computerCatalog.save(new Article("USB 2.0-Kabel", "us2", Money.of(4.99, EURO), "d2", Article.ArticleType.ZUBE));
+		computerCatalog.save(new Article("USB 3.0-Kabel", "us3.jpg", Money.of(9.99, EURO), "d1", Article.ArticleType.ZUBE));
+		computerCatalog.save(new Article("USB 2.0-Kabel", "us2.jpg", Money.of(4.99, EURO), "d2", Article.ArticleType.ZUBE));
 
 		//  soll jeweils 10 Mal verfügbar sein
 
@@ -110,21 +110,21 @@ public class KickstartDataInitializer implements DataInitializer {
 			return;
 		}
 
-		partsCatalog.save(new Part("Intel® Core™ i3-5020U @2,5Ghz, Dualcore", "I35", Money.of(279.99, EURO), "I3", Part.PartType.PROCESSOR));
-		partsCatalog.save(new Part("Intel® Core™ i5-4670K @3,8Ghz, Quadcore", "I54", Money.of(229.99, EURO), "I5", Part.PartType.PROCESSOR));
-		partsCatalog.save(new Part("Intel® Core™ i7-4770 @3,4Ghz, Quadcore", "I74", Money.of(319.99, EURO), "I7", Part.PartType.PROCESSOR));
+		partsCatalog.save(new Part("Intel® Core™ i3-5020U @2,5Ghz, Dualcore", "I35.jpg", Money.of(279.99, EURO), "I3", Part.PartType.PROCESSOR));
+		partsCatalog.save(new Part("Intel® Core™ i5-4670K @3,8Ghz, Quadcore", "I54.jpg", Money.of(229.99, EURO), "I5", Part.PartType.PROCESSOR));
+		partsCatalog.save(new Part("Intel® Core™ i7-4770 @3,4Ghz, Quadcore", "I74.jpg", Money.of(319.99, EURO), "I7", Part.PartType.PROCESSOR));
 
-		partsCatalog.save(new Part("NVIDIA GeForce GTX 980 Ti", "NV1", Money.of(749.99, EURO), "NV1", Part.PartType.GRAPHC));
-		partsCatalog.save(new Part("NVIDIA GeForce GTX 950", "NV2", Money.of(159.90, EURO), "NV2", Part.PartType.GRAPHC));
-		partsCatalog.save(new Part("NVIDIA GeForce GTX 760", "NV3", Money.of(166.99, EURO), "NV3", Part.PartType.GRAPHC));
+		partsCatalog.save(new Part("NVIDIA GeForce GTX 980 Ti", "NV1.jpg", Money.of(749.99, EURO), "NV1", Part.PartType.GRAPHC));
+		partsCatalog.save(new Part("NVIDIA GeForce GTX 950", "NV2.jpg", Money.of(159.90, EURO), "NV2", Part.PartType.GRAPHC));
+		partsCatalog.save(new Part("NVIDIA GeForce GTX 760", "NV3.jpg", Money.of(166.99, EURO), "NV3", Part.PartType.GRAPHC));
 
-		partsCatalog.save(new Part("Seagate ST2000VN000 2 TB", "Sea", Money.of(79.99, EURO), "Sea", Part.PartType.HARDD));
-		partsCatalog.save(new Part("HGST H3IKNAS40003272SE 4 TB", "HG", Money.of(149.99, EURO), "HG", Part.PartType.HARDD));
-		partsCatalog.save(new Part("Samsung 850 EVO Series SSD - 250GB", "sam", Money.of(79.99, EURO), "I7", Part.PartType.HARDD));
+		partsCatalog.save(new Part("Seagate ST2000VN000 2 TB", "Sea.jpg", Money.of(79.99, EURO), "Sea", Part.PartType.HARDD));
+		partsCatalog.save(new Part("HGST H3IKNAS40003272SE 4 TB", "HG.jpg", Money.of(149.99, EURO), "HG", Part.PartType.HARDD));
+		partsCatalog.save(new Part("Samsung 850 EVO Series SSD - 250GB", "sam.jpg", Money.of(79.99, EURO), "I7", Part.PartType.HARDD));
 
-		partsCatalog.save(new Part("DIMM 16 GB DDR4-3000 Kit(4x)", "ram1", Money.of(127.99, EURO), "ram1", Part.PartType.RAM));
-		partsCatalog.save(new Part("DIMM 16 GB DDR4-3000 Kit(2x)", "ram2", Money.of(119.99, EURO), "ram2", Part.PartType.RAM));
-		partsCatalog.save(new Part("DIMM 8 GB DDR3-1600 Kit(2x)", "ram3", Money.of(43.99, EURO), "ram3", Part.PartType.RAM));
+		partsCatalog.save(new Part("DIMM 16 GB DDR4-3000 Kit(4x)", "ram1.jpg", Money.of(127.99, EURO), "ram1", Part.PartType.RAM));
+		partsCatalog.save(new Part("DIMM 16 GB DDR4-3000 Kit(2x)", "ram2.jpg", Money.of(119.99, EURO), "ram2", Part.PartType.RAM));
+		partsCatalog.save(new Part("DIMM 8 GB DDR3-1600 Kit(2x)", "ram3.jpg", Money.of(43.99, EURO), "ram3", Part.PartType.RAM));
 
 
 
@@ -140,9 +140,9 @@ public class KickstartDataInitializer implements DataInitializer {
 		}
 
 
-		allinoneCatalog.save(new Computer("Acer1", "ace1", Money.of(299.99, EURO), "b1", Computer.Computertype.COMPUTER));
+		allinoneCatalog.save(new Computer("Acer1", "ace1.jpg", Money.of(299.99, EURO), "b1", Computer.Computertype.COMPUTER));
 
-		allinoneCatalog.save(new Computer("Acer2", "ace2", Money.of(199.99, EURO), "b2", Computer.Computertype.COMPUTER));
+		allinoneCatalog.save(new Computer("Acer2", "ace2.jpg", Money.of(199.99, EURO), "b2", Computer.Computertype.COMPUTER));
 
 		for (Computer all : allinoneCatalog.findAll()) {
 			InventoryItem inventoryItem = new InventoryItem(all, Quantity.of(10));
