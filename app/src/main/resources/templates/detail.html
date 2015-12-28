@@ -13,19 +13,21 @@
 
 <h1>Artikel</h1>
 
-		
-			<div class="detailDescription">
-				<h2 th:text="${article.name}">Last Action Hero</h2>
-				<p>Preis:</p><p th:text="${article.price}">9.99€</p><br />
-				<p>Model:</p><p th:text="${article.model}">Äktschn</p><br />
-				<p>Vorrat:</p><p th:text="${quantity}">10 Stück</p><br />
-				<form method="post" action="/cart" th:if="${orderable}" >
-					<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
-					<label for="number">Anzahl</label>
-					<input id="number" type="number" name="number" min="1" max="${quantity}" step="1" value="1" /><br />
-					<input	type="submit" value="Zum Warenkorb hinzufügen" />
-				</form>
-			</div>
+<img th:src="@{'/resources/img/cover/' + ${article.image}}" class="article_image" alt="" title="" />
+<div class="article_firstinfo">
+	<h2 th:text="${article.name}"></h2>
+	<p th:inline="text"><strong>Modell:</strong> [[${article.model}]]</p>
+	<p th:inline="text"><strong>Preis:</strong> [[${article.price}]]</p>
+	</div>
+<form method="post" action="/cart" th:if="${orderable}" class="article_buy" >
 
+	Dieser Artikel ist lieferbar.<br/>
+	<strong th:text="${quantity}"></strong> Stück verfügbar.
+	<p><label for="number">Wie viele möchten Sie bestellen?</label></p>
+	<input id="number" type="number" name="number" min="1" th:max="${quantity}" step="1" value="1" /><br/><br/>
+
+	<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
+	<input type="submit" value="Zum Warenkorb hinzufügen" />
+</form>
 </body>
 </html>

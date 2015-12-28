@@ -13,69 +13,86 @@
 
 <h1>Artikel</h1>
 
-		
-			<div class="detailDescription">
-				<h2 th:text="${article.name}">Last Action Hero</h2>
-				<p>Grundpreis:</p><p th:text="${article.price}">9.99€</p><br />
-				<p>Prozessor:</p>
-				<p th:text="${article.prozessor}"></p>
-				<p th:text="${p}"></p>
-				<p>
-				<form method="post" action="/change">
-				<select name="part" onchange="this.form.submit()">
-					<option>wählen sie einen Prozessor</option>
-					<option th:each=" processor : ${processor}" th:text="${processor.toString()}" th:value="${processor.identifier}" >
-					</option>
-					<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
-				</select>
-				</form>
-				</p>
-				<p>Grafikkarte</p><p>
-				<p th:text="${article.graka}"></p>
-				<p th:text="${g}"></p>
-				<form method="post" action="/change">
-					<select name="part" onchange="this.form.submit()">
-						<option>wählen sie eine Grafikkarte</option>
-						<option th:each=" graph : ${graphic}" th:text="${graph.toString()}" th:value="${graph.identifier}" >
-						</option>
-						<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
-					</select>
-				</form>
-				</p>
-				<p>Festplatte</p><p>
-				<p th:text="${article.hdd}"></p>
-				<p th:text="${h}"></p>
-				<form method="post" action="/change">
-					<select name="part" onchange="this.form.submit()">
-						<option>wählen sie eine Festplatte</option>
-						<option th:each=" hdd : ${harddrive}" th:text="${hdd.toString()}" th:value="${hdd.identifier}" >
-						</option>
-						<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
-					</select>
-				</form>
-				</p>
-				<p>Arbeitsspeicher</p><p>
-				<p th:text="${article.ram}"></p>
-				<p th:text="${r}"></p>
-				<form method="post" action="/change">
-					<select name="part" onchange="this.form.submit()">
-						<option>wählen sie einen Arbeitsspeicher</option>
-						<option th:each=" ram : ${ram}" th:text="${ram.toString()}" th:value="${ram.identifier}" >
-						</option>
-						<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
-					</select>
-				</form>
-				</p>
 
-				<p>Model:</p><p th:text="${article.model}">Äktschn</p><br />
-				<p>Vorrat:</p><p th:text="${quantity}">10 Stück</p><br />
-				<form method="post" action="/cart2" th:if="${orderable}" >
-					<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
-					<label for="number">Anzahl</label>
-					<input id="number" type="number" name="number" min="1" max="${quantity}" step="1" value="1" /><br />
-					<input	type="submit" value="Zum Warenkorb hinzufügen" />
-				</form>
-			</div>
+<!-- new -->
 
+<img th:src="@{'/resources/img/cover/' + ${article.image}}" class="article_image" alt="" title="" />
+<div class="article_firstinfo">
+	<h2 th:text="${article.name}"></h2>
+	<p th:inline="text"><strong>Modell:</strong> [[${article.model}]]</p>
+	<p th:inline="text"><strong>Grundpreis:</strong> [[${article.price}]]</p>
+</div>
+<form method="post" action="/cart2" th:if="${orderable}" class="article_buy" >
+
+	Dieser Artikel ist lieferbar.<br/>
+	<strong th:text="${quantity}"></strong> Stück verfügbar.
+	<p><label for="number">Wie viele möchten Sie bestellen?</label></p>
+	<input id="number" type="number" name="number" min="1" th:max="${quantity}" step="1" value="1" /><br/><br/>
+
+	<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
+	<input type="submit" value="Zum Warenkorb hinzufügen" />
+</form>
+
+
+<div class="clearboth">
+	<h2>Komponenten</h2>
+	<p>Dieser Artikel ist individuell von Ihnen anpassbar.</p>
+
+	<div class="linkbox">
+		<h3>Prozessor</h3>
+		<p th:text="${article.prozessor}"></p>
+		<p th:text="${p}"></p>
+		<form method="post" action="/change">
+			<select name="part" onchange="this.form.submit()">
+				<option>Wählen Sie einen Prozessor:</option>
+				<option th:each=" processor : ${processor}" th:text="${processor.toString()}" th:value="${processor.identifier}" >
+				</option>
+				<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
+			</select>
+		</form>
+	</div>
+
+	<div class="linkbox">
+		<h3>Grafikkarte</h3>
+		<p th:text="${article.graka}"></p>
+		<p th:text="${g}"></p>
+		<form method="post" action="/change">
+			<select name="part" onchange="this.form.submit()">
+				<option>Wählen Sie eine Grafikkarte:</option>
+				<option th:each=" graph : ${graphic}" th:text="${graph.toString()}" th:value="${graph.identifier}" >
+				</option>
+				<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
+			</select>
+		</form>
+	</div>
+
+	<div class="linkbox">
+		<h3>Festplatte</h3>
+		<p th:text="${article.hdd}"></p>
+		<p th:text="${h}"></p>
+		<form method="post" action="/change">
+			<select name="part" onchange="this.form.submit()">
+				<option>Wählen Sie eine Festplatte:</option>
+				<option th:each=" hdd : ${harddrive}" th:text="${hdd.toString()}" th:value="${hdd.identifier}" >
+				</option>
+				<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
+			</select>
+		</form>
+	</div>
+
+	<div class="linkbox">
+		<h3>Arbeitsspeicher</h3>
+		<p th:text="${article.ram}"></p>
+		<p th:text="${r}"></p>
+		<form method="post" action="/change">
+			<select name="part" onchange="this.form.submit()">
+				<option>Wählen sie einen Arbeitsspeicher:</option>
+				<option th:each=" ram : ${ram}" th:text="${ram.toString()}" th:value="${ram.identifier}" >
+				</option>
+				<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
+			</select>
+		</form>
+	</div>
+	</div>
 </body>
 </html>
