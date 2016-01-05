@@ -47,13 +47,12 @@ Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darau
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 |===
-|Name |Beschreibung | Anzahl 
-|Chef | Geschäftsführer | 1 
-|Mitarbeiter| Angestellter, der für Service verantwortlich ist | 1 
-|Privatkunde| Privatperson, die gleichzeitig Verbraucher ist| 2 
-|Geschäftskunde | Kunde, der eine Firma vertritt| 2 
-|Händler | Verkäufer der Hardware| - 
-      |…            |
+|Name |Beschreibung 
+|Chef | Geschäftsführer 
+|Mitarbeiter| Angestellter, der für Service verantwortlich ist 
+|Privatkunde| Privatperson, die gleichzeitig Verbraucher ist 
+|Geschäftskunde | Kunde, der eine Firma vertritt 
+|Händler | Verkäufer der Hardware 
 |===
 
 === Anwendungsfallbeschreibungen
