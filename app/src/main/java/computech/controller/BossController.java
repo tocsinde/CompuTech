@@ -12,7 +12,7 @@
 
 package computech.controller;
 
-import computech.model.Article;
+import computech.model.*;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.Inventory;
@@ -44,7 +44,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import computech.model.CustomerRepository;
 import org.salespointframework.useraccount.UserAccountManager;
 
 import computech.model.validation.customerEditForm;
@@ -57,8 +56,6 @@ import static org.salespointframework.core.Currencies.EURO;
 import javax.management.relation.RoleStatus;
 import javax.validation.Valid;
 
-import computech.model.Customer;
-import computech.model.SellRepository;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -303,7 +300,7 @@ class BossController {
      * @return
      */
 	@RequestMapping("/sdetail/{sid}")
-	public String sdetail(@PathVariable("sid") Article article, ModelMap modelMap) {
+	public String sdetail(@PathVariable("sid") Product article, ModelMap modelMap) {
 
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
@@ -316,6 +313,8 @@ class BossController {
 		return "sdetail";
 	}
 
+
+
 	/**
 	 *
 	 * @param article
@@ -324,7 +323,7 @@ class BossController {
      * @return
      */
 	@RequestMapping(value = "/addstock", method = RequestMethod.POST)
-	public String addstock(@RequestParam("sid") Article article, @RequestParam("number1") int number, ModelMap modelMap) {
+	public String addstock(@RequestParam("sid") Product article, @RequestParam("number1") int number, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
 
@@ -349,7 +348,7 @@ class BossController {
      * @return
      */
 	@RequestMapping(value = "/substock", method = RequestMethod.POST)
-	public String substock(@RequestParam("sid") Article article, @RequestParam("number2") int number, ModelMap modelMap) {
+	public String substock(@RequestParam("sid") Product article, @RequestParam("number2") int number, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
 		BigDecimal amount1 = quantity.getAmount();
@@ -376,11 +375,11 @@ class BossController {
      * @return
      */
 	@RequestMapping(value = "/stockdelete", method = RequestMethod.POST)
-	public String stockdelete(@RequestParam("sid") Article article, ModelMap modelMap) {
+	public String stockdelete(@RequestParam("sid") Product article, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 		InventoryItem i = item.get();
 		inventory.delete(i);
-
+		modelMap.addAttribute("stock", inventory.findAll());
 		return "stock";
 	}
 
