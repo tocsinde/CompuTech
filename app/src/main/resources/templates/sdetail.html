@@ -16,24 +16,24 @@
 		
 			<div class="detailDescription">
 				<h2 th:text="${article.name}">Last Action Hero</h2>
-				<p> aktueller Vorrat:</p><p th:text="${quantity}">10 Stück</p><br />
+				Aktueller Vorrat: <span th:text="${quantity}">10 Stück</span><br /><br/>
 				<form method="post" action="/addstock" >
 					<input type="hidden" name="sid" value="0" th:value="${article.identifier}"  />
-					<label for="number1">Wie viele Artikel möchten sie dem Lager hinzufügen?</label>
-					<input id="number1" type="number" name="number1" step="1" /><br />
+					<label for="number1">Wie viele Artikel möchten Sie dem Lager hinzufügen?</label><br/>
+					<input id="number1" type="number" name="number1" step="1" />
 					<input	type="submit" value="Bestätigen" />
 				</form>
 				<p></p>
 				<form method="post" action="/substock" >
 					<input type="hidden" name="sid" value="0" th:value="${article.identifier}" />
-					<label for="number2">Wie viele Artikel möchten sie aus dem Lager entfernen?</label>
-					<input id="number2" type="number" name="number2" step="1" /><br />
+					<label for="number2">Wie viele Artikel möchten Sie aus dem Lager entfernen?</label><br/>
+					<input id="number2" type="number" name="number2" step="1" th:max="${quantity}" />
 					<input	type="submit" value="Bestätigen" />
 				</form>
 				<p></p>
 				<form method="post" action="/stockdelete" >
 					<input type="hidden" name="sid" value="0" th:value="${article.identifier}" />
-					<label for="number2">Möchten sie den Artikel aus dem Sortiment nehmen?</label>
+					<label for="number2">Möchten Sie den Artikel aus dem Sortiment nehmen?</label>
 					<input	type="submit" value="Bestätigen" />
 				</form>
 			</div>
