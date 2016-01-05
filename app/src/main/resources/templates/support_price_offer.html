@@ -11,7 +11,7 @@
 <header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
 
-<h1>Support - List of the Reparations</h1>
+<h1>Support - Price Offers</h1>
 
 
 	<table>
@@ -21,13 +21,13 @@
 		</tr>
 
 		<tr th:each="reparation: ${reparations}">
-			<td th:text="${reparation.customer.getFirstname()} + ' ' + ${reparation.customer.getLastname()}">Iwan Wasiljewitsch</td>
 			<td th:text="${reparation.article}">Samsung</td>
 			<td th:text="${reparation.description}">very good</td>
-			<td><form method="post" action="/support_list">
-				<input type="text" name="price"/>
+			<td th:text="${reparation.price}"/>
+			<td><form method="post" action="/support_price_offer">
 				<input type="hidden" name="reparationId" th:value="${reparation.id}"/>
-				<button type="submit">Abschicken</button>
+				<input type="submit" name="accept" class="button" value="accept" />
+				<input type="submit" name="deny" class="button" value="deny" />
 			</form></td>
 		</tr>
 	</table>

@@ -13,33 +13,35 @@
 
 <h1>Support</h1>
 
-<form method="post" action="/support" th:object="${reparationForm}">
+<form method="post" action="/support" th:object="${ReparationForm}">
 
-	<fieldset>
+	<table>
 
-		<div th:if="${#fields.hasErrors('*')}">
-			<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
-			<ul>
-				<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Fehler</li>
-			</ul>
-		</div>
 
-		<label for="type">Artikelart</label>
-		<select id="type" name="type" onchange="window.location = '../support/' + this.value;">
-			<option></option>
-			<option th:each=" type : ${types}" th:text="${type.toString()}" th:selected="${selectedType == type}"></option>
-		</select><br/>
+		<tr>
+			<td>Art of article</td>
+			<td>
+				<select name="type" onchange="window.location = '../support/' + this.value;">
+					<option th:each=" type : ${types}" th:text="${type.toString()}" th:selected="${selectedType == type}"></option>
+				</select>
+			</td>\
+			<td>Article</td>
+			<td>
+				<select name="article">
+					<option th:each="article: ${articles}" th:text="${article.model}"></option>
+				</select>
+			</td>
+		<tr>
+			<td>Description</td>
+			<td><input type="text" name="description" /></td>
+		</tr>
+		</tr>
+		 <tr>
+				<td><button type="submit"> Abschicken</button></td>
+		 </tr>
 
-		<label for="article">Artikel</label>
-		<select id="article" name="article" th:errorclass="fieldError">
-			<option th:each=" article: ${articles}" th:text="${article.name}" th:value="${article.identifier}"></option>
-		</select><br/>
+	</table>
 
-		<label for="description">Beschreibung</label>
-		<input id="description" type="text" name="description" th:errorclass="fieldError" />
-
-		<input type="submit" value="Abschicken" />
-</fieldset>
 
 </form>
 </body>

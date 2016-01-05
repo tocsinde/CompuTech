@@ -1,6 +1,9 @@
 package computech.model;
 
+import org.javamoney.moneta.Money;
+
 import javax.persistence.*;
+import java.util.Currency;
 
 /**
  * Created by Anna on 15.11.2015.
@@ -10,15 +13,14 @@ import javax.persistence.*;
 public class Reparation {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-
 
     @OneToOne
 
     private Article article;
     private String description;
+    private Money price;
 
     @ManyToOne private Customer customer;
 
@@ -46,5 +48,13 @@ public class Reparation {
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public void setPrice(Money price) {
+        this.price = price;
+    }
+
+    public Money getPrice() {
+        return price;
     }
 }

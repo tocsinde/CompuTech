@@ -1,8 +1,6 @@
 package computech.controller;
 
-import computech.model.ComputerCatalog;
-import computech.model.CustomerRepository;
-import computech.model.RepairRepository;
+import computech.model.*;
 import org.javamoney.moneta.Money;
 import org.salespointframework.core.Currencies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +25,9 @@ public class SupportListController {
         private final CustomerRepository customerRepository;
         private final ComputerCatalog computerCatalog;
         private final RepairRepository repairRepository;
+        private final SellRepository sellRepository;
         @Autowired
-        public SupportListController(CustomerRepository customerRepository, ComputerCatalog computerCatalog, RepairRepository repairRepository){
+        public SupportListController(CustomerRepository customerRepository, ComputerCatalog computerCatalog, RepairRepository repairRepository, SellRepository sellRepository){
 
             Assert.notNull(customerRepository, "CustomerRepository must not be null!");
             Assert.notNull(computerCatalog, "ComputerCatalog must not be null!");
@@ -37,6 +36,7 @@ public class SupportListController {
             this.customerRepository = customerRepository;
             this.computerCatalog = computerCatalog;
             this.repairRepository = repairRepository;
+            this.sellRepository = sellRepository;
 
         }
 
@@ -53,13 +53,17 @@ public class SupportListController {
         return "support_list";
     }
 
-
-    @RequestMapping(value = "/price", method = RequestMethod.POST)
-    public String setPrice(ModelMap modelMap, @RequestParam("price") String priceText) {
-
+    @RequestMapping(value = "/support_list", method = RequestMethod.POST)
+    public String setPrice(@RequestParam("price") String priceText,
+                           @RequestParam("reparationId") Long reparationId) {
+        Reparation reparation = repairRepository.findOne(reparationId);
         Money price = Money.of(new BigDecimal(priceText), Currencies.EURO);
+        reparation.setPrice(price);
 
+        System.out.println("Price set to " + price);
 
         return "support_list";
     }
+
+
 }

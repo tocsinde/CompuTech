@@ -11,14 +11,10 @@
 <header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
 
-<h1>Support - Confirmation</h1>
+<h1>Support</h1>
 
 
-	<table>
-		<tr>
-			<td> <div th:text="'Dear client ' + ${customer.firstname} + '. Thank you for entrusting us with your business. We will process your request ASAP'"/></td>
-		</tr>
-	</table>
+	<p th:text = "${message}"></p>
 
 </body>
 </html>
