@@ -9,10 +9,10 @@ import javax.validation.constraints.NotNull;
  */
 public class ReparationForm {
 
-        @NotNull(message = "Der Article darf nicht leer sein.")
+        @NotNull(message = "Bitte wählen Sie einen Artikel aus.")
         private Article article;
 
-        @NotEmpty(message = "Der Description darf nicht leer sein.")
+        @NotEmpty(message = "Der Beschreibung darf nicht leer sein.")
         private String description;
 
     public void setArticle(Article article) {

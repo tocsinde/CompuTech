@@ -32,8 +32,7 @@
 
 		<label for="article">Artikel</label>
 		<select id="article" name="article" th:errorclass="fieldError">
-			<!--  th:value="${article.identifier}" -->
-			<option th:each=" article: ${articles}" th:text="${article.name}"></option>
+			<option th:each=" article: ${articles}" th:text="${article.name}" th:value="${article.identifier}"></option>
 		</select><br/>
 
 		<label for="description">Beschreibung</label>
