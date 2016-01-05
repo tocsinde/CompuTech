@@ -23,7 +23,7 @@ IT-Dienstleister CompuTech
 Die Firma CompuTech beliefert seine Kunden mit PC-Komplettsystemen sowie mit Zubehör und Verbrauchsmaterialien (CDs, Druckerpatronen, Toner, etc.). Die Firma kennt zwei Arten von Kunden, Privat - und Geschäftskunden(B2C & B2B). Ein neues IT-System soll die Beziehung zum Kunden vereinfachen und einen Wettbewerbsvorteil für seine Geschäftskunden bieten. Geschäftskunden können, wenn sie angemeldet sind, Bestellungen (nur Erweiterungen von Bestehender Hardware oder Upgrade) aufgeben sowie ihren derzeitigen EDV-Bestand einsehen. In der Bestandsanzeige soll der Kunde Geräte auswählen und mit Reparatur- oder Serviceaufträgen versehen können. Keine Aktion geschieht ohne Auftrag! Geschäftskunden werden von einem Mitarbeiter angelegt und mit einem vorläufigen Kennwort versehen welches der Kunde danach ändern kann. Privatkunden können sich selbst am System anmelden. Eine Überprüfung der Email und Postadresse (ähnlich Web.de) kann helfen die Gültigkeit einer Adresse zu prüfen. Hat sich der Kunde angemeldet so ist es ihm möglich sein, aus einer vorgegebenen Auswahl von Geräten ein Basismodell auszuwählen und dieses nach seinen Wünschen zu konfigurieren. Privatkunden sollen zudem die Möglichkeit bekommen gebrauchte Geräte wieder an CompuTech verkaufen zu können. Jeder Geschäftskunde hat einen bestimmten Verkaufsleiter als Ansprechpartner. Dieser wird zugeordnet wenn der Verkaufsleiter den Geschäftskunden in der Datenbank anlegt. Der Verkaufsleiter nimmt alle eingehenden Bestellungen und Serviceanfragen entgegen prüft diese und erstellt dann einen Auftrag an das Lager und den Service. Zudem entscheidet der Verkaufsleiter, zu welchem Preis Geräte von Privatkunden zurückgekauft werden. Das Lager verwaltet den Bestand aller Geräte und Verbrauchsmaterialien. Für alle Posten gibt es Mindestbestände. Werden diese unterschritten, bestellt das Lager automatisch aus einer Auswahl von Händlern zu den günstigsten Konditionen nach. Geht ein Auftrag von einem Verkaufsleiter ein, stellt das Lager die Bestellung zusammen (Kommissionierung) und erstellt dann einen Auftrag für den Versand, welcher sich dann um Auslieferung und Aufstellung der Gerät kümmert. Für den letzten Punkt muss ein Auftrag für den Service erstellt werden. Das System soll zudem ein „Kassenbuch“ führen, welches die Buchhaltung und den Jahresabschluss vereinfachen soll. Hierzu sollen alle Transaktionen gespeichert und nach bestimmten Filterkriterien gedruckt werden können. Auf diese Daten hat natürlich nur der Geschäftsführer und die Buchhaltung Zugriff. Dem Kunden ist es besonders wichtig, dass seine Geschäftsprozesse von dem zu entwickelnden IT-System vollständig abgebildet werden.
 
 == Fachlicher Überblick
-CompuTech wurde mithilfe von Spring, Thymeleaf und dem von der TU Dresden gestellten Salespoint Framework mit der Programmiersprache Java entwickelt. Spring erleichtert die Kommunikation zwischen dem, was der Nutzer sieht, und das, was im Hintergrund passiert. Dabei spielt ThymeLeaf eine entscheidende Rolle zur Gestaltung der HTML-Seiten. 
+CompuTech wurde mithilfe von Spring, Thymeleaf und dem von der TU Dresden gestellten Salespoint Framework mit der Programmiersprache Java entwickelt. Spring erleichtert die Kommunikation zwischen dem, was der Nutzer sieht, und das, was im Hintergrund passiert. Dabei spielt ThymeLeaf eine entscheidende Rolle zur Gestaltung der HTML-Seiten.
 
 == Systemgrenze und Top-Level-Architektur
 
@@ -47,12 +47,12 @@ Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darau
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 |===
-|Name |Beschreibung 
-|Chef | Geschäftsführer 
-|Mitarbeiter| Angestellter, der für Service verantwortlich ist 
-|Privatkunde| Privatperson, die gleichzeitig Verbraucher ist 
-|Geschäftskunde | Kunde, der eine Firma vertritt 
-|Händler | Verkäufer der Hardware 
+|Name |Beschreibung
+|Chef | Geschäftsführer
+|Mitarbeiter| Angestellter, der für Service verantwortlich ist
+|Privatkunde| Privatperson, die gleichzeitig Verbraucher ist
+|Geschäftskunde | Kunde, der eine Firma vertritt
+|Händler | Verkäufer der Hardware
 |===
 
 === Anwendungsfallbeschreibungen
@@ -110,61 +110,58 @@ K030 - Geschäftskunde kann sein Passwort ändern
 
 [caption="Startseite: "]
 [.left]
-image::gui-prototype/startseite.jpg[Startseite, 450, title=Beschreibung, link="images/gui-prototype/startseite.jpg"]
+image::gui-prototype/startseite.jpg[Startseite, 450, title="Kurze Vorstellung von CompuTech.", link="images/gui-prototype/startseite.jpg"]
 
-[caption="Startseite: "]
+[caption="Navigation: "]
 [.left]
-image::gui-prototype/startseite_navigationen.jpg[Startseite, 450, title=Beschreibung, link="images/gui-prototype/startseite_navigationen.jpg"]
+image::gui-prototype/startseite_navigationen.jpg[Navigation, 450, title="Je nach Login-Status des Benutzers (unregistiert/eingeloggt als Boss/Kunde) variieren die angezeigten Navigationselemente.", link="images/gui-prototype/startseite_navigationen.jpg"]
 
 [caption="Ankaufstelle: "]
 [.left]
-image::gui-prototype/ankaufstelle.jpg[Ankaufstelle, 450, title=Beschreibung, link="images/gui-prototype/ankaufstelle.jpg"]
+image::gui-prototype/ankaufstelle.jpg[Ankaufstelle, 450, title="Formular für Privatkunden, in dem Produkte (mit Preisvorschlag) wieder an CompuTech verkauft werden können.", link="images/gui-prototype/ankaufstelle.jpg"]
 
 [caption="Angebote: "]
 [.left]
-image::gui-prototype/angebote_uebersicht.jpg[Angebote, 450, title=Beschreibung, link="images/gui-prototype/angebote_uebersicht.jpg"]
+image::gui-prototype/angebote_uebersicht.jpg[Angebote, 450, title="Übersicht über die vier Produktkategorien (Notebooks, All-in-one-Systeme, Zubehör und Software).", link="images/gui-prototype/angebote_uebersicht.jpg"]
 
 [caption="Angebote: "]
 [.left]
-image::gui-prototype/angebote_kategorieansicht.jpg[Angebote, 450, title=Beschreibung, link="images/gui-prototype/angebote_kategorieansicht.jpg"]
+image::gui-prototype/angebote_kategorieansicht.jpg[Angebote, 450, title="Artikelauflistung innerhalb einer Produktkategorie.", link="images/gui-prototype/angebote_kategorieansicht.jpg"]
 
 [caption="Buchhaltung: "]
 [.left]
-image::gui-prototype/buchhaltung.jpg[Buchhaltung, 450, title=Beschreibung, link="images/gui-prototypebuchhaltung.jpg"]
+image::gui-prototype/buchhaltung.jpg[Buchhaltung, 450, title="Übersicht über Verkäufe und Ausgaben für gelagerte Produkte.", link="images/gui-prototypebuchhaltung.jpg"]
 
 [caption="Kundenübersicht: "]
 [.left]
-image::gui-prototype/kundenuebersicht.jpg[Kundenübersicht, 450, title=Beschreibung, link="images/gui-prototype/kundenuebersicht.jpg"]
+image::gui-prototype/kundenuebersicht.jpg[Kundenübersicht, 450, title="Auflistung aller Privat- und Geschäftskunden. Bestehende Kunden können editiert oder gelöscht und neue Geschäftskunden angelegt werden.", link="images/gui-prototype/kundenuebersicht.jpg"]
 
 [caption="Lager: "]
 [.left]
-image::gui-prototype/lager.jpg[Lager, 450, title=Beschreibung, link="images/gui-prototype/lager.jpg"]
+image::gui-prototype/lager.jpg[Lager, 450, title="Bestandsliste aller momentan verfügbaren Produkte, deren Anzahl verändert werden kann. Neue Artikel können ebenfalls hinzugefügt werden.", link="images/gui-prototype/lager.jpg"]
 
 [caption="Mitarbeiterübersicht: "]
 [.left]
-image::gui-prototype/mitarbeiteruebersicht.jpg[Mitarbeiterübersicht, 450, title=Beschreibung, link="images/gui-prototype/mitarbeiteruebersicht.jpg"]
+image::gui-prototype/mitarbeiteruebersicht.jpg[Mitarbeiterübersicht, 450, title="Ermöglicht dem Boss, Mitarbeiter anzulegen oder zu verändern.", link="images/gui-prototype/mitarbeiteruebersicht.jpg"]
 
 [caption="Nachkaufformular: "]
 [.left]
-image::gui-prototype/nachkaufen.jpg[Nachkaufformular, 450, title=Beschreibung, link="images/gui-prototype/nachkaufen.jpg"]
+image::gui-prototype/nachkaufen.jpg[Nachkaufformular, 450, title="Sobald die Artikelanzahl unter ein Limit fällt, kann hier neue Ware aus einer Auswahl von Händlern nachbestellt werden." link="images/gui-prototype/nachkaufen.jpg"]
 
 [caption="Nutzerprofil: "]
 [.left]
-image::gui-prototype/nutzerprofil.jpg[Nutzerprofil, 450, title=Beschreibung, link="images/gui-prototype/nutzerprofil.jpg"]
+image::gui-prototype/nutzerprofil.jpg[Nutzerprofil, 450, title="Gibt Kunden die Möglichkeit, ihre eigenen Daten selbstständig abzuändern.", link="images/gui-prototype/nutzerprofil.jpg"]
 
 [caption="Produktdetails: "]
 [.left]
-image::gui-prototype/produktdetails.jpg[Produktdetails, 450, title=Beschreibung, link="images/gui-prototype/produktdetails.jpg"]
+image::gui-prototype/produktdetails.jpg[Produktdetails, 450, title="Einzelne Produktseite mit Beschreibung, Bestandsanzeige, Bestellmöglichkeit und Produktbild.", link="images/gui-prototype/produktdetails.jpg"]
 
 [caption="Registrierungsformular: "]
 [.left]
-image::gui-prototype/registrieren.jpg[Registrierungsformular, 450, title=Beschreibung, link="images/gui-prototype/registrieren.jpg"]
+image::gui-prototype/registrieren.jpg[Registrierungsformular, 450, title="Formular, mithilfe dessen sich Privatkunden direkt bei CompuTech registrieren können." link="images/gui-prototype/registrieren.jpg"]
 
 [caption="Warenkorb: "]
-image::gui-prototype/warenkorb.jpg[Warenkorb, 450, title=Beschreibung, link="images/gui-prototype/warenkorb.jpg"]
-
-
-
+image::gui-prototype/warenkorb.jpg[Warenkorb, 450, title="Auflistung einzelner Bestellposten, die seperat wieder entfernt werden können.", link="images/gui-prototype/warenkorb.jpg"]
 
 === Überblick: Dialoglandkarte
 Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird. Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
