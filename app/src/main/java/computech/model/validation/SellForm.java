@@ -17,6 +17,9 @@ public class SellForm {
 	@NotEmpty(message = "Sie müssen eine Beschreibung für Ihren Artikel angeben.")
 	private String description;
 	
+	@NotEmpty(message = "Sie müssen den Zustand von Ihren Artikel angeben.")
+	private String condition;
+	
 	public ArticleType getArticleType() {
 		return articleType;
 	}
@@ -39,6 +42,14 @@ public class SellForm {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getCondition() {
+		return condition;
+	}
+	
+	public void setCondition(String condition) {
+		this.condition = condition;
 	}
 
 }

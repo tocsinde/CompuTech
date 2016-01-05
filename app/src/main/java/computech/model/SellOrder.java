@@ -31,14 +31,16 @@ public class SellOrder{
 	private ArticleType articletype;
 	private Article article;
 	private String description;
+	private String condition;
 	
 	@ManyToOne private Customer customer;
 	
-	public SellOrder(Customer customer, ArticleType articletype, Article article, String description){ 
+	public SellOrder(Customer customer, ArticleType articletype, Article article, String description, String condition){ 
 	   this.customer = customer;
 	   this.articletype = articletype;
 	   this.article = article;
 	   this.description = description;
+	   this.condition = condition;
    }
 	
 	public ArticleType getArticletype() {
@@ -56,6 +58,10 @@ public class SellOrder{
 	public Customer getCustomer() {
 		return customer;
 	}	
+	
+	public String getCondition() {
+		return condition;
+	}
 
 }
 	

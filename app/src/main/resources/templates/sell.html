@@ -15,7 +15,7 @@
 
 
 		<div class="sell">
-			<div class="salespoint" sec:authorize="hasRole('ROLE_PCUSTOMER')">
+			<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE', 'ROLE_PCUSTOMER')">
 				<form method="post" th:action="@{/sell/}" th:object="${sellForm}">
 					<div th:if="${#fields.hasErrors('*')}">
 						<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
@@ -25,15 +25,22 @@
 					</div><br />
 					<label for="articleType">Artikelart</label><br />
 					<select id="articleType" name="articleType" th:field="*{articleType}" onchange="window.location = '../sell/' + this.value;">
-							
-						<option th:each=" articleType : ${articletypes}" th:text="${articleType.toString()}" th:value="${articleType}" th:selected="${selectedType == articleType}" th:errorclass="fieldError"></option>
+						
+						<option th:each=" articleType : ${articletypes}" th:text="${articleType.toString()}" th:value="${articleType}" th:selected="${selectedarticleType == articleType}" th:errorclass="fieldError"></option>
 						
 					</select><br /><br />
 					<label for="article">Artikel</label><br />
 					<select id="article" name="article" th:field="*{article}">
 							
-						<option th:each="article: ${articles}" th:text="${article.model}" th:value="${article}" th:errorclass="fieldError"></option>
+						<option th:each="article: ${articles}" th:text="${article.name}" th:value="${article}" th:errorclass="fieldError"></option>
 						
+					</select><br /><br />
+					<label for ="condition">Zustand</label><br />
+					<select id="condition" name="condition" th:field="*{condition}">
+						<option th:value="${condition}" th:errorclass="fieldError">Neuwertig (~80% Originalpreis)</option>
+						<option th:value="${condition}" th:errorclass="fieldError">Gebrauchsspuren (~55% Originalpreis)</option>
+						<option th:value="${condition}" th:errorclass="fieldError">schlechter Zustand (~15% Originalpreis)</option>
+					
 					</select><br /><br />
 					<label for="description">Beschreibung</label><br />
 					<textarea id="description" name="description" cols="40" rows="5" th:field="*{description}" th:value="${description}" th:errorclass="fieldError"></textarea><br />
