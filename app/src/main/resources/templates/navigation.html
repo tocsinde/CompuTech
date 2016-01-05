@@ -21,7 +21,7 @@
 			<li sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')"><a th:href="@{/sellorders}" href="sellorders.html">Ankaufstelle</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BCUSTOMER')"><a th:href="@{/profile}" href="profile.html">Profil</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BOSS')"><a th:href="@{/support}" href="support.html">Support</a></li>
-			<li sec:authorize="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')"><a th:href="@{/support_list}" href="support_list.html">Support_list</a></li>
+			<li sec:authorize="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')"><a th:href="@{/support_list}" href="support_list.html">Supportanfragen</a></li>
 
 			<li><a th:href="@{/shop}" href="shopoverview.html">Shop</a></li>
 			<li><a th:href="@{/cart}" href="cart.html">Warenkorb</a></li>

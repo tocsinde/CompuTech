@@ -1,22 +1,21 @@
 package computech.model.validation;
 
+import computech.model.Article;
 import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Anna on 08.12.2015.
  */
 public class ReparationForm {
 
-        @NotEmpty(message = "Der Article darf nicht leer sein.")
-        private String article;
+        @NotNull(message = "Der Article darf nicht leer sein.")
+        private Article article;
 
         @NotEmpty(message = "Der Description darf nicht leer sein.")
         private String description;
 
-        @NotEmpty(message = "Die Model darf nicht leer sein.")
-        private String model;
-
-    public void setArticle(String article) {
+    public void setArticle(Article article) {
         this.article = article;
     }
 
@@ -24,11 +23,11 @@ public class ReparationForm {
         this.description = description;
     }
 
-    public void setModel(String model) {
+    /*public void setModel(String model) {
         this.model = model;
-    }
+    } */
 
-    public String getArticle() {
+    public Article getArticle() {
 
         return article;
     }
@@ -37,7 +36,7 @@ public class ReparationForm {
         return description;
     }
 
-    public String getModel() {
+    /* public String getModel() {
         return model;
-    }
+    } */
 }
