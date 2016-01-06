@@ -5,11 +5,11 @@
 
 == CompuTech
 
-__Version:__    *0.2*
+__Version:__    *0.3*
 
 __Status:__     *In Arbeit*
 
-__Stand:__      *08.12.15*
+__Stand:__      *06.01.16*
 
 == Zusammenfassung
 Dieses Pflichtenheft beinhaltet ausschließlich den fachlichen Teil, der von dem Team um die IT-Dienstleister CompuTech, entwickelt wurde.
@@ -108,6 +108,8 @@ K030 - Geschäftskunde kann sein Passwort ändern
 
 == GUI-Prototyp
 
+=== Analoge Mockups
+
 [caption="Startseite: "]
 [.left]
 image::gui-prototype/startseite.jpg[Startseite, 450, title="Kurze Vorstellung von CompuTech.", link="images/gui-prototype/startseite.jpg"]
@@ -162,6 +164,13 @@ image::gui-prototype/registrieren.jpg[Registrierungsformular, 450, title="Formul
 
 [caption="Warenkorb: "]
 image::gui-prototype/warenkorb.jpg[Warenkorb, 450, title="Auflistung einzelner Bestellposten, die seperat wieder entfernt werden können.", link="images/gui-prototype/warenkorb.jpg"]
+
+=== Digitale Mockups
+
+[caption="Registrierungsformular: "]
+image::gui-prototype/form-register-2015-11-24.png[Registrierungsformular, 450, title="Mit diesem SVG-Mockup vom 24.11.15 wurden das Logo, Formularelemente, der Navigationsbereich und das allgemeine Layout festgelegt.", link="images/gui-prototype/form-register-2015-11-24.png"]
+
+
 
 === Überblick: Dialoglandkarte
 Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird. Die nachfolgende Abbildung zeigt eine an die Pinnwand gezeichnete Dialoglandkarte. Ihre Karte sollte zusätzlich die Buttons/Funktionen darstellen, mit deren Hilfe Sie zwischen den Masken navigieren.
