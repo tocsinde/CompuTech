@@ -20,19 +20,22 @@
 					<table>
 					<thead>
 						<tr>
-							<th>Datum</th>
+							<!-- Datumsangabe müssten wir seperat abspeichern, so wie bei normalen Bestellungen geht es hier leider noch nicht. (Stephan) -->
+							<!-- <th>Datum</th> -->
 							<th>Kunde</th>
 							<th>Artikeltyp</th>
 							<th>Artikel</th>
+							<th>Zustand</th>
 							<th>Beschreibung</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="sell : ${sells} ">
-							<td th:text="${#temporals.format(order.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>
-							<td th:text="${sell.userAccount.identifier}"></td>
-							<td th:text="${sell.computertype}"></td>
-							<td th:text="${sell.computer}"></td>
+						<tr th:each="sell : ${sellCompleted} ">
+							<!-- <td th:text="${#temporals.format(sell.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>-->
+							<td th:text="${sell.customer.userAccount.identifier}"></td>
+							<td th:text="${sell.articleType}"></td>
+							<td th:text="${sell.article.name}"></td>
+							<td th:text="${sell.condition}"></td>
 							<td th:text="${sell.description}"></td>
 						</tr>
 				</tbody>

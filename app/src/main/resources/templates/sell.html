@@ -24,22 +24,22 @@
 						</ul>
 					</div><br />
 					<label for="articleType">Artikelart</label><br />
-					<select id="articleType" name="articleType" th:field="*{articleType}" onchange="window.location = '../sell/' + this.value;">
-						
-						<option th:each=" articleType : ${articletypes}" th:text="${articleType.toString()}" th:value="${articleType}" th:selected="${selectedarticleType == articleType}" th:errorclass="fieldError"></option>
+					<select id="articleType" name="articleType" onchange="window.location = '../sell/' + this.value;">
+						<option></option>
+						<option th:each=" articleType : ${articletypes}" th:text="${articleType.toString()}" th:selected="${selectedarticleType == articleType}"></option>
 						
 					</select><br /><br />
 					<label for="article">Artikel</label><br />
 					<select id="article" name="article" th:field="*{article}">
-							
-						<option th:each="article: ${articles}" th:text="${article.name}" th:value="${article}" th:errorclass="fieldError"></option>
+
+						<option th:each="article: ${articles}" th:text="${article.name}" th:value="${article.identifier}" th:errorclass="fieldError"></option>
 						
 					</select><br /><br />
 					<label for ="condition">Zustand</label><br />
-					<select id="condition" name="condition" th:field="*{condition}">
-						<option th:value="${condition}" th:errorclass="fieldError">Neuwertig (~80% Originalpreis)</option>
-						<option th:value="${condition}" th:errorclass="fieldError">Gebrauchsspuren (~55% Originalpreis)</option>
-						<option th:value="${condition}" th:errorclass="fieldError">schlechter Zustand (~15% Originalpreis)</option>
+					<select id="condition" name="condition" th:errorclass="fieldError">
+						<option value="80"> Neuwertig (~80% Originalpreis)</option>
+						<option value="55">Gebrauchsspuren (~55% Originalpreis)</option>
+						<option value="15">schlechter Zustand (~15% Originalpreis)</option>
 					
 					</select><br /><br />
 					<label for="description">Beschreibung</label><br />
