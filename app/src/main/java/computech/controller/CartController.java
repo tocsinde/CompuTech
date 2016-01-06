@@ -103,8 +103,6 @@ class CartController {
     }
     @RequestMapping(value = "/cart2", method = RequestMethod.POST)
     public String addcomp(@RequestParam("pid") Computer article,
-                          //@RequestParam("pro") Part pro, @RequestParam("gra") Part gra,
-                          //@RequestParam("hdd") Part hdd, @RequestParam("ram") Part ram,
                           @RequestParam("number") int number, @ModelAttribute Cart cart, Model model) {
 
         Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
@@ -122,7 +120,15 @@ class CartController {
 
 
         cart.addOrUpdateItem(article, Quantity.of(amount));
+        cart.addOrUpdateItem( article.getProzessor().get(0), Quantity.of(amount));
+        cart.addOrUpdateItem( article.getGraka().get(0), Quantity.of(amount));
+        cart.addOrUpdateItem( article.getHdd().get(0), Quantity.of(amount));
+        cart.addOrUpdateItem( article.getRam().get(0), Quantity.of(amount));
 
+        article.getGraka().clear();
+        article.getHdd().clear();
+        article.getProzessor().clear();
+        article.getRam().clear();
 
 
                 return "redirect:allinone";

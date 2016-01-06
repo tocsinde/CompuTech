@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.money.CurrencyUnit;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,6 +84,7 @@ class CatalogController {
 		model.addAttribute("catalog", allinoneCatalog.findAll());
 
 
+
 		return "allinone";
 	}
 
@@ -125,13 +128,15 @@ class CatalogController {
 
 	@RequestMapping("/compudetail/{pid}")
 	public String compudetail(@PathVariable("pid") Computer article, Model model, Part part) {
-		String i = "EUR 0.00";
+		Money i = article.getPrice();
+		article.getProzessor().clear();
+		article.getRam().clear();
+		article.getHdd().clear();
+		article.getGraka().clear();
+
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
-		model.addAttribute("r", i);
-		model.addAttribute("p", i);
-		model.addAttribute("g", i);
-		model.addAttribute("h", i);
+		model.addAttribute("gesamtpreis", i);
 		model.addAttribute("processor", partsCatalog.findByType(Part.PartType.PROCESSOR));
 		model.addAttribute("graphic", partsCatalog.findByType(Part.PartType.GRAPHC));
 		model.addAttribute("harddrive", partsCatalog.findByType(Part.PartType.HARDD));
@@ -147,71 +152,47 @@ class CatalogController {
 	public String changeprocessor(@RequestParam("part") Part part, @RequestParam("pid") Computer article, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 		Optional<InventoryItem> processor = partsinventory.findByProductIdentifier(part.getIdentifier());
-		String i = "EUR 0.00";
+		Money i = article.getPrice();
+		BigDecimal b = new BigDecimal(0.00);
+		 CurrencyUnit c =  i.getCurrency();
+		Money p = Money.of(b,c);
+		Money g = Money.of(b,c);
+		Money h = Money.of(b,c);
+		Money r = Money.of(b,c);
+
+		if (article.getProzessor().isEmpty() != true ) {p = article.getProzessor().get(0).getPrice();}
+		if (article.getGraka().isEmpty() != true ) {g = article.getGraka().get(0).getPrice();}
+		if (article.getHdd().isEmpty() != true ) {h = article.getHdd().get(0).getPrice();}
+		if (article.getRam().isEmpty() != true ) {r = article.getRam().get(0).getPrice();}
+
 
 		if (part.getType()==Part.PartType.PROCESSOR){
 					article.getProzessor().clear();
 					article.setProzessor(part);
+					p = article.getProzessor().get(0).getPrice();
 
 				}
 		if (part.getType()==Part.PartType.GRAPHC){
 					article.getGraka().clear();
 					article.setGraka(part);
+			g = article.getGraka().get(0).getPrice();
 				}
 		if (part.getType()==Part.PartType.HARDD){
 					article.getHdd().clear();
 					article.setHdd(part);
+			h = article.getHdd().get(0).getPrice();
 		}
 		if (part.getType()==Part.PartType.RAM){
 					article.getRam().clear();
 					article.setRam(part);
+			r = article.getRam().get(0).getPrice();
 				}
-
+		Money gesamt = i.add(p.add(g.add(h.add(r))));
 		allinoneCatalog.save(article);
 		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
-		if (article.getProzessor().size() ==1){
-		List<Part> p = article.getProzessor();
-		Part prozessor = p.get(0);
-			modelMap.addAttribute("p", prozessor.getPrice());
 
-		}
-		else{
-			modelMap.addAttribute("p",i);
-		}
-		if (article.getGraka().size() ==1){
-			List<Part> p = article.getGraka();
-			Part graka = p.get(0);
-			modelMap.addAttribute("g", graka.getPrice());
 
-		}
-		else{
-			modelMap.addAttribute("g",i);
-
-		}
-		if (article.getHdd().size() ==1){
-			List<Part> p = article.getHdd();
-			Part hdd = p.get(0);
-			modelMap.addAttribute("h", hdd.getPrice());
-
-		}
-		else{
-			modelMap.addAttribute("h",i);
-
-		}if (article.getRam().size() ==1){
-			List<Part> p = article.getRam();
-			Part ram = p.get(0);
-			modelMap.addAttribute("r", ram.getPrice());
-
-		}
-		else{
-			modelMap.addAttribute("r",i);
-
-		}
-
-		modelMap.addAttribute("gotpro",article.getProzessor().size() ==1);
-		modelMap.addAttribute("gotgra",article.getGraka().size() ==1);
-		modelMap.addAttribute("gotram",article.getHdd().size() ==1);
-		modelMap.addAttribute("gothdd",article.getRam().size() ==1);
+		modelMap.addAttribute("gesamtpreis",gesamt);
 		modelMap.addAttribute("article", article);
 		modelMap.addAttribute("id", article.getId());
 

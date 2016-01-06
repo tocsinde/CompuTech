@@ -21,6 +21,7 @@
 	<h2 th:text="${article.name}"></h2>
 	<p th:inline="text"><strong>Modell:</strong> [[${article.model}]]</p>
 	<p th:inline="text"><strong>Grundpreis:</strong> [[${article.price}]]</p>
+	<p th:inline="text"><strong>Gesamtpreis:</strong> [[${gesamtpreis}]]</p>
 </div>
 <form method="post" action="/cart2" th:if="${orderable}" class="article_buy" >
 
@@ -30,6 +31,7 @@
 	<input id="number" type="number" name="number" min="1" th:max="${quantity}" step="1" value="1" /><br/><br/>
 
 	<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
+
 	<input type="submit" value="Zum Warenkorb hinzufügen" />
 </form>
 

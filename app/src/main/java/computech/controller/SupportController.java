@@ -33,7 +33,7 @@ public class SupportController {
     private final SellRepository sellRepository;
 
     @Autowired
-    public SupportController(CustomerRepository customerRepository, ComputerCatalog computerCatalog, RepairRepository repairRepository, SellRepository sellRepository){
+    public SupportController(CustomerRepository customerRepository, ComputerCatalog computerCatalog, RepairRepository repairRepository, SellRepository sellRepository) {
 
         Assert.notNull(customerRepository, "CustomerRepository must not be null!");
         Assert.notNull(computerCatalog, "ComputerCatalog must not be null!");
@@ -47,38 +47,36 @@ public class SupportController {
     }
 
     @RequestMapping(value = "/support")
-    public String showSupportFormular(ModelMap modelMap){
+    public String showSupportFormular(ModelMap modelMap) {
 
-            modelMap.addAttribute("types", Article.ArticleType.values());
+        modelMap.addAttribute("types", Article.ArticleType.values());
 
         for (Article.ArticleType type : Article.ArticleType.values()) {
             modelMap.addAttribute(type.toString(), computerCatalog.findByType(type));
         }
 
 
-      //  modelMap.addAttribute("catalog", computerCatalog.findByType());
-      //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
-
+        //  modelMap.addAttribute("catalog", computerCatalog.findByType());
+        //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
 
 
         System.out.println(1);
         return "support";
-}
+    }
 
     @RequestMapping(value = "/support/{type}")
 
-    public String showSupportFormular(@PathVariable("type") Article.ArticleType articleType, ModelMap modelMap){
+    public String showSupportFormular(@PathVariable("type") Article.ArticleType articleType, ModelMap modelMap) {
 
         modelMap.addAttribute("types", Article.ArticleType.values());
         modelMap.addAttribute("selectedType", articleType);
 
 
-            modelMap.addAttribute("articles", computerCatalog.findByType(articleType));
+        modelMap.addAttribute("articles", computerCatalog.findByType(articleType));
 
         //  modelMap.addAttribute("catalog", computerCatalog.findByType());
         //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
         System.out.println(12);
-
 
 
         return "support";
@@ -91,11 +89,11 @@ public class SupportController {
                                 BindingResult result,
                                 @LoggedIn Optional<UserAccount> userAccount,
                                 @RequestParam("article") Article article,
-                                @RequestParam("description") String description){
+                                @RequestParam("description") String description) {
         modelMap.addAttribute("article", article);
         modelMap.addAttribute("description", description);
         Customer customer = customerRepository.findByUserAccount(userAccount.get());
-        modelMap.addAttribute("customer",customer);
+        modelMap.addAttribute("customer", customer);
         Reparation rep = new Reparation(customer, article, description);
 
         repairRepository.save(rep);
@@ -123,7 +121,7 @@ public class SupportController {
 
     @RequestMapping(value = "/support_price_offer")
     public String showPriceOffers(ModelMap modelMap,
-                                  @LoggedIn Optional<UserAccount> userAccount){
+                                  @LoggedIn Optional<UserAccount> userAccount) {
 
         Customer customer = customerRepository.findByUserAccount(userAccount.get());
 
@@ -157,7 +155,7 @@ public class SupportController {
 
         if (acceptFlag != null) {
             System.out.print("2");
-            sellRepository.save(new SellOrder(customer, reparation.getArticle().getType(), reparation.getArticle(), reparation.getDescription()));
+            sellRepository.save(new SellOrder(customer, reparation.getArticle().getType(), reparation.getArticle(), reparation.getDescription(),"jj"));
             repairRepository.delete(reparationId);
         } else if (denyFlag != null) {
             repairRepository.delete(reparationId);
