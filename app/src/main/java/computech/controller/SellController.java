@@ -30,8 +30,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@PreAuthorize("hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BOSS', 'ROLE_EMPLOYEE')")
-//@SessionAttributes("sell")
+@PreAuthorize("hasAnyRole('ROLE_PCUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_BOSS')")
+@SessionAttributes("sell")
 public class SellController {
 	
 	private final ComputerCatalog computerCatalog;
@@ -58,11 +58,6 @@ public class SellController {
             modelMap.addAttribute(articleType.toString(), computerCatalog.findByType(articleType));
         }
         
-        //    modelMap.addAttribute("articletypes", Article.ArticleType.values());
-
-        
-        //    	modelMap.addAttribute("articles", computerCatalog.findByType(articletype));
-        
         return "sell";
 	}
 	
@@ -75,31 +70,28 @@ public class SellController {
 		
 		modelMap.addAttribute("sellForm", new SellForm());
         modelMap.addAttribute("articletypes", Article.ArticleType.values());
-        modelMap.addAttribute("selectedType", articleType);
-
-
+        modelMap.addAttribute("selectedarticleType", articleType);
         modelMap.addAttribute("articles", computerCatalog.findByType(articleType));
-
-        System.out.println(customerRepository.count());
-        System.out.println("Get Method");
-        //  modelMap.addAttribute("catalog", computerCatalog.findByType());
-        //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
 
         return "sell";
     }
 		
 	@RequestMapping(value = "/sell", method = RequestMethod.POST)
-	private String addtoResell(@ModelAttribute("sellForm") @Valid SellForm sellForm, BindingResult result,  @LoggedIn Optional<UserAccount> userAccount, ModelMap modelmap) {
+	public String addtoResell(@ModelAttribute("sellForm") @Valid SellForm sellForm, BindingResult result,  @LoggedIn Optional<UserAccount> userAccount, ModelMap modelmap) {
 		
-		System.out.println(customerRepository.count());
-		/*Customer customer = customerRepository.findByUserAccount(userAccount.get());
+		modelmap.addAttribute("articletypes", Article.ArticleType.values());
+		for (Article.ArticleType articleType : Article.ArticleType.values()) {
+			 modelmap.addAttribute(articleType.toString(), computerCatalog.findByType(articleType));
+		}
 		
 		if (result.hasErrors()) {
 			return "sell";
 		}
-	
-		SellOrder sellorder = new SellOrder(customer, sellForm.getArticleType(), sellForm.getArticle(), sellForm.getDescription());
-		sellRepository.save(sellorder); */
+		
+		Customer customer = customerRepository.findByUserAccount(userAccount.get());
+		modelmap.addAttribute("customer",customer);
+		SellOrder sellorder = new SellOrder(customer, sellForm.getArticleType(), sellForm.getArticle(), sellForm.getDescription(), sellForm.getCondition());
+		sellRepository.save(sellorder); 
 		
 			return "redirect:/";
 	}
@@ -124,23 +116,4 @@ public class SellController {
 				return "redirect:/zubeCatalog";
 		} 
 	}  */
-
-	/*@RequestMapping(value = "/sellout", method = RequestMethod.POST)
-	public String sendrequest(@ModelAttribute Cart sell, @LoggedIn Optional<UserAccount> userAccount) {
-
-		return userAccount.map(account -> {
-
-			Order sellorder = new Order(account, Cash.CASH);
-			
-			sell.addItemsTo(sellorder);
-
-			sellManager.payOrder(sellorder);
-			sellManager.completeOrder(sellorder);
-
-			sell.clear();
-
-			return "redirect:/";
-		}).orElse("redirect:/sell");
-	} */
-
 }
