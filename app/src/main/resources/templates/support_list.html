@@ -11,17 +11,20 @@
 <header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
 
-<h1>Support - List of the Reparations</h1>
+<h1>Support - Liste der Anfragen</h1>
 
 
 	<table>
 
-		<tr th:each="reparation: ${reparations}">
-			<td>Reparation <div th:text="${reparation.description}"></div></td>
+		<tr>
+			<th>Kunde</th>
+			<th>Artikel</th>
+			<th>Beschreibung</th>
+			<th></th>
 		</tr>
 
 		<tr th:each="reparation: ${reparations}">
-			<td th:text="${reparation.customer.getFirstname()} + ' ' + ${reparation.customer.getLastname()}">Iwan Wasiljewitsch</td>
+			<td th:inline="text">[[${reparation.customer.firstname}]] [[${reparation.customer.lastname}]] <!-- Iwan Wasiljewitsch --></td>
 			<td th:text="${reparation.article}">Samsung</td>
 			<td th:text="${reparation.description}">very good</td>
 			<td><form method="post" action="/support_list">
