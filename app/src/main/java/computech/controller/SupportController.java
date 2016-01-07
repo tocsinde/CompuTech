@@ -49,6 +49,8 @@ public class SupportController {
     @RequestMapping(value = "/support")
     public String showSupportFormular(ModelMap modelMap) {
 
+        modelMap.addAttribute("reparationForm", new ReparationForm());
+
         modelMap.addAttribute("types", Article.ArticleType.values());
 
         for (Article.ArticleType type : Article.ArticleType.values()) {
@@ -68,6 +70,7 @@ public class SupportController {
 
     public String showSupportFormular(@PathVariable("type") Article.ArticleType articleType, ModelMap modelMap) {
 
+        modelMap.addAttribute("reparationForm", new ReparationForm());
         modelMap.addAttribute("types", Article.ArticleType.values());
         modelMap.addAttribute("selectedType", articleType);
 
@@ -84,17 +87,23 @@ public class SupportController {
 
 
     @RequestMapping(value = "/support", method = RequestMethod.POST)
-    public String specification(ModelMap modelMap,
-                                @ModelAttribute("ReparationForm") @Valid ReparationForm reparationForm,
-                                BindingResult result,
-                                @LoggedIn Optional<UserAccount> userAccount,
-                                @RequestParam("article") Article article,
-                                @RequestParam("description") String description) {
-        modelMap.addAttribute("article", article);
-        modelMap.addAttribute("description", description);
+    public String specification(ModelMap modelMap, @ModelAttribute("reparationForm") @Valid ReparationForm reparationForm, BindingResult result, @LoggedIn Optional<UserAccount> userAccount){
+
+        modelMap.addAttribute("types", Article.ArticleType.values());
+
+        for (Article.ArticleType type : Article.ArticleType.values()) {
+            modelMap.addAttribute(type.toString(), computerCatalog.findByType(type));
+        }
+
+        if(result.hasErrors()){
+            return "support";
+        }
+
+        modelMap.addAttribute("article", reparationForm.getArticle());
+        modelMap.addAttribute("description", reparationForm.getDescription());
         Customer customer = customerRepository.findByUserAccount(userAccount.get());
         modelMap.addAttribute("customer", customer);
-        Reparation rep = new Reparation(customer, article, description);
+        Reparation rep = new Reparation(customer, reparationForm.getArticle(), reparationForm.getDescription());
 
         repairRepository.save(rep);
 
