@@ -12,7 +12,10 @@
 
 package computech.model.validation;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Pattern;
 
 public class profileEditForm {
 
@@ -26,9 +29,11 @@ public class profileEditForm {
 	private String address;
 
 	@NotEmpty(message = "Die E-Mail-Adresse darf nicht leer sein.")
+	@Email(message = "Die E-Mail-Adresse ist ungültig.")
 	private String mail;
 
 	@NotEmpty(message = "Die Telefonnummer darf nicht leer sein.")
+	@Pattern(regexp="^(\\d+|\\ |\\-|\\(|\\)|\\/)+$", message = "Die Telefonnummer ist ungültig.")
 	private String phone;
 
 	private String password;

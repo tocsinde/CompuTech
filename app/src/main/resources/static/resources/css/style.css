@@ -198,3 +198,16 @@ fieldset input, fieldset select {
 	padding:30px 40px 30px 40px;
 	background:#f2f2f2;
 }
+
+
+.success {
+    background:#cdde87;
+    color:#677821;
+    padding:8px;
+}
+
+.failure {
+    background:#d35f5f;
+    color:#782121;
+    padding:8px;
+}

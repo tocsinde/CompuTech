@@ -12,15 +12,18 @@
 
 package computech.model.validation;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.UserAccountIdentifier;
 import org.springframework.data.annotation.Transient;
 
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Pattern;
 
 public class RegistrationForm {
 
+	@Pattern(regexp="^[a-z|A-Z|\\d]*$", message = "Der Nickname ist ungültig (keine Sonderzeichen erlaubt).")
 	@NotEmpty(message = "Der Nickname darf nicht leer sein.")
 	private String nickname;
 
@@ -44,9 +47,10 @@ public class RegistrationForm {
 	private String address;
 
 	@NotEmpty(message = "Die E-Mail-Adresse darf nicht leer sein.")
+	@Email(message = "Die E-Mail-Adresse ist ungültig.")
 	private String mail;
 
-	@NotEmpty(message = "Die Telefonnummer darf nicht leer sein.")
+	@Pattern(regexp="^(\\d+|\\ |\\-|\\(|\\)|\\/)+$", message = "Die Telefonnummer ist ungültig bzw. leer.")
 	private String phone;
 
 	private String role;
