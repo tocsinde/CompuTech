@@ -16,11 +16,16 @@
 package computech;
 
 import computech.Application;
+import computech.controller.Catalogcontrollercontext;
+import computech.model.ComputerCatalog;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.salespointframework.inventory.InventoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.security.web.FilterChainProxy;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -32,17 +37,22 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@SpringApplicationConfiguration(classes = Application.class)
+
+@SpringApplicationConfiguration(classes = {Application.class,Catalogcontrollercontext.class})
 public abstract class AbstractWebIntegrationTests {
 
 	@Autowired WebApplicationContext context;
 	@Autowired FilterChainProxy securityFilterChain;
-
+	@Autowired
+	protected ComputerCatalog computerCatalogmock;
+	@Autowired
+	protected InventoryItem inventoryItemmock;
 	protected MockMvc mvc;
 
 	@Before
 	public void setUp() {
-
+		Mockito.reset(computerCatalogmock);
+		Mockito.reset(inventoryItemmock);
 		context.getServletContext().setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, context);
 
 		mvc = MockMvcBuilders.webAppContextSetup(context).//
