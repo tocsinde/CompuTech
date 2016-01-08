@@ -13,6 +13,10 @@
 
 <h1>Mitarbeiter</h1>
 
+<th:block th:if="${success != null}">
+	<p class="success" th:text="${success}"></p>
+</th:block>
+
 <a href="/registeremployee" class="button">Mitarbeiter hinzufügen</a>
 
 		<h2>Freigeschaltete Mitarbeiter</h2>

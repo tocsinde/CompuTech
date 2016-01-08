@@ -14,9 +14,12 @@ package computech.model.validation;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.Pattern;
+
 public class registerEmployeeForm {
 
 
+	@Pattern(regexp="^[a-z|A-Z|\\d]*$", message = "Der Nickname ist ungültig (keine Sonderzeichen erlaubt).")
 	@NotEmpty(message = "Der Nickname darf nicht leer sein.")
 	private String nickname;
 

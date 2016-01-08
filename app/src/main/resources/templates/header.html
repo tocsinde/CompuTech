@@ -3,12 +3,12 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
 </head>
 <body>
 <header th:fragment="header">
 
-    <a href="/"><img src="../resources/img/logo.png" alt="CompuTech" title="CompuTech" /></a>
+    <a href="/"><img th:src="@{'/resources/img/logo.png'}" alt="CompuTech" title="CompuTech" /></a>
 
     <ul>
         <li sec:authorize="!hasAnyRole('ROLE_BOSS','ROLE_PCUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_BCUSTOMER')"><a th:href="@{/register}" href="register.html">Registrierung</a></li>

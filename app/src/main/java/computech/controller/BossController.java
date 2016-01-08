@@ -57,6 +57,7 @@ import javax.management.relation.RoleStatus;
 import javax.validation.Valid;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 class BossController {
@@ -193,8 +194,10 @@ class BossController {
      */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/disable/{userAccountIdentifier}", method = RequestMethod.POST)
-	public String disableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier) {
+	public String disableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier, RedirectAttributes success) {
 		userAccountManager.disable(userAccountIdentifier);
+		success.addFlashAttribute("success", "Der Mitarbeiter wurde erfolgreich deaktiviert.");
+
 		return "redirect:/employees";
 	}
 
@@ -205,8 +208,10 @@ class BossController {
      */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/enable/{userAccountIdentifier}", method = RequestMethod.POST)
-	public String enableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier) {
+	public String enableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier, RedirectAttributes success) {
 		userAccountManager.enable(userAccountIdentifier);
+		success.addFlashAttribute("success", "Der Mitarbeiter wurde erfolgreich freigeschaltet.");
+
 		return "redirect:/employees";
 	}
 
@@ -236,12 +241,14 @@ class BossController {
      */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/edit/{useraccount}", method = RequestMethod.POST)
-	public String saveEmployee(@PathVariable UserAccount useraccount, Model model, @ModelAttribute("employeeEditForm") @Valid employeeEditForm employeeEditForm, BindingResult result) {
+	public String saveEmployee(@PathVariable UserAccount useraccount, Model model, @ModelAttribute("employeeEditForm") @Valid employeeEditForm employeeEditForm, BindingResult result, RedirectAttributes success) {
 
 		if(employeeEditForm.getPassword() != "") {
 			//UserAccount user_found = (User) userAccountManager.get(userAccountIdentifier);
 			userAccountManager.changePassword(useraccount, employeeEditForm.getPassword());
 		}
+
+		success.addFlashAttribute("success", "Der Mitarbeiter wurde erfolgreich bearbeitet.");
 
 		return "redirect:/employees";
 	}
@@ -266,13 +273,16 @@ class BossController {
      */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value="/registeremployee", method = RequestMethod.POST)
-	public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid registerEmployeeForm registerEmployeeForm, BindingResult result) {
+	public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid registerEmployeeForm registerEmployeeForm, BindingResult result, RedirectAttributes success) {
 		if (result.hasErrors()) {
 			return "registerEmployee";
 		}
 
+		success.addFlashAttribute("success", "Der Mitarbeiter " + registerEmployeeForm.getNickname() + " wurde erfolgreich erstellt.");
+
 		UserAccount employee = userAccountManager.create(registerEmployeeForm.getNickname(), registerEmployeeForm.getPassword(), Role.of("ROLE_EMPLOYEE"));
 		userAccountManager.save(employee);
+
 
 		return "redirect:/employees";
 	}
