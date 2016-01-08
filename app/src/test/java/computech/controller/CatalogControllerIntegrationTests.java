@@ -106,12 +106,12 @@ public class CatalogControllerIntegrationTests extends WebIntegrationcontextCata
 		assertThat(object, is(iterableWithSize(2)));
 	}
 	@Test
-	public void detailIntegraitiontest() throws Exception{
+	public void detailIntegrationTest() throws Exception{
 		Model model = new ExtendedModelMap();
-		ProductIdentifier id = invetoryItemmock.getProduct().getId(); // mit mockito
+		ProductIdentifier id = inventoryItemmock.getProduct().getId(); // mit mockito
 		Article article = (Article) model.asMap().get("article"); //ohne Mockito
 
-		mvc.perform(get("/detail{pid", id));
+		mvc.perform(get("/detail{id}", id));
 
 	}
 

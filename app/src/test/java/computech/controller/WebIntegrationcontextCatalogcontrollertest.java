@@ -24,15 +24,15 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class WebIntegrationcontextCatalogcontrollertest extends AbstractWebIntegrationTests {
     @Autowired
-    protected ComputerCatalog Computercatalogmock;
+    protected ComputerCatalog computerCatalogmock;
     @Autowired
-    protected InventoryItem invetoryItemmock;
+    protected InventoryItem inventoryItemmock;
 
     @Before
     public void setUp() {
 
-        Mockito.reset(Computercatalogmock);
-        Mockito.reset(invetoryItemmock);
+        //Mockito.reset(computerCatalogmock);
+        //Mockito.reset(inventoryItemmock);
 
     }
 }

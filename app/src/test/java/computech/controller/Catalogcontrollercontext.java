@@ -14,11 +14,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Catalogcontrollercontext {
     @Bean
-    public ComputerCatalog computercatalog(){
+    public ComputerCatalog computerCatalog(){
         return Mockito.mock(ComputerCatalog.class);
     }
     @Bean
-    public InventoryItem inventory(){
+    public InventoryItem inventoryItem(){
         return Mockito.mock(InventoryItem.class);
     }
 }
