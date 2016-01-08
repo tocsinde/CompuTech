@@ -197,7 +197,7 @@ public class KickstartDataInitializer implements DataInitializer {
 
 
 		// alle Kunden (Geschäfts- und Privatkunden) speichern
-		customerRepository.save(Arrays.asList(c1, c2, c3, c4));
+		customerRepository.save(Arrays.asList(c4, c2, c3, c1));
 	}
 
 	private void initializeReparation(RepairRepository repairRepository) {

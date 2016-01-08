@@ -2,6 +2,7 @@ package computech.controller;
 
 import computech.model.*;
 import computech.model.validation.ReparationForm;
+import org.salespointframework.order.Cart;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,6 +144,10 @@ public class SupportController {
             }
         }
 
+
+        modelMap.addAttribute("reparation" , reparationList.get(0));
+
+
         modelMap.addAttribute("reparations", reparationList);
 
         return "support_price_offer";
@@ -152,27 +157,30 @@ public class SupportController {
 
 
     @RequestMapping(value = "/support_price_offer", method = RequestMethod.POST)
-    public String onPriceOfferDecisionMade(@RequestParam(required = false, value ="accept") String acceptFlag,
-                                           @RequestParam(required = false, value ="deny") String denyFlag,
+    public String onPriceOfferDecisionMade(@RequestParam("button") String Flag,
+
                                            @RequestParam("reparationId") Long reparationId,
-                                           @LoggedIn Optional<UserAccount> userAccount){
+                                           @LoggedIn Optional<UserAccount> userAccount, ModelMap modelMap,
+                                           @ModelAttribute Cart cart)
+    {
 
         Customer customer = customerRepository.findByUserAccount(userAccount.get());
-
         Reparation reparation = repairRepository.findOne(reparationId);
-        System.out.print("1");
 
-        if (acceptFlag != null) {
-            System.out.print("2");
-            sellRepository.save(new SellOrder(customer, reparation.getArticle().getType(), reparation.getArticle(), reparation.getDescription(),"jj"));
+
+
+        if (Flag == "accept") {
+            //speichern7
+            // cart.addOrUpdateItem(reparation.getArticle(), Quantity.of(1));
+            System.out.print("!!!");
             repairRepository.delete(reparationId);
-        } else if (denyFlag != null) {
+        } else {
             repairRepository.delete(reparationId);
         }
 
 
         return "redirect:/support_price_offer";
-    }
-}
+
+    }}
 
 

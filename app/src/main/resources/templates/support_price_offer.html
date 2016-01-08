@@ -17,17 +17,18 @@
 	<table>
 
 		<tr th:each="reparation: ${reparations}">
-			<td>Reparation <div th:text="${reparation.description}"></div></td>
+					<td>Reparation <div th:text="${reparation.article.name}"></div></td>
 		</tr>
 
 		<tr th:each="reparation: ${reparations}">
-			<td th:text="${reparation.article}">Samsung</td>
+			<td th:text="${reparation.article.name}">Samsung</td>
 			<td th:text="${reparation.description}">very good</td>
-			<td th:text="${reparation.price}"/>
+			<td th:text="${reparation.article.price}"></td>
 			<td><form method="post" action="/support_price_offer">
 				<input type="hidden" name="reparationId" th:value="${reparation.id}"/>
-				<input type="submit" name="accept" class="button" value="accept" />
-				<input type="submit" name="deny" class="button" value="deny" />
+				<input type="radio" name="button" class="button" value="accept" />
+				<input type="radio" name="button" class="button" value="deny" />
+				<td><button type="submit"> Abschicken</button></td>
 			</form></td>
 		</tr>
 	</table>
