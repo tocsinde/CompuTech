@@ -14,6 +14,8 @@ package computech.controller;
 
 import computech.model.*;
 import computech.model.validation.SellForm;
+import computech.model.validation.SellanwserForm;
+import computech.model.validation.customerEditForm;
 
 import java.util.Optional;
 
@@ -24,6 +26,7 @@ import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -37,24 +40,28 @@ public class SellController {
 	private final ComputerCatalog computerCatalog;
 	private final CustomerRepository customerRepository;
 	private final SellRepository sellRepository;
+	private final SellanwserRepository sellanwserRepository;
 
 	@Autowired
-	public SellController(ComputerCatalog computerCatalog, CustomerRepository customerRepository, SellRepository sellRepository) {
+	public SellController(ComputerCatalog computerCatalog, CustomerRepository customerRepository, SellRepository sellRepository, SellanwserRepository sellanwserRepository) {
 		Assert.notNull(computerCatalog, "computerCatalog must not be null!");
 		Assert.notNull(customerRepository, "customerRepository must not be null!");
 		Assert.notNull(sellRepository, "sellRepository must not be null!");
+		Assert.notNull(sellanwserRepository, "sellanwserRepository must not be null!");
 		this.computerCatalog = computerCatalog;
 		this.customerRepository = customerRepository;
 		this.sellRepository = sellRepository;
+		this.sellanwserRepository = sellanwserRepository;
 	}
 
 	@RequestMapping(value = "/sell")
     public String showSellFormular(ModelMap modelMap){
 		
 		modelMap.addAttribute("sellForm", new SellForm());
-            modelMap.addAttribute("articletypes", Article.ArticleType.values());
+        modelMap.addAttribute("articletypes", Article.ArticleType.values());
 
         for (Article.ArticleType articleType : Article.ArticleType.values()) {
+        	
             modelMap.addAttribute(articleType.toString(), computerCatalog.findByType(articleType));
         }
         
@@ -63,10 +70,6 @@ public class SellController {
 	
 	@RequestMapping(value = "/sell/{articleType}")
     public String showSellFormular(@PathVariable("articleType") Article.ArticleType articleType,ModelMap modelMap){
-
-	/*	if (result.hasErrors()) {
-			return "sell";
-		} */
 		
 		modelMap.addAttribute("sellForm", new SellForm());
         modelMap.addAttribute("articletypes", Article.ArticleType.values());
@@ -89,31 +92,23 @@ public class SellController {
 		}
 		
 		Customer customer = customerRepository.findByUserAccount(userAccount.get());
-		modelmap.addAttribute("customer",customer);
+		modelmap.addAttribute("customer", customer);
 		SellOrder sellorder = new SellOrder(customer, sellForm.getArticleType(), sellForm.getArticle(), sellForm.getDescription(), sellForm.getCondition());
 		sellRepository.save(sellorder); 
 		
-			return "redirect:/";
+			return "sellconfirmation";
 	}
 	
-/*	@RequestMapping(value = "/sell", method = RequestMethod.POST)
-	public String addSellArticel(@RequestBody MultiValueMap body) {
+	@RequestMapping("/sellconfirmation/{id}")
+	public String getSellanwser(@PathVariable("id") Long id, Model model, ModelMap modelmap) {
+				
+		modelmap.addAttribute("sellanwserForm", new SellanwserForm());
+		Customer customer_found = customerRepository.findOne(id);
+		
+		model.addAttribute("customer", customer_found);
+		
+		
+		return "sellconfirmation";
+	}
 
-		System.out.println("###################################################################################");
-		System.out.println(body);
-
-		return "redirect:/";
-	//	addtoResell(article,description);
-
-		switch (article.getType()) {
-			case NOTEBOOK:
-				return "redirect:/notebookCatalog";
-			case COMPUTER:
-				return "redirect:/computerCatalog";
-			case SOFTWARE:
-				return "redirect:/softwareCatalog";
-			default:
-				return "redirect:/zubeCatalog";
-		} 
-	}  */
 }

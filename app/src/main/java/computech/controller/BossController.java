@@ -50,6 +50,7 @@ import computech.model.validation.customerEditForm;
 import computech.model.validation.employeeEditForm;
 import computech.model.validation.registerEmployeeForm;
 import computech.model.validation.addArticleForm;
+import computech.model.validation.SellanwserForm;
 
 import static org.salespointframework.core.Currencies.EURO;
 
@@ -67,17 +68,19 @@ class BossController {
 	private final CustomerRepository customerRepository;
 	private final UserAccountManager userAccountManager;
 	private final SellRepository sellRepository;
+	private final SellanwserRepository sellanwserRepository;
 
 
 	@Autowired
 	public BossController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory,
-						  CustomerRepository customerRepository, UserAccountManager userAccountManager, SellRepository sellRepository) {
+						  CustomerRepository customerRepository, UserAccountManager userAccountManager, SellRepository sellRepository, SellanwserRepository sellanwserRepository) {
 
 		this.orderManager = orderManager;
 		this.inventory = inventory;
 		this.customerRepository = customerRepository;
 		this.userAccountManager = userAccountManager;
 		this.sellRepository = sellRepository;
+		this.sellanwserRepository = sellanwserRepository;
 	}
 
 	/**
@@ -442,11 +445,41 @@ class BossController {
      */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/sellorders")
-	public String sell(ModelMap modelMap) {
+	public String getSellorders(ModelMap modelmap) {
 
-		modelMap.addAttribute("sellCompleted", sellRepository.findAll());
+		modelmap.addAttribute("sellCompleted", sellRepository.findAll());
 
 		return "sellorders";
+	}
+	
+	@PreAuthorize("hayAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
+	@RequestMapping(value = "/sellorder/anwser/{id}")
+	public String getsingleSellorder(@PathVariable("id") Long id, Model model, ModelMap modelmap) {
+		
+		modelmap.addAttribute("sellanwserForm", new SellanwserForm());
+		SellOrder sellorder_found = sellRepository.findOne(id);
+		Customer customer_of_sellorder = sellorder_found.getCustomer();
+		model.addAttribute("customer", customer_of_sellorder);
+		
+		return "sellorder_anwser";
+	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
+	@RequestMapping(value = "/sellorder/anwser/{id}", method = RequestMethod.POST)
+	public String sendSellanwser(@ModelAttribute("sellanwserForm") @Valid SellanwserForm sellanwserForm, @PathVariable("id") Long id, Model model, ModelMap modelmap, BindingResult result) {
+		
+		modelmap.addAttribute("sellanwserForm", new SellanwserForm());
+		SellOrder sellorder_found = sellRepository.findOne(id);
+		Customer customer_of_sellorder = sellorder_found.getCustomer();
+		model.addAttribute("customer", customer_of_sellorder);
+		
+		
+		sellanwserForm.setArticle(sellorder_found.getArticle());
+		
+		Sellanwser sellanwser = new Sellanwser(customer_of_sellorder, sellanwserForm.getArticle(), sellanwserForm.getAnwser());
+		sellanwserRepository.save(sellanwser);
+		
+		return "redirect:/sellorders";
 	}
 
 	/**

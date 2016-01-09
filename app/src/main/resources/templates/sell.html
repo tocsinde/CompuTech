@@ -16,7 +16,7 @@
 
 		<div class="sell">
 			<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE', 'ROLE_PCUSTOMER')">
-				<form method="post" th:action="@{/sell/}" th:object="${sellForm}">
+				<form method="post" th:action="@{/sellconfirmation/} + ${customer.id}" th:attr="data-customer-id=${customer.id}" th:object="${sellForm}">
 					<div th:if="${#fields.hasErrors('*')}">
 						<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
 						<ul>
@@ -37,9 +37,9 @@
 					</select><br /><br />
 					<label for ="condition">Zustand</label><br />
 					<select id="condition" name="condition" th:errorclass="fieldError">
-						<option value="80"> Neuwertig (~80% Originalpreis)</option>
-						<option value="55">Gebrauchsspuren (~55% Originalpreis)</option>
-						<option value="15">schlechter Zustand (~15% Originalpreis)</option>
+						<option value="Neuwertig (~80% Originalpreis)">Neuwertig (~80% Originalpreis)</option>
+						<option value="Gebrauchsspuren (~55% Originalpreis)">Gebrauchsspuren (~55% Originalpreis)</option>
+						<option value="schlechter Zustand (~15% Originalpreis)">schlechter Zustand (~15% Originalpreis)</option>
 					
 					</select><br /><br />
 					<label for="description">Beschreibung</label><br />
