@@ -13,21 +13,25 @@
 
 <h1>Artikel</h1>
 
-<img th:src="@{'/resources/img/cover/' + ${article.image}}" class="article_image" alt="" title="" />
+<img th:src="@{'/productimg/' + ${article.image}}" class="article_image" alt="" title="" />
 <div class="article_firstinfo">
 	<h2 th:text="${article.name}"></h2>
 	<p th:inline="text"><strong>Modell:</strong> [[${article.model}]]</p>
 	<p th:inline="text"><strong>Preis:</strong> [[${article.price}]]</p>
 	</div>
-<form method="post" action="/cart" th:if="${orderable}" class="article_buy" >
+<form method="post" action="/cart" class="article_buy" >
+	<th:block th:if="${orderable}">
+		Dieser Artikel ist lieferbar.<br/>
+		<strong th:text="${quantity}"></strong> Stück verfügbar.
+		<p><label for="number">Wie viele möchten Sie bestellen?</label></p>
+		<input id="number" type="number" name="number" min="1" th:max="${quantity}" step="1" value="1" /><br/><br/>
 
-	Dieser Artikel ist lieferbar.<br/>
-	<strong th:text="${quantity}"></strong> Stück verfügbar.
-	<p><label for="number">Wie viele möchten Sie bestellen?</label></p>
-	<input id="number" type="number" name="number" min="1" th:max="${quantity}" step="1" value="1" /><br/><br/>
-
-	<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
-	<input type="submit" value="Zum Warenkorb hinzufügen" />
+		<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
+		<input type="submit" value="Zum Warenkorb hinzufügen" />
+	</th:block>
+	<th:block th:unless="${orderable}">
+		Momentan ist dieser Artikel nicht lieferbar.
+	</th:block>
 </form>
 </body>
 </html>

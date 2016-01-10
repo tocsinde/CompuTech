@@ -18,7 +18,7 @@
 				<a th:each="comp : ${catalog}" th:href="@{'/detail/' + ${disc.identifier}}" href="detail.html">
 					<div class="comp">  
 						<h4 th:text="${comp.name}">Samsung</h4>
-						<img th:src="@{'/resources/img/cover/' + ${comp.image}}" class="thumbnail" src="../resources/img/cover/sam1.jpg" alt="" />
+						<img th:src="@{'/productimg/' + ${comp.image}}" class="thumbnail" alt="" />
 						<p th:text="${comp.price}" class="price">199.99 €</p>
 					</div>
 				</a>			

@@ -13,6 +13,7 @@
 package computech.controller;
 
 import computech.model.*;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.javamoney.moneta.Money;
 import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.Inventory;
@@ -21,9 +22,7 @@ import org.salespointframework.order.Order;
 import org.salespointframework.order.OrderManager;
 import org.salespointframework.order.OrderStatus;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.Optional;
 
@@ -55,6 +54,7 @@ import computech.model.validation.SellanwserForm;
 import static org.salespointframework.core.Currencies.EURO;
 
 import javax.management.relation.RoleStatus;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -81,6 +81,12 @@ class BossController {
 		this.userAccountManager = userAccountManager;
 		this.sellRepository = sellRepository;
 		this.sellanwserRepository = sellanwserRepository;
+	}
+
+	@RequestMapping("/productimg/{file}.{filetype}")
+	public void productimg(HttpServletResponse response, @PathVariable("file") String filename, @PathVariable("filetype") String filetype) throws IOException {
+		BufferedInputStream image = new BufferedInputStream(new FileInputStream(new File("src/main/resources/static/resources/img/cover/" + filename + "." + filetype)));
+		IOUtils.copy(image, response.getOutputStream());
 	}
 
 	/**
