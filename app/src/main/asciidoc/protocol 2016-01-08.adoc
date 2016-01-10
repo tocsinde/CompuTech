@@ -1,0 +1,95 @@
+= Protokoll Gruppe 32
+__Treffen am 08.01.2016__
+
+
+__Schriftführer:__
+Stephan Fischer
+
+__Nächstes Treffen:__ 14.01.2016, APB 14:50 Uhr
+
+__Teilnehmer:__
+
+* Stephan Fischer
+* Anna Gromykina
+* Kevin Horst
+* Philipp Oehme
+
+== Bemerkungen
+
+* letztes Treffen kam leider nicht zustande
+* Abgabetermin (Cold-Freeze) ist Freitag, 15.01.
+** laut Markus sollten wir noch den ganzen Freitag zur Verfügung haben, sodass die Deadline Freitag (in der Nacht zu Samstag) 00:00 Uhr sein sollte
+* Präsentation ist am 21.01. um 9.20 Uhr (Raum wird noch bekanntgegeben)
+** Powerpoint muss ins Repo (vor Präsentation schon!)
+** Präsentation zusammen mit Gruppe 13
+* nach Abgabetermin gibt es noch einen Termin zur Evaluation des Praktikums (dauert etwas länger)
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+
+|===
+|Issue |Aufgabe |Status
+|32    |M070 - Mitarbeiter: Preisvorschlag beim Einkauf    |todo
+|31    |M060 - Mitarbeiter kann Service- und Reparaturanfragen bearbeiten    |todo
+|30    |jUnit-Tests vorbereiten    |momentan buggy
+|36    |Mitarbeiter können für Geschäftskunden Artikel bestellen    |fertig
+|35    |Computer sollen komponentenweise anpassbar sein      |fertig
+|===
+
+== Aktueller Stand
+
+
+* Pflichtenheft ergänzt (Beschreibungen für GUI-Entwürfe ergänzt + SVG-Mockup eingefügt)
+* Geschäftskunden werden ab jetzt immer einem Mitarbeiter zugeordnet
+** dieser Mitarbeiter kann für Geschäftskunden einkaufen
+** ein Mitarbeiter kann für beliebig viele Geschäftskunden eingeteilt werden
+
+* Komponentenanpassung eines Computers funktioniert, Handling könnte man noch verfeinern
+* Zusatzfeature: Artikelbilder hochladen funktioniert noch nicht ganz auf Markus' Rechner (Bild wird zwar in Ordner gepackt, kann aber nicht aufgerufen werden)
+* kurze Verständigung darüber, was noch ins Programm rein muss
+** Markus: nur das, was im Pflichtenheft steht (und ein Kannkriterium)
+
+* Ankaufstelle fast fertig
+
+* Supportanfragen (Reparatur) müssen noch zur Bilanz hinzugefügt werden
+* Support: Bug beim Akzeptieren/Ablehnen von Preisvorschlag vom Mitarbeiter
+
+* Kontext-Test läuft nicht mehr
+** es scheint ein Problem mit Mockito zu sein
+
+* laut Gruppe 13 soll ein bestimmter Prozentsatz des Codes mit Tests abgedeckt werden
+** haben mit Sonarcube Überblick darüber
+** wir haben bislang noch keinen Sonarcube-Zugang erhalten (viele Gruppen davon betroffen)
+** Markus leitet das an einen Kollegen weiter, wir sollen per E-Mail noch Daten erhalten
+
+* Seite "Aufträge" wird noch aus Navigation entfernt, wird nicht mehr verwendet (relevante Informationen werden an anderen Stellen aufgelistet)
+
+
+* Timerecording muss noch zusammengestellt und hochgeladen werden
+* Kriterien für Entwicklerdokumentation besprochen
+* JavaDoc muss noch gemacht werden
+** kein JavaDoc für Getter und Setter notwendig
+
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+
+
+[option="headers"]
+
+
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|32    |M070 - Mitarbeiter: Preisvorschlag beim Einkauf    |selbsterklärend    |Philipp   |todo
+|31    |M060 - Mitarbeiter kann Service- und Reparaturanfragen bearbeiten    |selbsterklärend    |Anna   |todo
+|30    |jUnit-Tests vorbereiten    |selbsterklärend    |Kevin      |wird gefixt
+|37    |Kauf eines Computers mit fehlenden Komponenten möglich  |Validierung notwendig, sodass alle Komponenten vor Kauf ausgewählt sein müssen   |Kevin   |todo
+|38    |Entwicklerdokumentation    |Vorlage im Repo    |Stephan    |todo
+|39    |JavaDoc    |Code-Dokumentation mit JavaDoc    |alle   |todo
+|40    |Artikel wird nicht richtig aus Lager gelöscht   |Artikel zwar nicht mehr in Bestandsliste, aber noch in Shop vorhanden   |Kevin   |todo
+|41    |Timerecording hochladen    |selbsterklärend    |alle   |todo
+|42    |Crosstestingreport   |Bericht vom 07.01.16 über Programm von Gruppe 13    |alle   |todo
+|===
