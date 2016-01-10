@@ -12,6 +12,9 @@
 <nav th:include="navigation :: navigation"></nav>
 
 <h1>Login</h1>
+<th:block th:if="${success != null}">
+	<p class="success" th:text="${success}"></p>
+</th:block>
 
 <form name="f" action="/login" method="POST">
 

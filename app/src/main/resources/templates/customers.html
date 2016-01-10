@@ -13,6 +13,10 @@
 
 <h1>Kunden</h1>
 
+<th:block th:if="${success != null}">
+	<p class="success" th:text="${success}"></p>
+</th:block>
+
 <a href="/register" class="button">Geschäftskunde hinzufügen</a>
 
 <h2>Kundenliste</h2>

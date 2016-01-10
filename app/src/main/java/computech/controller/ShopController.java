@@ -36,6 +36,7 @@ package computech.controller;
 	import computech.model.CustomerRepository;
 	import computech.model.validation.RegistrationForm;
 	import org.springframework.web.bind.annotation.RequestMethod;
+	import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 	import java.util.Optional;
 
@@ -73,7 +74,7 @@ package computech.controller;
 
 
 		@RequestMapping("/registerNew")
-		public String registerNew(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm, BindingResult result, ModelMap modelMap) {
+		public String registerNew(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm, BindingResult result, ModelMap modelMap, RedirectAttributes success) {
 
 			modelMap.addAttribute("employeeList_enabled", userAccountManager.findEnabled());
 
@@ -97,8 +98,10 @@ package computech.controller;
 			}
 
 			if(registrationForm.getRole().equals("ROLE_PCUSTOMER")) {
-				return "redirect:/";
+				success.addFlashAttribute("success", "Sie haben sich erfolgreich registriert und können sich mit Ihren Zugangsdaten einloggen.");
+				return "redirect:/login";
 			} else {
+				success.addFlashAttribute("success", "Der Geschäftskunde wurde erfolgreich registriert.");
 				return "redirect:/customers";
 			}
 		}
@@ -123,7 +126,7 @@ package computech.controller;
 
 		@PreAuthorize("hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BCUSTOMER')")
 		@RequestMapping(value = "/profile", method = RequestMethod.POST)
-		public String saveProfile(Model model, @ModelAttribute("profileEditForm") @Valid profileEditForm profileEditForm, BindingResult result, @LoggedIn Optional<UserAccount> userAccount) {
+		public String saveProfile(Model model, @ModelAttribute("profileEditForm") @Valid profileEditForm profileEditForm, BindingResult result, @LoggedIn Optional<UserAccount> userAccount, RedirectAttributes success) {
 			Customer customer = customerRepository.findByUserAccount(userAccount.get());
 			model.addAttribute("customer", customer);
 
@@ -143,7 +146,9 @@ package computech.controller;
 				userAccountManager.changePassword(customer.getUserAccount(), profileEditForm.getPassword());
 			}
 
-			return "profile";
+
+			success.addFlashAttribute("success", "Ihre Daten wurden erfolgreich geändert.");
+			return "redirect:/profile";
 		}
 
 

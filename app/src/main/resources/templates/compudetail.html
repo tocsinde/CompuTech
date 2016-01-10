@@ -28,17 +28,20 @@
 
 		Dieser Artikel ist lieferbar.<br/>
 		<strong th:text="${quantity}"></strong> Stück verfügbar.
-		<p><label for="number">Wie viele möchten Sie bestellen?</label></p>
-		<input id="number" type="number" name="number" min="1" th:max="${quantity}" step="1" value="1" /><br/><br/>
 
-		<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
 
-		<input type="submit" value="Zum Warenkorb hinzufügen" />
+		<th:block sec:authorize="!hasRole('ROLE_BOSS')">
+			<p><label for="number">Wie viele möchten Sie bestellen?</label></p>
+			<input id="number" type="number" name="number" min="1" th:max="${quantity}" step="1" value="1" /><br/><br/>
+
+			<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />
+
+			<input type="submit" value="Zum Warenkorb hinzufügen" />
+		</th:block>
 	</th:block>
 	<th:block th:unless="${orderable}">
 
 		<strong>Bitte stellen Sie sich Ihre Komponenten zusammen, damit Sie dieses Produkt Ihrem Warenkorb hinzufügen können.</strong><br/><br/>
-		
 		Dieser Artikel ist lieferbar.<br/>
 		<strong th:text="${quantity}"></strong> Stück verfügbar.
 
@@ -98,7 +101,7 @@
 		<p th:text="${r}"></p>
 		<form method="post" action="/change">
 			<select name="part" onchange="this.form.submit()">
-				<option>Wählen sie einen Arbeitsspeicher:</option>
+				<option>Wählen Sie einen Arbeitsspeicher:</option>
 				<option th:each=" ram : ${ram}" th:text="${ram.toString()}" th:value="${ram.identifier}" >
 				</option>
 				<input type="hidden" name="pid" value="0" th:value="${article.identifier}" />

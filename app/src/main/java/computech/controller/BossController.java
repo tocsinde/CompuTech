@@ -110,8 +110,10 @@ class BossController {
      */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/delete/{id}", method = RequestMethod.POST)
-	public String removeCustomer(@PathVariable Long id) {
+	public String removeCustomer(@PathVariable Long id, RedirectAttributes success) {
 		customerRepository.delete(id);
+
+		success.addFlashAttribute("success", "Der Kunde wurde erfolgreich gelöscht.");
 		return "redirect:/customers";
 	}
 
@@ -150,7 +152,7 @@ class BossController {
      */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/edit/{id}", method = RequestMethod.POST)
-	public String saveCustomer(@PathVariable("id") Long id, Model model, @ModelAttribute("customerEditForm") @Valid customerEditForm customerEditForm, BindingResult result, ModelMap modelMap) {
+	public String saveCustomer(@PathVariable("id") Long id, Model model, @ModelAttribute("customerEditForm") @Valid customerEditForm customerEditForm, BindingResult result, ModelMap modelMap, RedirectAttributes success) {
 		Customer customer_found = customerRepository.findOne(id);
 		model.addAttribute("customer", customer_found);
 		modelMap.addAttribute("employeeList_enabled", userAccountManager.findEnabled());
@@ -178,6 +180,8 @@ class BossController {
 		/* if(customerEditForm.getPassword() != "") {
 			userAccountManager.changePassword(customer_found.getUserAccount(), customerEditForm.getPassword());
 		} */
+
+		success.addFlashAttribute("success", "Der Kunde wurde erfolgreich bearbeitet.");
 
 		return "redirect:/customers";
 	}
