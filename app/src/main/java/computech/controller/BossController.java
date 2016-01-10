@@ -487,8 +487,11 @@ class BossController {
 		
 		
 		sellanwserForm.setArticle(sellorder_found.getArticle());
+		modelmap.addAttribute("anwser", "anwser");
+		modelmap.addAttribute("priceoffer", 16.20);
 		
-		Sellanwser sellanwser = new Sellanwser(customer_of_sellorder, sellanwserForm.getArticle(), sellanwserForm.getAnwser());
+		
+		Sellanwser sellanwser = new Sellanwser(customer_of_sellorder, sellanwserForm.getArticle(), sellanwserForm.getAnwser(), sellanwserForm.getPriceoffer());
 		sellanwserRepository.save(sellanwser);
 		
 		return "redirect:/sellorders";

@@ -14,16 +14,18 @@ public class Sellanwser {
 	@OneToOne
 	private Article article;
 	private String anwser;
+	private double priceoffer;
 	
 	@ManyToOne
 	private Customer customer;
 	
 	private Sellanwser() {}
 	
-	public Sellanwser(Customer customer, Article article, String anwser){
+	public Sellanwser(Customer customer, Article article, String anwser, double priceoffer){
 		this.customer = customer;
 		this.article = article;
 		this.anwser = anwser;
+		this.priceoffer = priceoffer;
 	}
 	
 	public Customer getCustomer() {
@@ -36,6 +38,10 @@ public class Sellanwser {
 	
 	public String getAnwser() {
 		return anwser;
+	}
+	
+	public double getPriceoffer() {
+		return priceoffer;
 	}
 
 }

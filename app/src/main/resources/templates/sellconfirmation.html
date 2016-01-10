@@ -24,12 +24,14 @@ Vielen Dank für Ihr Vertrauen!
 						<tr>
 							<th>Artikel</th>
 							<th>Antwort</th>
+							<th>Preisvorschlag</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="sellanwser : ${sellanwserCompleted}">
 							<td th:text="${sellanwser.article.name}"></td>
 							<td th:text="${sellanwser.anwser}"></td>
+							<td th:text="${sellanwser.priceoffer}"></td>
 						</tr>
 					</tbody>
 					</table>

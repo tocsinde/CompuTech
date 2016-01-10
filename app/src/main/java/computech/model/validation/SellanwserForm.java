@@ -2,6 +2,8 @@ package computech.model.validation;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
+
 import computech.model.Article;
 
 public class SellanwserForm {
@@ -10,6 +12,9 @@ public class SellanwserForm {
 
 		@NotEmpty(message = "Geben Sie eine Antwort ein.")
 		private String anwser;
+		
+		@NotNull (message = "Geben Sie einen Ankaufpreis an.")
+		private double priceoffer;
 		
 		public Article getArticle() {
 			return article;
@@ -25,5 +30,13 @@ public class SellanwserForm {
 		
 		public void setAnwser(String anwser) {
 			this.anwser = anwser;
+		}
+		
+		public double getPriceoffer() {
+			return priceoffer;
+		}
+		
+		public void setPriceoffer(double priceoffer) {
+			this.priceoffer = priceoffer;
 		}
 }

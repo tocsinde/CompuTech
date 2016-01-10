@@ -29,6 +29,8 @@
 								<th>Zustand</th>
 								<th>Beschreibung</th>
 								<th>Antwort</th>
+								<th>Preisvorschlag in €</th>
+								<th>Abschicken</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -41,6 +43,11 @@
 								<td th:text="${sell.description}"></td>
 								<td>
 									<textarea id="anwser" name="anwser" cols="30" rows="3" th:field="*{anwser}" th:value="${anwser}"></textarea>
+								</td>
+								<td>
+									<input id="priceoffer" name="priceoffer" type="text" th:value="${priceoffer}" th:field="*{priceoffer}">
+								</td>
+								<td>
 									<input type="submit" value="Antworten" />
 								</td>
 							</tr>
