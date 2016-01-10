@@ -13,7 +13,15 @@
 * Externe Schnittstellen
 
 == Lösungsstrategie
-Kurzer Überblick über Ihre grundlegenden Entscheidungen und Lösungsansätze, die jeder, der mit der Architektur zu tun hat, verstanden haben sollte.
+
+Der zentrale Ansatz der Programmarchitektur folgt dem Entwurfsmuster "MVC"(Model-View-Controller). Die Anwendung wurde mit Hilfe des Frameworks SpringMVC implementiert, welches dieses Entwurfsmuster für Webanwendungen umsetzt. Zusammen mit dem Framework Thymeleaf wird der größte Teil der View- und Controllerfunktionalität von Spring bereitstellt. Den Vorgaben des Frameworks wurde weitestgehend gefolgt und die Struktur der Javapakete entsprechend der Aufteilung Model-View-Controller festgelegt.
+
+Dem Model entsprechen die Pakete "computech.model".Die Klassen im Paket “computech.model“ darstellen das Domänenmodell  und
+abbilden die Struktur der persistierten Daten. Dem Controller entspricht das Paket "computech.controller", welches alle programmrelevanten Spring-Controller beinhaltet. Dem View entsprechen die Webressourcen, insbesondere alle html-Dateien sowie die CSS-Datei, die im Rahmen der Gestaltung eine Rolle spielen.Validierung und Konvertierung von Nutzereingaben in Form von Text zu den entsprechenden Objektstrukturen werden von Validierungsmethoden in den Klassen im Paket "computech.model.validation" durchgeführt.
+
+Der Bereich des Verkaufs wurde hauptsächlich mit Hilfe des Frameworks Salespoint implementiert, da man viele angebotene Funktionalitäten dieses Frameworks sehr gut nutzen konnte, um einen effizienten und sauberen Aufbau des Bereiches zu
+realisieren. Für das Anlegen eines Sortiments wurde der “Catalog“ von Salespoint verwendet, der als Repository dient, um Article-Objekte zu persistieren. Die, ebenfalls von Salespoint zur Verfügung stehende Klasse “Product“, wurde als
+Superklasse von Article-Objekten verwendet, da es den Umgang mit Attributen wie Preis/Währung und Stückzahl erleichtert und die Verwendung einer weiteren Salespoint-Funktionalität, dem “Cart“ wesentlich komfortabler macht. 
 
 == Bausteinsicht
 * Package-Diagramme
