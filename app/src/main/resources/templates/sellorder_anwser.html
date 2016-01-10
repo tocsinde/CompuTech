@@ -3,19 +3,20 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" href="../resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../../resources/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
-	<title>Ankaufstelle - CompuTech</title>
+	<title>Kunde editieren - CompuTech</title>
 </head>
 <body>
 <header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
 
-<h1>Ankaufstelle - Anfragen</h1>
-
-
-		<div class="sellorders">
-			<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')">
+<h1>Ankaufstelle - Antwort auf Anfrage</h1>
+	
+	
+	<div class="sellorders">
+		<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')">
+			<form th:method="post" th:action="@{/sellconfirmation/] + ${customer.id}" th:attr="data-customer-id=${customer.id}" th:object="${sellanwserForm}">
 					<div class="content">
 						<table>
 						<thead>
@@ -39,12 +40,14 @@
 								<td th:text="${sell.condition}"></td>
 								<td th:text="${sell.description}"></td>
 								<td>
-									<a th:method="post" th:action="@{/sellorder/anwser/} + ${sellorder.id}" href="sellorder_anwser.html" class="button">antworten</a>
+									<textarea id="anwser" name="anwser" cols="30" rows="3" th:field="*{anwser}" th:value="${anwser}"></textarea>
+									<input type="submit" value="Antworten" />
 								</td>
 							</tr>
 						</tbody>
 						</table>
 					</div>
+			</form>
 		</div>
 	</div>
 </body>

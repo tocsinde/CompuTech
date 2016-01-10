@@ -133,7 +133,7 @@ class CatalogController {
 		article.getRam().clear();
 		article.getHdd().clear();
 		article.getGraka().clear();
-
+		boolean p = false;
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
 		model.addAttribute("gesamtpreis", i);
@@ -143,7 +143,7 @@ class CatalogController {
 		model.addAttribute("ram", partsCatalog.findByType(Part.PartType.RAM));
 		model.addAttribute("article", article);
 		model.addAttribute("quantity", quantity);
-		model.addAttribute("orderable", quantity.isGreaterThan(NONE));
+		model.addAttribute("orderable", quantity.isGreaterThan(NONE) && p);
 
 		return "compudetail";
 	}
@@ -159,7 +159,7 @@ class CatalogController {
 		Money g = Money.of(b,c);
 		Money h = Money.of(b,c);
 		Money r = Money.of(b,c);
-
+		boolean n = false;
 		if (article.getProzessor().isEmpty() != true ) {p = article.getProzessor().get(0).getPrice();}
 		if (article.getGraka().isEmpty() != true ) {g = article.getGraka().get(0).getPrice();}
 		if (article.getHdd().isEmpty() != true ) {h = article.getHdd().get(0).getPrice();}
@@ -196,8 +196,18 @@ class CatalogController {
 		modelMap.addAttribute("article", article);
 		modelMap.addAttribute("id", article.getId());
 
-
-
+		if (article.getProzessor().isEmpty() != true ){
+			if (article.getGraka().isEmpty() != true ){
+				if (article.getHdd().isEmpty() != true ){
+					if (article.getRam().isEmpty() != true ){
+						 n = true;
+					}
+				}
+			}
+		}
+		else{
+			 n = false;
+		}
 
 
 
@@ -206,7 +216,8 @@ class CatalogController {
 		modelMap.addAttribute("harddrive", partsCatalog.findByType(Part.PartType.HARDD));
 		modelMap.addAttribute("ram", partsCatalog.findByType(Part.PartType.RAM));
 		modelMap.addAttribute("quantity", quantity);
-		modelMap.addAttribute("orderable", quantity.isGreaterThan(NONE));
+		modelMap.addAttribute("isok", n);
+		modelMap.addAttribute("orderable", quantity.isGreaterThan(NONE)&& n);
 
 
 

@@ -20,6 +20,8 @@ import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+
+import computech.AbstractWebIntegrationTests;
 import computech.model.Article;
 import org.junit.Test;
 import org.salespointframework.catalog.ProductIdentifier;
@@ -31,7 +33,7 @@ import org.springframework.ui.Model;
 
 
 
-public class CatalogControllerIntegrationTests extends WebIntegrationcontextCatalogcontrollertest {
+public class CatalogControllerIntegrationTests extends AbstractWebIntegrationTests {
 
 	@Autowired CatalogController controller;
 
@@ -106,12 +108,12 @@ public class CatalogControllerIntegrationTests extends WebIntegrationcontextCata
 		assertThat(object, is(iterableWithSize(2)));
 	}
 	@Test
-	public void detailIntegraitiontest() throws Exception{
+	public void detailIntegrationTest() throws Exception{
 		Model model = new ExtendedModelMap();
-		ProductIdentifier id = invetoryItemmock.getProduct().getId(); // mit mockito
+		ProductIdentifier id = inventoryItemmock.getProduct().getId(); // mit mockito
 		Article article = (Article) model.asMap().get("article"); //ohne Mockito
 
-		mvc.perform(get("/detail{pid", id));
+		mvc.perform(get("/detail{id}", id));
 
 	}
 

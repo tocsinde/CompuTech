@@ -16,8 +16,6 @@ import computech.model.Article.*;
 
 import javax.persistence.*;
 
-import org.salespointframework.order.Order;
-import org.salespointframework.order.OrderManager;
 
 @Entity
 public class SellOrder{
@@ -33,7 +31,8 @@ public class SellOrder{
 	private String description;
 	private String condition;
 	
-	@ManyToOne private Customer customer;
+	@ManyToOne 
+	private Customer customer;
 
 	private SellOrder() {}
 	
