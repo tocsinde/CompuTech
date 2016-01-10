@@ -1,15 +1,34 @@
 = Entwicklerdokumentation
 
 == Einführung und Ziele
+
 * Aufgabenstellung
+
+IT-Dienstleister CompuTech
+
+Die Firma CompuTech beliefert seine Kunden mit PC-Komplettsystemen sowie mit Zubehör und Verbrauchsmaterialien (CDs, Druckerpatronen, Toner, etc.). Die Firma kennt zwei Arten von Kunden, Privat - und Geschäftskunden(B2C & B2B). Ein neues IT-System soll die Beziehung zum Kunden vereinfachen und einen Wettbewerbsvorteil für seine Geschäftskunden bieten. Geschäftskunden können, wenn sie angemeldet sind, Bestellungen (nur Erweiterungen von Bestehender Hardware oder Upgrade) aufgeben sowie ihren derzeitigen EDV-Bestand einsehen. In der Bestandsanzeige soll der Kunde Geräte auswählen und mit Reparatur- oder Serviceaufträgen versehen können. Keine Aktion geschieht ohne Auftrag! Geschäftskunden werden von einem Mitarbeiter angelegt und mit einem vorläufigen Kennwort versehen welches der Kunde danach ändern kann. Privatkunden können sich selbst am System anmelden. Eine Überprüfung der Email und Postadresse (ähnlich Web.de) kann helfen die Gültigkeit einer Adresse zu prüfen. Hat sich der Kunde angemeldet so ist es ihm möglich sein, aus einer vorgegebenen Auswahl von Geräten ein Basismodell auszuwählen und dieses nach seinen Wünschen zu konfigurieren. Privatkunden sollen zudem die Möglichkeit bekommen gebrauchte Geräte wieder an CompuTech verkaufen zu können. Jeder Geschäftskunde hat einen bestimmten Verkaufsleiter als Ansprechpartner. Dieser wird zugeordnet wenn der Verkaufsleiter den Geschäftskunden in der Datenbank anlegt. Der Verkaufsleiter nimmt alle eingehenden Bestellungen und Serviceanfragen entgegen prüft diese und erstellt dann einen Auftrag an das Lager und den Service. Zudem entscheidet der Verkaufsleiter, zu welchem Preis Geräte von Privatkunden zurückgekauft werden. Das Lager verwaltet den Bestand aller Geräte und Verbrauchsmaterialien. Für alle Posten gibt es Mindestbestände. Werden diese unterschritten, bestellt das Lager automatisch aus einer Auswahl von Händlern zu den günstigsten Konditionen nach. Geht ein Auftrag von einem Verkaufsleiter ein, stellt das Lager die Bestellung zusammen (Kommissionierung) und erstellt dann einen Auftrag für den Versand, welcher sich dann um Auslieferung und Aufstellung der Gerät kümmert. Für den letzten Punkt muss ein Auftrag für den Service erstellt werden. Das System soll zudem ein „Kassenbuch“ führen, welches die Buchhaltung und den Jahresabschluss vereinfachen soll. Hierzu sollen alle Transaktionen gespeichert und nach bestimmten Filterkriterien gedruckt werden können. Auf diese Daten hat natürlich nur der Geschäftsführer und die Buchhaltung Zugriff. Dem Kunden ist es besonders wichtig, dass seine Geschäftsprozesse von dem zu entwickelnden IT-System vollständig abgebildet werden.
+
+
 * Qualitätsziele
 
+Die Software soll für den Anwender benutzerfreundlich und übersichtlich sein.
+
 == Randbedingungen
+
 * Hardware-Vorgaben
+
+Java-fähiger Standard-PC
+
 * Software-Vorgaben
+
+Spring, Thymeleaf, Salespoint, Java, Javascript
+
 * Vorgaben zum Betrieb des Software
 
+läuft auf allen Betriebssystemen
+
 == Kontextabgrenzung
+
 * Externe Schnittstellen
 
 == Lösungsstrategie
@@ -28,9 +47,18 @@ Superklasse von Article-Objekten verwendet, da es den Umgang mit Attributen wie 
 
 == Entwurfsentscheidungen
 * Architektur
+
 * Verwendete Muster
+
 * Persistenz
+
+Die Datenspeicherung im System übernimmt das Java Framework Hibernate. Daten, die in unserem Projekt zur Laufzeit gespeichert werden müssen, werden in einer Datenbank mit Hilfe von CRUD Repositories abgelegt.
+
 * Benutzeroberfläche
+
+Unsere Benutzeroberfläche lässt sich in verschiedene Teilbereiche untergliedern. Im Header der Anwendung befindet sich ein Logo, das Login, sowie die Navigationsleiste, mit deren Hilfe die Bedienung erleichtert wird. Der Style weist klare und immer wiederkehrende Strukturen auf, so dass der Kunde die Übersicht über die Anwendung behält. Auch die Tabellen und Buttons sind dementsprechend durch ein
+einheitliches basierendes Design in jeder HTML Seite für den Kunden angepasst.
+
 
 [appendix]
 == Glossar
