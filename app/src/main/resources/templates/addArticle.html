@@ -35,9 +35,19 @@
 						<option th:each=" type : ${types}" th:value="${type.toString()}" th:inline="text">
 								<th:block th:if="${#strings.equals(type.toString(),'ZUBE')}">Zubehör</th:block>
 								<th:block th:if="${#strings.equals(type.toString(),'SOFTWARE')}">Software</th:block>
-								<th:block th:if="${#strings.equals(type.toString(),'COMPUTER')}">All-in-one-System</th:block>
 								<th:block th:if="${#strings.equals(type.toString(),'NOTEBOOK')}">Notebook</th:block>
 						</option>
+
+						<option th:each=" type : ${types3}" th:value="${type.toString()}" th:inline="text">
+							<th:block th:if="${#strings.equals(type.toString(),'COMPUTER')}">All-in-one-System</th:block>
+						</option>
+
+					<option th:each=" type : ${types2}" th:value="${type.toString()}" th:inline="text">
+						<th:block th:if="${#strings.equals(type.toString(),'PROCESSOR')}">All-in-one-System: Prozessor</th:block>
+						<th:block th:if="${#strings.equals(type.toString(),'RAM')}">All-in-one-System: RAM</th:block>
+						<th:block th:if="${#strings.equals(type.toString(),'GRAPHC')}">All-in-one-System: Grafikkarte</th:block>
+						<th:block th:if="${#strings.equals(type.toString(),'HARDD')}">All-in-one-System: Festplatte</th:block>
+					</option>
 				</select><br/>
 				<br />
 

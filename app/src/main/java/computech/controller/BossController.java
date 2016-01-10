@@ -69,11 +69,12 @@ class BossController {
 	private final UserAccountManager userAccountManager;
 	private final SellRepository sellRepository;
 	private final SellanwserRepository sellanwserRepository;
+	private final Inventory<InventoryItem> partsinventory;
 
 
 	@Autowired
 	public BossController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory,
-						  CustomerRepository customerRepository, UserAccountManager userAccountManager, SellRepository sellRepository, SellanwserRepository sellanwserRepository) {
+						  CustomerRepository customerRepository, UserAccountManager userAccountManager, SellRepository sellRepository, SellanwserRepository sellanwserRepository, Inventory<InventoryItem> partsinventory) {
 
 		this.orderManager = orderManager;
 		this.inventory = inventory;
@@ -81,6 +82,7 @@ class BossController {
 		this.userAccountManager = userAccountManager;
 		this.sellRepository = sellRepository;
 		this.sellanwserRepository = sellanwserRepository;
+		this.partsinventory = partsinventory;
 	}
 
 	@RequestMapping("/productimg/{file}.{filetype}")
@@ -501,6 +503,8 @@ class BossController {
 	@RequestMapping("/addarticle")
 	public String addArticle(ModelMap modelMap) {
 		modelMap.addAttribute("types", Article.ArticleType.values());
+		modelMap.addAttribute("types2", Part.PartType.values());
+		modelMap.addAttribute("types3", Computer.Computertype.values());
 		modelMap.addAttribute("addArticleForm", new addArticleForm());
 		return "addArticle";
 	}
@@ -514,7 +518,7 @@ class BossController {
      */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value ="/addarticle", method = RequestMethod.POST)
-	public String addArticleToCatalog(ModelMap modelMap, @ModelAttribute("addArticleForm") @Valid addArticleForm addArticleForm, BindingResult result, @RequestParam("file") MultipartFile file) {
+	public String addArticleToCatalog(ModelMap modelMap, @ModelAttribute("addArticleForm") @Valid addArticleForm addArticleForm, BindingResult result, @RequestParam("file") MultipartFile file, RedirectAttributes success) {
 		modelMap.addAttribute("types", Article.ArticleType.values());
 
 		if (result.hasErrors()) {
@@ -530,9 +534,30 @@ class BossController {
 			System.out.println("Upload failed:  => " + e.getMessage());
 		}
 
-		Article newarticle = new Article(addArticleForm.getName(), file.getOriginalFilename(), Money.of(addArticleForm.getPrice(), EURO), addArticleForm.getModel(), Article.ArticleType.valueOf(addArticleForm.getType()));
-		InventoryItem newitem = new InventoryItem(newarticle, Quantity.of(addArticleForm.getQuantity()));
-		inventory.save(newitem);
+		if(addArticleForm.getType().equals("ZUBE") || addArticleForm.getType().equals("SOFTWARE") || addArticleForm.getType().equals("NOTEBOOK") ) {
+
+			Article newarticle = new Article(addArticleForm.getName(), file.getOriginalFilename(), Money.of(addArticleForm.getPrice(), EURO), addArticleForm.getModel(), Article.ArticleType.valueOf(addArticleForm.getType()));
+			InventoryItem newitem = new InventoryItem(newarticle, Quantity.of(addArticleForm.getQuantity()));
+			inventory.save(newitem);
+		}
+
+		if(addArticleForm.getType().equals("COMPUTER")) {
+			Computer newcomputer = new Computer(addArticleForm.getName(), file.getOriginalFilename(), Money.of(addArticleForm.getPrice(), EURO), addArticleForm.getModel(), Computer.Computertype.COMPUTER);
+			InventoryItem newitem = new InventoryItem(newcomputer, Quantity.of(addArticleForm.getQuantity()));
+			inventory.save(newitem);
+		}
+
+		if(addArticleForm.getType().equals("PROCESSOR") || addArticleForm.getType().equals("RAM") || addArticleForm.getType().equals("GRAPHC") || addArticleForm.getType().equals("HARDD") ) {
+			Part newpart = new Part(addArticleForm.getName(), file.getOriginalFilename(), Money.of(addArticleForm.getPrice(), EURO), addArticleForm.getModel(), Part.PartType.valueOf(addArticleForm.getType()));
+			InventoryItem newitem = new InventoryItem(newpart, Quantity.of(addArticleForm.getQuantity()));
+			partsinventory.save(newitem);
+		}
+
+
+
+
+		success.addFlashAttribute("success", "Der Artikel wurde erfolgreich hinzugefügt.");
+
 
 		return "redirect:/stock";
 	}
