@@ -47,6 +47,7 @@ public class SupportController {
 
     }
 
+
     @RequestMapping(value = "/support")
     public String showSupportFormular(ModelMap modelMap) {
 
@@ -62,8 +63,6 @@ public class SupportController {
         //  modelMap.addAttribute("catalog", computerCatalog.findByType());
         //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
 
-
-        System.out.println(1);
         return "support";
     }
 
@@ -145,7 +144,7 @@ public class SupportController {
         }
 
 
-        modelMap.addAttribute("reparation" , reparationList.get(0));
+
 
 
         modelMap.addAttribute("reparations", reparationList);
