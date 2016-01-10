@@ -13,7 +13,11 @@
 package computech.model.validation;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
+
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 
 public class addArticleForm {
@@ -26,6 +30,8 @@ public class addArticleForm {
 	@NotEmpty(message = "Das Modell darf nicht leer sein.")
 	private String model;
 
+	@DecimalMin(value="1.00", message="Der Preis muss positiv und größer gleich 1 sein.")
+	//@Pattern(regexp="^\\d+(.\\d+)*$", message="Preis bitte so...")
 	@NotNull(message = "Der Preis darf nicht leer sein.")
 	private BigDecimal price;
 
