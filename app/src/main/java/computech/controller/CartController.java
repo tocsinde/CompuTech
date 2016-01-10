@@ -32,6 +32,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -73,7 +74,7 @@ class CartController {
 
 
     @RequestMapping(value = "/cart", method = RequestMethod.POST)
-    public String addarticle(@RequestParam("pid") Article article, @RequestParam("number") int number, @ModelAttribute Cart cart, Model model) {
+    public String addarticle(@RequestParam("pid") Article article, @RequestParam("number") int number, @ModelAttribute Cart cart, Model model,  RedirectAttributes success) {
 
         Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 
@@ -90,6 +91,8 @@ class CartController {
 
         cart.addOrUpdateItem(article, Quantity.of(amount));
 
+        success.addFlashAttribute("success", "Der Artikel wurde erfolgreich Ihrem Warenkorb hinzugefügt.");
+
         switch (article.getType()) {
             case NOTEBOOK:
                 return "redirect:laptop";
@@ -103,7 +106,7 @@ class CartController {
     }
     @RequestMapping(value = "/cart2", method = RequestMethod.POST)
     public String addcomp(@RequestParam("pid") Computer article,
-                          @RequestParam("number") int number, @ModelAttribute Cart cart, Model model) {
+                          @RequestParam("number") int number, @ModelAttribute Cart cart, Model model, RedirectAttributes success) {
 
         Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 
@@ -130,7 +133,7 @@ class CartController {
         article.getProzessor().clear();
         article.getRam().clear();
 
-
+        success.addFlashAttribute("success", "Der Artikel wurde erfolgreich Ihrem Warenkorb hinzugefügt.");
                 return "redirect:allinone";
         }
 
@@ -149,13 +152,15 @@ class CartController {
         return "cart";
     }
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String delete(@ModelAttribute Cart cart, @RequestParam ("identification") String id){
+    public String delete(@ModelAttribute Cart cart, @RequestParam ("identification") String id, RedirectAttributes success){
         cart.removeItem(id);
+
+        success.addFlashAttribute("success", "Der Artikel wurde erfolgreich aus Ihrem Warenkorb entfernt.");
         return "redirect:/cart";
     }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
-    public String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount) {
+    public String buy(@ModelAttribute Cart cart, @LoggedIn Optional<UserAccount> userAccount, RedirectAttributes success) {
 
         return userAccount.map(account -> {
 
@@ -169,12 +174,14 @@ class CartController {
 
             cart.clear();
 
+            success.addFlashAttribute("success", "Vielen Dank für Ihre Bestellung.");
+
             return "redirect:/";
         }).orElse("redirect:/cart");
     }
 
     @RequestMapping(value = "/checkout_employee", method = RequestMethod.POST)
-    public String buyforbusinesscustomer(@ModelAttribute Cart cart, @RequestParam ("bcustomer") String nickname) {
+    public String buyforbusinesscustomer(@ModelAttribute Cart cart, @RequestParam ("bcustomer") String nickname, RedirectAttributes success) {
 
         Optional <UserAccount> businessCustomer = userAccountManager.findByUsername(nickname);
         return businessCustomer.map(account -> {
@@ -188,6 +195,8 @@ class CartController {
             orderManager.completeOrder(order);
 
             cart.clear();
+
+            success.addFlashAttribute("success", "Die Bestellung für den Geschäftskunden ist abgeschlossen.");
 
             return "redirect:/";
         }).orElse("redirect:/cart");

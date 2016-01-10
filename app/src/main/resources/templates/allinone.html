@@ -12,6 +12,10 @@
 		<nav th:include="navigation :: navigation"></nav>
 
 		<h1>All-in-one-Systeme</h1>
+		<th:block th:if="${success != null}">
+			<p class="success" th:text="${success}"></p>
+		</th:block>
+
 		<div class="content">
 			<div class="catalog">
 

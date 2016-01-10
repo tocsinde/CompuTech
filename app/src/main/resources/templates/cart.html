@@ -13,6 +13,10 @@
 
 <h1>Warenkorb</h1>
 
+<th:block th:if="${success != null}">
+	<p class="success" th:text="${success}"></p>
+</th:block>
+
 		<div class="content">
 			<div th:unless="${cart.empty}">
 				<table>
