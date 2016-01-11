@@ -68,7 +68,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 
 @Controller
-class BossController {
+public class BossController {
 	private static final Quantity NONE = Quantity.of(0);
 	private final OrderManager<Order> orderManager;
 	private final Inventory<InventoryItem> inventory;
@@ -96,11 +96,10 @@ class BossController {
 	 *
 	 * Responsible for the handling of "http://localhost:8080/productimg/image.xxx"-like requests.
 	 *
-	 * @param response delivering the filetype of the requested file back to the browser
+	 * @param response delivers the requested file to the browser
 	 * @param filename requested file name
 	 * @param filetype filetype of the requested file
 	 * @throws IOException if no image can be found in src/main/resources/static/resources/img/cover/
-	 * @return image with specified file name
 	 */
 	@RequestMapping("/productimg/{file}.{filetype}")
 	public void productimg(HttpServletResponse response, @PathVariable("file") String filename, @PathVariable("filetype") String filetype) throws IOException {
