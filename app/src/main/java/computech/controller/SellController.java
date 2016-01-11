@@ -55,10 +55,12 @@ public class SellController {
 	}
 
 	@RequestMapping(value = "/sell")
-    public String showSellFormular(ModelMap modelMap){
+    public String showSellFormular(ModelMap modelMap, Model model, @LoggedIn Optional<UserAccount> userAccount){
 		
 		modelMap.addAttribute("sellForm", new SellForm());
         modelMap.addAttribute("articletypes", Article.ArticleType.values());
+		Customer customer = customerRepository.findByUserAccount(userAccount.get());
+		model.addAttribute("customer", customer);
 
         for (Article.ArticleType articleType : Article.ArticleType.values()) {
         	
@@ -69,8 +71,11 @@ public class SellController {
 	}
 	
 	@RequestMapping(value = "/sell/{articleType}")
-    public String showSellFormular(@PathVariable("articleType") Article.ArticleType articleType,ModelMap modelMap){
-		
+    public String showSellFormular(@PathVariable("articleType") Article.ArticleType articleType,ModelMap modelMap, Model model, @LoggedIn Optional<UserAccount> userAccount){
+
+		Customer customer = customerRepository.findByUserAccount(userAccount.get());
+		model.addAttribute("customer", customer);
+
 		modelMap.addAttribute("sellForm", new SellForm());
         modelMap.addAttribute("articletypes", Article.ArticleType.values());
         modelMap.addAttribute("selectedarticleType", articleType);
