@@ -60,6 +60,13 @@ import javax.validation.Valid;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
+/**
+ *
+ * The BossController contains most of the administrative functions, such as the management of customers, employees and articles.
+ *
+ */
+
 @Controller
 class BossController {
 	private static final Quantity NONE = Quantity.of(0);
@@ -85,6 +92,16 @@ class BossController {
 		this.partsinventory = partsinventory;
 	}
 
+	/**
+	 *
+	 * Responsible for the handling of "http://localhost:8080/productimg/image.xxx"-like requests.
+	 *
+	 * @param response delivering the filetype of the requested file back to the browser
+	 * @param filename requested file name
+	 * @param filetype filetype of the requested file
+	 * @throws IOException if no image can be found in src/main/resources/static/resources/img/cover/
+	 * @return image with specified file name
+	 */
 	@RequestMapping("/productimg/{file}.{filetype}")
 	public void productimg(HttpServletResponse response, @PathVariable("file") String filename, @PathVariable("filetype") String filetype) throws IOException {
 		BufferedInputStream image = new BufferedInputStream(new FileInputStream(new File("src/main/resources/static/resources/img/cover/" + filename + "." + filetype)));
@@ -93,9 +110,11 @@ class BossController {
 
 	/**
 	 *
-	 * @param modelMap
-	 * @return
-     */
+	 * Shows a list of all available customers.
+	 *
+	 * @param modelMap content of the customerRepository
+	 * @return template "customers"
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/customers")
 	public String customers(ModelMap modelMap) {
@@ -106,10 +125,12 @@ class BossController {
 
 
 	/**
+	 * Deletes a customer.
 	 *
-	 * @param id
-	 * @return
-     */
+	 * @param id ID of the customer who will be deleted
+	 * @param success notification about deleting the selected customer
+	 * @return redirect to template "customers"
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/delete/{id}", method = RequestMethod.POST)
 	public String removeCustomer(@PathVariable Long id, RedirectAttributes success) {
@@ -122,11 +143,13 @@ class BossController {
 
 	/**
 	 *
-	 * @param id
-	 * @param model
-	 * @param modelMap
-     * @return
-     */
+	 * Shows form for editing customer's data.
+	 *
+	 * @param id ID of the customer whose data will be edited
+	 * @param model contains the attributes "customer" (selected customer) and "currentEmployee" (connected employee; for business customer)
+	 * @param modelMap contains a list of enabled employees (for business customer) and the customerEditForm (for validation)
+	 * @return template "customers_edit"
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/edit/{id}")
 	public String editCustomer(@PathVariable("id") Long id, Model model, ModelMap modelMap) {
@@ -145,13 +168,16 @@ class BossController {
 
 	/**
 	 *
-	 * @param id
-	 * @param model
-	 * @param customerEditForm
-	 * @param result
-	 * @param modelMap
-     * @return
-     */
+	 * Checks customer edit form and saves updated customer data.
+	 *
+	 * @param id ID of the customer whose data will be edited
+	 * @param model contains the attribute "customer" (selected customer)
+	 * @param customerEditForm form that needs to be validated
+	 * @param result validation of the form
+	 * @param modelMap contains a list of enabled employees (for business customer)
+	 * @param success notification about editing the selected customer
+	 * @return redirect to template "customers" (or back to the form when there are input errors to fix)
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/edit/{id}", method = RequestMethod.POST)
 	public String saveCustomer(@PathVariable("id") Long id, Model model, @ModelAttribute("customerEditForm") @Valid customerEditForm customerEditForm, BindingResult result, ModelMap modelMap, RedirectAttributes success) {
@@ -190,9 +216,11 @@ class BossController {
 
 	/**
 	 *
-	 * @param modelMap
-	 * @return
-     */
+	 * Shows a list of all available employees.
+	 *
+	 * @param modelMap contains a list of disabled and enabled employees
+	 * @return template "employees"
+	 */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/employees")
 	public String employees(ModelMap modelMap) {
@@ -204,9 +232,12 @@ class BossController {
 
 	/**
 	 *
-	 * @param userAccountIdentifier
-	 * @return
-     */
+	 * Disables an employee.
+	 *
+	 * @param userAccountIdentifier ID of the employee who will be disabled
+	 * @param success notification about disabling the selected employee
+	 * @return redirect to template "employees"
+	 */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/disable/{userAccountIdentifier}", method = RequestMethod.POST)
 	public String disableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier, RedirectAttributes success) {
@@ -218,9 +249,12 @@ class BossController {
 
 	/**
 	 *
-	 * @param userAccountIdentifier
-	 * @return
-     */
+	 * Enables an employee.
+	 *
+	 * @param userAccountIdentifier ID of the employee who will be enabled
+	 * @param success notification about enabling the selected employee
+	 * @return redirect to template "employees"
+	 */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/enable/{userAccountIdentifier}", method = RequestMethod.POST)
 	public String enableEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier, RedirectAttributes success) {
@@ -232,11 +266,13 @@ class BossController {
 
 	/**
 	 *
-	 * @param userAccountIdentifier
-	 * @param model
-	 * @param modelMap
-     * @return
-     */
+	 * Shows form for editing employee's data.
+	 *
+	 * @param userAccountIdentifier nickname of the employee whose data will be edited
+	 * @param model contains the attribute "employee" (selected employee)
+	 * @param modelMap contains the customerEditForm (for validation)
+	 * @return template "employees_edit"
+	 */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/edit/{userAccountIdentifier}")
 	public String editEmployee(@PathVariable UserAccountIdentifier userAccountIdentifier, Model model, ModelMap modelMap) {
@@ -247,16 +283,17 @@ class BossController {
 	}
 
 	/**
+	 * Checks employee edit form and saves updated employee data.
 	 *
-	 * @param useraccount
-	 * @param model
-	 * @param employeeEditForm
-	 * @param result
-     * @return
-     */
+	 * @param useraccount UserAccount of the employee whose data will be edited
+	 * @param employeeEditForm form that needs to be validated
+	 * @param result validation of the form
+	 * @param success notification about editing the selected employee
+	 * @return redirect to template "employees"
+	 */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value = "/employees/edit/{useraccount}", method = RequestMethod.POST)
-	public String saveEmployee(@PathVariable UserAccount useraccount, Model model, @ModelAttribute("employeeEditForm") @Valid employeeEditForm employeeEditForm, BindingResult result, RedirectAttributes success) {
+	public String saveEmployee(@PathVariable UserAccount useraccount, @ModelAttribute("employeeEditForm") @Valid employeeEditForm employeeEditForm, BindingResult result, RedirectAttributes success) {
 
 		if(employeeEditForm.getPassword() != "") {
 			//UserAccount user_found = (User) userAccountManager.get(userAccountIdentifier);
@@ -270,9 +307,11 @@ class BossController {
 
 	/**
 	 *
-	 * @param modelMap
-	 * @return
-     */
+	 * Shows form for creating a new employee.
+	 *
+	 * @param modelMap form that needs to be validated
+	 * @return template "registerEmployee"
+	 */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/registeremployee")
 	public String registerEmployee(ModelMap modelMap) {
@@ -282,10 +321,13 @@ class BossController {
 
 	/**
 	 *
-	 * @param registerEmployeeForm
-	 * @param result
-     * @return
-     */
+	 * Checks employee register form and saves the new employee.
+	 *
+	 * @param registerEmployeeForm form that needs to be validated
+	 * @param result validation of the form
+	 * @param success notification about creating the new employee
+	 * @return redirect to template "employees" (or back to the form when there are input errors to fix)
+	 */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping(value="/registeremployee", method = RequestMethod.POST)
 	public String registerEmployee(@ModelAttribute("registerEmployeeForm") @Valid registerEmployeeForm registerEmployeeForm, BindingResult result, RedirectAttributes success) {
@@ -306,9 +348,11 @@ class BossController {
 
 	/**
 	 *
-	 * @param modelMap
-	 * @return
-     */
+	 * Shows a list of all available products.
+	 *
+	 * @param modelMap contains a list of the products
+	 * @return template "stock"
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/stock")
 	public String stock(ModelMap modelMap) {
@@ -320,10 +364,12 @@ class BossController {
 
 	/**
 	 *
-	 * @param article
-	 * @param modelMap
-     * @return
-     */
+	 * Edit form for a single article.
+	 *
+	 * @param article requested article
+	 * @param modelMap contains the article and it's quantity
+	 * @return template "sdetail"
+	 */
 	@RequestMapping("/sdetail/{sid}")
 	public String sdetail(@PathVariable("sid") Product article, ModelMap modelMap) {
 
@@ -342,11 +388,13 @@ class BossController {
 
 	/**
 	 *
-	 * @param article
-	 * @param number
-	 * @param modelMap
-     * @return
-     */
+	 * Adds specific amount of an article to the stock.
+	 *
+	 * @param article requested article
+	 * @param number number for raising the amount
+	 * @param modelMap contains a list of the products
+	 * @return template "stock"
+	 */
 	@RequestMapping(value = "/addstock", method = RequestMethod.POST)
 	public String addstock(@RequestParam("sid") Product article, @RequestParam("number1") int number, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
@@ -367,11 +415,13 @@ class BossController {
 
 	/**
 	 *
-	 * @param article
-	 * @param number
-	 * @param modelMap
-     * @return
-     */
+	 * Removes specific amount from an article of the stock.
+	 *
+	 * @param article requested article
+	 * @param number number for lowering the amount
+	 * @param modelMap contains a list of the products
+	 * @return template "stock"
+	 */
 	@RequestMapping(value = "/substock", method = RequestMethod.POST)
 	public String substock(@RequestParam("sid") Product article, @RequestParam("number2") int number, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
@@ -395,10 +445,12 @@ class BossController {
 
 	/**
 	 *
-	 * @param article
-	 * @param modelMap
-     * @return
-     */
+	 * Deletes an article from the stock.
+	 *
+	 * @param article requested article
+	 * @param modelMap contains a list of the products
+	 * @return template "stock"
+	 */
 	@RequestMapping(value = "/stockdelete", method = RequestMethod.POST)
 	public String stockdelete(@RequestParam("sid") Product article, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
@@ -412,9 +464,11 @@ class BossController {
 
 	/**
 	 *
-	 * @param modelMap
-	 * @return
-     */
+	 * Shows income and expenses.
+	 *
+	 * @param modelMap contains the stock and completed orders
+	 * @return template "balance"
+	 */
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/balance")
 	public String balance(ModelMap modelMap) {
@@ -437,9 +491,11 @@ class BossController {
 
 	/**
 	 *
-	 * @param modelMap
-	 * @return
-     */
+	 * Shows a list of the orders.
+	 *
+	 * @param modelMap contains completed orders
+	 * @return template "orders"
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/orders")
 	public String orders(ModelMap modelMap) {
@@ -451,10 +507,11 @@ class BossController {
 
 
 	/**
+	 * Shows sold products (re-bought from private customers).
 	 *
-	 * @param modelMap
-	 * @return
-     */
+	 * @param modelmap contains completed sells
+	 * @return template "sellorders"
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/sellorders")
 	public String getSellorders(ModelMap modelmap) {
@@ -463,45 +520,67 @@ class BossController {
 
 		return "sellorders";
 	}
-	
+
+	/**
+	 *
+	 * For answering sell requests of a private customer.
+	 *
+	 * @param id ID of the request
+	 * @param model contains the customer who sent the request
+	 * @param modelmap contains the sellanwserForm (for validation)
+	 * @return template "sellorder_anwser"
+	 */
 	@PreAuthorize("hayAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/sellorder/anwser/{id}")
 	public String getsingleSellorder(@PathVariable("id") Long id, Model model, ModelMap modelmap) {
-		
+
 		modelmap.addAttribute("sellanwserForm", new SellanwserForm());
 		SellOrder sellorder_found = sellRepository.findOne(id);
 		Customer customer_of_sellorder = sellorder_found.getCustomer();
 		model.addAttribute("customer", customer_of_sellorder);
-		
+
 		return "sellorder_anwser";
 	}
-	
+
+	/**
+	 *
+	 * For sending an answer to a sell request.
+	 *
+	 * @param sellanwserForm form that needs to be validated
+	 * @param id ID of the request
+	 * @param model contains the customer who sent the request
+	 * @param modelmap contains the sellanswerForm, the answer and the price offer
+	 * @param result validation of the form
+	 * @return redirect to template "sellorders"
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/sellorder/anwser/{id}", method = RequestMethod.POST)
 	public String sendSellanwser(@ModelAttribute("sellanwserForm") @Valid SellanwserForm sellanwserForm, @PathVariable("id") Long id, Model model, ModelMap modelmap, BindingResult result) {
-		
+
 		modelmap.addAttribute("sellanwserForm", new SellanwserForm());
 		SellOrder sellorder_found = sellRepository.findOne(id);
 		Customer customer_of_sellorder = sellorder_found.getCustomer();
 		model.addAttribute("customer", customer_of_sellorder);
-		
-		
+
+
 		sellanwserForm.setArticle(sellorder_found.getArticle());
 		modelmap.addAttribute("anwser", "anwser");
 		modelmap.addAttribute("priceoffer", 16.20);
-		
-		
+
+
 		Sellanwser sellanwser = new Sellanwser(customer_of_sellorder, sellanwserForm.getArticle(), sellanwserForm.getAnwser(), sellanwserForm.getPriceoffer());
 		sellanwserRepository.save(sellanwser);
-		
+
 		return "redirect:/sellorders";
 	}
 
 	/**
 	 *
-	 * @param modelMap
-	 * @return
-     */
+	 * Form for adding an article.
+	 *
+	 * @param modelMap contains all available types for new articles
+	 * @return template "addArticle"
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/addarticle")
 	public String addArticle(ModelMap modelMap) {
@@ -514,15 +593,21 @@ class BossController {
 
 	/**
 	 *
-	 * @param modelMap
-	 * @param addArticleForm
-	 * @param result
-     * @return
-     */
+	 * Adds an article.
+	 *
+	 * @param modelMap contains all available types for new articles
+	 * @param addArticleForm form that needs to be validated
+	 * @param result validation of the form
+	 * @param file contains article image
+	 * @param success notification about adding the article
+	 * @return redirect to template "stock" (or back to the form when there are input errors to fix)
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value ="/addarticle", method = RequestMethod.POST)
 	public String addArticleToCatalog(ModelMap modelMap, @ModelAttribute("addArticleForm") @Valid addArticleForm addArticleForm, BindingResult result, @RequestParam("file") MultipartFile file, RedirectAttributes success) {
 		modelMap.addAttribute("types", Article.ArticleType.values());
+		modelMap.addAttribute("types2", Part.PartType.values());
+		modelMap.addAttribute("types3", Computer.Computertype.values());
 
 		if (result.hasErrors()) {
 			return "addArticle";
