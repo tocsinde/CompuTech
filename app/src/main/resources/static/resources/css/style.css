@@ -211,3 +211,25 @@ fieldset input, fieldset select {
     color:#782121;
     padding:8px;
 }
+
+.drtl {
+    background: #f2f2f2;
+    float:left;
+}
+
+.drtl .tblhead {
+    margin-top:0px;
+    padding:10px;
+    background:#ccc;
+    font-weight:bold;
+    text-align:center;
+}
+
+.drtl ul {
+    list-style:none;
+}
+
+.drtl ul li {
+    border-bottom:1px solid #ccc;
+    display:block;
+}
