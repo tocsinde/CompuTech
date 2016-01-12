@@ -12,7 +12,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Anwender on 16.12.2015.
+ *
+ * Basic class for all-in-one computer, basically similar to "Article" class.
+ * Consists of the basic computer and four more free customizable parts.
+ *
  */
 @Entity
 public class Computer extends Product {

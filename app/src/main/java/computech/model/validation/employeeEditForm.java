@@ -18,6 +18,12 @@
 
 package computech.model.validation;
 
+/**
+ *
+ * Validates an employee edit form.
+ *
+ */
+
 public class employeeEditForm {
 
 	private String password;

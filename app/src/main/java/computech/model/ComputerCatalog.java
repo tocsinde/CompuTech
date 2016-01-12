@@ -15,6 +15,12 @@ package computech.model;
 import org.salespointframework.catalog.Catalog;
 
 
+/**
+ *
+ * Contains every all-in-one computer in the shop.
+ *
+ */
+
 public interface ComputerCatalog extends Catalog <Article> {
 	Iterable<Article> findByType(Article.ArticleType type);
 
