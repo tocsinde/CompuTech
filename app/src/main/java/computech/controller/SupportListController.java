@@ -59,6 +59,7 @@ public class SupportListController {
         Reparation reparation = repairRepository.findOne(reparationId);
         Money price = Money.of(new BigDecimal(priceText), Currencies.EURO);
         reparation.setPrice(price);
+        repairRepository.save(reparation);
 
         System.out.println("Price set to " + price);
 

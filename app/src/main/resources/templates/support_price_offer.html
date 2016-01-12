@@ -23,7 +23,7 @@
 		<tr th:each="reparation: ${reparations}">
 			<td th:text="${reparation.article.name}">Samsung</td>
 			<td th:text="${reparation.description}">very good</td>
-			<td th:text="${reparation.article.price}"></td>
+			<td th:text="${reparation.price}"></td>
 			<td><form method="post" action="/support_price_offer">
 				<input type="hidden" name="reparationId" th:value="${reparation.id}"/>
 				<input type="radio" name="button" class="button" value="accept" />
