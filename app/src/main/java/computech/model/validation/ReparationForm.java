@@ -5,8 +5,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by Anna on 08.12.2015.
+ *
+ * Validates a reparation request form.
+ *
  */
+
 public class ReparationForm {
 
         @NotNull(message = "Bitte wählen Sie einen Artikel aus.")

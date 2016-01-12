@@ -15,6 +15,12 @@ package computech.model;
 import org.salespointframework.catalog.Catalog;
 
 
+/**
+ *
+ * Catalog which contains every existing part for all-in-one computer.
+ *
+ */
+
 public interface PartsCatalog extends Catalog <Part> {
 	Iterable<Part> findByType(Part.PartType type);
 

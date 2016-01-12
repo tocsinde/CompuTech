@@ -20,6 +20,14 @@ import javax.persistence.OneToOne;
 
 import org.salespointframework.useraccount.UserAccount;
 
+
+/**
+ *
+ * Basic class for Customer. The customer is based on Salespoint's "UserAccount" (which directly contains nickname and password).
+ * Any other data of a customer (adress, name, mail, phone, connected employee for business customer) will be saved here.
+ *
+ */
+
 @Entity
 public class Customer {
 

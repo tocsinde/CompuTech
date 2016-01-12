@@ -21,6 +21,12 @@ import org.springframework.data.annotation.Transient;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Pattern;
 
+/**
+ *
+ * Validates a reparation request form.
+ *
+ */
+
 public class RegistrationForm {
 
 	@Pattern(regexp="^[a-z|A-Z|\\d]*$", message = "Der Nickname ist ungültig (keine Sonderzeichen erlaubt).")

@@ -6,6 +6,12 @@ import javax.validation.constraints.NotNull;
 
 import computech.model.Article;
 
+/**
+ *
+ * Validates a sell answer form.
+ *
+ */
+
 public class SellanwserForm {
 	
 		private Article article;

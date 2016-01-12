@@ -20,6 +20,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 
+/**
+ *
+ * Validates an article adding form.
+ *
+ */
+
 public class addArticleForm {
 
 	@NotEmpty(message = "Der Artikelname darf nicht leer sein.")
