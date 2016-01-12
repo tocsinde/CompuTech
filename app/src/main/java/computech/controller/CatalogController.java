@@ -15,6 +15,7 @@ package computech.controller;
 import computech.model.*;
 import computech.model.Article.ArticleType;
 import org.javamoney.moneta.Money;
+import org.salespointframework.catalog.Product;
 import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.quantity.Quantity;
@@ -22,6 +23,7 @@ import org.salespointframework.time.BusinessTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -144,6 +146,21 @@ public class CatalogController {
 		return "shopoverview";
 	}
 
+
+
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
+	@RequestMapping(value = "/stockdelete", method = RequestMethod.POST)
+	public String stockdelete(@RequestParam("sid") Product article, ModelMap modelMap) {
+		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
+		InventoryItem i = item.get();
+
+		inventory.delete(i);
+		if (article.getClass()==Article.class) {computerCatalog.delete(article.getId());}
+			if (article.getClass()==Part.class){partsCatalog.delete(article.getId());}
+				if (article.getClass()==Computer.class){allinoneCatalog.delete(article.getId());}
+		modelMap.addAttribute("stock", inventory.findAll());
+		return "stock";
+	}
 
 	/**
 	 *
