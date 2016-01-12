@@ -147,7 +147,14 @@ public class CatalogController {
 	}
 
 
-
+	/**
+	 *
+	 * Deletes an article from the stock.
+	 *
+	 * @param article requested article
+	 * @param modelMap contains a list of the products
+	 * @return template "stock"
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/stockdelete", method = RequestMethod.POST)
 	public String stockdelete(@RequestParam("sid") Product article, ModelMap modelMap) {

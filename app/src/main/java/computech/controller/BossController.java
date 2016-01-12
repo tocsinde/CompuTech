@@ -445,15 +445,6 @@ public class BossController {
 		return "stock";
 	}
 
-	/**
-	 *
-	 * Deletes an article from the stock.
-	 *
-	 * @param article requested article
-	 * @param modelMap contains a list of the products
-	 * @return template "stock"
-	 */
-
 	//Ende Stockcontrolling
 
 	/**
