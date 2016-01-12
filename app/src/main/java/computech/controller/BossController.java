@@ -24,6 +24,8 @@ import org.salespointframework.order.OrderStatus;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 import org.salespointframework.order.ProductPaymentEntry;
@@ -56,6 +58,7 @@ import static org.salespointframework.core.Currencies.EURO;
 import javax.management.relation.RoleStatus;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -397,7 +400,7 @@ public class BossController {
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/addstock", method = RequestMethod.POST)
-	public String addstock(@RequestParam("sid") Product article, @RequestParam("number1") int number, ModelMap modelMap) {
+	public String addstock(@RequestParam("sid") Product article, @RequestParam("number1")@Min(0) int number, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
 		Quantity quantity = item.map(InventoryItem::getQuantity).orElse(NONE);
 
@@ -457,16 +460,18 @@ public class BossController {
 	@PreAuthorize("hasRole('ROLE_BOSS')")
 	@RequestMapping("/balance")
 	public String balance(ModelMap modelMap) {
+		List<Money> money = new LinkedList<Money>();
 		for (InventoryItem i :inventory.findAll()){
 			Quantity q = i.getQuantity();
 			Product p = i.getProduct();
 			Money m = p.getPrice();
 			BigDecimal bigd = q.getAmount();
-			m.multiply(bigd);
-			m.multiply(0.6);
-			p.setPrice(m);
+			Money f =m.multiply(bigd);
+			Money g =f.multiply(0.6);
+			money.add(g);
 			//Hmm..noch ohne funktion
 		}
+		modelMap.addAttribute("money", money);
 		modelMap.addAttribute("stock", inventory.findAll());
 		modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
 

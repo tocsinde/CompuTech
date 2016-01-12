@@ -52,6 +52,7 @@
 			<tr>
 				<th>Artikel</th>
 				<th>Einkaufsausgaben(noch falsch)</th>
+				<th>Einkaufsausgaben(noch falsch)</th>
 
 
 			</tr>
@@ -59,10 +60,16 @@
 			<tbody>
 			<tr th:each="article : ${stock} ">
 				<td th:text="${article.product.name}"></td>
-				<td th:text ="${article.product.price}">
-				</td>
+				<td th:text ="${article.product.price}"></td>
 
 			</tr>
+			<tr th:each="moneys : ${money} ">
+				<td th:text="${moneys}"></td>
+
+
+			</tr>
+
+
 			</tbody>
 		</table>
 	<p></p>
