@@ -563,7 +563,7 @@ public class BossController {
 	 *
 	 * Form for adding an article.
 	 *
-	 * @param modelMap contains all available types for new articles
+	 * @param modelMap contains all available types for new articles and the concrete form for adding the article
 	 * @return template "addArticle"
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
@@ -578,7 +578,7 @@ public class BossController {
 
 	/**
 	 *
-	 * Adds an article.
+	 * Validates the article add form and adds an article.
 	 *
 	 * @param modelMap contains all available types for new articles
 	 * @param addArticleForm form that needs to be validated
