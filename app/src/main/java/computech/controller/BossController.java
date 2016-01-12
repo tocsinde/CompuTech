@@ -369,6 +369,7 @@ public class BossController {
 	 * @param modelMap contains the article and it's quantity
 	 * @return template "sdetail"
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping("/sdetail/{sid}")
 	public String sdetail(@PathVariable("sid") Product article, ModelMap modelMap) {
 
@@ -394,6 +395,7 @@ public class BossController {
 	 * @param modelMap contains a list of the products
 	 * @return template "stock"
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/addstock", method = RequestMethod.POST)
 	public String addstock(@RequestParam("sid") Product article, @RequestParam("number1") int number, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
@@ -421,6 +423,7 @@ public class BossController {
 	 * @param modelMap contains a list of the products
 	 * @return template "stock"
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/substock", method = RequestMethod.POST)
 	public String substock(@RequestParam("sid") Product article, @RequestParam("number2") int number, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
@@ -450,6 +453,7 @@ public class BossController {
 	 * @param modelMap contains a list of the products
 	 * @return template "stock"
 	 */
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/stockdelete", method = RequestMethod.POST)
 	public String stockdelete(@RequestParam("sid") Product article, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
