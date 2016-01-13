@@ -21,7 +21,11 @@ import javax.persistence.OneToMany;
 import java.util.LinkedList;
 import java.util.List;
 
-//import org.salespointframework.quantity.Units;
+/**
+ *
+ * Part for all-in-one computer. Based on SalesPoint's "Product" class.
+ *
+ */
 
 @Entity
 public class Part extends Product {
@@ -42,7 +46,6 @@ public class Part extends Product {
 		private Part() {}
 
 		public Part(String name, String image, Money price, String model, PartType type) {
-			//super(name, price, Units.METRIC);
 			super(name, price);
 			this.image = image;
 			this.model = model;

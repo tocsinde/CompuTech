@@ -13,40 +13,45 @@
 
 <h1>Ankaufstelle</h1>
 
-
-		<div class="sell">
 			<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE', 'ROLE_PCUSTOMER')">
 				<form method="post" th:action="@{/sell}" th:object="${sellForm}">
+					<fieldset>
 					<div th:if="${#fields.hasErrors('*')}">
 						<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
 						<ul>
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Fehler</li>
 						</ul>
-					</div><br />
-					<label for="articleType">Artikelart</label><br />
+					</div>
+					<label for="articleType">Artikelart</label>
 					<select id="articleType" name="articleType" onchange="window.location = '../sell/' + this.value;">
 						<option></option>
-						<option th:each=" articleType : ${articletypes}" th:text="${articleType.toString()}" th:selected="${selectedarticleType == articleType}"></option>
+						<option th:each=" articleType : ${articletypes}" th:selected="${selectedarticleType == articleType}" th:value="${articleType.toString()}">
+
+							<th:block th:if="${#strings.equals(articleType.toString(),'ZUBE')}">Zubehör</th:block>
+							<th:block th:if="${#strings.equals(articleType.toString(),'SOFTWARE')}">Software</th:block>
+							<th:block th:if="${#strings.equals(articleType.toString(),'NOTEBOOK')}">Notebook</th:block>
+
+						</option>
 						
 					</select><br /><br />
-					<label for="article">Artikel</label><br />
+					<label for="article">Artikel</label>
 					<select id="article" name="article" th:field="*{article}">
 
 						<option th:each="article: ${articles}" th:text="${article.name}" th:value="${article.identifier}" th:errorclass="fieldError"></option>
 						
 					</select><br /><br />
-					<label for ="condition">Zustand</label><br />
+					<label for ="condition">Zustand</label>
 					<select id="condition" name="condition" th:errorclass="fieldError">
 						<option value="Neuwertig (~80% Originalpreis)">Neuwertig (~80% Originalpreis)</option>
 						<option value="Gebrauchsspuren (~55% Originalpreis)">Gebrauchsspuren (~55% Originalpreis)</option>
 						<option value="schlechter Zustand (~15% Originalpreis)">schlechter Zustand (~15% Originalpreis)</option>
 					
 					</select><br /><br />
-					<label for="description">Beschreibung</label><br />
-					<textarea id="description" name="description" cols="40" rows="5" th:field="*{description}" th:value="${description}" th:errorclass="fieldError"></textarea><br />
+					<label for="description">Beschreibung</label>
+					<textarea id="description" name="description" th:field="*{description}" th:value="${description}" th:errorclass="fieldError"></textarea><br/><br/>
 					<input type="submit" value="Senden" />
+					</fieldset>
 				</form>
 			</div>
-		</div>
 </body>
 </html>

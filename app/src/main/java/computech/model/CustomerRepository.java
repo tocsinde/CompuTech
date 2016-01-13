@@ -15,6 +15,12 @@ package computech.model;
 import org.salespointframework.useraccount.UserAccount;
 import org.springframework.data.repository.CrudRepository;
 
+/**
+ *
+ * Contains every customer (private and business customer).
+ *
+ */
+
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     void delete(Long id);

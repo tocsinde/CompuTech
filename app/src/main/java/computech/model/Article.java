@@ -21,7 +21,12 @@ import javax.persistence.OneToMany;
 import java.util.LinkedList;
 import java.util.List;
 
-//import org.salespointframework.quantity.Units;
+/**
+ *
+ * Basic class for notebooks, supplies and software. While name and price are located in Salespoint's "Product" class,
+ * model, type and image of the product are stored here.
+ *
+ */
 
 @Entity
 public class Article extends Product {
@@ -42,7 +47,6 @@ public class Article extends Product {
 		private Article() {}
 
 		public Article(String name, String image, Money price, String model, ArticleType type) {
-			//super(name, price, Units.METRIC);
 			super(name, price);
 			this.image = image;
 			this.model = model;

@@ -8,6 +8,12 @@ import javax.validation.constraints.DecimalMin;
 
 import computech.model.Article;
 
+/**
+ *
+ * Validates a sell answer form.
+ *
+ */
+
 public class SellanwserForm {
 	
 		private Article article;

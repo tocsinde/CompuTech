@@ -16,6 +16,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Pattern;
 
+/**
+ *
+ * Validates a register employee form.
+ *
+ */
+
 public class registerEmployeeForm {
 
 

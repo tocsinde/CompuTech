@@ -3,7 +3,6 @@ package computech.model;
 import org.javamoney.moneta.Money;
 
 import javax.persistence.*;
-import java.util.Currency;
 
 /**
  * Created by Anna on 15.11.2015.
@@ -20,6 +19,7 @@ public class Reparation {
 
     private Article article;
     private String description;
+    @Lob
     private Money price;
 
     @ManyToOne private Customer customer;

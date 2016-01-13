@@ -1,9 +1,10 @@
 package computech.controller;
 
 import computech.model.ComputerCatalog;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
 import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,10 +16,12 @@ import org.springframework.context.annotation.Configuration;
 public class Catalogcontrollercontext {
     @Bean
     public ComputerCatalog computerCatalog(){
-        return Mockito.mock(ComputerCatalog.class);
+        return mock(ComputerCatalog.class);
     }
+
     @Bean
     public InventoryItem inventoryItem(){
-        return Mockito.mock(InventoryItem.class);
+        return mock(InventoryItem.class);
     }
+
 }

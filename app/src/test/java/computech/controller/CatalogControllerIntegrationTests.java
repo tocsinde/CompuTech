@@ -110,10 +110,10 @@ public class CatalogControllerIntegrationTests extends AbstractWebIntegrationTes
 	@Test
 	public void detailIntegrationTest() throws Exception{
 		Model model = new ExtendedModelMap();
-		ProductIdentifier id = inventoryItemmock.getProduct().getId(); // mit mockito
+		ProductIdentifier id = inventoryItem.getProduct().getIdentifier(); // mit mockito
 		Article article = (Article) model.asMap().get("article"); //ohne Mockito
 
-		mvc.perform(get("/detail{id}", id));
+		mvc.perform(get("/detail{pid", id));
 
 	}
 

@@ -17,6 +17,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Pattern;
 
+/**
+ *
+ * Validates a profile edit form.
+ *
+ */
+
 public class profileEditForm {
 
 	@NotEmpty(message = "Der Vorname darf nicht leer sein.")

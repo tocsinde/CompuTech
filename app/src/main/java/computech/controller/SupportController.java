@@ -31,10 +31,10 @@ public class SupportController {
     private final CustomerRepository customerRepository;
     private final ComputerCatalog computerCatalog;
     private final RepairRepository repairRepository;
-    private final SellRepository sellRepository;
+    private final SellRepairRepository sellRepairRepository;
 
     @Autowired
-    public SupportController(CustomerRepository customerRepository, ComputerCatalog computerCatalog, RepairRepository repairRepository, SellRepository sellRepository) {
+    public SupportController(SellRepairRepository sellRepairRepository, CustomerRepository customerRepository, ComputerCatalog computerCatalog, RepairRepository repairRepository, SellRepository sellRepository) {
 
         Assert.notNull(customerRepository, "CustomerRepository must not be null!");
         Assert.notNull(computerCatalog, "ComputerCatalog must not be null!");
@@ -43,7 +43,7 @@ public class SupportController {
         this.customerRepository = customerRepository;
         this.computerCatalog = computerCatalog;
         this.repairRepository = repairRepository;
-        this.sellRepository = sellRepository;
+        this.sellRepairRepository = sellRepairRepository;
 
     }
 
@@ -169,8 +169,7 @@ public class SupportController {
 
 
         if (Flag == "accept") {
-            //speichern7
-            // cart.addOrUpdateItem(reparation.getArticle(), Quantity.of(1));
+            sellRepairRepository.save(reparation);
             System.out.print("!!!");
             repairRepository.delete(reparationId);
         } else {

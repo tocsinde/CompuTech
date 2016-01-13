@@ -22,7 +22,7 @@ public class SellOrder{
 	
 	@Id
 	@GeneratedValue
-	private Long id;
+	public Long id;
 	
 	private ArticleType articletype;
 
@@ -33,16 +33,23 @@ public class SellOrder{
 	
 	@ManyToOne 
 	private Customer customer;
+	
+	private boolean status = true;
 
 	private SellOrder() {}
 	
-	public SellOrder(Customer customer, ArticleType articletype, Article article, String description, String condition){ 
+	public SellOrder(Customer customer, ArticleType articletype, Article article, String description, String condition, boolean status){ 
 	   this.customer = customer;
 	   this.articletype = articletype;
 	   this.article = article;
 	   this.description = description;
 	   this.condition = condition;
+	   this.status = status;
    }
+	
+	public Long getID() {
+		return id;
+	}
 	
 	public ArticleType getArticleType() {
 		return articletype;
@@ -62,6 +69,14 @@ public class SellOrder{
 	
 	public String getCondition() {
 		return condition;
+	}
+	
+	public boolean getStatus() {
+		return status;
+	}
+	
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

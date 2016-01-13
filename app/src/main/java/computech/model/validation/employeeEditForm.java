@@ -10,7 +10,19 @@
  *
  */
 
+/**
+ *
+ * Was used to validate employee edit form, now it only sets the new password.
+ *
+ */
+
 package computech.model.validation;
+
+/**
+ *
+ * Validates an employee edit form.
+ *
+ */
 
 public class employeeEditForm {
 

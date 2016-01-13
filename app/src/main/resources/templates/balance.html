@@ -46,26 +46,29 @@
 			</table>
 	<p></p>
 	<h4>Ausgaben für Artikel</h4>
-		<table>
 
-			<thead>
-			<tr>
-				<th>Artikel</th>
-				<th>Einkaufsausgaben(noch falsch)</th>
+	<div class="drtl">
+		<p class="tblhead">Artikel</p>
+		<ul th:each="article : ${stock} ">
+			<li th:text="${article.product.name}"></li>
+		</ul>
+	</div>
 
+	<div class="drtl">
+		<p class="tblhead">Ausgaben einzelnes Produkt</p>
+		<ul th:each="article : ${stock} ">
+			<li th:text="${article.product.price}"></li>
+		</ul>
+	</div>
 
-			</tr>
-			</thead>
-			<tbody>
-			<tr th:each="article : ${stock} ">
-				<td th:text="${article.product.name}"></td>
-				<td th:text ="${article.product.price}">
-				</td>
-
-			</tr>
-			</tbody>
-		</table>
-	<p></p>
+	<div class="drtl">
+		<p class="tblhead">Gesamtausgaben</p>
+		<ul th:each="moneys : ${money} ">
+			<li th:text="${moneys}"></li>
+		</ul>
+	</div>
+	
+	<p class="clearboth"></p>
 	<h4>Auftragseinnahmen</h4>
 	<table>
 

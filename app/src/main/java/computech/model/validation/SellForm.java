@@ -6,6 +6,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 import computech.model.Article.*;
 import computech.model.*;
 
+/**
+ *
+ * Validates a sell form.
+ *
+ */
+
 public class SellForm {
 
 	@NotNull(message = "Sie müssen einen Artikeltyp auswählen.")

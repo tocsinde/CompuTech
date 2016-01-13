@@ -17,25 +17,32 @@ Vielen Dank für Ihr Vertrauen!
 
 
 		<div class="sellconfirmation">
-			<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE', 'ROLE_PCUSTOMER')">
-				<div class="content">
-					<table>
-					<thead>
-						<tr>
-							<th>Artikel</th>
-							<th>Antwort</th>
-							<th>Preisvorschlag</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="sellanwser : ${sellanwserCompleted}">
-							<td th:text="${sellanwser.article.name}"></td>
-							<td th:text="${sellanwser.anwser}"></td>
-							<td th:text="${sellanwser.priceoffer}"></td>
-						</tr>
-					</tbody>
-					</table>
-				</div>
+			<div class="salespoint" sec:authorize="hasRole('ROLE_PCUSTOMER')">
+				<form method="post" th:action="@{/sellconfirmation}" th:object="${sellanwserForm}" >
+					<div class="content">
+						<table>
+						<thead>
+							<tr>
+								<th>Artikel</th>
+								<th>Antwort</th>
+								<th>Preisvorschlag</th>
+								<th>Bestätigung</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="sellanwser : ${sellanwserCompleted}">
+								<td style="display:none;" th:hidden="${sellanwser.id}" id="id"></td>
+								<td th:text="${sellanwser.article.name}"></td>
+								<td th:text="${sellanwser.anwser}"></td>
+								<td th:inline="text"> EUR [[${sellanwser.priceoffer}]]</td>
+								<td>
+									<input type="submit" value="Bestätigen" />
+								</td>
+							</tr>	
+						</tbody>
+						</table>
+					</div>
+				</form>
 			</div>
 		</div>
 </body>

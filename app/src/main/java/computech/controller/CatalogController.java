@@ -23,6 +23,7 @@ import org.salespointframework.time.BusinessTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -33,13 +34,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.money.CurrencyUnit;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Optional;
 
-//import org.salespointframework.quantity.Units;
+/**
+ *
+ * The CatalogController provides functions for viewing article categories and single products as well.
+ *
+ */
 
 @Controller
-class CatalogController {
+public class CatalogController {
 
 	private static final Quantity NONE = Quantity.of(0);
 	private final ComputerCatalog computerCatalog;
@@ -48,10 +52,6 @@ class CatalogController {
 	private final Inventory<InventoryItem> partsinventory;
 	private final Inventory<InventoryItem> inventory;
 	private final BusinessTime businessTime;
-
-	// (｡◕‿◕｡)
-	// Da wir nur ein Catalog.html-Template nutzen, aber dennoch den richtigen Titel auf der Seite haben wollen,
-	// nutzen wir den MessageSourceAccessor um an die messsages.properties Werte zu kommen
 	private final MessageSourceAccessor messageSourceAccessor;
 
 	@Autowired
@@ -69,6 +69,13 @@ class CatalogController {
 	}
 
 
+	/**
+	 *
+	 * Shows laptops available for sell.
+	 *
+	 * @param model contains a list of all laptops
+	 * @return template "laptop"
+     */
 	@RequestMapping("/laptop")
 	public String notebookCatalog(Model model) {
 
@@ -78,6 +85,13 @@ class CatalogController {
 		return "laptop";
 	}
 
+	/**
+	 *
+	 * Shows customizable all-in-one computers available for sell.
+	 *
+	 * @param model contains a list of all all-in-one-computers
+	 * @return template "allinone"
+     */
 	@RequestMapping("/allinone")
 	public String computerCatalog(Model model) {
 
@@ -88,6 +102,12 @@ class CatalogController {
 		return "allinone";
 	}
 
+	/**
+	 * Shows software available for sell.
+	 *
+	 * @param model contains a list of software
+	 * @return template "software"
+     */
 	@RequestMapping("/software")
 	public String softwareCatalog(Model model) {
 
@@ -96,6 +116,14 @@ class CatalogController {
 
 		return "software";
 	}
+
+	/**
+	 *
+	 * Shows supplies avaiable for sell.
+	 *
+	 * @param model contains a list of supplies
+	 * @return template "zubehoer"
+     */
 
 	@RequestMapping("/zubehoer")
 	public String zubeCatalog(Model model) {
@@ -107,12 +135,48 @@ class CatalogController {
 	}
 
 
+	/**
+	 *
+	 * Shows an overview with all four article categories.
+	 *
+	 * @return template "shopoverview"
+     */
 	@RequestMapping("/shop")
 	public String shopoverview() {
 		return "shopoverview";
 	}
 
 
+	/**
+	 *
+	 * Deletes an article from the stock.
+	 *
+	 * @param article requested article
+	 * @param modelMap contains a list of the products
+	 * @return template "stock"
+	 */
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
+	@RequestMapping(value = "/stockdelete", method = RequestMethod.POST)
+	public String stockdelete(@RequestParam("sid") Product article, ModelMap modelMap) {
+		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());
+		InventoryItem i = item.get();
+
+		inventory.delete(i);
+		if (article.getClass()==Article.class) {computerCatalog.delete(article.getId());}
+			if (article.getClass()==Part.class){partsCatalog.delete(article.getId());}
+				if (article.getClass()==Computer.class){allinoneCatalog.delete(article.getId());}
+		modelMap.addAttribute("stock", inventory.findAll());
+		return "stock";
+	}
+
+	/**
+	 *
+	 * Shows detail page for notebooks, supplies and software.
+	 *
+	 * @param article requested article
+	 * @param model contains the article, the quantity and the indicator "orderable"
+     * @return template "detail"
+     */
 	@RequestMapping("/detail/{pid}")
 	public String detail(@PathVariable("pid") Article article, Model model) {
 
@@ -126,8 +190,17 @@ class CatalogController {
 		return "detail";
 	}
 
+
+	/**
+	 *
+	 * Shows detail page for customizable all-in-one computers.
+	 *
+	 * @param article requested article
+	 * @param model contains the single components (CPU, hard drive, RAM, graphics), the package price, the base article, the quantity and the indicator "orderable"
+     * @return template "compudetail"
+     */
 	@RequestMapping("/compudetail/{pid}")
-	public String compudetail(@PathVariable("pid") Computer article, Model model, Part part) {
+	public String compudetail(@PathVariable("pid") Computer article, Model model) {
 		Money i = article.getPrice();
 		article.getProzessor().clear();
 		article.getRam().clear();
@@ -148,6 +221,16 @@ class CatalogController {
 		return "compudetail";
 	}
 
+
+	/**
+	 *
+	 * Customizes an all-in-one computer.
+	 *
+	 * @param part part which gets selected
+	 * @param article all-in-one computer which gets customized
+	 * @param modelMap contains the base article, the package price, article ID, the components (CPU, hard drive, RAM, graphics), the quantity, the indicator "orderable" and a small check if all components are selected
+     * @return template "compudetail"
+     */
 	@RequestMapping(value = "/change", method= RequestMethod.POST)
 	public String changeprocessor(@RequestParam("part") Part part, @RequestParam("pid") Computer article, ModelMap modelMap) {
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());

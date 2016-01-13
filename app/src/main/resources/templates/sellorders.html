@@ -22,6 +22,7 @@
 							<tr>
 								<!-- Datumsangabe müssten wir seperat abspeichern, so wie bei normalen Bestellungen geht es hier leider noch nicht. (Stephan) -->
 								<!-- <th>Datum</th> -->
+								<th>ID</th>
 								<th>Kunde</th>
 								<th>Artikeltyp</th>
 								<th>Artikel</th>
@@ -33,13 +34,14 @@
 						<tbody>
 							<tr th:each="sell : ${sellCompleted}">
 								<!-- <td th:text="${#temporals.format(sell.dateCreated, 'dd.MM.yyyy HH:mm')}"></td>-->
+								<td th:text="${sell.id}"></td>
 								<td th:text="${sell.customer.userAccount.identifier}" th:value="${customer}" th:field="*{customer}"></td>
 								<td th:text="${sell.articleType}"></td>
 								<td th:text="${sell.article.name}"></td>
 								<td th:text="${sell.condition}"></td>
 								<td th:text="${sell.description}"></td>
 								<td>
-									<a th:method="post" th:action="@{/sellorder/anwser/} + ${sellorder.id}" href="sellorder_anwser.html" class="button">antworten</a>
+									<a th:method="post" th:href="@{/sellorder/anwser/} + ${sell.id}" href="sellorder_anwser.html" class="button" th:if="${sell.status}">antworten</a>
 								</td>
 							</tr>
 						</tbody>

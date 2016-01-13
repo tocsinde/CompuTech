@@ -16,7 +16,13 @@
 	
 	<div class="sellorders">
 		<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')">
-			<form th:method="post" th:action="@{/sellconfirmation/] + ${customer.id}" th:attr="data-customer-id=${customer.id}" th:object="${sellanwserForm}">
+			<form th:method="post" th:action="@{/sellorder/anwser/} + ${customer.id}" th:attr="data-customer-id=${customer.id}" th:object="${sellanwserForm}">
+				<div th:if="${#fields.hasErrors('*')}">
+						<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
+						<ul>
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Fehler</li>
+						</ul>
+					</div><br />
 					<div class="content">
 						<table>
 						<thead>
@@ -29,7 +35,7 @@
 								<th>Zustand</th>
 								<th>Beschreibung</th>
 								<th>Antwort</th>
-								<th>Preisvorschlag in €</th>
+								<th>Preisvorschlag</th>
 								<th>Abschicken</th>
 							</tr>
 						</thead>
@@ -42,10 +48,10 @@
 								<td th:text="${sell.condition}"></td>
 								<td th:text="${sell.description}"></td>
 								<td>
-									<textarea id="anwser" name="anwser" cols="30" rows="3" th:field="*{anwser}" th:value="${anwser}"></textarea>
+									<textarea id="anwser" name="anwser" cols="30" rows="3" th:field="*{anwser}" th:errorclass="fieldError"></textarea>
 								</td>
 								<td>
-									<input id="priceoffer" name="priceoffer" type="text" th:value="${priceoffer}" th:field="*{priceoffer}">
+									EUR <input id="priceoffer" name="priceoffer" type="text" size="2" th:field="*{priceoffer}" th:errorclass="fieldError"/>
 								</td>
 								<td>
 									<input type="submit" value="Antworten" />

@@ -20,14 +20,14 @@
 				<form method="post" action="/addstock" >
 					<input type="hidden" name="sid" value="0" th:value="${article.identifier}"  />
 					<label for="number1">Wie viele Artikel möchten Sie dem Lager hinzufügen?</label><br/>
-					<input id="number1" type="number" name="number1" step="1" />
+					<input id="number1" type="number" name="number1" step="1" min="1" value="1" />
 					<input	type="submit" value="Bestätigen" />
 				</form>
 				<p></p>
 				<form method="post" action="/substock" >
 					<input type="hidden" name="sid" value="0" th:value="${article.identifier}" />
 					<label for="number2">Wie viele Artikel möchten Sie aus dem Lager entfernen?</label><br/>
-					<input id="number2" type="number" name="number2" step="1" th:max="${quantity}" />
+					<input id="number2" type="number" name="number2" step="1" min="1" value="1" th:max="${quantity}" />
 					<input	type="submit" value="Bestätigen" />
 				</form>
 				<p></p>

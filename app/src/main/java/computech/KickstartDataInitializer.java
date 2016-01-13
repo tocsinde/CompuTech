@@ -230,7 +230,7 @@ public class KickstartDataInitializer implements DataInitializer {
 		//Iterable<Model> allModels = modelCatalog.findAll();
 		if (allCustomers.iterator().hasNext()) {
 			if (allArticles.iterator().hasNext()) {
-				SellOrder sellorder = new SellOrder(allCustomers.iterator().next(), ArticleType.NOTEBOOK, allArticles.iterator().next(), "description", "Neuwertig (~80% Originalpreis");
+				SellOrder sellorder = new SellOrder(allCustomers.iterator().next(), ArticleType.NOTEBOOK, allArticles.iterator().next(), "description", "Neuwertig (~80% Originalpreis", true);
 				sellRepository.save(sellorder);
 			}
 			sellRepository.findAll();
