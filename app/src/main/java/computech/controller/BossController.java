@@ -80,11 +80,12 @@ public class BossController {
 	private final SellRepository sellRepository;
 	private final SellanwserRepository sellanwserRepository;
 	private final Inventory<InventoryItem> partsinventory;
+	private final RepairRepository repairRepository;
 
 
 	@Autowired
 	public BossController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory,
-						  CustomerRepository customerRepository, UserAccountManager userAccountManager, SellRepository sellRepository, SellanwserRepository sellanwserRepository, Inventory<InventoryItem> partsinventory) {
+						  CustomerRepository customerRepository, UserAccountManager userAccountManager, SellRepository sellRepository, SellanwserRepository sellanwserRepository, Inventory<InventoryItem> partsinventory, RepairRepository repairRepository) {
 
 		this.orderManager = orderManager;
 		this.inventory = inventory;
@@ -93,6 +94,7 @@ public class BossController {
 		this.sellRepository = sellRepository;
 		this.sellanwserRepository = sellanwserRepository;
 		this.partsinventory = partsinventory;
+		this.repairRepository = repairRepository;
 	}
 
 	/**
@@ -136,8 +138,12 @@ public class BossController {
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/customers/delete/{id}", method = RequestMethod.POST)
 	public String removeCustomer(@PathVariable Long id, RedirectAttributes success) {
+		
+		for (Reparation repair : repairRepository.findAll()) {
+			if (repair.getCustomer() == customerRepository.findOne(id))
+				repairRepository.delete(repair.getId());
+		}
 		customerRepository.delete(id);
-
 		success.addFlashAttribute("success", "Der Kunde wurde erfolgreich gelöscht.");
 		return "redirect:/customers";
 	}
