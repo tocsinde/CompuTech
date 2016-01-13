@@ -1,3 +1,5 @@
+:imagesdir: images
+
 = Entwicklerdokumentation
 
 == Einführung und Ziele
@@ -64,12 +66,25 @@ Der Bereich des Verkaufs wurde hauptsächlich mit Hilfe des Frameworks SalesPoin
 realisieren. Für das Anlegen eines Sortiments wurde der "Catalog" von SalesPoint verwendet, der als Repository dient, um Article-Objekte zu persistieren. Die, ebenfalls von SalesPoint zur Verfügung stehende Klasse “Product“, wurde als Superklasse von Article-Objekten verwendet, da es den Umgang mit Attributen wie Preis/Währung und Stückzahl erleichtert und die Verwendung einer weiteren Salespoint-Funktionalität, dem "Cart", wesentlich komfortabler macht.
 
 == Bausteinsicht
-* Package-Diagramme
+=== Package-Diagramme
+
+[.left]
+[caption="Packagediagramm: "]
+image::packagediagrams/package-overview.png["Übersicht über Packages", 450, link="images/packagediagrams/package-overview.png", title="Übersicht (allgemeiner Javaordner)"]
+
+[.left]
+[caption="Packagediagramm: "]
+image::packagediagrams/controller.png["Controller", 450, link="images/packagediagrams/controller.png", title="Controller"]
+
+[.left]
+[caption="Packagediagramm: "]
+image::packagediagrams/model.png["Model", 450, link="images/packagediagrams/model.png", title="Model"]
+
+[.left]
+[caption="Packagediagramm: "]
+image::packagediagrams/validation.png["Validation", 450, link="images/packagediagrams/validation.png", title="Validation"]
 
 == Entwurfsentscheidungen
-=== Architektur
-
-=== Verwendete Muster
 
 === Persistenz
 Die Datenspeicherung im System übernimmt Spring Data JPA auf Basis des Java Frameworks Hibernate. Daten, die in unserem Projekt zur Laufzeit gespeichert werden müssen, werden in einer relationellen Datenbank mit Hilfe von CRUD Repositories abgelegt.
