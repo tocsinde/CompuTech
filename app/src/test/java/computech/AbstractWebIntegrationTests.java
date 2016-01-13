@@ -21,6 +21,7 @@ import computech.model.ComputerCatalog;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.salespointframework.inventory.Inventory;
 import org.salespointframework.inventory.InventoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -44,15 +45,15 @@ public abstract class AbstractWebIntegrationTests {
 	@Autowired WebApplicationContext context;
 	@Autowired FilterChainProxy securityFilterChain;
 	@Autowired
-	protected ComputerCatalog computerCatalogmock;
+	protected ComputerCatalog computerCatalog;
 	@Autowired
-	protected InventoryItem inventoryItemmock;
+	protected InventoryItem inventoryItem;
 	protected MockMvc mvc;
 
 	@Before
 	public void setUp() {
-		Mockito.reset(computerCatalogmock);
-		Mockito.reset(inventoryItemmock);
+		//Mockito.reset(computerCatalog);
+		//Mockito.reset(inventoryItem);
 		context.getServletContext().setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, context);
 
 		mvc = MockMvcBuilders.webAppContextSetup(context).//
