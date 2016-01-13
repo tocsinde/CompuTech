@@ -61,7 +61,6 @@ public class SellController {
 		model.addAttribute("customer", customer);
 		modelMap.addAttribute("sellForm", new SellForm());
         modelMap.addAttribute("articletypes", Article.ArticleType.values());
-		Customer customer = customerRepository.findByUserAccount(userAccount.get());
 		model.addAttribute("customer", customer);
 
         for (Article.ArticleType articleType : Article.ArticleType.values()) {

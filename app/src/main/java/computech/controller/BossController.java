@@ -517,7 +517,6 @@ public class BossController {
 		System.out.println(sellRepository.findOne(1l).getStatus());
 		return "sellorders";
 	}
-<<<<<<< HEAD
 	
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/sellorder/anwser/{id}")
