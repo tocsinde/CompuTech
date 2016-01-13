@@ -25,7 +25,6 @@
 					<label for="articleType">Artikelart</label>
 					<select id="articleType" name="articleType" onchange="window.location = '../sell/' + this.value;">
 						<option></option>
-						<!--  th:text="${articleType.toString()}" -->
 						<option th:each=" articleType : ${articletypes}" th:selected="${selectedarticleType == articleType}" th:value="${articleType.toString()}">
 
 							<th:block th:if="${#strings.equals(articleType.toString(),'ZUBE')}">Zubehör</th:block>

@@ -27,17 +27,20 @@
 		<label for="type">Artikelart</label>
 		<select id="type" name="type" onchange="window.location = '../support/' + this.value;">
 			<option></option>
-			<option th:each=" type : ${types}" th:text="${type.toString()}" th:selected="${selectedType == type}"></option>
+			<option th:each=" type : ${types}" th:value="${type.toString()}" th:selected="${selectedType == type}">
+				<th:block th:if="${#strings.equals(type.toString(),'ZUBE')}">Zubehör</th:block>
+				<th:block th:if="${#strings.equals(type.toString(),'SOFTWARE')}">Software</th:block>
+				<th:block th:if="${#strings.equals(type.toString(),'NOTEBOOK')}">Notebook</th:block>
+			</option>
 		</select><br/>
 
 		<label for="article">Artikel</label>
 		<select id="article" name="article" th:errorclass="fieldError">
-			<!--  th:value="${article.identifier}" -->
 			<option th:each=" article: ${articles}" th:text="${article.name}" th:value="${article.identifier}"></option>
 		</select><br/>
 
 		<label for="description">Beschreibung</label>
-		<input id="description" type="text" name="description" th:errorclass="fieldError" />
+		<textarea id="description" type="text" name="description" th:errorclass="fieldError" />
 
 		<input type="submit" value="Abschicken" />
 	</fieldset>
