@@ -461,24 +461,28 @@ class BossController {
 
 		modelmap.addAttribute("sellCompleted", sellRepository.findAll());
 
+		System.out.println(sellRepository.findOne(1l).getStatus());
 		return "sellorders";
 	}
 	
-	@PreAuthorize("hayAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
+	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/sellorder/anwser/{id}")
 	public String getsingleSellorder(@PathVariable("id") Long id, Model model, ModelMap modelmap) {
 		
+		modelmap.addAttribute("sellCompleted", sellRepository.findOne(id));
 		modelmap.addAttribute("sellanwserForm", new SellanwserForm());
 		SellOrder sellorder_found = sellRepository.findOne(id);
 		Customer customer_of_sellorder = sellorder_found.getCustomer();
 		model.addAttribute("customer", customer_of_sellorder);
-		
+		System.out.println("hhe"); 	
 		return "sellorder_anwser";
+		
 	}
 	
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/sellorder/anwser/{id}", method = RequestMethod.POST)
 	public String sendSellanwser(@ModelAttribute("sellanwserForm") @Valid SellanwserForm sellanwserForm, @PathVariable("id") Long id, Model model, ModelMap modelmap, BindingResult result) {
+		
 		
 		modelmap.addAttribute("sellanwserForm", new SellanwserForm());
 		SellOrder sellorder_found = sellRepository.findOne(id);
@@ -489,10 +493,13 @@ class BossController {
 		sellanwserForm.setArticle(sellorder_found.getArticle());
 		modelmap.addAttribute("anwser", "anwser");
 		modelmap.addAttribute("priceoffer", 16.20);
+		modelmap.addAttribute("id_costumer", customer_of_sellorder.getId());
 		
-		
-		Sellanwser sellanwser = new Sellanwser(customer_of_sellorder, sellanwserForm.getArticle(), sellanwserForm.getAnwser(), sellanwserForm.getPriceoffer());
+		Sellanwser sellanwser = new Sellanwser(customer_of_sellorder, sellanwserForm.getArticle(), sellanwserForm.getAnwser(), sellanwserForm.getPriceoffer(), sellanwserForm.getId_Costumer());
 		sellanwserRepository.save(sellanwser);
+		
+		sellorder_found.setStatus(false);
+		sellRepository.save(sellorder_found);
 		
 		return "redirect:/sellorders";
 	}

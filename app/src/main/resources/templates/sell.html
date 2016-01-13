@@ -16,7 +16,7 @@
 
 		<div class="sell">
 			<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE', 'ROLE_PCUSTOMER')">
-				<form method="post" th:action="@{/sellconfirmation/} + ${customer.userAccount.id}" th:attr="data-customer-id=${customer.userAccount.id}" th:object="${sellForm}">
+				<form method="post" th:action="@{/sell}" th:object="${sellForm}">
 					<div th:if="${#fields.hasErrors('*')}">
 						<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
 						<ul>

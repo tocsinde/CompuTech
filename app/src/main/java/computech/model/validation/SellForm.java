@@ -20,6 +20,8 @@ public class SellForm {
 	@NotEmpty(message = "Sie müssen den Zustand von Ihren Artikel angeben.")
 	private String condition;
 	
+	private boolean status = true;
+	
 	public ArticleType getArticleType() {
 		return articleType;
 	}
@@ -51,5 +53,14 @@ public class SellForm {
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
+	
+	public boolean getStatus() {
+		return status;
+	}
+	
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
 
 }

@@ -33,7 +33,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@PreAuthorize("hasAnyRole('ROLE_PCUSTOMER', 'ROLE_EMPLOYEE', 'ROLE_BOSS')")
+@PreAuthorize("hasRole('ROLE_PCUSTOMER')")
 @SessionAttributes("sell")
 public class SellController {
 	
@@ -55,8 +55,10 @@ public class SellController {
 	}
 
 	@RequestMapping(value = "/sell")
-    public String showSellFormular(ModelMap modelMap){
+    public String showSellFormular(ModelMap modelMap, Model model, @LoggedIn Optional<UserAccount> userAccount){
 		
+		Customer customer = customerRepository.findByUserAccount(userAccount.get());
+		model.addAttribute("customer", customer);
 		modelMap.addAttribute("sellForm", new SellForm());
         modelMap.addAttribute("articletypes", Article.ArticleType.values());
 
@@ -69,8 +71,10 @@ public class SellController {
 	}
 	
 	@RequestMapping(value = "/sell/{articleType}")
-    public String showSellFormular(@PathVariable("articleType") Article.ArticleType articleType,ModelMap modelMap){
+    public String showSellFormular(@PathVariable("articleType") Article.ArticleType articleType,ModelMap modelMap, Model model, @LoggedIn Optional<UserAccount> userAccount){
 		
+		Customer customer = customerRepository.findByUserAccount(userAccount.get());
+		model.addAttribute("customer", customer);
 		modelMap.addAttribute("sellForm", new SellForm());
         modelMap.addAttribute("articletypes", Article.ArticleType.values());
         modelMap.addAttribute("selectedarticleType", articleType);
@@ -78,10 +82,11 @@ public class SellController {
 
         return "sell";
     }
-		
+	
+	
 	@RequestMapping(value = "/sell", method = RequestMethod.POST)
 	public String addtoResell(@ModelAttribute("sellForm") @Valid SellForm sellForm, BindingResult result,  @LoggedIn Optional<UserAccount> userAccount, ModelMap modelmap) {
-		
+		System.out.println("Hallo");
 		modelmap.addAttribute("articletypes", Article.ArticleType.values());
 		for (Article.ArticleType articleType : Article.ArticleType.values()) {
 			 modelmap.addAttribute(articleType.toString(), computerCatalog.findByType(articleType));
@@ -93,22 +98,41 @@ public class SellController {
 		
 		Customer customer = customerRepository.findByUserAccount(userAccount.get());
 		modelmap.addAttribute("customer", customer);
-		SellOrder sellorder = new SellOrder(customer, sellForm.getArticleType(), sellForm.getArticle(), sellForm.getDescription(), sellForm.getCondition());
+		modelmap.addAttribute("status", true);
+		SellOrder sellorder = new SellOrder(customer, sellForm.getArticleType(), sellForm.getArticle(), sellForm.getDescription(), sellForm.getCondition(), sellForm.getStatus());
 		sellRepository.save(sellorder); 
 		
-			return "sellconfirmation";
+		System.out.println(sellRepository.count());
+		System.out.println(sellForm.getArticleType());
+		System.out.println(sellForm.getArticle());
+		System.out.println(sellForm.getDescription());
+		System.out.println(sellForm.getCondition());
+		System.out.println(sellForm.getStatus());
+		System.out.println(customer);
+		
+			return "redirect:/sellconfirmation";
 	}
 	
-	@RequestMapping("/sellconfirmation/{id}")
-	public String getSellanwser(@PathVariable("id") Long id, Model model, ModelMap modelmap) {
+	@RequestMapping("/sellconfirmation")
+	public String getSellanwser(Model model, ModelMap modelmap, @LoggedIn Optional<UserAccount> userAccount) {
+	
+		Customer customer_logged_in = customerRepository.findByUserAccount(userAccount.get());
+		for (Long i=1l; i <= sellanwserRepository.count() ; i++) {
+			if ( customer_logged_in == sellanwserRepository.findOne(i).getCustomer()) {
 				
-		modelmap.addAttribute("sellanwserForm", new SellanwserForm());
-		Customer customer_found = customerRepository.findOne(id);
-		
-		model.addAttribute("customer", customer_found);
-		
+				modelmap.addAttribute("sellanwserCompleted", sellanwserRepository.findOne(i));
+			}
+		}		
 		
 		return "sellconfirmation";
+	}
+	
+	@RequestMapping(value = "/sellconfirmation", method = RequestMethod.POST)
+	public String acceptsellorder(@ModelAttribute("sellanwserForm") SellanwserForm sellanwserForm, ModelMap modelmap, Model model) {
+		
+		
+		
+		return "redirect:/sellconfirmation";
 	}
 
 }
