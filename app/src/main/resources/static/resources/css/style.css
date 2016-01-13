@@ -139,9 +139,13 @@ fieldset label {
 	text-align:right;
 }
 
-fieldset input, fieldset select {
+fieldset input, fieldset select, fieldset textarea {
 	width:45%;
 	margin-bottom:10px;
+}
+
+fieldset textarea {
+    height: 100px;
 }
 
 .linkbox {
