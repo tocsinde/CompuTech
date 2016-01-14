@@ -32,7 +32,9 @@ Vielen Dank für Ihr Vertrauen!
 						<tbody>
 							<tr th:each="sellanwser : ${sellanwserCompleted}">
 								<td style="display:none;" th:hidden="${sellanwser.id}" id="id"></td>
-								<td th:text="${sellanwser.article.name}"></td>
+								<td th:text="${sellanwser.article.name}">
+									<input type="hidden" th:field="*{article}" name="article" value="0" th:value="${sellanwser.article}" />
+								</td>
 								<td th:text="${sellanwser.anwser}"></td>
 								<td th:inline="text"> EUR [[${sellanwser.priceoffer}]]</td>
 								<td>

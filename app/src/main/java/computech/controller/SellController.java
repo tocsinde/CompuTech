@@ -21,6 +21,11 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.salespointframework.quantity.Quantity;
+
+import org.salespointframework.catalog.Product;
+import org.salespointframework.inventory.Inventory;
+import org.salespointframework.inventory.InventoryItem;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,21 +42,25 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes("sell")
 public class SellController {
 	
+	private static final Quantity NONE = Quantity.of(0);
 	private final ComputerCatalog computerCatalog;
 	private final CustomerRepository customerRepository;
 	private final SellRepository sellRepository;
 	private final SellanwserRepository sellanwserRepository;
+	private final Inventory<InventoryItem> inventory;
 
 	@Autowired
-	public SellController(ComputerCatalog computerCatalog, CustomerRepository customerRepository, SellRepository sellRepository, SellanwserRepository sellanwserRepository) {
+	public SellController(ComputerCatalog computerCatalog, CustomerRepository customerRepository, SellRepository sellRepository, SellanwserRepository sellanwserRepository, Inventory<InventoryItem> inventory) {
 		Assert.notNull(computerCatalog, "computerCatalog must not be null!");
 		Assert.notNull(customerRepository, "customerRepository must not be null!");
 		Assert.notNull(sellRepository, "sellRepository must not be null!");
 		Assert.notNull(sellanwserRepository, "sellanwserRepository must not be null!");
+		Assert.notNull(inventory, "inventory must not be null!");
 		this.computerCatalog = computerCatalog;
 		this.customerRepository = customerRepository;
 		this.sellRepository = sellRepository;
 		this.sellanwserRepository = sellanwserRepository;
+		this.inventory = inventory;
 	}
 
 	@RequestMapping(value = "/sell")
@@ -130,11 +139,16 @@ public class SellController {
 	}
 	
 	@RequestMapping(value = "/sellconfirmation", method = RequestMethod.POST)
-	public String acceptsellorder(@ModelAttribute("sellanwserForm") SellanwserForm sellanwserForm, ModelMap modelmap, Model model) {
+	public String acceptsellorder(@RequestParam("article") Article article, ModelMap modelmap) {
+		
+		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());		
+		
+		InventoryItem i = item.get();
+		i.increaseQuantity(Quantity.of(1));
+		inventory.save(i);
 		
 		
-		
-		return "redirect:/sellconfirmation";
+		return "redirect:/";
 	}
 
 }
