@@ -149,17 +149,6 @@ public class SupportController {
         return "support_price_offer";
     }
 
-    @RequestMapping(value = "/support_price_confirmation", method = RequestMethod.GET)
-    public String priceConfirmation(@LoggedIn Optional<UserAccount> userAccount,
-                                    ModelMap modelMap,
-                                    @ModelAttribute Cart cart) {
-
-
-        Customer customer = customerRepository.findByUserAccount(userAccount.get());
-        modelMap.addAttribute("customer", customer);
-        return "support_price_confirmation";
-    }
-
 
     @RequestMapping(value = "/support_price_offer", method = RequestMethod.POST)
     public String onPriceOfferDecisionMade(@RequestParam(required = false, value = "accept") String acceptFlag,
@@ -186,13 +175,14 @@ public class SupportController {
             sellRepairRepository.save(reparation);
             repairRepository.delete(reparationId);
             System.out.println("ja");
+            return "support_price_confirmation";
         } else if (denyFlag != null) {
             repairRepository.delete(reparationId);
             System.out.println("nein");
         }
 
 
-        return "redirect:/support_price_offer";
+        return "support_price_confirmation_not";
 
     }
 

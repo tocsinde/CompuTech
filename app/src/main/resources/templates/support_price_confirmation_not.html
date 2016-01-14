@@ -8,10 +8,12 @@
     <title>Reparaturanfrage erhalten - CompuTech</title>
 </head>
 <body>
+
 <header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
 
-<h1>Preisvorschlag gesendet</h1>
-Der Preisvorschlag ist gesendet.
+<h1>Reparaturanfrage erhalten</h1>
+
+Sehr geehrter Kunde <strong><span th:text="${customer.firstname}"></span> <span th:text="${customer.lastname}"></span></strong>, <br/> danke für Ihre Antwort.
 </body>
 </html>

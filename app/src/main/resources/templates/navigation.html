@@ -20,9 +20,9 @@
 			<li sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')"><a th:href="@{/sellorders}" href="sellorders.html">Ankaufstelle</a></li>
 			<li sec:authorize="hasRole('ROLE_PCUSTOMER')"><a th:href="@{/sellconfirmation}" href="sellconfirmation.html">Ankaufanfragen</a></li>
 			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER', 'ROLE_BCUSTOMER')"><a th:href="@{/profile}" href="profile.html">Profil</a></li>
-			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER')"><a th:href="@{/support}" href="support.html">Support</a></li>
-			<li sec:authorize="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')"><a th:href="@{/support_list}" href="support_list.html">Supportanfragen</a></li>
-			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER')"><a th:href="@{/support_price_offer}" href="support_price_offer.html">Supportanfragen</a></li>
+			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER')"><a th:href="@{/support}" href="support.html">Reparatur</a></li>
+			<li sec:authorize="hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')"><a th:href="@{/support_list}" href="support_list.html">Reparaturanfragen</a></li>
+			<li sec:authorize="hasAnyRole('ROLE_PCUSTOMER')"><a th:href="@{/support_price_offer}" href="support_price_offer.html">Reparaturanfragen</a></li>
 
 			<li><a th:href="@{/shop}" href="shopoverview.html">Shop</a></li>
 			<li sec:authorize="!hasRole('ROLE_BOSS')"><a th:href="@{/cart}" href="cart.html">Warenkorb</a></li>
