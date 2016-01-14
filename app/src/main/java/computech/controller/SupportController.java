@@ -175,16 +175,17 @@ public class SupportController {
         System.out.println("11");
 
         if (acceptFlag != null) {
-            System.out.println("pp");
+
             sellRepairRepository.save(reparation);
-            System.out.println("oo");
             repairRepository.delete(reparationId);
+            System.out.println("ja");
         } else if (denyFlag != null) {
             repairRepository.delete(reparationId);
+            System.out.println("nein");
         }
 
 
-        return "redirect:/support_price_confirmation";
+        return "redirect:/support_price_offer";
 
     }}
 
