@@ -1,23 +1,42 @@
 = Cross-Testing Feedback
 
-__Durchführende Gruppe:__
-__Anwendung von Gruppe:__
+__Durchführende Gruppe:__ Gruppe 32
+
+__Anwendung von Gruppe:__ Gruppe 13
 
 == Getestetes System
-Welche Aufgabe/Problemstellung löst die Anwendung.
+Der Landschaftsmaler Carlo Traumtänzer verbringt die meiste Zeit des Tages in seinem Atelier oder in der freien Natur, um neue Motive auf die Leinwand zu bannen. In seinem Heimatstädtchen ist er auch sehr berühmt – über die Stadtgrenzen hinaus hat sich sein Ruhm aber leider noch nicht so weit verbreitet. Gelegentlich kann er bei einem befreundeten Galeristen in der nahegelegenen Großstadt seine Bilder kostenlos ausstellen und verkauft dabei auch das eine oder andere Exemplar. Zum Leben reicht das aber nicht.  Deswegen betreibt Carlo gemeinsam mit seiner Frau Luise einen kleinen Laden für Künstler- und Bastelbedarf. Dort erhält man alles, was bei der künstlerischen Betätigung für den Hausgebrauch so benötigt wird: Papier, Farben, Pinsel, Bastelanleitungen usw. Die Abwicklung sämtlicher Ein- und Verkaufshandlungen sowie Monats- und Jahresabrechnungen erfolgen zurzeit in althergebrachter Weise mit Papier, Bleistift und Taschenrechner. Sehr mühselig und unübersichtlich!  Seit kurzem bietet die Familie Traumtänzer abends an verschiedenen Wochentagen im eigens dafür anzumietenden Vereinszimmer einer Gaststätte auch Kurse für künstlerische Laien an, z.B. „Aquarellmalen für Anfänger“ oder „Bastelspaß mit Trockenobst“ – natürlich gegen eine entsprechende Teilnahmegebühr. Die dafür benötigten Materialien werden den Teilnehmern aus dem Bastelladen zum Einkaufspreis zur Verfügung gestellt. Interessierte Personen schreiben sich für freie Termine in die im Laden ausliegenden Listen ein und müssen die Gebühr sofort entrichten. Das soll eine gewisse Planungssicherheit gewährleisten: wer schon bezahlt hat, wird dann wohl auch erscheinen.  Da Carlo – wie alle großen Künstler – überhaupt keinen Sinn für geschäftliche Dinge hat, bleibt dieser Teil komplett an Luise hängen, die neben der Arbeit im Laden und der Kursleitung auch noch Haushalt und Kinder versorgen muss. Sie erhofft sich Erleichterung bei den geschäftlichen Verrichtungen durch den Einsatz eines Computers und wünscht sich eine spezielle Software, die sie sowohl bei der Führung des Ladens als auch bei der Planung und Durchführung der Kurse unterstützt. Die Abwicklung einiger Aufgaben per email (z.B. die Benachrichtigung von Kursteilnehmern bei Terminverschiebungen oder das Versenden von Bestellungen für den Laden) wäre auch ganz praktisch. Und Luise bräuchte auch mal eine Übersicht, was der Verkauf der Bilder ihres Mannes der Familie einbringt.  Luise wendet sich an den „Hilfsfond für überlastete Künstlerehepartner“, der sich zur Finanzierung einer entsprechenden Software bereit erklärt und Sie mit der Entwicklung derselben betraut.
+
+=== Kundenwünsche
+==== Galerie/Bildreservierungen
+Es soll eine Galerie für Gemälde geben. In dieser sollen Bilder hochgeladen werden können. Die Galerie ist für externe Nutzer sichtbar und diese sollen dort Bilder reservieren können. Reservierungen können dem Warenkorb hinzugefügt werden und anschließend normal verkauft werden können.
+
+==== Tags für Produkte
+Es soll Tags für Produkte geben, welche die Produkte spezifizieren und nach denen man die Produkte filtern kann.
+
+==== Zulieferer für Produkte
+Es soll Zulieferer für Produkte geben, welche die Nachbestellungen ausführen. Man kann Produkten Zulieferer zuweisen (und andersrum). Zulieferer bieten Preisfaktoren, aus welchen sich der Bestellpreis ergibt (Produktpreis * Preisfaktor = Bestellpreis). Beim Aufgeben einer Nachbestellung muss nun ein Zulieferer ausgewählt werden.
+
+
 
 == Fehler-Report
 // See http://asciidoctor.org/docs/user-manual/#tables
 [options="header"]
 |===
 |Pfad |Parameter |Beschreibung |Rückgabe
-| … | … | … | … |
+|Als Boss einloggen, zu Kursteilnehmer gehen und jemanden in Kurs einschreiben | - | Formular zur Kurseinschreibung wird nicht angezeigt | org.thymeleaf.exceptions.TemplateInputException ("Error resolving template "registerAttendee", template might not exist or might not be accessible by any of the configured Template Resolvers") |
 |===
 
 == Sonstiges
-* Optik der Anwendung
-* Fehlende Features
-* Interaktion mit der Anwendung (Usability)
+=== Optik der Anwendung
+=== Fehlende Features
+=== Interaktion mit der Anwendung (Usability)
+* betreffend Testfall I-1: Bei Datumseingabe "11.11.2016" liefert Programm
+internen Serverfehler
+** "java.time.format.DateTimeParseException
+Text '11.11.2016' could not be parsed at index 0"
+** gewünscht ist folgendes Format: 2015-12-20T19:30
+** Eingabe nicht intiutiv genug
 
 == Verbesserungsvorschläge
 * Was kann noch weiter verbessert werden?
