@@ -87,7 +87,7 @@ public class SupportController {
 
 
     @RequestMapping(value = "/support", method = RequestMethod.POST)
-    public String specification(ModelMap modelMap, @ModelAttribute("reparationForm") @Valid ReparationForm reparationForm, BindingResult result, @LoggedIn Optional<UserAccount> userAccount){
+    public String specification(ModelMap modelMap, @ModelAttribute("reparationForm") @Valid ReparationForm reparationForm, BindingResult result, @LoggedIn Optional<UserAccount> userAccount) {
 
         modelMap.addAttribute("types", Article.ArticleType.values());
 
@@ -95,7 +95,7 @@ public class SupportController {
             modelMap.addAttribute(type.toString(), computerCatalog.findByType(type));
         }
 
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "support";
         }
 
@@ -144,29 +144,36 @@ public class SupportController {
         }
 
 
-
         modelMap.addAttribute("reparations", reparationList);
 
         return "support_price_offer";
     }
 
+    @RequestMapping(value = "/support_price_confirmation", method = RequestMethod.GET)
+    public String priceConfirmation(@LoggedIn Optional<UserAccount> userAccount,
+                                    ModelMap modelMap,
+                                    @ModelAttribute Cart cart) {
 
+
+        Customer customer = customerRepository.findByUserAccount(userAccount.get());
+        modelMap.addAttribute("customer", customer);
+        return "support_price_confirmation";
+    }
 
 
     @RequestMapping(value = "/support_price_offer", method = RequestMethod.POST)
-    public String onPriceOfferDecisionMade(@RequestParam(required = false, value ="accept") String acceptFlag,
-                                           @RequestParam(required = false, value ="deny") String denyFlag,
+    public String onPriceOfferDecisionMade(@RequestParam(required = false, value = "accept") String acceptFlag,
+                                           @RequestParam(required = false, value = "deny") String denyFlag,
                                            //@RequestParam("button") String Flag,
 
                                            @RequestParam("reparationId") Long reparationId,
                                            @LoggedIn Optional<UserAccount> userAccount, ModelMap modelMap,
-                                           @ModelAttribute Cart cart)
-    {
+                                           @ModelAttribute Cart cart) {
 
         Customer customer = customerRepository.findByUserAccount(userAccount.get());
         Reparation reparation = repairRepository.findOne(reparationId);
 
-        modelMap.addAttribute("customer", customer );
+        modelMap.addAttribute("customer", customer);
         modelMap.addAttribute("article", reparation.getArticle());
 
         //modelMap.addAttribute("fullname", customer.getFirstname() +" " + customer.getLastname() );
@@ -186,6 +193,7 @@ public class SupportController {
 
         return "redirect:/support_price_confirmation";
 
-    }}
+    }
 
+}
 

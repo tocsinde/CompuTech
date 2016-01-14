@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/lab-kickstart.iml" filepath="$PROJECT_DIR$/lab-kickstart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/swt15w32.iml" filepath="$PROJECT_DIR$/swt15w32.iml" />
     </modules>
   </component>
 </project>
