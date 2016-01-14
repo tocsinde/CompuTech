@@ -20,6 +20,7 @@ public class Sellanwser {
 	@ManyToOne
 	private Customer customer;
 	
+	private boolean status = true;
 	
 	private Long id_costumer;
 	
@@ -28,12 +29,13 @@ public class Sellanwser {
 		
 	}
 	
-	public Sellanwser(Customer customer, Article article, String anwser, BigDecimal priceoffer, Long id_costumer){
+	public Sellanwser(Customer customer, Article article, String anwser, BigDecimal priceoffer, Long id_costumer, boolean status){
 		this.customer = customer;
 		this.article = article;
 		this.anwser = anwser;
 		this.priceoffer = priceoffer;
 		this.id_costumer = id_costumer;
+		this.status = status;
 	}
 	
 	public Long getID() {
@@ -58,6 +60,14 @@ public class Sellanwser {
 	
 	public Long getId_Costumer() {
 		return id_costumer;
+	}
+	
+	public boolean getStatus() {
+		return status;
+	}
+	
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

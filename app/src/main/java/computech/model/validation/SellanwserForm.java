@@ -27,6 +27,8 @@ public class SellanwserForm {
 		@NotNull (message = "Geben Sie einen Ankaufpreis an.")
 		private BigDecimal priceoffer;
 		
+		private boolean status = true;
+		
 		
 		public Article getArticle() {
 			return article;
@@ -58,5 +60,13 @@ public class SellanwserForm {
 		
 		public void setPriceoffer(BigDecimal priceoffer) {
 			this.priceoffer = priceoffer;
+		}
+		
+		public boolean getStatus() {
+			return status;
+		}
+		
+		public void setStatus(boolean status) {
+			this.status = status;
 		}
 }

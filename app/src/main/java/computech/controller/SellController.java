@@ -190,6 +190,9 @@ public class SellController {
 		i.increaseQuantity(Quantity.of(1));
 		inventory.save(i);
 		
+		Sellanwser sellanwser_found = sellanwserRepository.findOne(id);
+		sellanwser_found.setStatus(false);
+		sellanwserRepository.save(sellanwser_found);
 		
 		return "redirect:/";
 	}

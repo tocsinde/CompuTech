@@ -36,9 +36,10 @@ Vielen Dank für Ihr Vertrauen!
 								<td th:text="${sellanwser.anwser}"></td>
 								<td th:inline="text"> EUR [[${sellanwser.priceoffer}]]</td>
 								<td>
+									<div th:if="${sellanwser.status} == false">bereits abgeschlossen</div>
 									<form method="post" th:action="@{/sellconfirmation}" th:object="${sellanwserForm}">
 									<input type="hidden" id="id" name="id" th:value="${sellanwser.id}" />
-									<input type="submit" value="Bestätigen" />
+									<input type="submit" value="Bestätigen" th:if="${sellanwser.status}"/>
 									</form>
 								</td>
 							</tr>	

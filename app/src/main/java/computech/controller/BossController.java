@@ -568,8 +568,9 @@ public class BossController {
 		modelmap.addAttribute("anwser", "anwser");
 		modelmap.addAttribute("priceoffer", 16.20);
 		modelmap.addAttribute("id_costumer", customer_of_sellorder.getId());
+		modelmap.addAttribute("status", true);
 		
-		Sellanwser sellanwser = new Sellanwser(customer_of_sellorder, sellanwserForm.getArticle(), sellanwserForm.getAnwser(), sellanwserForm.getPriceoffer(), sellanwserForm.getId_Costumer());
+		Sellanwser sellanwser = new Sellanwser(customer_of_sellorder, sellanwserForm.getArticle(), sellanwserForm.getAnwser(), sellanwserForm.getPriceoffer(), sellanwserForm.getId_Costumer(), sellanwserForm.getStatus());
 		sellanwserRepository.save(sellanwser);
 		
 		sellorder_found.setStatus(false);
