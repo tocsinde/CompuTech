@@ -11,14 +11,18 @@
 <header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
 
-<h1>Support - Price Offers</h1>
+<h1>Support - Anfragen</h1>
 
 
 	<table>
 
-		<tr th:each="reparation: ${reparations}">
-					<td>Reparation <div th:text="${reparation.article.name}"></div></td>
-		</tr>
+		<thead>
+			<th>Artikelname</th>
+			<th>Zustandsbeschreibung</th>
+			<th>Preis</th>
+			<th>über Angebot entscheiden</th>
+
+		</thead>
 
 		<tr th:each="reparation: ${reparations}">
 			<td th:text="${reparation.article.name}">Samsung</td>
@@ -26,9 +30,9 @@
 			<td th:text="${reparation.price}"></td>
 			<td><form method="post" action="/support_price_offer">
 				<input type="hidden" name="reparationId" th:value="${reparation.id}"/>
-				<input type="radio" name="button" class="button" value="accept" />
-				<input type="radio" name="button" class="button" value="deny" />
-				<td><button type="submit"> Abschicken</button></td>
+				<input type="radio" name="button" class="button" value="accept" /> annehmen
+				<input type="radio" name="button" class="button" value="deny" /> ablehnen
+				<input type="submit" value="Absenden" />
 			</form></td>
 		</tr>
 	</table>

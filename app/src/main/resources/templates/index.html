@@ -11,14 +11,17 @@
 <header th:include="header :: header"></header>
 <nav th:include="navigation :: navigation"></nav>
 
-<h1>Startseite</h1>
-
 <th:block th:if="${success != null}">
 	<p class="success" th:text="${success}"></p>
 </th:block>
 
-Willkommen bei CompuTech.<br/>
-Unser reichhaltiges Angebot ist reichhaltig gefüllt. Schauen Sie sich im <a href="/shop">Shop</a> um.
+<center>
 
+<img src="../resources/img/frontpage.png" alt="" title="" />
+
+<p>
+	Willkommen bei CompuTech.<br/>
+Unser reichhaltiges Angebot ist reichhaltig gefüllt. Schauen Sie sich im <a href="/shop">Shop</a> um.
+</p></center>
 	</body>
 </html>
