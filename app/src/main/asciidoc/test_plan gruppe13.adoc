@@ -1,0 +1,57 @@
+﻿= Test-Plan
+
+== Aufbau der Testbezeichner
+Nach welchem Schema sind die Tests benannt?
+
+*U - Unit Test, I - Integrationstest*
+
+*U-1, U-2, I-1*
+
+== Umgebungsvoraussetzungen
+Es wird keine zusätzliche Software zum Testen benötigt.
+Die Anwendung wird auf dem Rechner, auf dem Java installiert sein sollte mit 'java -jar swt15w13-XXX.jar' ausgeführt
+Die Anwendung kann dann über localhost:8080 aufgerufen werden
+
+== Testfälle und Verantwortlichkeit
+Jede testbezogene Aufgabe muss einem Ansprechpartner zugeordnet werden.
+
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="headers"]
+|===
+|ID |Anwendungsfall |Vorbedingungen |Eingabe |Ausgabe
+|I-1	|Kurs hinzufuegen	|auf /course/create	|Name, Preis, Beschreibung, Kursleiter, Materialien, Kapazitaet, Datum&Uhrzeit, Periodizität	|Anzeige des Kurses in der Kursliste und "Kurs erfolgreich gespeichert"	
+|I-2	|Kurs bearbeiten	|Berechtigung zur Kursverwaltung	|Name, Preis, Beschreibung, Kursleiter, Materialien, Kapazitaet, Datum&Uhrzeit, Peridoizitaet	|Korrekte Kursinformationen in Kursliste und "Kurs erfolgreich gespeichert"	
+|I-3	|Kursbenachrichtung hinzufuegen	|Kurs mit id XXX existiert; /course/XXX/notification/create	|Titel, Text	|Kursansicht mit hinzugefuegter Benachrichtung	
+|I-4	|Kursbenachrichtung löschen	|Kurs mit id XXX mit Benachrichtigung YYY existiert	|Klick auf Löschen-Symbol bei Benachrichtung (/course/XXX/notification/delete/YYY)	|Kursansicht mit geloeschter Benachrichtung YYY	
+|I-5	|Kurs entfernen	|Kurs XXX existiert	|Klick auf "Loeschen" bei Kurs in Kursliste (/course/delete/XXX)	|Kursliste ohne Kurs XXX	
+|I-6	|Kursansicht fuer Gaeste	|Nicht eingeloggt, Kurs XXX existiert	|Im Kalendar klick auf den Kurs (/course/XXX)	|Anzeige der Kursinformationen und Benachrichtungen OHNE Eingabefelder	
+|I-7	|Kursteilnehmer hinzufuegen	|Klick auf "Teilnehmer hinzufuegen" in Teilnehmerliste (/attendee/create)	|Name, Adresse, Email	|Teilnehmerliste mit hinzugefuegtem Teilnehmer	
+|I-8	|Kursteilnehmer bearbeiten	|Teilnehmer mit id XXX existiert; Klick auf "Bearbeiten" in Teilnehmerliste (/attendee/XXX)	|Andere(r) Name, Adresse, Email	|Teilnehmerliste mit aktualisierten Informationen zu Teilnehmer XXX	
+|I-9	|Kursteilnehmer loeschen	|Kursteilnehmer mit id XXX existiert 	|Klick auf Löschen-Button beim Teilnehmer (/attendees/removeattendee/XXX)	|Anzeige der Kursteilnehmerliste ohne den gelöschten Teilnehmer und Benachrichtigung, dass der Löschvorgang erfolgreich war	
+|I-10	|Kursteilnehmer in freien Kurs einschreiben und "Bereits eingeschrieben"	|Kursteilnehmer mit id XXX existiert 	|Klick auf Einschreiben-Button  (/attendees/registerAttendee/XXX)	|Liste verfügbarer Kurse, Button zum Einschreiben in einen Kurs bzw Hinweis an Kursen, in die der Teilnehmer bereits eingeschrieben ist	
+|I-11	|Belegte Kurse bei Einschreibung	|Kursteilnehmer mit id XXX existiert, Kurs mit id YYY ist bereits voll	|Klick auf Einschreiben-Button  (/attendees/registerAttendee/XXX)	|Anzeigen eines Warteliste-Buttons anstatt eines Einschreiben-Buttons bei Kurs YYY	
+|I-12	|Bearbeiten der eigenen Nutzerdaten	|Nutzer mit der Berechtigung zum Verwalten von Nutzern befindet sich auf Mitarbeiter-Seite (/users)	|Klicken des Bearbeiten-Buttons für den eigenen Nutzeraccount	|Checkbox für die Berechtigung zum Verwalten von Nutzern ist deaktiviert	
+|I-13	|Nutzer hinzufügen	|Nutzer mit der Berechtigung zum Verwalten von Nutzern befindet sich auf der Seite zum Erstellen eines neuen Nutzers (/user/create)	|Benutzername, Passwort, Vorname, Nachname, Lohn, Telefonnummer, Berechtigungen Klicken auf Speichern-Button	|Weiterleitung zur Mitarbeiter-Seite, Anzeigen des neuen Mitarbeiters, Benachrichtigung, dass Account erfolgreich angelegt wurde	
+|I-14	|Speichern der Nutzerberechtigungen	|Nutzer mit der Berechtigung zum Verwalten von Nutzern befindet sich auf der Seite zum Bearbeiten eines vorhandenen Nutzers mit der id XXX (/user/XXX)	|Berechtigungen Klicken auf Speichern-Button	|Berechtigungen des Nutzers werden gespeichert, Benachrichtigung, dass der Nutzer gespeichert wurde, falls der Nutzer eingeloggt ist, wird er ausgeloggt	
+|I-15	|Nutzer löschen	|Nutzer mit der Berechtigung zum Verwalten von Nutzern befindet sich auf der Mitarbeiter-Liste und ein weiterer Nutzer mit der id XXX existiert	|Klicken des Löschen-Buttons (/removeuser/XXX)	|Aktualisieren der Mitarbeiterliste, gelöschter Nutzer wird nichtmehr angezeigt, Benachrichtigung, dass der Nutzer erfolgreich gelöscht wurde	
+|I-16	|Anzeige der Produktliste	|Nutzer ist eingeloggt	|Anzeigen der Produkliste (/products)	|Anzeige aller Produkte im System, inklusive Gemaelde	
+|I-17	|Produkt hinzufuegen	|Auf Produkt-Hinzufuegen Formular (/product/create)	|Name, Typ, Bild, Beschreibung, Tags, Vorrat, Preis, Zulieferer	|Gespeichertes Produkt mit vollstaendig eingegebenen Informationen	
+|I-18	|Produkt bearbeiten	|Product mit id XXX existiert und Bearbeiten Formular fuer dieses Produkt wird angezeigt (/product/XXX)	|Name, Typ, Bild, Beschreibung, Tags, Vorrat, Preis, Zulieferer	|Gespeichertes Produkt mit aktualisierten, vollstaendig eingegebenen Informationen	
+|I-19	|Produkt loeschen	|Product mit id XXX existiert; Produktliste angezeigt	|Klick auf "Loeschen" bei Produkt XXX (/product/delete/XXX)	|Produktliste, indem das geloeschte Produkt nicht mehr gelistet wird	
+|I-20	|Markieren von Produkten mit zu geringem Bestand	|Es gibt Produkte mit einem Bestand < 5	|Anzeige der Produktliste (/products)	|Produktliste mit den Produkten markiert, die Bestand < 5 haben	
+|I-21	|Auflistung von Produkten zu einem Tag	|Es gibt Produkte mit dem Tag T	|Klick auf den Tag in der Produktliste (/products/T)	|Anzeige genau derer Produkte, die diesen Tag haben	
+|I-22	|Nachbestellung aufgeben	|Es gibt ein (Laden-)Produkt mit id XXX, das einen Zulieferer hat; Produktdetailansicht wird angezeigt (/product/XXX)	|Zulieferer ausgewaehlen, Anzahl eingeben, Klick auf "Bestellen"	|Anzeige der Nachbestellungsliste mit neuer Nachbestelllung fuer Product XXX	
+|I-23	|Nachbestellung stornieren	|Es gibt eine Nachbestellung mit id XXX; Nachbestellungsliste wird angezeigt (/reorders)	|Bei der Nachbestellung Klick auf "Stornieren"	|Anzeige der Nachbestellungsliste mit entfernter Nachbestellung, Produktbestand darf sich nicht gaendert haben	
+|I-24	|Nachbestellung Wareneingang	|Es gibt eine Nachbestellung mit id XXX fuer Produkt mit id YYY; Nachbestellungsliste wird angezeigt (/reorders)	|Bei Nachbestellung Klick auf "Wareneingang"	|Anzeige der Nachbestellungsliste OHNE diese Nachbestellung; Produktbestand muss aktualisiert sein	
+|I-25	|Einkauf abschliessen	|Warenkorb ist gefuellt; Anzeige des Warenkorbs (/cart)	|Klick auf "Einkauf abschliessen"	|Rechnung mit korrekten Produkten und Kosten; Produktbestand muss aktualisiert sein; Statistik-Eintrag muss erstellt worden sein	
+|I-26	|Produkt aus Warenkorb entfernen	|Produkt XXX befindet sich im Warenkorb	|Klick auf Entfernen-Button (/removeproductfromcart/XXX)	|Produkt wird aus Warenkorb entfernt, anzeigen einer Meldung, dass Produkt aus Warenkorb entfernt wurde	
+|I-27	|Produkt zu Warenkorb hinzufuegen	|Product XXX existiert; Anzeige der Produktliste	|Anzahl; Klick auf "In den Warenkorb"	|Anzeige der Produktliste, Vermerk dass n von Produkt XXX im Warenkorb (blaues Label)	
+|U-28	|Mehr Produkte zum Warenkorb hinzufügen als vorrätig	|Von einem Vorrat sind noch XXX vorrätig	|Menge > XXX	|Meldung, dass maximal XXX hinzugefügt werden können	
+|I-29	|Gemäldereservierung für Gäste	|Ein nicht eingeloggter Nutzer befindet sich im Reservierungsformular für ein Gemälde mit der ID XXX  (/reservation/XXX)	|Name, Adresse, E-Mail Klicken des Speichern-Buttons	|Anzeige einer Reservierungsnummer, das Bild wird in der Galerie fortan als reserviert markiert	
+|I-30	|Reservierung zum Warenkorb hinzufügen	|Ein Nutzer befindet sich auf der Reservierungsliste und es gibt eine Reservierung mit der id XXX (/reservationsList)	|Klicken auf In den Warenkorb-Button (/reservationsListCheckout/XXX)	|Löschen der Reservierung, Weiterleitung zum Warenkorb in welchem sich das entsprechende Gemälde nun befindet, Gemälde wird nicht weiter in Galerie angezeigt	
+|I-31	|Reservierung löschen	|Ein Nutzer befindet sich auf der Reservierungsliste und es gibt eine Reservierung mit der id XXX (/reservationsList)	|Klicken auf den Löschen-Button (/dereservate/XXX)	|Löschen der Reservierung, Benachrichtigung, dass die Reservierung gelöscht wurde, Gemälde kann in der Galerie wieder reserviert werden	
+|I-32	|Manuellen Statistikeintrag hinzufügen	|Ein Nutzer mit der hat das Formular für einen Manuellen Eintrag korrekt ausgefüllt (/recording/create)	|Beschreibung, Betrag Klicken des Speichern-Buttons	|Eintrag wird in Statistik angezeigt, Benachrichtigung, dass Eintrag gespeichert wurde, Bilanz wird um den Betrag des Eintrages korrigiert	
+|I-33	|Anzeige der korrekten Statistikeintraege für ausgewählten Monat	|Ein Nutzer mit der Berechtigung zum Verwalten der Statistiken befindet sich in der Finanzüberischt  (/statistics)	|Monat XX, Jahr YYYY (/statistics/YYYY-XX)	|Anzeigen der Statistikeinträge des gewählten Monats	
+|I-34	|Zugriffsverweigerung nicht eingeloggter Nutzer zu nicht-öffentlichen Seiten	|Unregistrierter Nutzer	|Aufruf einer Seite (außer /index, /calendar & /gallery)	|Weiterleitung zur Login-Seite	
+|I-35	|Zugriffsverweigerung eingeloggter Nutzer ohne Berechtigung	|Eingeloggter Nutzer welcher nicht alle Berechtigungen besitzt	|Aufruf einer Seite, die eine Berechtigung erfordert, welche der Nutzer nicht besitzt	|Anzeigen einer Fehlerseite, mit der Nachricht "Zugriff verweigert"	
+|===
