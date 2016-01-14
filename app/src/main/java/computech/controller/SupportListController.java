@@ -63,7 +63,7 @@ public class SupportListController {
 
         System.out.println("Price set to " + price);
 
-        return "support_list";
+        return "support_list_confirmation";
     }
 
 

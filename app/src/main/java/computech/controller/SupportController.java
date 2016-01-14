@@ -145,8 +145,6 @@ public class SupportController {
 
 
 
-
-
         modelMap.addAttribute("reparations", reparationList);
 
         return "support_price_offer";
@@ -156,7 +154,9 @@ public class SupportController {
 
 
     @RequestMapping(value = "/support_price_offer", method = RequestMethod.POST)
-    public String onPriceOfferDecisionMade(@RequestParam("button") String Flag,
+    public String onPriceOfferDecisionMade(@RequestParam(required = false, value ="accept") String acceptFlag,
+                                           @RequestParam(required = false, value ="deny") String denyFlag,
+                                           //@RequestParam("button") String Flag,
 
                                            @RequestParam("reparationId") Long reparationId,
                                            @LoggedIn Optional<UserAccount> userAccount, ModelMap modelMap,
@@ -166,18 +166,25 @@ public class SupportController {
         Customer customer = customerRepository.findByUserAccount(userAccount.get());
         Reparation reparation = repairRepository.findOne(reparationId);
 
+        modelMap.addAttribute("customer", customer );
+        modelMap.addAttribute("article", reparation.getArticle());
 
+        //modelMap.addAttribute("fullname", customer.getFirstname() +" " + customer.getLastname() );
+        //modelMap.addAttribute("article_name",reparation.getArticle().getModel());
 
-        if (Flag == "accept") {
+        System.out.println("11");
+
+        if (acceptFlag != null) {
+            System.out.println("pp");
             sellRepairRepository.save(reparation);
-            System.out.print("!!!");
+            System.out.println("oo");
             repairRepository.delete(reparationId);
-        } else {
+        } else if (denyFlag != null) {
             repairRepository.delete(reparationId);
         }
 
 
-        return "redirect:/support_price_offer";
+        return "redirect:/support_price_confirmation";
 
     }}
 
