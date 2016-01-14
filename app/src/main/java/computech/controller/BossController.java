@@ -501,9 +501,8 @@ public class BossController {
 		return "orders";
 	}
 
-
 	/**
-	 * Shows sold products (re-bought from private customers).
+	 * Shows sold products (re-bought from private customers), if empty redirects to start
 	 *
 	 * @param modelmap contains completed sells
 	 * @return template "sellorders"
@@ -512,16 +511,29 @@ public class BossController {
 	@RequestMapping("/sellorders")
 	public String getSellorders(ModelMap modelmap) {
 
+		if (sellRepository.count() == 0) {
+			
+			return "redirect:/";
+		}
 		modelmap.addAttribute("sellCompleted", sellRepository.findAll());
 
-		System.out.println(sellRepository.findOne(1l).getStatus());
 		return "sellorders";
 	}
 	
+	/**
+	 * 
+	 * Shows a single sell for the selected sell id
+	 * 
+	 * @param id ID of the request
+	 * @param model contains the customer who sent the request
+	 * @param modelmap contains single sellorder
+	 * @return template "sellorder_anwser"
+	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/sellorder/anwser/{id}")
 	public String getsingleSellorder(@PathVariable("id") Long id, Model model, ModelMap modelmap) {
 		
+		modelmap.addAttribute("id", id);
 		modelmap.addAttribute("sellCompleted", sellRepository.findOne(id));
 		modelmap.addAttribute("sellanwserForm", new SellanwserForm());
 		SellOrder sellorder_found = sellRepository.findOne(id);
@@ -540,12 +552,11 @@ public class BossController {
 	 * @param id ID of the request
 	 * @param model contains the customer who sent the request
 	 * @param modelmap contains the sellanswerForm, the answer and the price offer
-	 * @param result validation of the form
 	 * @return redirect to template "sellorders"
 	 */
 	@PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_BOSS')")
 	@RequestMapping(value = "/sellorder/anwser/{id}", method = RequestMethod.POST)
-	public String sendSellanwser(@ModelAttribute("sellanwserForm") @Valid SellanwserForm sellanwserForm, @PathVariable("id") Long id, Model model, ModelMap modelmap, BindingResult result) {
+	public String sendSellanwser(@ModelAttribute("sellanwserForm") @Valid SellanwserForm sellanwserForm, @PathVariable("id") Long id, Model model, ModelMap modelmap) {
 
 		modelmap.addAttribute("sellanwserForm", new SellanwserForm());
 		SellOrder sellorder_found = sellRepository.findOne(id);

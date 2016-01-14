@@ -41,6 +41,7 @@
 								<td th:text="${sell.condition}"></td>
 								<td th:text="${sell.description}"></td>
 								<td>
+									<div th:if="${sell.status} == false">bereits beantwortet</div>
 									<a th:method="post" th:href="@{/sellorder/anwser/} + ${sell.id}" href="sellorder_anwser.html" class="button" th:if="${sell.status}">antworten</a>
 								</td>
 							</tr>

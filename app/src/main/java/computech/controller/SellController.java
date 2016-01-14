@@ -37,6 +37,12 @@ import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 
+ *
+ * The Sellcontroller contains the functions for private costumers in order to send a sellorder and receive and send sellanswers
+ *
+ */
 @Controller
 @PreAuthorize("hasRole('ROLE_PCUSTOMER')")
 @SessionAttributes("sell")
@@ -63,6 +69,15 @@ public class SellController {
 		this.inventory = inventory;
 	}
 
+	/**
+	 * 
+	 * Show the Form to send a sell request
+	 * 
+	 * @param modelMap contains the sellForm, especially the articletype
+	 * @param model contains the customer filling in the form
+	 * @param userAccount contains the logged in customer
+	 * @return redirect to template "sell"
+	 */
 	@RequestMapping(value = "/sell")
     public String showSellFormular(ModelMap modelMap, Model model, @LoggedIn Optional<UserAccount> userAccount){
 		
@@ -80,6 +95,16 @@ public class SellController {
         return "sell";
 	}
 	
+	/**
+	 * 
+	 * Shows the Form to send a sell request with articletype chosen
+	 * 
+	 * @param articleType contains the chosen articletype
+	 * @param modelMap contains the sellForm and the selected articletype
+	 * @param model contains the costumer filling in the form
+	 * @param userAccount contains the logged in customer
+	 * @return redirect to template "sell"
+	 */
 	@RequestMapping(value = "/sell/{articleType}")
     public String showSellFormular(@PathVariable("articleType") Article.ArticleType articleType,ModelMap modelMap, Model model, @LoggedIn Optional<UserAccount> userAccount){
 		
@@ -94,10 +119,19 @@ public class SellController {
         return "sell";
     }
 	
-	
+	/**
+	 * 
+	 * For sending a request for selling an article to Computech
+	 * 
+	 * @param sellForm form thats needs to be validated
+	 * @param result validation of the form
+	 * @param userAccount contains logged in costumer
+	 * @param modelmap contains the sellForm
+	 * @return redirect to template "sellconfirmation"
+	 */
 	@RequestMapping(value = "/sell", method = RequestMethod.POST)
 	public String addtoResell(@ModelAttribute("sellForm") @Valid SellForm sellForm, BindingResult result,  @LoggedIn Optional<UserAccount> userAccount, ModelMap modelmap) {
-		System.out.println("Hallo");
+
 		modelmap.addAttribute("articletypes", Article.ArticleType.values());
 		for (Article.ArticleType articleType : Article.ArticleType.values()) {
 			 modelmap.addAttribute(articleType.toString(), computerCatalog.findByType(articleType));
@@ -113,19 +147,19 @@ public class SellController {
 		SellOrder sellorder = new SellOrder(customer, sellForm.getArticleType(), sellForm.getArticle(), sellForm.getDescription(), sellForm.getCondition(), sellForm.getStatus());
 		sellRepository.save(sellorder); 
 		
-		System.out.println(sellRepository.count());
-		System.out.println(sellForm.getArticleType());
-		System.out.println(sellForm.getArticle());
-		System.out.println(sellForm.getDescription());
-		System.out.println(sellForm.getCondition());
-		System.out.println(sellForm.getStatus());
-		System.out.println(customer);
-		
 			return "redirect:/sellconfirmation";
 	}
 	
+	/**
+	 * 
+	 * Shows the form for receiving sell answers and agreeing with the price
+	 *  
+	 * @param modelmap contains the completed sell answers 
+	 * @param userAccount contains the logged in customer
+	 * @return redirect to template "sellconfirmation"
+	 */
 	@RequestMapping("/sellconfirmation")
-	public String getSellanwser(Model model, ModelMap modelmap, @LoggedIn Optional<UserAccount> userAccount) {
+	public String getSellanwser(ModelMap modelmap, @LoggedIn Optional<UserAccount> userAccount) {
 	
 		Customer customer_logged_in = customerRepository.findByUserAccount(userAccount.get());
 		for (Long i=1l; i <= sellanwserRepository.count() ; i++) {
@@ -138,9 +172,18 @@ public class SellController {
 		return "sellconfirmation";
 	}
 	
+	/**
+	 * 
+	 * Add the article the customer send a sell for to stock
+	 * 
+	 * @param id ID of the sell answer
+	 * @param modelmap contains the completed sell answer
+	 * @return redirect to start
+	 */
 	@RequestMapping(value = "/sellconfirmation", method = RequestMethod.POST)
-	public String acceptsellorder(@RequestParam("article") Article article, ModelMap modelmap) {
+	public String acceptsellorder(@RequestParam("id") Long id, ModelMap modelmap) {
 		
+		Article article = sellanwserRepository.findOne(id).getArticle();
 		Optional<InventoryItem> item = inventory.findByProductIdentifier(article.getIdentifier());		
 		
 		InventoryItem i = item.get();

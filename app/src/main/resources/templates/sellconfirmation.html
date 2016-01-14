@@ -18,8 +18,7 @@ Vielen Dank für Ihr Vertrauen!
 
 		<div class="sellconfirmation">
 			<div class="salespoint" sec:authorize="hasRole('ROLE_PCUSTOMER')">
-				<form method="post" th:action="@{/sellconfirmation}" th:object="${sellanwserForm}" >
-					<div class="content">
+						<div class="content">
 						<table>
 						<thead>
 							<tr>
@@ -31,20 +30,22 @@ Vielen Dank für Ihr Vertrauen!
 						</thead>
 						<tbody>
 							<tr th:each="sellanwser : ${sellanwserCompleted}">
+	
 								<td style="display:none;" th:hidden="${sellanwser.id}" id="id"></td>
-								<td th:text="${sellanwser.article.name}">
-									<input type="hidden" th:field="*{article}" name="article" value="0" th:value="${sellanwser.article}" />
-								</td>
+								<td th:text="${sellanwser.article.name}"></td>
 								<td th:text="${sellanwser.anwser}"></td>
 								<td th:inline="text"> EUR [[${sellanwser.priceoffer}]]</td>
 								<td>
+									<form method="post" th:action="@{/sellconfirmation}" th:object="${sellanwserForm}">
+									<input type="hidden" id="id" name="id" th:value="${sellanwser.id}" />
 									<input type="submit" value="Bestätigen" />
+									</form>
 								</td>
 							</tr>	
 						</tbody>
 						</table>
 					</div>
-				</form>
+				
 			</div>
 		</div>
 </body>

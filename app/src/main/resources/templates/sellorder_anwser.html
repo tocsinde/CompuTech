@@ -16,7 +16,7 @@
 	
 	<div class="sellorders">
 		<div class="salespoint" sec:authorize="hasAnyRole('ROLE_BOSS', 'ROLE_EMPLOYEE')">
-			<form th:method="post" th:action="@{/sellorder/anwser/} + ${customer.id}" th:attr="data-customer-id=${customer.id}" th:object="${sellanwserForm}">
+			<form th:method="post" th:action="@{/sellorder/anwser/} + ${id}" th:attr="data-sell-id=${id}" th:object="${sellanwserForm}">
 				<div th:if="${#fields.hasErrors('*')}">
 						<span class="error">Einige Angaben fehlen bzw. sind unkorrekt.</span>
 						<ul>
@@ -48,10 +48,10 @@
 								<td th:text="${sell.condition}"></td>
 								<td th:text="${sell.description}"></td>
 								<td>
-									<textarea id="anwser" name="anwser" cols="30" rows="3" th:field="*{anwser}" th:errorclass="fieldError"></textarea>
+									<textarea required="required" id="anwser" name="anwser" cols="30" rows="3" th:field="*{anwser}" th:errorclass="fieldError"></textarea>
 								</td>
 								<td>
-									EUR <input id="priceoffer" name="priceoffer" type="text" size="2" th:field="*{priceoffer}" th:errorclass="fieldError"/>
+									EUR <input required="required" id="priceoffer" name="priceoffer" type="text" size="2" th:field="*{priceoffer}" th:errorclass="fieldError"/>
 								</td>
 								<td>
 									<input type="submit" value="Antworten" />
