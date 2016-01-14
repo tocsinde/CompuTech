@@ -30,11 +30,8 @@
 			<td th:text="${reparation.price}"></td>
 			<td><form method="post" action="/support_price_offer">
 				<input type="hidden" name="reparationId" th:value="${reparation.id}"/>
-				<!--<input type="radio" name="button" class="button" value="accept" /> annehmen
-				<input type="radio" name="button" class="button" value="deny" /> ablehnen
-				<input type="submit" value="Absenden" />-->
-				<input type="submit" name="accept" class="button" value="accept" />
-				<input type="submit" name="deny" class="button" value="deny" />
+				<input type="submit" name="accept" class="button" value="annehmen" />
+				<input type="submit" name="deny" class="button" value="ablehnen" />
 			</form></td>
 		</tr>
 	</table>
