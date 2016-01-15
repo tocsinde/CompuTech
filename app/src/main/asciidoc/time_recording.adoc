@@ -7,18 +7,18 @@ Die verwendete Zeit beinhaltet auch das Lesen von Dokumentationen, Besprechungen
 [option="headers"]
 |===
 |Von |Bis |Anna |Kevin |Philipp |Stephan |Meetings (Konsultation mit Markus + Teamtreffen)
-|12.10.15   |18.10.15   |150 min    |xxx min    |570 min    |30 min    |40 min
-|19.10.15   |25.10.15   |540 min    |xxx min    |780 min    |90 min    |30 min
-|26.10.15   |01.11.15   |600 min    |xxx min    |780 min    |370 min    |285 min
-|02.11.15   |08.11.15   |540 min    |xxx min    |720 min    |180 min    |215 min
-|09.11.15   |15.11.15   |1200 min    |xxx min    |1020 min    |1100 min    |300 min
-|16.11.15   |22.11.15   |300 min    |xxx min    |540 min    |660 min    |105 min
-|23.11.15   |29.11.15   |1200 min    |xxx min    |630 min    |1020 min    |130 min
-|30.11.15   |06.12.15   |600 min    |xxx min    |660 min    |600 min    |155 min
-|07.12.15   |13.12.15   |900 min    |xxx min    |990 min    |840 min    |150 min
-|14.12.15   |20.12.15   |900 min    |xxx min    |900 min    |300 min    |120 min
-|21.12.15   |27.12.16   |210 min    |xxx min    |30 min    |600 min    |0 min
-|28.12.15   |03.01.16   |300 min    |xxx min    |120 min    |420 min    |0 min
-|04.01.16   |10.01.16   |1080 min    |xxx min    |1020 min    |1320 min    |370 min (mit Crosstesting)
-|11.01.16   |17.01.16   |xxx min    |xxx min    |xxx min    |970 min    |180 min
+|12.10.15   |18.10.15   |150 min    |300 min    |570 min    |30 min    |40 min
+|19.10.15   |25.10.15   |540 min    |400 min    |780 min    |90 min    |30 min
+|26.10.15   |01.11.15   |600 min    |540 min    |780 min    |370 min    |285 min
+|02.11.15   |08.11.15   |540 min    |360 min    |720 min    |180 min    |215 min
+|09.11.15   |15.11.15   |1200 min    |860 min    |1020 min    |1100 min    |300 min
+|16.11.15   |22.11.15   |300 min    |440 min    |540 min    |660 min    |105 min
+|23.11.15   |29.11.15   |1200 min    |720 min    |630 min    |1020 min    |130 min
+|30.11.15   |06.12.15   |600 min    |500 min    |660 min    |600 min    |155 min
+|07.12.15   |13.12.15   |900 min    |680 min    |990 min    |840 min    |150 min
+|14.12.15   |20.12.15   |900 min    |240 min    |900 min    |300 min    |120 min
+|21.12.15   |27.12.16   |210 min    |30 min    |30 min    |600 min    |0 min
+|28.12.15   |03.01.16   |300 min    |100 min    |120 min    |420 min    |0 min
+|04.01.16   |10.01.16   |1080 min    |930 min    |1020 min    |1320 min    |370 min (mit Crosstesting)
+|11.01.16   |17.01.16   |xxx min    |1100 min    |xxx min    |970 min    |180 min
 |===
