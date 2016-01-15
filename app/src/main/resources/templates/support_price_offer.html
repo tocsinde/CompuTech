@@ -28,7 +28,8 @@
 			<td th:text="${reparation.article.name}">Samsung</td>
 			<td th:text="${reparation.description}">very good</td>
 			<td th:text="${reparation.price}"></td>
-			<td><form method="post" action="/support_price_offer">
+			<td th:if="${reparation.price} == null">Preisangebot von Mitarbeiter steht noch aus.</td>
+			<td th:unless="${reparation.price} == null"><form method="post" action="/support_price_offer">
 				<input type="hidden" name="reparationId" th:value="${reparation.id}"/>
 				<input type="submit" name="accept" class="button" value="annehmen" />
 				<input type="submit" name="deny" class="button" value="ablehnen" />
