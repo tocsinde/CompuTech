@@ -19,7 +19,7 @@ __Shortcuts:__
 
 __Evaluationen:__
 
-Werden hier verlinkt.
+link:app/src/main/asciidoc[In diesem Ordner.]
 
 __Protokolle:__
 

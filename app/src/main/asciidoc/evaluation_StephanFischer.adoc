@@ -1,0 +1,56 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2015/16
+
+**Von:**
+Stephan Fischer
+
+**Gruppe:**
+Gruppe 32
+
+== Was habe ich gelernt?
+Im Laufe des Praktikums habe ich auf jeden Fall gelernt, wie wichtig die Planung als Bestandteil der Projektführung ist. Fragen wie "Welche Menüpunkte kann der Boss jetzt konkret sehen?" ließen sich mit einem Blick in die Aufgabenstellung, ins Pflichtenheft oder in die GUI-Prototypen beantworten, ohne weitere Absprachen mit dem restlichen Team halten zu müssen. Auch wenn man in der Planung nicht alles berücksichtigen kann (aus Komplexitäts- und Zeitgründen), spart die einmal investierte Planungszeit auf lange Sicht Zeit in der Entwicklungsphase.
+
+Desweiteren habe ich zum ersten Mal mit Spring und Salespoint (und auch Thymeleaf) gearbeitet. Dadurch konnte ich einen Einblick in ungefähr das System erhalten, welches - in Grundzügen - auch bei größeren Unternehmen wie Amazon oder Zalando benutzt wird, was sicherlich keine nutzlose Erfahrung für das weitere Berufsleben ist.
+
+JavaDoc ermöglicht es nicht nur, mit relativ wenig Aufwand eine übersichtliches Dokumentationswerk zu erstellen, es hilft auch, mehr Übersicht in den Code zu bringen. Auch wenn es mir etwas lästig erschien, zum Ende des Praktikums ganze Controller mit ihren ganzen Methoden zu beschreiben, hat es mir schon kurze Zeit später geholfen, Funktionen beim weiteren Arbeiten mit besseren Suchbegriffen finden zu können.
+
+AsciiDoc habe ich auch erst durch das Praktikum kennen- und schätzengelernt, es ist eine wunderbare Alternative zu Markdown, auch wenn die Syntax etwas aufwändiger ist.
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Die interne WhatsApp-Gruppe war für die schnelle Kommunikation im Notfall sehr verlässlich und unabdingbar. Screenshots mit Fehlermeldungen oder GUI-Fehlern halfen mir gut, potentielle Fehlerquellen zu finden und beheben zu können. Im Gegensatz zu E-Mails waren Absprachen schneller und mit geringerer Hemmschwelle möglich. Man sitzt vorm Code, hat eine kurze Frage, 30 Sekunden später ertönt ein Klang und die Antwort ist da.
+
+Auch die Issues, die wir auf GitHub erstellten, waren eine große Hilfe für die Zusammenarbeit. Wenn man eine Aufgabe erfüllt hatte, die man gerade im Kopf hatte, konnte man danach in die Issues schauen und sich den nächsten Fall vornehmen, ohne fragen zu müssen, was noch offen ist. Die Issues haben wir nach Bedarf, meistens nach den Konsultationen mit Markus, erstellt.
+
+Gerade auch die Protokolle waren nützlich für offene Fragen. Falls ich etwas nicht mehr genau wusste, hatte ich zumindest noch eine Idee, in welchem Zeitraum wir über welche Themen gesprochen hatten und konnte im jeweiligen Protokoll nachschlagen, um sichere Antworten geben zu können.
+
+Die GUI-Prototypen, die ich mit Inkscape gestaltet habe, hätten etwas detaillierter sein können. Vorallem hätte ich einzelne Funktionen des Programms schon besser in den Entwürfen ausarbeiten können (Wird jetzt eine Tabelle verwendet oder nicht? Wo kommt der Bestätigungsbutton hin?), um im Nachhinein Anpassungsarbeiten minimieren zu können. Die Teammitglieder hätten sich auf jeden Fall besser orientieren können.
+
+Falls jemand einen Fehler gemacht hat und bestimmte Funktionen nicht mehr das taten, was vorher anstandslos funktioniert hat, konnte man mit einem
+[source]
+git checkout Commitnummer
+
+temporär wieder zum letzten Stand zurück und erstmal weiterarbeiten. Git, gerade in Verbindung mit GitHub, war die beste Versicherung.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+
+Salespoint war in der Tat eine große Erleichterung, jedoch nicht von Beginn an. Denn bis man wirklich die Vorteile und Arbeitserleichterung genießen kann, muss man sich einarbeiten. Dies fiel mir, weil meine Erfahrungen mit MVC-Frameworks sich bislang auf ein kleines MVC-CMS in PHP beschränkt hatten, schwer, weil der Code für eine Aktion, die man schreiben möchte, gefühlt über dutzende Dateien verteilt war. Mittlerweile ist das anders und ich komme besser zurecht, doch unter Stress verlor ich ab und an dennoch wieder etwas den Überblick.
+
+Spring Annotations für Formulare fand ich zum Beispiel sehr hilfreich. So musste ich für eine E-Mail-Adressen-Validierung nur ein
+[source]
+@Email
+
+vor mein Attribut setzen und die Eingabe wurde validiert. Ich konnte mir die Regular Expression für diesen Fall sparen.
+
+Das Konzept, das dafür sorgt, dass man mit bestimmten URLs und einer GET- oder POST-Methode, Methoden aufrufen kann, fand gerade bei der Formularauswertung hilfreich, weil man so jeden einzelnen Schritt (Formular anzeigen, Eingaben validieren, Eingaben speichern, Erfolgsnachricht ausgeben) übersichtlich in die Controller packen konnte.
+Durch das MVC-Layout war die Logik auch immer sauber von dem Aussehen getrennt, was die Arbeitsverteilung erleichterte. Während am Controller gearbeitet wurde, konnte ich nach ein paar Anfragen schon weiter am Template, welches für die Ausgabe zuständig ist, arbeiten.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+
+Ich war mit MagicDraw als Softwarevorgabe für die Diagrammerstellung unzufrieden, da mir die Bedienung zu umständlich war. Das Programm passt als komerzielle Software nicht zum restlichen eher Open-Source-orientierten Praktikum, desweiteren mussten wir als Gruppe lange auf unsere Lizenz warten, um überhaupt beginnen zu können. Sollte der Lehrstuhl auch weiterhin an MagicDraw festhalten wollen, wäre zumindest eine Alternative begrüßenswert.
+
+Für uns als Vierergruppe war der Aufgabenumfang etwas zu groß und dessen Bewältigung nahm viel Zeit in Anspruch, sodass ich gelegentlich den Eindruck hatte, dass mein restliches Studium auf der Strecke blieb, da man durch die wöchentliche Konsultation immer irgendwann in Zeitnot geriet. Die Organisation, das Lesen von Dokumentationen, die Treffen und das Bugfixing brauchen ihre Zeit, das ist klar, aber man kann aufgrund unvorhergesehener Ereignisse auch schlecht kalkulieren und eher weniger die Zeit aufteilen.
+
+== Sonstiges und Anmerkungen
+
+Ein paar Worte noch zu unserem Tutor, Markus Heider: Ich war im Großen und Ganzen zufrieden mit ihm, er war stets nett, uns gegenüber zuvorkommend und geizte nie mit Lob. Zu jeder Konsultation hatte er immer ein paar Tipps parat, sei es nun der Hinweis auf die Ultimate Edition von IntelliJ, Ratschläge für die Präsentationen oder Hilfe zum Bugfixing. Sein Engagement führte dazu, dass wir eine aus seiner Sicht gute Leistung lieferten und, wahrscheinlich auch dadurch begünstigt, auch ohne eine einzige Verwarnung das Praktikum bewältigten.
+
+Ab und an war er etwas vergesslich oder es ist etwas bei ihm "untergegangen", falls wir mal eine Rückfrage hatten. In den paar Fällen hätte ich mir etwas mehr Engagement gewünscht.
