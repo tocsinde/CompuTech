@@ -30,7 +30,9 @@ Es soll Zulieferer für Produkte geben, welche die Nachbestellungen ausführen. 
 == Sonstiges
 === Optik der Anwendung
 Detailreiches User-Interface, professionelle farbliche Gestaltung und framing.
+
 === Fehlende Features
+
 === Interaktion mit der Anwendung (Usability)
 * betreffend Testfall I-1: Bei Datumseingabe "11.11.2016" liefert Programm
 internen Serverfehler
