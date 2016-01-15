@@ -11,13 +11,19 @@ __Shortcuts:__
 
 * link:https://github.com/st-tu-dresden-2015/swt15w32/issues[Issues]
 * link:app/src/main/asciidoc/pflichtenheft.adoc[Pflichtenheft]
+* link:app/src/main/asciidoc/anwenderdokumentation.adoc[Anwenderdokumentation]
 * link:app/src/main/asciidoc/entwickler_doku.adoc[Entwicklerdokumentation]
 * link:app/src/main/asciidoc/cross_testing_report.adoc[Crosstesting]
 * link:app/src/main/asciidoc/test_plan.adoc[Testfälle]
-* link:app/src/main/asciidoc/evaluation_sheet.adoc[Evaluation]
+* link:app/src/main/asciidoc/evaluation_sheet.adoc[Evaluationsvorlage]
+
+__Evaluationen:__
+
+Werden hier verlinkt.
 
 __Protokolle:__
 
+* link:app/src/main/asciidoc/protocol%202016-01-14.adoc[Protokoll - 2016-01-14]
 * link:app/src/main/asciidoc/protocol%202016-01-08.adoc[Protokoll - 2016-01-08]
 * link:app/src/main/asciidoc/protocol%202015-12-10.adoc[Protokoll - 2015-12-10]
 * link:app/src/main/asciidoc/protocol%202015-12-03.adoc[Protokoll - 2015-12-03]

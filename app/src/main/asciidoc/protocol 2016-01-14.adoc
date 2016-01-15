@@ -1,0 +1,78 @@
+= Protokoll Gruppe 32
+__Treffen am 14.01.2016__
+
+
+__Schriftführer:__
+Stephan Fischer
+
+__Nächstes Treffen:__ wird noch bekanntgegeben
+
+__Teilnehmer:__
+
+* Stephan Fischer
+* Anna Gromykina
+* Kevin Horst
+* Philipp Oehme
+
+== Bemerkungen
+
+* Abschlusspräsentation
+** Raum wurde bekanntgegeben: APB 2101(Ei)
+** Vortrag sollte 30 Minuten nicht überschreiten (10 min zum Projektverlauf, 10 min Vorführung, 10 min Diskussion)
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+[option="headers"]
+
+|===
+|Issue |Aufgabe |Status
+|32    |M070 - Mitarbeiter: Preisvorschlag beim Einkauf    |fertig
+|31    |M060 - Mitarbeiter kann Service- und Reparaturanfragen bearbeiten    |fertig, kleinere Bugs
+|30    |jUnit-Tests vorbereiten    |selbsterklärend    |wird gefixt
+|37    |Kauf eines Computers mit fehlenden Komponenten möglich  |fertig
+|38    |Entwicklerdokumentation    |Vorlage im Repo    |Stephan    |fertig, kleine Anpassungen folgen
+|39    |JavaDoc    |Code-Dokumentation mit JavaDoc    |fehlen noch für Reparatur- und Ankaufcode
+|40    |Artikel wird nicht richtig aus Lager gelöscht   |gefixt
+|41    |Timerecording hochladen    |selbsterklärend    |Einträge von Kevin fehlen noch
+|42    |Crosstestingreport   |Bericht vom 07.01.16 über Programm von Gruppe 13    |nahezu fertig
+|===
+
+== Aktueller Stand
+
+* recht kurzfristig von Markus angefordert: Anwenderdokumentation
+** Musskriterien mit Stichpunkten und Screenshots erläutern
+* leider immer noch Probleme mit Mockito; Kevin wird Tests jetzt manuell schreiben
+* Sonarcube-Login funktioniert
+
+=== Abschlusspräsentation
+* Vorstellung des Teams
+* ein paar, aber nicht alle Diagramme vorstellen
+* Probleme und deren Lösungen schildern
+* "Lessons learned"
+* zeitlichen Aufwand erkäutern (z.B. anhand des Timerecordings)
+* VGA-Adapter mitbringen, HDMI-Anschluss geht auch
+* am besten schon 10-20 Minuten vorher da sein
+* festlegen, welches Team anfängt
+* Vorführung der Software
+** hierbei am besten schon mehrere Browser vorbereiten (1x als Boss eingeloggt, 1x als Kunde eingeloggt)
+
+=== Letzte Hinweise/Aufgaben
+* eventuell muss noch eine neue Ordnerstruktur eingerichtet werden (eventuell auch nach Abgabetermin, was in Ordnung ist)
+* eine große .mdzip-Datei erstellen (mit allen Diagrammen), wäre gut
+* Timerecording: alles gut
+* Testfälle
+** sollten laufen, Stand im Sonarcube ist veraltet, weil Jenkins Fehler liefert
+* Anwenderdokumentation
+** gibt kein vorgeschriebenes Format bzw. keine Vorlage
+* Entwicklerdokumentation
+** sollte leicht überarbeitet werden (z.B. Browserversionen festlegen)
+* Evaluationsdatei
+** muss jeder einzeln ausfüllen
+** Tutorbewertung ist optional
+** Kritik ist vollkommen in Ordnung, nur sollte sie sachlich und konstruktiv bleiben
+* Bild auf Startseite sollte noch eine Quellenangabe erhalten (unsplash.com)
+
+=== Bugs
+* Ankauf- und Reperaturstelle laufen im Großen und Ganzen
+* kleinere Fehler zum Teil direkt mit Markus behoben
