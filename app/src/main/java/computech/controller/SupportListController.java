@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.math.BigDecimal;
 
 /**
- * Created by Anna on 18.12.2015.
+ *
+ * The SupportListController contains most of the reparations functions.
+ *
  */
 
 @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE','ROLE_BOSS')")
@@ -40,7 +42,12 @@ public class SupportListController {
 
         }
 
-
+    /**
+     * Show reparationslist for Boss and employee.
+     *
+     * @param modelMap contains List of the reparations
+     * @return template "support_list"
+     */
 
     @RequestMapping(value = "/support_list")
     public String supportList(ModelMap modelMap){
@@ -53,6 +60,14 @@ public class SupportListController {
         return "support_list";
     }
 
+    /**
+     * Save price for the reparation and confirm a changing the price
+     *
+     * @param priceText - price, that would be given to the reparations
+     * @param reparationId contains Id of thhe reparation, where price will be changed
+     * @return  to template "support_list_confirmation" if customer accept the price
+     */
+
     @RequestMapping(value = "/support_list", method = RequestMethod.POST)
     public String setPrice(@RequestParam("price") String priceText,
                            @RequestParam("reparationId") Long reparationId) {
@@ -61,9 +76,7 @@ public class SupportListController {
         reparation.setPrice(price);
         repairRepository.save(reparation);
 
-        System.out.println("Price set to " + price);
-
-        return "support_list_confirmation";
+       return "support_list_confirmation";
     }
 
 

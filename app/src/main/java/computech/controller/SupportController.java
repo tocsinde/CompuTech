@@ -2,7 +2,6 @@ package computech.controller;
 
 import computech.model.*;
 import computech.model.validation.ReparationForm;
-import org.salespointframework.order.Cart;
 import org.salespointframework.useraccount.UserAccount;
 import org.salespointframework.useraccount.web.LoggedIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,7 +103,7 @@ public class SupportController {
     /**
      * Checks reparation form and saves reparations data.
      *
-     * @param id ID of the customer who have a reparation
+     * @param userAccount of the customer who have a reparation
      * @param modelMap contains type of the article
      * @return redirect to template "support_confirmation"
      */
@@ -137,7 +136,7 @@ public class SupportController {
     /**
      * Confirm a reparation.
      *
-     * @param id ID of the customer who is locked in
+     * @param userAccount of the customer who is locked in
      * @param modelMap contains customer
      * @return template "support_confirmation"
      */
@@ -153,9 +152,9 @@ public class SupportController {
     }
 
     /**
-     * Show reparationslist for Boss and employee.
+     * Show reparationslist for customer.
      *
-     * @param id ID of the customer who is locked in
+     * @param userAccount of the customer who is locked in
      * @param modelMap contains List of the reparations
      * @return template "support_confirmation"
      */
@@ -181,7 +180,7 @@ public class SupportController {
     }
 
     /**
-     * Save price for the reparation
+     * Save price for the reparation and aloud a confirm of the price
      *
      * modelMap contains a list of enabled employees
      * @param acceptFlag - will be set if customer will be accept the protosition
