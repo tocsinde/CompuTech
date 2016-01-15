@@ -20,9 +20,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by Anna on 15.11.2015.
- *  */
-
+ *
+ * The SupportController contains most of the reparations functions.
+ *
+ */
 
 @PreAuthorize("hasAnyRole('ROLE_PCUSTOMER','ROLE_BOSS')")
 @Controller
@@ -48,6 +49,14 @@ public class SupportController {
     }
 
 
+    /**
+     * Shows form for editing a reparation.
+     *
+     * @param modelMap contains the reparationsform
+     * @param modelMap contaisns the article types
+     * @return template "support"
+     */
+
     @RequestMapping(value = "/support")
     public String showSupportFormular(ModelMap modelMap) {
 
@@ -60,11 +69,18 @@ public class SupportController {
         }
 
 
-        //  modelMap.addAttribute("catalog", computerCatalog.findByType());
-        //  modelMap.addAttribute("articleList",  computerCatalog.findAll());
-
-        return "support";
+      return "support";
     }
+
+
+    /**
+     * Reload form for editing a reparation.
+     *
+     * @param modelMap contains the reparationsform
+     * @param modelMap contaisns the article types
+     * @param modelMap contaisns models of the articles
+     * @return template "support"
+     */
 
     @RequestMapping(value = "/support/{type}")
 
@@ -84,6 +100,14 @@ public class SupportController {
 
         return "support";
     }
+
+    /**
+     * Checks reparation form and saves reparations data.
+     *
+     * @param id ID of the customer who have a reparation
+     * @param modelMap contains type of the article
+     * @return redirect to template "support_confirmation"
+     */
 
 
     @RequestMapping(value = "/support", method = RequestMethod.POST)
@@ -110,17 +134,17 @@ public class SupportController {
         return "redirect:/support_confirmation";
     }
 
+    /**
+     * Confirm a reparation.
+     *
+     * @param id ID of the customer who is locked in
+     * @param modelMap contains customer
+     * @return template "support_confirmation"
+     */
+
     @RequestMapping(value = "/support_confirmation")
     public String confirmation(@LoggedIn Optional<UserAccount> userAccount,
                                ModelMap modelMap) {
-
-        /*Reparation rep = null;
-        Iterator<Reparation> iterator = repairRepository.findAll().iterator();
-        while (iterator.hasNext()) {
-            rep = iterator.next();
-        }
-
-        customer = rep.getCustomer();*/
 
         Customer customer = customerRepository.findByUserAccount(userAccount.get());
         modelMap.addAttribute("customer", customer);
@@ -128,6 +152,13 @@ public class SupportController {
         return "support_confirmation";
     }
 
+    /**
+     * Show reparationslist for Boss and employee.
+     *
+     * @param id ID of the customer who is locked in
+     * @param modelMap contains List of the reparations
+     * @return template "support_confirmation"
+     */
     @RequestMapping(value = "/support_price_offer")
     public String showPriceOffers(ModelMap modelMap,
                                   @LoggedIn Optional<UserAccount> userAccount) {
@@ -149,15 +180,25 @@ public class SupportController {
         return "support_price_offer";
     }
 
+    /**
+     * Save price for the reparation
+     *
+     * modelMap contains a list of enabled employees
+     * @param acceptFlag - will be set if customer will be accept the protosition
+     * @param denyFlag - will be set if customer will be deny the proposition
+     * @param reparationId - id of the reparation, which price will be changed
+     * @param modelMap contains customer
+     * @param modelMap contains article from the repatation
+     * @return redirect to template "support_price_confirmation" if customer accept the price
+     * @return redirect to template "support_price_confirmation_not" if customer deny the price
+     */
+
 
     @RequestMapping(value = "/support_price_offer", method = RequestMethod.POST)
     public String onPriceOfferDecisionMade(@RequestParam(required = false, value = "accept") String acceptFlag,
                                            @RequestParam(required = false, value = "deny") String denyFlag,
-                                           //@RequestParam("button") String Flag,
-
                                            @RequestParam("reparationId") Long reparationId,
-                                           @LoggedIn Optional<UserAccount> userAccount, ModelMap modelMap,
-                                           @ModelAttribute Cart cart) {
+                                           @LoggedIn Optional<UserAccount> userAccount, ModelMap modelMap) {
 
         Customer customer = customerRepository.findByUserAccount(userAccount.get());
         Reparation reparation = repairRepository.findOne(reparationId);
@@ -165,20 +206,13 @@ public class SupportController {
         modelMap.addAttribute("customer", customer);
         modelMap.addAttribute("article", reparation.getArticle());
 
-        //modelMap.addAttribute("fullname", customer.getFirstname() +" " + customer.getLastname() );
-        //modelMap.addAttribute("article_name",reparation.getArticle().getModel());
-
-        System.out.println("11");
-
         if (acceptFlag != null) {
 
             sellRepairRepository.save(reparation);
             repairRepository.delete(reparationId);
-            System.out.println("ja");
             return "support_price_confirmation";
         } else if (denyFlag != null) {
             repairRepository.delete(reparationId);
-            System.out.println("nein");
         }
 
 
