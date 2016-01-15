@@ -22,6 +22,8 @@ public class Reparation {
     @Lob
     private Money price;
 
+    private boolean paid=false;
+
     @ManyToOne private Customer customer;
 
     private Reparation() {}
@@ -57,4 +59,8 @@ public class Reparation {
     public Money getPrice() {
         return price;
     }
+
+    public boolean isPaid() {return paid;}
+
+    public void setPaid() {this.paid = true;}
 }
