@@ -19,16 +19,17 @@ Desweiteren trägt eine Beschränkung der Ladezeit einzelner Seiten und Aktionen
 == Randbedingungen
 === Hardware-Vorgaben
 
-Ein handelsüblicher internetfähiger PC, der auch fünf oder mehr Jahre alt sein darf, reicht durchaus aus. Maus, Tastatur und ein mindestens 15 Zoll großer Monitor werden als Musskriterium gesetzt. Empfohlen sind folgende Spezifikationen:
+Ein handelsüblicher internetfähiger PC ist ausreichend. Maus, Tastatur und ein Monitor werden als Musskriterium gesetzt. Empfohlen sind folgende Spezifikationen:
 
-* Dual-Core-Prozessor
+* min. Intel Pentium 4-Prozessor o.ä.; besser Dual-Core-Prozessor
+* min. 15-Zoll-Monitor mit 1024*768 Pixel Auflösung
 * min. 1GB Arbeitsspeicher
 * integrierte Grafikkarte
 
 
 === Software-Vorgaben
-* beliebiges Betriebssystem (Windows, Mac OS, Linux oder ein anderes unixoides System)
-* beliebiger Browser (Firefox, Chrome, Opera, Internet Explorer/Edge)
+* beliebiges Betriebssystem (Windows ab XP, Mac OS ab Version 10.6, Linux oder ein anderes unixoides System)
+* beliebiger Browser (Firefox ab Version 4, Chrome ab Version 5, Opera ab Version 15, Internet Explorer ab Version 10/Edge)
 * IntelliJ (mindestens die Community Edition), Eclipse oder STS (Spring Tool Suite; speziell für Spring angepasste Eclipse-Version) als Programmierumgebung
 * Maven 3
 * Git
