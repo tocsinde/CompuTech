@@ -20,5 +20,5 @@ Die verwendete Zeit beinhaltet auch das Lesen von Dokumentationen, Besprechungen
 |21.12.15   |27.12.16   |210 min    |xxx min    |30 min    |600 min    |0 min
 |28.12.15   |03.01.16   |300 min    |xxx min    |120 min    |420 min    |0 min
 |04.01.16   |10.01.16   |1080 min    |xxx min    |1020 min    |1320 min    |370 min (mit Crosstesting)
-|11.01.16   |17.01.16   |xxx min    |xxx min    |xxx min    |YYY min    |tba min (ca. 120 min Lernraum + Treffen am Donnerstag)
+|11.01.16   |17.01.16   |xxx min    |xxx min    |xxx min    |970 min    |180 min
 |===
