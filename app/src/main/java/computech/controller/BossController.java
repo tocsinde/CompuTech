@@ -110,7 +110,7 @@ public class BossController {
 	 */
 	@RequestMapping("/productimg/{file}.{filetype}")
 	public void productimg(HttpServletResponse response, @PathVariable("file") String filename, @PathVariable("filetype") String filetype) throws IOException {
-		BufferedInputStream image = new BufferedInputStream(new FileInputStream(new File("src/main/resources/static/resources/img/cover/" + filename + "." + filetype)));
+		BufferedInputStream image = new BufferedInputStream(new FileInputStream(new File("articleimages/" + filename + "." + filetype)));
 		IOUtils.copy(image, response.getOutputStream());
 	}
 
@@ -623,7 +623,7 @@ public class BossController {
 
 		try {
 			byte[] bytes = file.getBytes();
-			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/static/resources/img/cover/" + file.getOriginalFilename())));
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("articleimages/" + file.getOriginalFilename())));
 			stream.write(bytes);
 			stream.close();
 		} catch (Exception e) {
