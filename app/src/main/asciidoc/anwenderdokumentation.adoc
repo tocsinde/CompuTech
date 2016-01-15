@@ -1,0 +1,150 @@
+:imagesdir: images
+
+= Anwenderdokumentation
+
+
+== Jede berechtigte Person
+=== Ein- und Ausloggen
+
+[caption="Loginformular"]
+image::anwenderdok/login.png["Loginformular", 750, link="images/anwenderdok/login.png", title=" "]
+
+* nach Registrierung möglich (oben rechts)
+* Login: Fehlermeldung bei fehlerhaften Daten
+* bei erfolgreichem Login und Logout Weiterleitung auf Startseite
+* Navigation wird je nach Benutzerrolle neu geladen und neue Menüpunkte werden erreichbar
+
+
+== Chef
+
+=== Accountverwaltung
+
+[caption="Accountverwaltung"]
+image::anwenderdok/accountverwaltung.png["Accountverwaltung - Übersicht", 750, link="images/anwenderdokaccountverwaltung.png", title=" - Übersicht über Kunden"]
+
+* Bearbeiten und Löschen bestehender Kunden und Mitarbeiter möglich
+* Hinzufügen neuer Mitarbeiter und Geschäftskunden möglich
+* beim Hinzufügen neues Geschäftskunden Auswahl vom verbundenen Mitarbeiter möglich
+* Daten bei Neuerstellung und Bearbeitung werden validiert:
+** alle Felder müssen ausgefüllt sein
+** Nickname darf keine Sonderzeichen enthalten
+** E-Mail-Adresse und Telefonnummer müssen valides Format haben
+* beim Löschen von Kunden werden verknüpfte Reparatur- und Ankaufanfragen auch gelöscht
+
+[caption="Accountverwaltung"]
+image::anwenderdok/accountverwaltung_bearbeiten.png["Accountverwaltung - Accountbearbeitung", 750, link="images/anwenderdok/accountverwaltung_bearbeiten.png", title=" - Accountbearbeitung"]
+
+[caption="Accountverwaltung"]
+image::anwenderdok/accountverwaltung_gkunde_hinzufuegen.png["Accountverwaltung - Geschäftskunde hinzufügen", 750, link="images/anwenderdok/accountverwaltung_gkunde_hinzufuegen.png", title=" - Geschäftskunde hinzufügen"]
+
+[caption="Accountverwaltung"]
+image::anwenderdok/accountverwaltung_mitarbeiter.png["Accountverwaltung - Mitarbeiterauflistung", 350, link="images/anwenderdok/accountverwaltung_mitarbeiter.png", title=" - Mitarbeiterauflistung"]
+
+
+[caption="Accountverwaltung"]
+image::anwenderdok/accountverwaltung_mitarbeiter_hinzufuegen.png["Accountverwaltung - Mitarbeiter hinzufügen", 450, link="images/anwenderdok/accountverwaltung_mitarbeiter_hinzufuegen.png", title=" - Mitarbeiter hinzufügen"]
+
+[caption="Accountverwaltung"]
+image::anwenderdok/accountverwaltung_mitarbeiter_bearbeiten.png["Accountverwaltung - Mitarbeiter hinzufügen", 450, link="images/anwenderdok/accountverwaltung_mitarbeiter_bearbeiten.png", title=" - Mitarbeiter bearbeiten"]
+
+
+
+=== Lagerverwaltung
+
+[caption="Lagerverwaltung"]
+image::anwenderdok/bestand.png["Lagerverwaltung - Übersicht", 450, link="images/anwenderdok/bestand.png", title=" - Übersicht"]
+
+
+* Übersicht über aktuellen Warenbestand
+* Artikelanzahl kann verändert bzw. Artikel können komplett gelöscht werden
+
+[caption="Lagerverwaltung"]
+image::anwenderdok/bestand_bearbeiten.png["Lagerverwaltung - Artikel bearbeiten", 450, link="images/anwenderdok/bestand_bearbeiten.png", title=" - Artikel bearbeiten"]
+
+=== Zugriff auf Buchhaltung und Bilanzen
+
+[caption="Bilanz"]
+image::anwenderdok/bilanz.png["Bilanz", 650, link="images/anwenderdok/bilanz.png", title=" "]
+
+
+* Übersicht über Verkaufseinnahmen
+* Übersicht über Ausgaben
+** hierbei wird der Endpreis (für Kunden) angezeigt und rechts daneben der Betrag der Gesamtausgaben (Menge des Artikels * Endpreis * 0,6)
+* Auftragseinnahmen (durch Reparaturen)
+
+
+== Mitarbeiter
+
+=== Service- und Reparaturanfragen bearbeiten
+
+[caption="Ankaufstelle"]
+image::anwenderdok/ankaufstelle.png["Ankaufstelle - Übersicht", 650, link="images/anwenderdok/ankaufstelle.png", title=" - Übersicht"]
+
+[caption="Reparaturannahme"]
+image::anwenderdok/reparatur_preisvorschlag.png["Reparaturannahme", 650, link="images/anwenderdok/reparatur_preisvorschlag.png", title=" "]
+
+* Übersicht mit Produkten von bestimmten Kunden (und bei Ankaufstelle mit Zustandsoption zur besseren Endpreisorientierung)
+* Anfragen können einzeln abgearbeitet werden
+* Mitarbeiter kann Preisangebot setzen
+** dieses Angebot kann Kunde auf separater Seite akzeptieren oder ablehnen
+
+=== Preisvorschlag beim Einkauf
+
+[caption="Ankaufstelle"]
+image::anwenderdok/ankaufstelle_preisvorschlag.png["Ankaufstelle - Preisvorschlag", 650, link="images/anwenderdok/ankaufstelle_preisvorschlag.png", title=" - Preisvorschlag"]
+
+* Anfrage ist bis zum Preisvorschlag des Mitarbeiters im "schwebenen Zustand"
+* erst durch Preisvorschlag des Mitarbeiters kann Kunde Rückmeldung geben
+
+=== Neue Produkte hinzufügen
+
+[caption="Artikel hinzufügen"]
+image::anwenderdok/neuerartikel.png["Artikel hinzufügen", 650, link="images/anwenderdok/neuerartikel.png", title=" "]
+
+
+* Formular befindet sich im Lager
+* sowohl normale Produkte (Zubehör, Software, Notebooks als auch All-in-one-Geräte) hinzufügbar als auch Einzelteile (Prozessor, Grafikkarte, Arbeitsspeicher, Festplatte) für All-in-one-Rechner
+
+== Privatkunde
+
+=== Registrierung
+
+[caption="Registrierungsformular"]
+image::anwenderdok/registrierung.png["Registrierung", 650, link="images/anwenderdok/registrierung.png", title=" "]
+
+
+* Bedingungen:
+** Benutzername darf keine Sonderzeichen enthalten
+** Passwort muss zwei Mal eingegeben werden
+** E-Mail-Adresse und Telefonnummer (Bindestriche, Klammern für Vorwahlen und Leerzeichen werden akzeptiert) müssen valid sein
+
+=== Gebrauchte Geräte verkaufen
+
+[caption="Ankaufstelle für Privatkunden"]
+image::anwenderdok/gebrauchtesverkaufen.png["Registrierung", 650, link="images/anwenderdok/gebrauchtesverkaufen.png", title=" "]
+
+* durch Auswählen der Artikelart werden für bessere Übersicht dynamische Artikellisten geladen
+* Kunde hat die Möglichkeit, Zustand des Artikels auszuwählen (vorgefertigte Optionen) und ihn zusätzlich zu beschreiben
+
+=== Artikel in Warenkorb legen / Artikel entfernen / Bestellung absenden
+
+[caption="Artikelkauf"]
+image::anwenderdok/artikel_warenkorb.png["Artikelkauf - Detailseite", 650, link="images/anwenderdok/artikel_warenkorb.png", title=" - Detailseite"]
+
+
+* auf Detailseite eines Produkts existiert auf rechter Seite Bestellmöglichkeit
+* einzelne Artikel aus Warenkorb entfernbar
+* Überblick über Gesamtpreis der Bestellung
+* nach erfolgreichem Kauf Weiterleitung auf Startseite
+
+[caption="Artikelkauf"]
+image::anwenderdok/warenkorb.png["Artikelkauf - Warenkorb", 450, link="images/anwenderdok/warenkorb.png", title=" - Warenkorb"]
+
+=== Computer zusammenstellen
+
+[caption="Komponentenanpassung"]
+image::anwenderdok/artikel_zusammenstellen2.png["Komponentenanpassung", 650, link="images/anwenderdok/artikel_zusammenstellen2.png", title=" "]
+
+* All-in-one-Rechner besitzen Grundpreis, der sich, je nach gewählten Komponenten, beim Zusammenbau erhöht
+* Absenden der Bestellung erst dann möglich, wenn sämtliche Teile ausgewählt wurden
+* im Warenkorb werden Grundgerät und Komponenten separat aufgelistet
