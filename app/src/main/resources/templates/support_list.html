@@ -20,7 +20,7 @@
 			<th>Kunde</th>
 			<th>Artikel</th>
 			<th>Beschreibung</th>
-			<th></th>
+			<th>Preisvorschlag</th>
 		</tr>
 
 		<tr th:each="reparation: ${reparations}">
@@ -28,9 +28,9 @@
 			<td th:text="${reparation.article}">Samsung</td>
 			<td th:text="${reparation.description}">very good</td>
 			<td><form method="post" action="/support_list">
-				<input type="text" name="price"/>
+				EUR <input type="text" name="price" size="4" required="required" />
 				<input type="hidden" name="reparationId" th:value="${reparation.id}"/>
-				<button type="submit">Abschicken</button>
+				<input type="submit" value="Preis vorschlagen" />
 			</form></td>
 		</tr>
 	</table>
