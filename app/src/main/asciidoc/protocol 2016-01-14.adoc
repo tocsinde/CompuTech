@@ -29,13 +29,13 @@ __Teilnehmer:__
 |Issue |Aufgabe |Status
 |32    |M070 - Mitarbeiter: Preisvorschlag beim Einkauf    |fertig
 |31    |M060 - Mitarbeiter kann Service- und Reparaturanfragen bearbeiten    |fertig, kleinere Bugs
-|30    |jUnit-Tests vorbereiten    |selbsterklärend    |wird gefixt
+|30    |jUnit-Tests vorbereiten    |wird gefixt
 |37    |Kauf eines Computers mit fehlenden Komponenten möglich  |fertig
-|38    |Entwicklerdokumentation    |Vorlage im Repo    |Stephan    |fertig, kleine Anpassungen folgen
-|39    |JavaDoc    |Code-Dokumentation mit JavaDoc    |fehlen noch für Reparatur- und Ankaufcode
+|38    |Entwicklerdokumentation   |fertig, kleine Anpassungen folgen
+|39    |JavaDoc   |fehlen noch für Reparatur- und Ankaufcode
 |40    |Artikel wird nicht richtig aus Lager gelöscht   |gefixt
-|41    |Timerecording hochladen    |selbsterklärend    |Einträge von Kevin fehlen noch
-|42    |Crosstestingreport   |Bericht vom 07.01.16 über Programm von Gruppe 13    |nahezu fertig
+|41    |Timerecording hochladen   |Einträge von Kevin fehlen noch
+|42    |Crosstestingreport     |nahezu fertig
 |===
 
 == Aktueller Stand
