@@ -81,11 +81,12 @@ public class BossController {
 	private final SellanwserRepository sellanwserRepository;
 	private final Inventory<InventoryItem> partsinventory;
 	private final RepairRepository repairRepository;
+	private final SellRepairRepository sellRepairRepository;
 
 
 	@Autowired
 	public BossController(OrderManager<Order> orderManager, Inventory<InventoryItem> inventory,
-						  CustomerRepository customerRepository, UserAccountManager userAccountManager, SellRepository sellRepository, SellanwserRepository sellanwserRepository, Inventory<InventoryItem> partsinventory, RepairRepository repairRepository) {
+						  CustomerRepository customerRepository, UserAccountManager userAccountManager, SellRepository sellRepository, SellanwserRepository sellanwserRepository, Inventory<InventoryItem> partsinventory, RepairRepository repairRepository, SellRepairRepository sellRepairRepository) {
 
 		this.orderManager = orderManager;
 		this.inventory = inventory;
@@ -95,6 +96,7 @@ public class BossController {
 		this.sellanwserRepository = sellanwserRepository;
 		this.partsinventory = partsinventory;
 		this.repairRepository = repairRepository;
+		this.sellRepairRepository = sellRepairRepository;
 	}
 
 	/**
@@ -475,11 +477,12 @@ public class BossController {
 			Money f =m.multiply(bigd);
 			Money g =f.multiply(0.6);
 			money.add(g);
-			//Hmm..noch ohne funktion
 		}
 		modelMap.addAttribute("money", money);
 		modelMap.addAttribute("stock", inventory.findAll());
 		modelMap.addAttribute("ordersCompleted", orderManager.findBy(OrderStatus.COMPLETED));
+		modelMap.addAttribute("repairsCompleted", sellRepairRepository.findAll());
+		modelMap.addAttribute("sellsCompleted", sellanwserRepository.findAll());
 
 		return "balance";
 	}

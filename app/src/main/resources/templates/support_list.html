@@ -23,7 +23,7 @@
 			<th>Preisvorschlag</th>
 		</tr>
 
-		<tr th:each="reparation: ${reparations}">
+		<tr th:each="reparation: ${reparations}" th:unless="${reparation.paid} == true">
 			<td th:inline="text">[[${reparation.customer.firstname}]] [[${reparation.customer.lastname}]] <!-- Iwan Wasiljewitsch --></td>
 			<td th:text="${reparation.article}">Samsung</td>
 			<td th:text="${reparation.description}">very good</td>

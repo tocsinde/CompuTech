@@ -24,7 +24,7 @@
 
 		</thead>
 
-		<tr th:each="reparation: ${reparations}">
+		<tr th:each="reparation: ${reparations}" th:unless="${reparation.paid} == true">
 			<td th:text="${reparation.article.name}">Samsung</td>
 			<td th:text="${reparation.description}">very good</td>
 			<td th:text="${reparation.price}"></td>

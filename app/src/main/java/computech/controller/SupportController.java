@@ -170,6 +170,7 @@ public class SupportController {
             Reparation reparation = iterator.next();
             if (reparation.getCustomer().getId() == customer.getId()) {
                 reparationList.add(reparation);
+
             }
         }
 
@@ -207,7 +208,10 @@ public class SupportController {
 
         if (acceptFlag != null) {
 
-            sellRepairRepository.save(reparation);
+            Reparation completed = new Reparation(customer, reparation.getArticle(), reparation.getDescription());
+            completed.setPaid();
+            completed.setPrice(reparation.getPrice());
+            sellRepairRepository.save(completed);
             repairRepository.delete(reparationId);
             return "support_price_confirmation";
         } else if (denyFlag != null) {
