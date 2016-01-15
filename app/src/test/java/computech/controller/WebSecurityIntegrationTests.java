@@ -24,10 +24,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Test;
 
 import computech.AbstractWebIntegrationTests;
+import org.springframework.test.web.servlet.MockMvc;
 
 
 public class WebSecurityIntegrationTests extends AbstractWebIntegrationTests {
-
 
 
 	@Test

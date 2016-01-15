@@ -7,20 +7,29 @@ import org.salespointframework.inventory.InventoryItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 
 /**
  * Created by Anwender on 10.12.2015.
  */
 @Configuration
+@Profile("useMocks")
+
 public class Catalogcontrollercontext {
-    @Bean
-    public ComputerCatalog computerCatalog(){
-        return mock(ComputerCatalog.class);
-    }
+
+    public ComputerCatalog computerCatalog = mock(ComputerCatalog.class);
+
 
     @Bean
-    public InventoryItem inventoryItem(){
+    @Primary
+    public Inventory inventory(){
+        return mock(Inventory.class);
+    }
+    @Bean
+    @Primary
+    public InventoryItem inventoryitem(){
         return mock(InventoryItem.class);
     }
 
