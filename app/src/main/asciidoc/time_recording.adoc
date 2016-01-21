@@ -21,4 +21,5 @@ Die verwendete Zeit beinhaltet auch das Lesen von Dokumentationen, Besprechungen
 |28.12.15   |03.01.16   |300 min    |100 min    |120 min    |420 min    |0 min
 |04.01.16   |10.01.16   |1080 min    |930 min    |1020 min    |1320 min    |370 min (mit Crosstesting)
 |11.01.16   |17.01.16   |900 min    |1100 min    |1160 min    |970 min    |180 min
+|Summe |                |154,5h     |138,5h    |165,5h    |143,5h    |30,5h
 |===
