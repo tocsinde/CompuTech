@@ -1,0 +1,29 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2015/16
+
+**Von:** Philipp Oehme
+
+**Gruppe:** 32
+
+== Was habe ich gelernt?
+Anfangs hatte ich wenig bis kaum Programmiererfahrung, was sich schon bei der Modellierungsphase bemerkbar gemacht hat. Ich hatte immer wieder Vorschläge für das Projekt, welche schwer umsetzbar waren. Ich musste mich auch sehr lange, mithilfe von Oliver Gierkes Lectures, in Spring und Salespoint einarbeiten und nochmal die Javakenntnisse aus dem 2. Semester aufbessern. Dies beanspruchte eine gewisse Zeit. 
+
+Am besten gelernt habe ich trotz dessen erst, als wir mit der Implementierung angefangen haben. Jeden Tag kamen neue Fragen auf, für was ich denn jene Annotation überhaupt benötige oder wie genau das mit ModelMap funktioniert. Für mich war das alles Neuland und reines Java sogar noch nicht ganz so klar. Durch die Abstraktion in der Modellierungsphase habe ich einen guten Blick auf das zu Erreichende bekommen und hat mir persönlich gut geholfen, auch wenn ich später nur noch selten auf die Diagramme geschaut habe.
+
+Ich muss im Mittelteil des Projekts ging mir die Motivation verloren, als ich immer wieder auf Fehlermeldungen stieß, die mir niemand auf Anhieb beantworten und ich selbst nicht lösen konnte. Doch zum Ende hat der Ehrgeiz dann doch gesiegt und alles lief so wie ich es mir vorgestellt hatte. 
+
+= Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Die Zusammenarbeit in der Gruppe war, trotz dessen, dass wir uns nicht kannten, sehr angenehm und man hat sich gegenseitig geholfen. Die Kommunikation fand größtenteils über whatsapp oder persönliche Treffen statt, was für mich persönlich völlig zureichte.
+
+Meiner Meinung nach hätten wir uns noch zeitiger auf bestimmte Bereiche konzentrieren sollen, um ein schnelleres Vorankommen und Spezialisieren zu ermöglichen.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+Anfangs war ich skeptisch gegenüber Salespoint und Spring. Vorallem mit Spring wusste ich nicht viel anzufangen und fand es eher als Last alles nochmal zu lernen, anstatt mich über die Erleichterung zu freuen (wahrscheinlich, weil ich auch nicht wusste, was es für eine Arbeit ohne Sping machen würde). Doch nach einiger Zeit der Einarbeitung hat mich Spring nach und nach Überzeugt und würde jetzt nach dem Projekt am liebsten nie wieder ohne Spring Web-Applications mit Java programmieren.
+
+Salespoint war am Anfang auch eher etwas fremdes, jedoch hab ich schnell den Sinn erkannt und benutzt. Salespoint hat sich als echte Zeitersparnis herausgestellt.
+
+Mit Thymeleaf habe ich mich auch erst spät angefreundet, was wahrscheinlich den Grund hatte, dass die Erkenntnis mit Spring so spät kam. Doch zum Ende des Projektes hätte ich Thymeleaf nicht missen wollen. 
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+Meiner Meinung nach sollte eine bessere Vorbereitung in Spring/Salespoint/Thymeleaf erfolgen. Für den nicht so erfahrenen Java Programmierer ist es recht schwer innerhalb kurzer Zeit den Überblick zu bekommen. 
+
+== Sonstiges und Anmerkungen
