@@ -1,0 +1,26 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2015/16
+
+**Von:**
+Anna Gromykina
+
+**Gruppe:**
+Gruppe 32
+
+== Was habe ich gelernt?
+- in dem Team zu arbeiten
+- asciidoc
+- mit Frameworks zu arbeiten
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+
+- es wird die Arbeit erleichtern, besonderes beim Verkaufen war SalesPoint sehr hilfreich
+- am Anfang bei der Arbeit mit dem Framework muss man in die Theorie angehen, da ohne rigtiges Verstendnis eines Frameworks wird es unmöglich zu programmieren 
+
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+
+- Implementierungsphase verlängern
+
+== Sonstiges und Anmerkungen
+
+Wir hatten großes Glück mit unserem Tutor Markus Heider: auf einer Seits  hat er keinen Druck auf uns gemacht, andere Seits hat er unsere Arbeit und Vorrschritte gut kontroliert. Wir hatten eine Möglichkeit uns selbst fürs Praktikum motivieren, dadurch war in der Gruppe eine angenehme Arbeitsweise und gute Atmospher.
