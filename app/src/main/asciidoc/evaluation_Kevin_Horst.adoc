@@ -4,6 +4,7 @@
 Kevin Horst
 **Gruppe:**
 Gruppe 32
+
 == Was habe ich gelernt?
 Meine Javakenntnisse haben sich enorm verbessert, sowie mein genereller Umgang mit neuen Entwicklungsmöglichkeiten bzw. Umgebungen.
 Ich habe die Fähigkeit erlangt neue und kreative Lösungsvorschläge zu untersuchen und ihren Nutzen einzuordnen.
