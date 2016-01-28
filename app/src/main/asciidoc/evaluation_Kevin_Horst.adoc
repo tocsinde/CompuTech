@@ -1,0 +1,31 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2015/16
+
+**Von:**
+Kevin Horst
+**Gruppe:**
+Gruppe 32
+== Was habe ich gelernt?
+Meine Javakenntnisse haben sich enorm verbessert, sowie mein genereller Umgang mit neuen Entwicklungsmöglichkeiten bzw. Umgebungen.
+Ich habe die Fähigkeit erlangt neue und kreative Lösungsvorschläge zu untersuchen und ihren Nutzen einzuordnen.
+Die Modellierung in der Analyse und Entwurfsphase wurde besser verstanden.
+Die Umfangreichen Erleichterungen die Frameworks und Design Pattern bieten können, sind ,nach längerem Unverständnis, endlich zum Tragen
+gekommen.
+
+= Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Eine geordnete Aufgabenverteilung und Kontrolle über den Stand der Mitarbeiter ist entscheidend, jedoch darf die Entfaltungsfreiheit nicht 
+behindert werden.
+Die angenehme Arbeitsatmosphäre, auch und vor allem mit dem Tutor, war dem Erfolg des Projekt förderlich.
+Unsere Kommunikationsstrategie über Whatsapp und Github stellte sich als ausreichend heraus.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+Die Einarbeitungszeit in neue Frameworks kann eine enorme Menge an Zeit beanspruchen, jedoch sind die Strukturen und Hilfestellungen 
+der Frameworks unabdinglich für die schnelle gemeinsame Entwicklung.
+Die weiteren Möglichkeiten ,die Frameworks bieten können, sind gewaltig und regen die eigene Neugier an, eine gewisse Ahnung zu bekommen
+welche Frameworks für bekannte Probleme genutzt werden können.
+Besonders beim Testen der Springcontroller, bin ich auf höchstinteressante Frameworks gestoßen, die mich noch länger beschäftigen werden
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+Eine bessere Vorbereitung auf etwaige Eventualitäten, wie das Wegfallen der Gegengruppe für das Crosstesting, könnten vorher abgeklärt werden,
+beispielweise mit einem Zuordnungsalgorithmus, der die Crosstesting-Gruppen, wenn nötig und möglich, neu verteilt, damit das Crosstesting, 
+wie vorgesehen , bei allen Gruppen vor Weihnachten abgeschlossen ist.
+
+== Sonstiges und Anmerkungen
